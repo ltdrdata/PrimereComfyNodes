@@ -327,45 +327,56 @@ class PrimereMetaRead:
         files = [f for f in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir, f))]
         return {
             "required": {
-                # "read_meta": ("BOOLEAN", {"default":True}),
+                "use_exif": ("BOOLEAN", {"default": False}),
                 "image": (sorted(files),),
             },
+            "optional": {
+                "positive_g": ('STRING', {"forceInput": True, "default": ""}),
+                "negative_g": ('STRING', {"forceInput": True, "default": ""}),
+                "positive_l": ('STRING', {"forceInput": True, "default": ""}),
+                "negative_l": ('STRING', {"forceInput": True, "default": ""}),
+                "positive_refiner": ('STRING', {"forceInput": True, "default": ""}),
+                "negative_refiner": ('STRING', {"forceInput": True, "default": ""}),
+                "model_name": ('STRING', {"forceInput": True, "default": ""}),
+                "sampler_name": ('STRING', {"forceInput": True, "default": ""}),
+                "seed": ('INT', {"forceInput": True, "default": 0}),
+                "original_width": ('INT', {"forceInput": True, "default": 0}),
+                "original_height": ('INT', {"forceInput": True, "default": 0}),
+                "cfg_scale": ('FLOAT', {"forceInput": True, "default": 7}),
+                "steps": ('INT', {"forceInput": True, "default": 12}),
+            },
+
         }
 
     CATEGORY = TREE_IO
-
-    RETURN_TYPES = ("IMAGE", "STRING", "STRING", "INT", "INT", "INT", "FLOAT", "INT")
-    RETURN_NAMES = ("image", "positive", "negative", "seed", "width", "height", "cfg", "steps")
+    RETURN_TYPES = ("STRING", "STRING", "INT", "INT", "INT", "FLOAT", "INT")
+    RETURN_NAMES = ("positive", "negative", "seed", "width", "height", "cfg", "steps")
     FUNCTION = "load_image"
 
-    def load_image(self, image):
-        image_path = folder_paths.get_annotated_filepath(image)
-        i = Image.open(image_path)
-        i = ImageOps.exif_transpose(i)
-        image = i.convert("RGB")
-        image = np.array(image).astype(np.float32) / 255.0
-        image = torch.from_numpy(image)[None,]
-        if 'A' in i.getbands():
-            mask = np.array(i.getchannel('A')).astype(np.float32) / 255.0
-            mask = 1. - torch.from_numpy(mask)
+    def load_image(self, image, use_exif, positive_g="", negative_g="", positive_l="", negative_l="",
+                   positive_refiner="", negative_refiner="", model_name="", sampler_name="", seed=0, original_width=0,
+                   original_height=0, cfg_scale=7, steps=12):
+        if use_exif == True:
+            image_path = folder_paths.get_annotated_filepath(image)
+            # print(image_path)
+            reader = ImageDataReader(image_path)
+            if (reader.tool == ''):
+                return (positive_g, negative_g, seed, original_width, original_height, cfg_scale, steps)
+
+            try:
+                seed = int(reader.parameter["seed"])
+                cfg = float(reader.parameter["cfg"])
+                steps = int(reader.parameter["steps"])
+                size = reader.parameter["size"]
+                sizeSplit = size.split("x")
+                width = int(sizeSplit[0])
+                height = int(sizeSplit[1])
+            except ValueError:
+                return (positive_g, negative_g, seed, original_width, original_height, cfg_scale, steps)
+
+            return (reader.positive, reader.negative, seed, width, height, cfg, steps)
         else:
-            mask = torch.zeros((64, 64), dtype=torch.float32, device="cpu")
-
-        print(image_path)
-        reader = ImageDataReader(image_path)
-        # reader.parameter: {'model': 'abc', 'sampler': 'DPM++ 2M Karras', 'seed': '2706265200', 'cfg': '7', 'steps': '25', 'size': '512x512'}
-        if (reader.tool == ''):
-            raise ValueError('Unable to read generation metadata from image!')
-
-        seed = int(reader.parameter["seed"])
-        cfg = float(reader.parameter["cfg"])
-        steps = int(reader.parameter["steps"])
-        size = reader.parameter["size"]
-        sizeSplit = size.split("x")
-        width = int(sizeSplit[0])
-        height = int(sizeSplit[1])
-
-        return (image, reader.positive, reader.negative, seed, width, height, cfg, steps)
+            return (positive_g, negative_g, seed, original_width, original_height, cfg_scale, steps)
 
     @classmethod
     def IS_CHANGED(s, image):
