@@ -20,7 +20,6 @@ from .sd_prompt_reader.image_data_reader import ImageDataReader
 from PIL import Image, ImageOps
 import hashlib
 
-
 ## 3 input summarizer --------------
 class ThreeSumNode:
     def __init__(self) -> None:
@@ -68,13 +67,12 @@ class PrimereMetaSave:
                 "filename_prefix": ("STRING", {"default": "ComfyUI"}),
                 "filename_delimiter": ("STRING", {"default": "_"}),
                 "filename_number_padding": ("INT", {"default": 2, "min": 1, "max": 9, "step": 1}),
-                "filename_number_start": (["false", "true"],),
+                "filename_number_start": ("BOOLEAN", {"default":False}),
                 "extension": (['png', 'jpeg', 'jpg', 'gif', 'tiff', 'webp'], {"default": "jpg"}),
-                "png_embed_workflow": (["true", "false"],),
+                "png_embed_workflow": ("BOOLEAN", {"default":False}),
+                "image_embed_exif": ("BOOLEAN", {"default":False}),
                 "quality": ("INT", {"default": 95, "min": 1, "max": 100, "step": 1}),
-                "lossless_webp": (["false", "true"],),
                 "overwrite_mode": (["false", "prefix_as_filename"],),
-                "show_previews": (["true", "false"],),
             },
             "optional": {
                 "positive_g": ('STRING', {"forceInput": True}),
@@ -105,13 +103,12 @@ class PrimereMetaSave:
                          negative_refiner='', seed=0, model_name='', sampler_name='', original_width=0,
                          original_height=0, steps=0, cfg_scale=0,
                          output_path='', subpath='', filename_prefix="ComfyUI", filename_delimiter='_',
-                         extension='png', quality=95, lossless_webp="false", prompt=None, extra_pnginfo=None,
-                         overwrite_mode='false', filename_number_padding=2, filename_number_start='false',
-                         png_embed_workflow="true", show_previews="false"):
+                         extension='png', quality=95, prompt=None, extra_pnginfo=None,
+                         overwrite_mode='false', filename_number_padding=2, filename_number_start=False,
+                         png_embed_workflow=False, image_embed_exif=False):
 
         delimiter = filename_delimiter
         number_padding = filename_number_padding
-        lossless_webp = (lossless_webp == "true")
 
         # Define token system
         tokens = TextTokens()
@@ -240,11 +237,17 @@ Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed:
                     #     piexif.dump(exif_dict),
                     #     output_file
                     # )
-                    metadata = pyexiv2.Image(output_file)
-                    metadata.modify_exif({'Exif.Photo.UserComment': 'charset=Unicode ' + exif_metadata_A11})
-                    metadata.modify_exif({'Exif.Image.ImageDescription': json.dumps(exif_metadata_json)})
-
-                print(f"Image file saved to: {output_file}")
+                    if image_embed_exif == True:
+                        metadata = pyexiv2.Image(output_file)
+                        metadata.modify_exif({'Exif.Photo.UserComment': 'charset=Unicode ' + exif_metadata_A11})
+                        metadata.modify_exif({'Exif.Image.ImageDescription': json.dumps(exif_metadata_json)})
+                        print(f"Image file saved to with exif: {output_file}")
+                    else:
+                        if extension == 'webp':
+                            img.save(output_file, quality=quality, exif=metadata)
+                        else:
+                            img.save(output_file, quality=quality, optimize=True)
+                            print(f"Image file saved to without exif: {output_file}")
 
             except OSError as e:
                 print(f'Unable to save file to: {output_file}')
@@ -268,10 +271,7 @@ Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed:
                 }
                 results.append(image_data)
 
-        if show_previews == 'true':
-            return {"ui": {"images": results}}
-        else:
-            return {"ui": {"images": []}}
+        return {"ui": {"images": []}}
 
     def get_subfolder_path(self, image_path, output_path):
         output_parts = output_path.strip(os.sep).split(os.sep)
