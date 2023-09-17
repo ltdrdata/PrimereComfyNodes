@@ -48,150 +48,9 @@ class ThreeSumNode:
 
 ## Image and meta saver  --------------
 # ! SYSTEM HOOKS
-
 ALLOWED_EXT = ('.jpeg', '.jpg', '.png', '.tiff', '.gif', '.bmp', '.webp')
 NODE_FILE = os.path.abspath(__file__)
 NODE_ROOT = os.path.dirname(NODE_FILE)
-
-class Settings:
-    def __init__(self, filepath):
-        self.filepath = filepath
-        try:
-            with open(filepath, 'r') as f:
-                self.data = json.load(f)
-        except FileNotFoundError:
-            self.data = {}
-
-    def catExists(self, category):
-        return self.data.__contains__(category)
-
-    def keyExists(self, category, key):
-        return self.data[category].__contains__(key)
-
-    def insert(self, category, key, value):
-        if category not in self.data:
-            self.data[category] = {}
-        self.data[category][key] = value
-        self._save()
-
-    def update(self, category, key, value):
-        if category in self.data and key in self.data[category]:
-            self.data[category][key] = value
-            self._save()
-
-    def updateCat(self, category, dictionary):
-        self.data[category].update(dictionary)
-        self._save()
-
-    def get(self, category, key):
-        return self.data.get(category, {}).get(key, None)
-
-    def getDB(self):
-        return self.data
-
-    def insertCat(self, category):
-        if self.data.__contains__(category):
-            cstr(f"The database category `{category}` already exists!").error.print()
-            return
-        self.data[category] = {}
-        self._save()
-
-    def getDict(self, category):
-        if not self.data.__contains__(category):
-            cstr(
-                f"\033[34mPrimere nodes\033[0m Error: The database category `{category}` does not exist!").error.print()
-        return self.data[category]
-
-    def delete(self, category, key):
-        if category in self.data and key in self.data[category]:
-            del self.data[category][key]
-            self._save()
-
-    def _save(self):
-        try:
-            with open(self.filepath, 'w') as f:
-                json.dump(self.data, f, indent=4)
-        except FileNotFoundError:
-            cstr(f"Cannot save database to file '{self.filepath}'."
-                 " Storing the data in the object instead. Does the folder and node file have write permissions?").warning.print()
-
-class cstr(str):
-    class color:
-        END = '\33[0m'
-        BOLD = '\33[1m'
-        ITALIC = '\33[3m'
-        UNDERLINE = '\33[4m'
-        BLINK = '\33[5m'
-        BLINK2 = '\33[6m'
-        SELECTED = '\33[7m'
-
-        BLACK = '\33[30m'
-        RED = '\33[31m'
-        GREEN = '\33[32m'
-        YELLOW = '\33[33m'
-        BLUE = '\33[34m'
-        VIOLET = '\33[35m'
-        BEIGE = '\33[36m'
-        WHITE = '\33[37m'
-
-        BLACKBG = '\33[40m'
-        REDBG = '\33[41m'
-        GREENBG = '\33[42m'
-        YELLOWBG = '\33[43m'
-        BLUEBG = '\33[44m'
-        VIOLETBG = '\33[45m'
-        BEIGEBG = '\33[46m'
-        WHITEBG = '\33[47m'
-
-        GREY = '\33[90m'
-        LIGHTRED = '\33[91m'
-        LIGHTGREEN = '\33[92m'
-        LIGHTYELLOW = '\33[93m'
-        LIGHTBLUE = '\33[94m'
-        LIGHTVIOLET = '\33[95m'
-        LIGHTBEIGE = '\33[96m'
-        LIGHTWHITE = '\33[97m'
-
-        GREYBG = '\33[100m'
-        LIGHTREDBG = '\33[101m'
-        LIGHTGREENBG = '\33[102m'
-        LIGHTYELLOWBG = '\33[103m'
-        LIGHTBLUEBG = '\33[104m'
-        LIGHTVIOLETBG = '\33[105m'
-        LIGHTBEIGEBG = '\33[106m'
-        LIGHTWHITEBG = '\33[107m'
-
-        @staticmethod
-        def add_code(name, code):
-            if not hasattr(cstr.color, name.upper()):
-                setattr(cstr.color, name.upper(), code)
-            else:
-                raise ValueError(f"'cstr' object already contains a code with the name '{name}'.")
-
-    def __new__(cls, text):
-        return super().__new__(cls, text)
-
-    def __getattr__(self, attr):
-        if attr.lower().startswith("_cstr"):
-            code = getattr(self.color, attr.upper().lstrip("_cstr"))
-            modified_text = self.replace(f"__{attr[1:]}__", f"{code}")
-            return cstr(modified_text)
-        elif attr.upper() in dir(self.color):
-            code = getattr(self.color, attr.upper())
-            modified_text = f"{code}{self}{self.color.END}"
-            return cstr(modified_text)
-        elif attr.lower() in dir(cstr):
-            return getattr(cstr, attr.lower())
-        else:
-            raise AttributeError(f"'cstr' object has no attribute '{attr}'")
-
-    def print(self, **kwargs):
-        print(self, **kwargs)
-
-
-cstr.color.add_code("msg", f"{cstr.color.GREEN}Primere nodes: {cstr.color.END}")
-cstr.color.add_code("warning", f"{cstr.color.BLUE}Primere nodes {cstr.color.LIGHTYELLOW}Warning: {cstr.color.END}")
-cstr.color.add_code("error", f"{cstr.color.RED}Primere nodes {cstr.color.END}Error: {cstr.color.END}")
 
 class PrimereMetaSave:
     def __init__(self):
@@ -279,7 +138,7 @@ class PrimereMetaSave:
             if not os.path.isabs(output_path):
                 output_path = os.path.join(comfy_paths.output_directory, output_path)
             if not os.path.exists(output_path.strip()):
-                cstr(f'The path `{output_path.strip()}` specified doesn\'t exist! Creating directory.').error.print()
+                print(f'The path `{output_path.strip()}` specified doesn\'t exist! Creating directory.')
                 os.makedirs(output_path, exist_ok=True)
 
         # Find existing counter values
@@ -309,8 +168,7 @@ class PrimereMetaSave:
         # Set Extension
         file_extension = '.' + extension
         if file_extension not in ALLOWED_EXT:
-            cstr(
-                f"The extension `{extension}` is not valid. The valid formats are: {', '.join(sorted(ALLOWED_EXT))}").error.print()
+            print(f"The extension `{extension}` is not valid. The valid formats are: {', '.join(sorted(ALLOWED_EXT))}")
             file_extension = "jpg"
 
         results = list()
@@ -365,9 +223,9 @@ Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed:
                 exif_metadata_json['steps'] = str(steps)
                 exif_metadata_json['cfg_scale'] = str(cfg_scale)
 
-                # cstr(f"Metadata input: {exif_metadata}").msg.print()
-                # cstr(f"A11 Metadata input: {exif_metadata_A11}").msg.print()
-                # cstr(f"PNG Metadata input: {metadata}").msg.print()
+                # print(f"Metadata input: {exif_metadata}")
+                # print(f"A11 Metadata input: {exif_metadata_A11}")
+                # print(f"PNG Metadata input: {metadata}")
 
                 if extension == 'png':
                     img.save(output_file, pnginfo=metadata, optimize=True)
@@ -375,24 +233,24 @@ Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed:
                     img.save(output_file, quality=quality, exif=metadata)
                 else:
                     img.save(output_file, quality=quality, optimize=True)
-                    exif_dict = piexif.load(output_file)
-                    exif_dict["Exif"][piexif.ExifIFD.UserComment] = piexif.helper.UserComment.dump(exif_metadata_A11, encoding="unicode")
+                    # exif_dict = piexif.load(output_file)
+                    # exif_dict["Exif"][piexif.ExifIFD.UserComment] = piexif.helper.UserComment.dump(exif_metadata_A11, encoding="unicode")
                     # exif_dict["Exif"][piexif.IFD0.ImageDescription] = piexif.helper.ImageDescription.dump(json.dumps(userdata), encoding="ascii")
-                    piexif.insert(
-                        piexif.dump(exif_dict),
-                        output_file
-                    )
+                    # piexif.insert(
+                    #     piexif.dump(exif_dict),
+                    #     output_file
+                    # )
                     metadata = pyexiv2.Image(output_file)
-                    # metadata.modify_exif({'Exif.Photo.UserComment': exif_metadata_A11})
+                    metadata.modify_exif({'Exif.Photo.UserComment': 'charset=Unicode ' + exif_metadata_A11})
                     metadata.modify_exif({'Exif.Image.ImageDescription': json.dumps(exif_metadata_json)})
 
-                cstr(f"Image file saved to: {output_file}").msg.print()
+                print(f"Image file saved to: {output_file}")
 
             except OSError as e:
-                cstr(f'Unable to save file to: {output_file}').error.print()
+                print(f'Unable to save file to: {output_file}')
                 print(e)
             except Exception as e:
-                cstr('Unable to save file due to the to the following error:').error.print()
+                print('Unable to save file due to the to the following error:')
                 print(e)
 
             if overwrite_mode == 'false':
@@ -493,6 +351,7 @@ class PrimereMetaRead:
         else:
             mask = torch.zeros((64, 64), dtype=torch.float32, device="cpu")
 
+        print(image_path)
         reader = ImageDataReader(image_path)
         # reader.parameter: {'model': 'abc', 'sampler': 'DPM++ 2M Karras', 'seed': '2706265200', 'cfg': '7', 'steps': '25', 'size': '512x512'}
         if (reader.tool == ''):

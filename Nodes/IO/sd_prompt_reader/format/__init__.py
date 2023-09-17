@@ -6,4 +6,4 @@ from .comfyui import ComfyUI
 from .drawthings import DrawThings
 from .swarmui import SwarmUI
 from .fooocus import Fooocus
-# from .primere import Primere
+from .primere import Primere
