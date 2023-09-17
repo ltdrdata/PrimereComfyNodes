@@ -1,0 +1,524 @@
+import custom_nodes.ComfyUI_Primere_Nodes.components.fields as field
+from custom_nodes.ComfyUI_Primere_Nodes.components.tree import TREE_IO
+
+import torch
+import folder_paths as comfy_paths
+import os
+import re
+import json
+import time
+import socket
+import numpy as np
+from PIL import Image
+import pyexiv2
+import piexif
+import piexif.helper
+import pickle
+from PIL.PngImagePlugin import PngInfo
+import folder_paths
+from .sd_prompt_reader.image_data_reader import ImageDataReader
+from PIL import Image, ImageOps
+import hashlib
+
+
+## 3 input summarizer --------------
+class ThreeSumNode:
+    def __init__(self) -> None:
+        pass
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "Value_A": field.FLOAT,
+                "Value_B": field.FLOAT,
+                "Value_C": field.FLOAT,
+            },
+        }
+
+    RETURN_TYPES = ("FLOAT", "INT")
+    FUNCTION = "sum"
+    CATEGORY = TREE_IO
+
+    def sum(self, Value_A, Value_B, Value_C):
+        total = float(Value_A + Value_B + Value_C)
+        totalint = int(Value_A + Value_B + Value_C)
+        return (total, totalint)
+
+
+## Image and meta saver  --------------
+# ! SYSTEM HOOKS
+
+ALLOWED_EXT = ('.jpeg', '.jpg', '.png', '.tiff', '.gif', '.bmp', '.webp')
+NODE_FILE = os.path.abspath(__file__)
+NODE_ROOT = os.path.dirname(NODE_FILE)
+
+class Settings:
+    def __init__(self, filepath):
+        self.filepath = filepath
+        try:
+            with open(filepath, 'r') as f:
+                self.data = json.load(f)
+        except FileNotFoundError:
+            self.data = {}
+
+    def catExists(self, category):
+        return self.data.__contains__(category)
+
+    def keyExists(self, category, key):
+        return self.data[category].__contains__(key)
+
+    def insert(self, category, key, value):
+        if category not in self.data:
+            self.data[category] = {}
+        self.data[category][key] = value
+        self._save()
+
+    def update(self, category, key, value):
+        if category in self.data and key in self.data[category]:
+            self.data[category][key] = value
+            self._save()
+
+    def updateCat(self, category, dictionary):
+        self.data[category].update(dictionary)
+        self._save()
+
+    def get(self, category, key):
+        return self.data.get(category, {}).get(key, None)
+
+    def getDB(self):
+        return self.data
+
+    def insertCat(self, category):
+        if self.data.__contains__(category):
+            cstr(f"The database category `{category}` already exists!").error.print()
+            return
+        self.data[category] = {}
+        self._save()
+
+    def getDict(self, category):
+        if not self.data.__contains__(category):
+            cstr(
+                f"\033[34mPrimere nodes\033[0m Error: The database category `{category}` does not exist!").error.print()
+        return self.data[category]
+
+    def delete(self, category, key):
+        if category in self.data and key in self.data[category]:
+            del self.data[category][key]
+            self._save()
+
+    def _save(self):
+        try:
+            with open(self.filepath, 'w') as f:
+                json.dump(self.data, f, indent=4)
+        except FileNotFoundError:
+            cstr(f"Cannot save database to file '{self.filepath}'."
+                 " Storing the data in the object instead. Does the folder and node file have write permissions?").warning.print()
+
+class cstr(str):
+    class color:
+        END = '\33[0m'
+        BOLD = '\33[1m'
+        ITALIC = '\33[3m'
+        UNDERLINE = '\33[4m'
+        BLINK = '\33[5m'
+        BLINK2 = '\33[6m'
+        SELECTED = '\33[7m'
+
+        BLACK = '\33[30m'
+        RED = '\33[31m'
+        GREEN = '\33[32m'
+        YELLOW = '\33[33m'
+        BLUE = '\33[34m'
+        VIOLET = '\33[35m'
+        BEIGE = '\33[36m'
+        WHITE = '\33[37m'
+
+        BLACKBG = '\33[40m'
+        REDBG = '\33[41m'
+        GREENBG = '\33[42m'
+        YELLOWBG = '\33[43m'
+        BLUEBG = '\33[44m'
+        VIOLETBG = '\33[45m'
+        BEIGEBG = '\33[46m'
+        WHITEBG = '\33[47m'
+
+        GREY = '\33[90m'
+        LIGHTRED = '\33[91m'
+        LIGHTGREEN = '\33[92m'
+        LIGHTYELLOW = '\33[93m'
+        LIGHTBLUE = '\33[94m'
+        LIGHTVIOLET = '\33[95m'
+        LIGHTBEIGE = '\33[96m'
+        LIGHTWHITE = '\33[97m'
+
+        GREYBG = '\33[100m'
+        LIGHTREDBG = '\33[101m'
+        LIGHTGREENBG = '\33[102m'
+        LIGHTYELLOWBG = '\33[103m'
+        LIGHTBLUEBG = '\33[104m'
+        LIGHTVIOLETBG = '\33[105m'
+        LIGHTBEIGEBG = '\33[106m'
+        LIGHTWHITEBG = '\33[107m'
+
+        @staticmethod
+        def add_code(name, code):
+            if not hasattr(cstr.color, name.upper()):
+                setattr(cstr.color, name.upper(), code)
+            else:
+                raise ValueError(f"'cstr' object already contains a code with the name '{name}'.")
+
+    def __new__(cls, text):
+        return super().__new__(cls, text)
+
+    def __getattr__(self, attr):
+        if attr.lower().startswith("_cstr"):
+            code = getattr(self.color, attr.upper().lstrip("_cstr"))
+            modified_text = self.replace(f"__{attr[1:]}__", f"{code}")
+            return cstr(modified_text)
+        elif attr.upper() in dir(self.color):
+            code = getattr(self.color, attr.upper())
+            modified_text = f"{code}{self}{self.color.END}"
+            return cstr(modified_text)
+        elif attr.lower() in dir(cstr):
+            return getattr(cstr, attr.lower())
+        else:
+            raise AttributeError(f"'cstr' object has no attribute '{attr}'")
+
+    def print(self, **kwargs):
+        print(self, **kwargs)
+
+
+cstr.color.add_code("msg", f"{cstr.color.GREEN}Primere nodes: {cstr.color.END}")
+cstr.color.add_code("warning", f"{cstr.color.BLUE}Primere nodes {cstr.color.LIGHTYELLOW}Warning: {cstr.color.END}")
+cstr.color.add_code("error", f"{cstr.color.RED}Primere nodes {cstr.color.END}Error: {cstr.color.END}")
+
+class PrimereMetaSave:
+    def __init__(self):
+        self.output_dir = comfy_paths.output_directory
+        self.type = 'output'
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "images": ("IMAGE",),
+                "output_path": ("STRING", {"default": '[time(%Y-%m-%d)]', "multiline": False}),
+                "subpath": (
+                ["None", "Dev", "Test", "Production", "Project", "Portfolio", "Fun"], {"default": "Project"}),
+                "filename_prefix": ("STRING", {"default": "ComfyUI"}),
+                "filename_delimiter": ("STRING", {"default": "_"}),
+                "filename_number_padding": ("INT", {"default": 2, "min": 1, "max": 9, "step": 1}),
+                "filename_number_start": (["false", "true"],),
+                "extension": (['png', 'jpeg', 'jpg', 'gif', 'tiff', 'webp'], {"default": "jpg"}),
+                "png_embed_workflow": (["true", "false"],),
+                "quality": ("INT", {"default": 95, "min": 1, "max": 100, "step": 1}),
+                "lossless_webp": (["false", "true"],),
+                "overwrite_mode": (["false", "prefix_as_filename"],),
+                "show_previews": (["true", "false"],),
+            },
+            "optional": {
+                "positive_g": ('STRING', {"forceInput": True}),
+                "negative_g": ('STRING', {"forceInput": True}),
+                "positive_l": ('STRING', {"forceInput": True}),
+                "negative_l": ('STRING', {"forceInput": True}),
+                "positive_refiner": ('STRING', {"forceInput": True}),
+                "negative_refiner": ('STRING', {"forceInput": True}),
+                "model_name": ('STRING', {"forceInput": True}),
+                "sampler_name": ('STRING', {"forceInput": True}),
+                "seed": ('INT', {"forceInput": True}),
+                "original_width": ('INT', {"forceInput": True}),
+                "original_height": ('INT', {"forceInput": True}),
+                "cfg_scale": ('FLOAT', {"forceInput": True}),
+                "steps": ('INT', {"forceInput": True}),
+            },
+            "hidden": {
+                "prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"
+            },
+        }
+
+    RETURN_TYPES = ()
+    FUNCTION = "save_images_meta"
+    OUTPUT_NODE = True
+    CATEGORY = TREE_IO
+
+    def save_images_meta(self, images, positive_g='', negative_g='', positive_l='', negative_l='', positive_refiner='',
+                         negative_refiner='', seed=0, model_name='', sampler_name='', original_width=0,
+                         original_height=0, steps=0, cfg_scale=0,
+                         output_path='', subpath='', filename_prefix="ComfyUI", filename_delimiter='_',
+                         extension='png', quality=95, lossless_webp="false", prompt=None, extra_pnginfo=None,
+                         overwrite_mode='false', filename_number_padding=2, filename_number_start='false',
+                         png_embed_workflow="true", show_previews="false"):
+
+        delimiter = filename_delimiter
+        number_padding = filename_number_padding
+        lossless_webp = (lossless_webp == "true")
+
+        # Define token system
+        tokens = TextTokens()
+
+        original_output = self.output_dir
+        # Parse prefix tokens
+        filename_prefix = tokens.parseTokens(filename_prefix)
+
+        # Setup output path
+        if output_path in [None, '', "none", "."]:
+            output_path = self.output_dir
+        else:
+            output_path = tokens.parseTokens(output_path)
+        if not os.path.isabs(output_path):
+            output_path = os.path.join(self.output_dir, output_path)
+        base_output = os.path.basename(output_path)
+        if output_path.endswith("ComfyUI/output") or output_path.endswith("ComfyUI\output"):
+            base_output = ""
+
+        if subpath != 'None': output_path = output_path + os.sep + subpath
+
+        # Check output destination
+        if output_path.strip() != '':
+            if not os.path.isabs(output_path):
+                output_path = os.path.join(comfy_paths.output_directory, output_path)
+            if not os.path.exists(output_path.strip()):
+                cstr(f'The path `{output_path.strip()}` specified doesn\'t exist! Creating directory.').error.print()
+                os.makedirs(output_path, exist_ok=True)
+
+        # Find existing counter values
+        if filename_number_start == 'true':
+            pattern = f"(\\d{{{filename_number_padding}}}){re.escape(delimiter)}{re.escape(filename_prefix)}"
+        else:
+            pattern = f"{re.escape(filename_prefix)}{re.escape(delimiter)}(\\d{{{filename_number_padding}}})"
+        existing_counters = [
+            int(re.search(pattern, filename).group(1))
+            for filename in os.listdir(output_path)
+            if re.match(pattern, os.path.basename(filename))
+        ]
+        existing_counters.sort(reverse=True)
+
+        # Set initial counter value
+        if existing_counters:
+            counter = existing_counters[0] + 1
+        else:
+            counter = 1
+
+        # Set initial counter value
+        if existing_counters:
+            counter = existing_counters[0] + 1
+        else:
+            counter = 1
+
+        # Set Extension
+        file_extension = '.' + extension
+        if file_extension not in ALLOWED_EXT:
+            cstr(
+                f"The extension `{extension}` is not valid. The valid formats are: {', '.join(sorted(ALLOWED_EXT))}").error.print()
+            file_extension = "jpg"
+
+        results = list()
+        for image in images:
+            i = 255. * image.cpu().numpy()
+            img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
+
+            metadata = PngInfo()
+            if png_embed_workflow == 'true':
+                if prompt is not None:
+                    metadata.add_text("prompt", json.dumps(prompt))
+                if extra_pnginfo is not None:
+                    for x in extra_pnginfo:
+                        metadata.add_text(x, json.dumps(extra_pnginfo[x]))
+
+            if overwrite_mode == 'prefix_as_filename':
+                file = f"{filename_prefix}{file_extension}"
+            else:
+                if filename_number_start == 'true':
+                    file = f"{counter:0{number_padding}}{delimiter}{filename_prefix}{file_extension}"
+                else:
+                    file = f"{filename_prefix}{delimiter}{counter:0{number_padding}}{file_extension}"
+                if os.path.exists(os.path.join(output_path, file)):
+                    counter += 1
+            try:
+                output_file = os.path.abspath(os.path.join(output_path, file))
+                '''
+                if extension == 'png': img.save(output_file, pnginfo=metadata, optimize=True)
+                elif extension == 'webp': img.save(output_file, quality=quality)
+                elif extension == 'jpeg': img.save(output_file, quality=quality, optimize=True)
+                elif extension == 'jpg': img.save(output_file, quality=quality, optimize=True)
+                elif extension == 'tiff': img.save(output_file, quality=quality, optimize=True)
+                elif extension == 'webp': img.save(output_file, quality=quality, lossless=lossless_webp, exif=metadata)
+                '''
+
+                exif_metadata_A11 = f"""{positive_g}
+Negative prompt: {negative_g}
+Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed: {str(seed)}, Size: {str(original_width)}x{str(original_height)}, Model: {model_name}"""
+
+                exif_metadata_json = {}
+                exif_metadata_json['positive_g'] = positive_g
+                exif_metadata_json['negative_g'] = negative_g
+                exif_metadata_json['positive_l'] = positive_l
+                exif_metadata_json['negative_l'] = negative_l
+                exif_metadata_json['positive_refiner'] = positive_refiner
+                exif_metadata_json['negative_refiner'] = negative_refiner
+                exif_metadata_json['seed'] = str(seed)
+                exif_metadata_json['model_name'] = model_name
+                exif_metadata_json['sampler_name'] = sampler_name
+                exif_metadata_json['original_width'] = str(original_width)
+                exif_metadata_json['original_height'] = str(original_height)
+                exif_metadata_json['steps'] = str(steps)
+                exif_metadata_json['cfg_scale'] = str(cfg_scale)
+
+                # cstr(f"Metadata input: {exif_metadata}").msg.print()
+                # cstr(f"A11 Metadata input: {exif_metadata_A11}").msg.print()
+                # cstr(f"PNG Metadata input: {metadata}").msg.print()
+
+                if extension == 'png':
+                    img.save(output_file, pnginfo=metadata, optimize=True)
+                elif extension == 'webp':
+                    img.save(output_file, quality=quality, exif=metadata)
+                else:
+                    img.save(output_file, quality=quality, optimize=True)
+                    exif_dict = piexif.load(output_file)
+                    exif_dict["Exif"][piexif.ExifIFD.UserComment] = piexif.helper.UserComment.dump(exif_metadata_A11, encoding="unicode")
+                    # exif_dict["Exif"][piexif.IFD0.ImageDescription] = piexif.helper.ImageDescription.dump(json.dumps(userdata), encoding="ascii")
+                    piexif.insert(
+                        piexif.dump(exif_dict),
+                        output_file
+                    )
+                    metadata = pyexiv2.Image(output_file)
+                    # metadata.modify_exif({'Exif.Photo.UserComment': exif_metadata_A11})
+                    metadata.modify_exif({'Exif.Image.ImageDescription': json.dumps(exif_metadata_json)})
+
+                cstr(f"Image file saved to: {output_file}").msg.print()
+
+            except OSError as e:
+                cstr(f'Unable to save file to: {output_file}').error.print()
+                print(e)
+            except Exception as e:
+                cstr('Unable to save file due to the to the following error:').error.print()
+                print(e)
+
+            if overwrite_mode == 'false':
+                counter += 1
+
+        filtered_paths = []
+
+        if filtered_paths:
+            for image_path in filtered_paths:
+                subfolder = self.get_subfolder_path(image_path, self.output_dir)
+                image_data = {
+                    "filename": os.path.basename(image_path),
+                    "subfolder": subfolder,
+                    "type": self.type
+                }
+                results.append(image_data)
+
+        if show_previews == 'true':
+            return {"ui": {"images": results}}
+        else:
+            return {"ui": {"images": []}}
+
+    def get_subfolder_path(self, image_path, output_path):
+        output_parts = output_path.strip(os.sep).split(os.sep)
+        image_parts = image_path.strip(os.sep).split(os.sep)
+        common_parts = os.path.commonprefix([output_parts, image_parts])
+        subfolder_parts = image_parts[len(common_parts):]
+        subfolder_path = os.sep.join(subfolder_parts[:-1])
+        return subfolder_path
+
+class TextTokens:
+    def __init__(self):
+
+        self.tokens = {
+            '[time]': str(time.time()).replace('.', '_'),
+            '[hostname]': socket.gethostname(),
+        }
+
+        if '.' in self.tokens['[time]']: self.tokens['[time]'] = self.tokens['[time]'].split('.')[0]
+
+        try:
+            self.tokens['[user]'] = (os.getlogin() if os.getlogin() else 'null')
+        except Exception:
+            self.tokens['[user]'] = 'null'
+
+    def format_time(self, format_code):
+        return time.strftime(format_code, time.localtime(time.time()))
+
+    def parseTokens(self, text):
+        tokens = self.tokens.copy()
+
+        # Update time
+        tokens['[time]'] = str(time.time())
+        if '.' in tokens['[time]']:
+            tokens['[time]'] = tokens['[time]'].split('.')[0]
+
+        for token, value in tokens.items():
+            if token.startswith('[time('):
+                continue
+            text = text.replace(token, value)
+
+        def replace_custom_time(match):
+            format_code = match.group(1)
+            return self.format_time(format_code)
+
+        text = re.sub(r'\[time\((.*?)\)\]', replace_custom_time, text)
+
+        return text
+
+class PrimereMetaRead:
+    @classmethod
+    def INPUT_TYPES(s):
+        input_dir = folder_paths.get_input_directory()
+        files = [f for f in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir, f))]
+        return {
+            "required": {
+                # "read_meta": ("BOOLEAN", {"default":True}),
+                "image": (sorted(files),),
+            },
+        }
+
+    CATEGORY = TREE_IO
+
+    RETURN_TYPES = ("IMAGE", "STRING", "STRING", "INT", "INT", "INT", "FLOAT", "INT")
+    RETURN_NAMES = ("image", "positive", "negative", "seed", "width", "height", "cfg", "steps")
+    FUNCTION = "load_image"
+
+    def load_image(self, image):
+        image_path = folder_paths.get_annotated_filepath(image)
+        i = Image.open(image_path)
+        i = ImageOps.exif_transpose(i)
+        image = i.convert("RGB")
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
+        if 'A' in i.getbands():
+            mask = np.array(i.getchannel('A')).astype(np.float32) / 255.0
+            mask = 1. - torch.from_numpy(mask)
+        else:
+            mask = torch.zeros((64, 64), dtype=torch.float32, device="cpu")
+
+        reader = ImageDataReader(image_path)
+        # reader.parameter: {'model': 'abc', 'sampler': 'DPM++ 2M Karras', 'seed': '2706265200', 'cfg': '7', 'steps': '25', 'size': '512x512'}
+        if (reader.tool == ''):
+            raise ValueError('Unable to read generation metadata from image!')
+
+        seed = int(reader.parameter["seed"])
+        cfg = float(reader.parameter["cfg"])
+        steps = int(reader.parameter["steps"])
+        size = reader.parameter["size"]
+        sizeSplit = size.split("x")
+        width = int(sizeSplit[0])
+        height = int(sizeSplit[1])
+
+        return (image, reader.positive, reader.negative, seed, width, height, cfg, steps)
+
+    @classmethod
+    def IS_CHANGED(s, image):
+        image_path = folder_paths.get_annotated_filepath(image)
+        m = hashlib.sha256()
+        with open(image_path, 'rb') as f:
+            m.update(f.read())
+        return m.digest().hex()
+
+    @classmethod
+    def VALIDATE_INPUTS(s, image):
+        if not folder_paths.exists_annotated_filepath(image):
+            return "Invalid image file: {}".format(image)
+
+        return True
