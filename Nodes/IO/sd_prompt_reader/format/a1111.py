@@ -1,20 +1,16 @@
-__author__ = "receyuki"
-__filename__ = "a1111.py"
-__copyright__ = "Copyright 2023"
-__email__ = "receyuki@gmail.com"
-
 from ..format.base_format import BaseFormat
 from ..utility import add_quotes
 
 PROMPT_MAPPING = {
-    # "Model":                    ("sd_model",            True),
+    "Model": ("model", True),
+    "Model hash": ("model_hash", True),
     # "prompt",
     # "negative_prompt",
     "Seed": ("seed", False),
     "Variation seed strength": ("subseed_strength", False),
     # "seed_resize_from_h",
     # "seed_resize_from_w",
-    "Sampler": ("sampler_name", True),
+    "Sampler": ("sampler", True),
     "Steps": ("steps", False),
     "CFG scale": ("cfg_scale", False),
     # "width",
@@ -54,6 +50,7 @@ class A1111(BaseFormat):
                 self._setting.find("CFG scale: ") + len("CFG scale: "),
                 self._setting.find("Steps: ") + len("Steps: "),
                 self._setting.find("Size: ") + len("Size: "),
+                self._setting.find("Model hash: ") + len("Model hash: "),
             ]
             if self._setting.find("Model: ") != -1:
                 self._parameter["model"] = self._setting[
@@ -73,6 +70,9 @@ class A1111(BaseFormat):
             ]
             self._parameter["size"] = self._setting[
                 parameter_index[5] : self._setting.find(",", parameter_index[5])
+            ]
+            self._parameter["model_hash"] = self._setting[
+                parameter_index[6] : self._setting.find(",", parameter_index[6])
             ]
         elif self._raw:
             # w/ neg

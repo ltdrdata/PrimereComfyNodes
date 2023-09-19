@@ -1,7 +1,6 @@
 import custom_nodes.ComfyUI_Primere_Nodes.components.fields as field
 from custom_nodes.ComfyUI_Primere_Nodes.components.tree import TREE_IO
 
-import torch
 import folder_paths as comfy_paths
 import os
 import re
@@ -9,16 +8,12 @@ import json
 import time
 import socket
 import numpy as np
-from PIL import Image
 import pyexiv2
-import piexif
-import piexif.helper
-import pickle
 from PIL.PngImagePlugin import PngInfo
-import folder_paths
 from .sd_prompt_reader.image_data_reader import ImageDataReader
 from PIL import Image, ImageOps
 import hashlib
+import difflib
 
 ## 3 input summarizer --------------
 class ThreeSumNode:
@@ -100,7 +95,7 @@ class PrimereMetaSave:
     CATEGORY = TREE_IO
 
     def save_images_meta(self, images, positive_g='', negative_g='', positive_l='', negative_l='', positive_refiner='',
-                         negative_refiner='', seed=0, model_name='', sampler_name='', original_width=0,
+                         negative_refiner='', seed=0, model_hash="", model_name='', sampler_name='', original_width=0,
                          original_height=0, steps=0, cfg_scale=0,
                          output_path='', subpath='', filename_prefix="ComfyUI", filename_delimiter='_',
                          extension='png', quality=95, prompt=None, extra_pnginfo=None,
@@ -201,9 +196,11 @@ class PrimereMetaSave:
                 elif extension == 'webp': img.save(output_file, quality=quality, lossless=lossless_webp, exif=metadata)
                 '''
 
+                model_hash = 'fakemodelhash1122'
+
                 exif_metadata_A11 = f"""{positive_g}
 Negative prompt: {negative_g}
-Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed: {str(seed)}, Size: {str(original_width)}x{str(original_height)}, Model: {model_name}"""
+Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed: {str(seed)}, Size: {str(original_width)}x{str(original_height)}, Model hash: {model_hash}, Model: {model_name}"""
 
                 exif_metadata_json = {}
                 exif_metadata_json['positive_g'] = positive_g
@@ -213,6 +210,7 @@ Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed:
                 exif_metadata_json['positive_refiner'] = positive_refiner
                 exif_metadata_json['negative_refiner'] = negative_refiner
                 exif_metadata_json['seed'] = str(seed)
+                exif_metadata_json['model_hash'] = model_hash
                 exif_metadata_json['model_name'] = model_name
                 exif_metadata_json['sampler_name'] = sampler_name
                 exif_metadata_json['original_width'] = str(original_width)
@@ -323,11 +321,18 @@ class TextTokens:
 class PrimereMetaRead:
     @classmethod
     def INPUT_TYPES(s):
-        input_dir = folder_paths.get_input_directory()
+        input_dir = comfy_paths.get_input_directory()
         files = [f for f in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir, f))]
         return {
             "required": {
                 "use_exif": ("BOOLEAN", {"default": False}),
+                "use_model": ("BOOLEAN", {"default": False}),
+                "model_hash_check": ("BOOLEAN", {"default": False}),
+                "use_sampler": ("BOOLEAN", {"default": False}),
+                "use_seed": ("BOOLEAN", {"default": False}),
+                "use_size": ("BOOLEAN", {"default": False}),
+                "use_cfg_scale": ("BOOLEAN", {"default": False}),
+                "use_steps": ("BOOLEAN", {"default": False}),
                 "image": (sorted(files),),
             },
             "optional": {
@@ -349,38 +354,102 @@ class PrimereMetaRead:
         }
 
     CATEGORY = TREE_IO
-    RETURN_TYPES = ("STRING", "STRING", "INT", "INT", "INT", "FLOAT", "INT")
-    RETURN_NAMES = ("positive", "negative", "seed", "width", "height", "cfg", "steps")
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING", "INT", "INT", "INT", "FLOAT", "INT")
+    RETURN_NAMES = ("positive", "negative", "model_hash", "model_name", "sampler_name", "seed", "width", "height", "cfg", "steps")
     FUNCTION = "load_image"
 
-    def load_image(self, image, use_exif, positive_g="", negative_g="", positive_l="", negative_l="",
-                   positive_refiner="", negative_refiner="", model_name="", sampler_name="", seed=0, original_width=0,
-                   original_height=0, cfg_scale=7, steps=12):
+    def load_image(self, image, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, use_cfg_scale, use_steps,
+                   positive_g="", negative_g="", positive_l="", negative_l="", positive_refiner="", negative_refiner="",
+                   model_hash="", model_name="", sampler_name="DPM++ SDE Karras", seed=0, original_width=512, original_height=512, cfg_scale=7, steps=12):
+
         if use_exif == True:
-            image_path = folder_paths.get_annotated_filepath(image)
-            # print(image_path)
+            image_path = comfy_paths.get_annotated_filepath(image)
+
+            def get_model_hash(filename):
+                hash_sha256 = hashlib.sha256()
+                blksize = 1024 * 1024
+
+                with open(filename, "rb") as f:
+                    for chunk in iter(lambda: f.read(blksize), b""):
+                        hash_sha256.update(chunk)
+
+                return hash_sha256.hexdigest()[0:10]
+
+            def check_model_from_exif(model_hash_exif, model_name_exif, model_name, model_hash_check):
+                checkpointpaths = comfy_paths.get_folder_paths("checkpoints")[0]
+                allcheckpoints = comfy_paths.get_filename_list("checkpoints")
+                source_model_name = model_name_exif.split('_', 1)[-1]
+
+                cutoff_list = [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]
+                is_found = []
+
+                for trycut in cutoff_list:
+                    is_found = difflib.get_close_matches(model_name_exif, allcheckpoints, cutoff=trycut)
+                    if len(is_found) == 1:
+                        break
+
+                if len(is_found) != 1:
+                    for trycut in cutoff_list:
+                        is_found = difflib.get_close_matches(source_model_name, allcheckpoints, cutoff=trycut)
+                        if len(is_found) == 1:
+                            break
+
+                if len(is_found) == 1:
+                    valid_model = is_found[0]
+                    model_full_path = checkpointpaths + os.sep + valid_model
+
+                    if model_hash_check == True:
+                        match_model_hash = get_model_hash(model_full_path)
+                        if match_model_hash == model_hash_exif:
+                            model_name = valid_model
+                        else:
+                            print('Model name:' + model_name_exif + ' not available by hashcheck, using system source: ' + model_name)
+                    else:
+                        model_name = valid_model
+                else:
+                    print('Model name:' + model_name_exif + ' not available by diffcheck, using system source: ' + model_name)
+                return model_name
+
             reader = ImageDataReader(image_path)
             if (reader.tool == ''):
-                return (positive_g, negative_g, seed, original_width, original_height, cfg_scale, steps)
+                print('Reader tool return empty, using node input')
+                return (positive_g, negative_g, model_hash, model_name, sampler_name, seed, original_width, original_height, cfg_scale, steps)
 
             try:
-                seed = int(reader.parameter["seed"])
-                cfg = float(reader.parameter["cfg"])
-                steps = int(reader.parameter["steps"])
-                size = reader.parameter["size"]
-                sizeSplit = size.split("x")
-                width = int(sizeSplit[0])
-                height = int(sizeSplit[1])
-            except ValueError:
-                return (positive_g, negative_g, seed, original_width, original_height, cfg_scale, steps)
+                if use_model == True:
+                    model_hash_exif = reader.parameter["model_hash"]
+                    model_name_exif = reader.parameter["model"]
+                    model_name = check_model_from_exif(model_hash_exif, model_name_exif, model_name, model_hash_check)
 
-            return (reader.positive, reader.negative, seed, width, height, cfg, steps)
+                if use_sampler ==True:
+                    sampler_name = reader.parameter["sampler"]
+
+                if use_seed == True:
+                    seed = int(reader.parameter["seed"])
+
+                if use_cfg_scale == True:
+                    cfg_scale = float(reader.parameter["cfg"])
+
+                if use_steps == True:
+                    steps = int(reader.parameter["steps"])
+
+                if use_size == True:
+                    size = reader.parameter["size"]
+                    sizeSplit = size.split("x")
+                    original_width = int(sizeSplit[0])
+                    original_height = int(sizeSplit[1])
+
+            except ValueError as VE:
+                print(VE)
+                return (positive_g, negative_g, model_hash, model_name, sampler_name, seed, original_width, original_height, cfg_scale, steps)
+
+            return (reader.positive, reader.negative, model_hash, model_name, sampler_name, seed, original_width, original_height, cfg_scale, steps)
         else:
-            return (positive_g, negative_g, seed, original_width, original_height, cfg_scale, steps)
+            return (positive_g, negative_g, model_hash, model_name, sampler_name, seed, original_width, original_height, cfg_scale, steps)
 
     @classmethod
     def IS_CHANGED(s, image):
-        image_path = folder_paths.get_annotated_filepath(image)
+        image_path = comfy_paths.get_annotated_filepath(image)
         m = hashlib.sha256()
         with open(image_path, 'rb') as f:
             m.update(f.read())
@@ -388,7 +457,6 @@ class PrimereMetaRead:
 
     @classmethod
     def VALIDATE_INPUTS(s, image):
-        if not folder_paths.exists_annotated_filepath(image):
+        if not comfy_paths.exists_annotated_filepath(image):
             return "Invalid image file: {}".format(image)
-
         return True

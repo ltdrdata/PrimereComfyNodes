@@ -5,9 +5,8 @@ import piexif
 import pyexiv2
 import piexif.helper
 from PIL import Image
-from PIL.PngImagePlugin import PngInfo
 
-PARAMETER_PLACEHOLDER = "                    "
+PARAMETER_PLACEHOLDER = ""
 from .format import (
     A1111,
     EasyDiffusion,
@@ -32,7 +31,7 @@ class ImageDataReader:
         self._setting = ""
         self._raw = ""
         self._tool = ""
-        self._parameter_key = ["model", "sampler", "seed", "cfg", "steps", "size"]
+        self._parameter_key = ["model_hash", "model", "sampler", "seed", "cfg", "steps", "size"]
         self._parameter = dict.fromkeys(self._parameter_key, PARAMETER_PLACEHOLDER)
         self._is_txt = is_txt
         self._is_sdxl = False
@@ -60,57 +59,13 @@ class ImageDataReader:
             self._format = f.format
             # swarm format
 
-            '''
-            # print("P.debug: " + file + ' - ' + str(self._width) + ' - ' + str(self._height) + ' - ' + str(self._info) + ' - ' + self._format)
-            testexif = piexif.load(self._info.get("exif"))
-            testresult = piexif.helper.UserComment.load(
-                testexif.get("Exif").get(piexif.ExifIFD.UserComment)
-            )
-            '''
-
-            '''
-            if 'Exif.Photo.UserComment' in testresult:
-                exif_string = testresult.get('Exif.Photo.UserComment').replace('charset=Unicode', '', 1).strip()
-                print('Comment string: ' + exif_string)
-            '''
-
-            '''
-            {34665: 1118, 270: '{"positive_g": "(beautiful sexy 30 years old (American half-black:1.4) model woman:1.2), (standing in the city:1.3), {half body|full body|portrait|closeup} outdoor color {professional|amateur|mobile} photography, {unhappy|happy|sad|funny|scared|wondering|interested|thinker|serious|cheerful} mood, {open|closed|kissing} mouth, wear {white|brown|red|yellow|green|pink} {leather|luxury|silk|denim} jacket, {blue|white|pink|red|black} {denim|leather|silk} {short|long} pants, (long black straight hair:1.4), {matte|glossy|transparent} fishnet top, large cleavage, natural tits, {Summer|Spring|Winter|Autumn|weekday}, blury background, bokeh, duplicate face, duplicate body, duplicate hair", 
-            "negative_g": "porn, sex, nude, nudity, child, childish, Asian-Less-Neg, FastNegativeEmbedding, negative_hand, draw, illustration, telephoto, earrings, necklace", 
-            "positive_l": "", 
-            "negative_l": "", 
-            "positive_refiner": "", 
-            "negative_refiner": "", 
-            "seed": "596154779", 
-            "model_name": "", 
-            "sampler_name": "", 
-            "original_width": "512", 
-            "original_height": "768", 
-            "steps": "30", 
-            "cfg_scale": 
-            "9.0"}'}
-            '''
-
-            '''
-            p2metadata = pyexiv2.Image(file)
-            is_primere = p2metadata.read_exif()
-            if 'Exif.Image.ImageDescription' in is_primere:
-                primere_exif_string = is_primere.get('Exif.Image.ImageDescription').strip()
-                print('Desc. string: ' + primere_exif_string)
-                if is_json(primere_exif_string) == True:
-                    json_object = json.loads(primere_exif_string)
-                    keysList = {'positive_g', 'negative_g', 'positive_l', 'negative_l', 'positive_refiner', 'negative_refiner', 'seed', 'model_name', 'sampler_name'}
-                    if not (keysList - json_object.keys()):
-                        print('ebben megvan a promere json')            
-            '''
-
             p2metadata = pyexiv2.Image(file)
             is_primere = p2metadata.read_exif()
             if 'Exif.Image.ImageDescription' in is_primere:
                 primere_exif_string = is_primere.get('Exif.Image.ImageDescription').strip()
                 if is_json(primere_exif_string) == True:
                     json_object = json.loads(primere_exif_string)
-                    keysList = {'positive_g', 'negative_g', 'positive_l', 'negative_l', 'positive_refiner', 'negative_refiner', 'seed', 'model_name', 'sampler_name'}
+                    keysList = {'positive_g', 'negative_g', 'positive_l', 'negative_l', 'positive_refiner', 'negative_refiner', 'seed', 'model_hash', 'model_name', 'sampler_name'}
                     if not (keysList - json_object.keys()):
                         self._tool = "Primere"
                         self._parser = Primere(info=json_object)
