@@ -284,8 +284,8 @@ class TextTokens:
 
 class PrimereMetaRead:
     CATEGORY = TREE_IO
-    RETURN_TYPES = ("STRING", "STRING", "STRING", "CHECKPOINT_NAME", comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "INT", "INT", "FLOAT", "INT")
-    RETURN_NAMES = ("positive", "negative", "model_hash", "model_name", "sampler_name", "scheduler_name", "seed", "width", "height", "cfg", "steps")
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "CHECKPOINT_NAME", comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "INT", "INT", "FLOAT", "INT", "TUPLE")
+    RETURN_NAMES = ("positive", "negative", "model_hash", "model_name", "sampler_name", "scheduler_name", "seed", "width", "height", "cfg", "steps", "data")
     FUNCTION = "load_image"
 
     @classmethod
@@ -326,6 +326,8 @@ class PrimereMetaRead:
     def load_image(self, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, use_cfg_scale, use_steps, image,
                    positive_g="", negative_g="", positive_l="", negative_l="", positive_refiner="", negative_refiner="",
                    model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, original_width=512, original_height=512, cfg_scale=7, steps=12):
+
+        data_json = {}
 
         if use_exif:
             def get_model_hash(filename):
@@ -422,9 +424,23 @@ class PrimereMetaRead:
             image_path = comfy_paths.get_annotated_filepath(image)
 
             reader = ImageDataReader(image_path)
+            model_hash_exif = model_hash
+
             if (reader.tool == ''):
                 print('Reader tool return empty, using node input')
-                return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps)
+                data_json['positive_g'] = positive_g
+                data_json['negative_g'] = negative_g
+                data_json['model_hash'] = model_hash
+                data_json['model_name'] = model_name
+                data_json['sampler_name'] = sampler_name
+                data_json['scheduler_name'] = scheduler_name
+                data_json['seed'] = seed
+                data_json['original_width'] = original_width
+                data_json['original_height'] = original_height
+                data_json['cfg_scale'] = cfg_scale
+                data_json['steps'] = steps
+
+                return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
 
             try:
                 if use_model == True:
@@ -467,14 +483,50 @@ class PrimereMetaRead:
 
             except ValueError as VE:
                 print(VE)
-                return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps)
+                data_json['positive_g'] = positive_g
+                data_json['negative_g'] = negative_g
+                data_json['model_hash'] = model_hash_exif
+                data_json['model_name'] = model_name
+                data_json['sampler_name'] = sampler_name
+                data_json['scheduler_name'] = scheduler_name
+                data_json['seed'] = seed
+                data_json['original_width'] = original_width
+                data_json['original_height'] = original_height
+                data_json['cfg_scale'] = cfg_scale
+                data_json['steps'] = steps
 
-            return (reader.positive, reader.negative, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps)
+                return (positive_g, negative_g, model_hash_exif, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
+
+            data_json['positive_g'] = reader.positive
+            data_json['negative_g'] = reader.negative
+            data_json['model_hash'] = model_hash_exif
+            data_json['model_name'] = model_name
+            data_json['sampler_name'] = sampler_name
+            data_json['scheduler_name'] = scheduler_name
+            data_json['seed'] = seed
+            data_json['original_width'] = original_width
+            data_json['original_height'] = original_height
+            data_json['cfg_scale'] = cfg_scale
+            data_json['steps'] = steps
+
+            return (reader.positive, reader.negative, model_hash_exif, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
         else:
-            return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps)
+            data_json['positive_g'] = positive_g
+            data_json['negative_g'] = negative_g
+            data_json['model_hash'] = model_hash
+            data_json['model_name'] = model_name
+            data_json['sampler_name'] = sampler_name
+            data_json['scheduler_name'] = scheduler_name
+            data_json['seed'] = seed
+            data_json['original_width'] = original_width
+            data_json['original_height'] = original_height
+            data_json['cfg_scale'] = cfg_scale
+            data_json['steps'] = steps
+
+            return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
 
     @classmethod
-    def IS_CHANGED(s, image):
+    def IS_CHANGED(cls, image):
         image_path = comfy_paths.get_annotated_filepath(image)
         m = hashlib.sha256()
         with open(image_path, 'rb') as f:
