@@ -1,4 +1,3 @@
-import custom_nodes.ComfyUI_Primere_Nodes.components.fields as field
 from custom_nodes.ComfyUI_Primere_Nodes.components.tree import TREE_IO
 
 import folder_paths as comfy_paths
@@ -14,39 +13,32 @@ from .sd_prompt_reader.image_data_reader import ImageDataReader
 from PIL import Image, ImageOps
 import hashlib
 import difflib
+import comfy.samplers
 
-## 3 input summarizer --------------
-class ThreeSumNode:
-    def __init__(self) -> None:
-        pass
+class PrimereSamplers:
+    CATEGORY = TREE_IO
+    RETURN_TYPES = (comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS)
+    RETURN_NAMES = ("sampler_name", "scheduler_name")
+    FUNCTION = "get_sampler"
 
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "Value_A": field.FLOAT,
-                "Value_B": field.FLOAT,
-                "Value_C": field.FLOAT,
-            },
+                "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
+                "scheduler_name": (comfy.samplers.KSampler.SCHEDULERS,),
+            }
         }
 
-    RETURN_TYPES = ("FLOAT", "INT")
-    FUNCTION = "sum"
-    CATEGORY = TREE_IO
+    def get_sampler(self, sampler_name, scheduler_name):
+        return (sampler_name, scheduler_name)
 
-    def sum(self, Value_A, Value_B, Value_C):
-        total = float(Value_A + Value_B + Value_C)
-        totalint = int(Value_A + Value_B + Value_C)
-        return (total, totalint)
-
-
-## Image and meta saver  --------------
-# ! SYSTEM HOOKS
-ALLOWED_EXT = ('.jpeg', '.jpg', '.png', '.tiff', '.gif', '.bmp', '.webp')
-NODE_FILE = os.path.abspath(__file__)
-NODE_ROOT = os.path.dirname(NODE_FILE)
 
 class PrimereMetaSave:
+    ALLOWED_EXT = ('.jpeg', '.jpg', '.png', '.tiff', '.gif', '.bmp', '.webp')
+    NODE_FILE = os.path.abspath(__file__)
+    NODE_ROOT = os.path.dirname(NODE_FILE)
+
     def __init__(self):
         self.output_dir = comfy_paths.output_directory
         self.type = 'output'
@@ -151,12 +143,6 @@ class PrimereMetaSave:
         else:
             counter = 1
 
-        # Set initial counter value
-        if existing_counters:
-            counter = existing_counters[0] + 1
-        else:
-            counter = 1
-
         # Set Extension
         file_extension = '.' + extension
         if file_extension not in ALLOWED_EXT:
@@ -187,16 +173,6 @@ class PrimereMetaSave:
                     counter += 1
             try:
                 output_file = os.path.abspath(os.path.join(output_path, file))
-                '''
-                if extension == 'png': img.save(output_file, pnginfo=metadata, optimize=True)
-                elif extension == 'webp': img.save(output_file, quality=quality)
-                elif extension == 'jpeg': img.save(output_file, quality=quality, optimize=True)
-                elif extension == 'jpg': img.save(output_file, quality=quality, optimize=True)
-                elif extension == 'tiff': img.save(output_file, quality=quality, optimize=True)
-                elif extension == 'webp': img.save(output_file, quality=quality, lossless=lossless_webp, exif=metadata)
-                '''
-
-                model_hash = 'fakemodelhash1122'
 
                 exif_metadata_A11 = f"""{positive_g}
 Negative prompt: {negative_g}
@@ -218,34 +194,23 @@ Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed:
                 exif_metadata_json['steps'] = str(steps)
                 exif_metadata_json['cfg_scale'] = str(cfg_scale)
 
-                # print(f"Metadata input: {exif_metadata}")
-                # print(f"A11 Metadata input: {exif_metadata_A11}")
-                # print(f"PNG Metadata input: {metadata}")
-
                 if extension == 'png':
                     img.save(output_file, pnginfo=metadata, optimize=True)
                 elif extension == 'webp':
                     img.save(output_file, quality=quality, exif=metadata)
                 else:
                     img.save(output_file, quality=quality, optimize=True)
-                    # exif_dict = piexif.load(output_file)
-                    # exif_dict["Exif"][piexif.ExifIFD.UserComment] = piexif.helper.UserComment.dump(exif_metadata_A11, encoding="unicode")
-                    # exif_dict["Exif"][piexif.IFD0.ImageDescription] = piexif.helper.ImageDescription.dump(json.dumps(userdata), encoding="ascii")
-                    # piexif.insert(
-                    #     piexif.dump(exif_dict),
-                    #     output_file
-                    # )
                     if image_embed_exif == True:
                         metadata = pyexiv2.Image(output_file)
                         metadata.modify_exif({'Exif.Photo.UserComment': 'charset=Unicode ' + exif_metadata_A11})
                         metadata.modify_exif({'Exif.Image.ImageDescription': json.dumps(exif_metadata_json)})
-                        print(f"Image file saved to with exif: {output_file}")
+                        print(f"Image file saved with exif: {output_file}")
                     else:
                         if extension == 'webp':
                             img.save(output_file, quality=quality, exif=metadata)
                         else:
                             img.save(output_file, quality=quality, optimize=True)
-                            print(f"Image file saved to without exif: {output_file}")
+                            print(f"Image file saved without exif: {output_file}")
 
             except OSError as e:
                 print(f'Unable to save file to: {output_file}')
@@ -281,18 +246,17 @@ Steps: {str(steps)}, Sampler: {sampler_name}, CFG scale: {str(cfg_scale)}, Seed:
 
 class TextTokens:
     def __init__(self):
-
         self.tokens = {
-            '[time]': str(time.time()).replace('.', '_'),
-            '[hostname]': socket.gethostname(),
+            '[time]': str(time.time()).replace('.', '_')
         }
-
         if '.' in self.tokens['[time]']: self.tokens['[time]'] = self.tokens['[time]'].split('.')[0]
 
+        '''
         try:
             self.tokens['[user]'] = (os.getlogin() if os.getlogin() else 'null')
         except Exception:
             self.tokens['[user]'] = 'null'
+        '''
 
     def format_time(self, format_code):
         return time.strftime(format_code, time.localtime(time.time()))
@@ -319,20 +283,26 @@ class TextTokens:
         return text
 
 class PrimereMetaRead:
+    CATEGORY = TREE_IO
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "CHECKPOINT_NAME", comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "INT", "INT", "FLOAT", "INT")
+    RETURN_NAMES = ("positive", "negative", "model_hash", "model_name", "sampler_name", "scheduler_name", "seed", "width", "height", "cfg", "steps")
+    FUNCTION = "load_image"
+
     @classmethod
     def INPUT_TYPES(s):
         input_dir = comfy_paths.get_input_directory()
         files = [f for f in os.listdir(input_dir) if os.path.isfile(os.path.join(input_dir, f))]
+
         return {
             "required": {
-                "use_exif": ("BOOLEAN", {"default": False}),
-                "use_model": ("BOOLEAN", {"default": False}),
+                "use_exif": ("BOOLEAN", {"default": True}),
+                "use_model": ("BOOLEAN", {"default": True}),
                 "model_hash_check": ("BOOLEAN", {"default": False}),
-                "use_sampler": ("BOOLEAN", {"default": False}),
-                "use_seed": ("BOOLEAN", {"default": False}),
-                "use_size": ("BOOLEAN", {"default": False}),
-                "use_cfg_scale": ("BOOLEAN", {"default": False}),
-                "use_steps": ("BOOLEAN", {"default": False}),
+                "use_sampler": ("BOOLEAN", {"default": True}),
+                "use_seed": ("BOOLEAN", {"default": True}),
+                "use_size": ("BOOLEAN", {"default": True}),
+                "use_cfg_scale": ("BOOLEAN", {"default": True}),
+                "use_steps": ("BOOLEAN", {"default": True}),
                 "image": (sorted(files),),
             },
             "optional": {
@@ -342,29 +312,22 @@ class PrimereMetaRead:
                 "negative_l": ('STRING', {"forceInput": True, "default": ""}),
                 "positive_refiner": ('STRING', {"forceInput": True, "default": ""}),
                 "negative_refiner": ('STRING', {"forceInput": True, "default": ""}),
-                "model_name": ('STRING', {"forceInput": True, "default": ""}),
-                "sampler_name": ('STRING', {"forceInput": True, "default": ""}),
+                "model_name": ('CHECKPOINT_NAME', {"forceInput": True, "default": ""}),
+                "sampler_name": (comfy.samplers.KSampler.SAMPLERS, {"forceInput": True, "default": "euler"}),
+                "scheduler_name": (comfy.samplers.KSampler.SCHEDULERS, {"forceInput": True, "default": "normal"}),
                 "seed": ('INT', {"forceInput": True, "default": 0}),
-                "original_width": ('INT', {"forceInput": True, "default": 0}),
-                "original_height": ('INT', {"forceInput": True, "default": 0}),
+                "original_width": ('INT', {"forceInput": True, "default": 512}),
+                "original_height": ('INT', {"forceInput": True, "default": 512}),
                 "cfg_scale": ('FLOAT', {"forceInput": True, "default": 7}),
-                "steps": ('INT', {"forceInput": True, "default": 12}),
+                "steps": ('INT', {"forceInput": True, "default": 12})
             },
-
         }
 
-    CATEGORY = TREE_IO
-    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING", "INT", "INT", "INT", "FLOAT", "INT")
-    RETURN_NAMES = ("positive", "negative", "model_hash", "model_name", "sampler_name", "seed", "width", "height", "cfg", "steps")
-    FUNCTION = "load_image"
-
-    def load_image(self, image, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, use_cfg_scale, use_steps,
+    def load_image(self, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, use_cfg_scale, use_steps, image,
                    positive_g="", negative_g="", positive_l="", negative_l="", positive_refiner="", negative_refiner="",
-                   model_hash="", model_name="", sampler_name="DPM++ SDE Karras", seed=0, original_width=512, original_height=512, cfg_scale=7, steps=12):
+                   model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, original_width=512, original_height=512, cfg_scale=7, steps=12):
 
-        if use_exif == True:
-            image_path = comfy_paths.get_annotated_filepath(image)
-
+        if use_exif:
             def get_model_hash(filename):
                 hash_sha256 = hashlib.sha256()
                 blksize = 1024 * 1024
@@ -410,19 +373,82 @@ class PrimereMetaRead:
                     print('Model name:' + model_name_exif + ' not available by diffcheck, using system source: ' + model_name)
                 return model_name
 
+            def change_exif_samplers(sampler_name_exif, comfy_schedulers):
+                lastchars = sampler_name_exif[-2:]
+                if lastchars == ' a':
+                    sampler_name_exif = sampler_name_exif.rsplit(' a', 1)[0] + ' ancestral'
+
+                sampler_name_exif = sampler_name_exif.replace(' a ', ' ancestral ').replace(' ', '_').replace('++', 'pp').replace('dpm2', 'dpm_2').replace('unipc', 'uni_pc')
+
+                for comfy_scheduler in comfy_schedulers:
+                    sampler_name_exif = sampler_name_exif.removesuffix(comfy_scheduler).removesuffix('_')
+
+                return sampler_name_exif
+
+            def check_sampler_from_exif(sampler_name_exif, sampler_name, scheduler_name):
+                comfy_samplers = comfy.samplers.KSampler.SAMPLERS
+                comfy_schedulers = comfy.samplers.KSampler.SCHEDULERS
+
+                sampler_name_exif_for_cutoff = change_exif_samplers(sampler_name_exif, comfy_schedulers)
+                is_found_sampler = []
+                is_found_scheduler = []
+
+                cutoff_list_samplers = [1, 0.9, 0.8, 0.7, 0.6]
+                for trycut in cutoff_list_samplers:
+                    is_found_sampler = difflib.get_close_matches(sampler_name_exif_for_cutoff, comfy_samplers, cutoff=trycut)
+
+                if len(is_found_sampler) >= 1:
+                    sampler_name = is_found_sampler[0]
+
+                if " " in sampler_name_exif:
+                    if any((match := substring) in sampler_name_exif for substring in comfy_schedulers):
+                        scheduler_name = match
+                    else:
+                        cutoff_list_schedulers = [0.7, 0.6, 0.5, 0.4]
+                        for trycut in cutoff_list_schedulers:
+                            is_found_scheduler = difflib.get_close_matches(sampler_name_exif, comfy_schedulers, cutoff=trycut)
+
+                if len(is_found_scheduler) >= 1:
+                    scheduler_name = is_found_scheduler[0]
+
+                if sampler_name not in comfy_samplers:
+                    sampler_name = comfy_samplers[0]
+
+                if scheduler_name not in comfy_schedulers:
+                    scheduler_name = comfy_schedulers[0]
+
+                return {'sampler': sampler_name, 'scheduler': scheduler_name}
+
+            image_path = comfy_paths.get_annotated_filepath(image)
+
             reader = ImageDataReader(image_path)
             if (reader.tool == ''):
                 print('Reader tool return empty, using node input')
-                return (positive_g, negative_g, model_hash, model_name, sampler_name, seed, original_width, original_height, cfg_scale, steps)
+                return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps)
 
             try:
                 if use_model == True:
-                    model_hash_exif = reader.parameter["model_hash"]
-                    model_name_exif = reader.parameter["model"]
-                    model_name = check_model_from_exif(model_hash_exif, model_name_exif, model_name, model_hash_check)
+                    if 'model_hash' in reader.parameter:
+                        model_hash_exif = reader.parameter["model_hash"]
+                    else:
+                        checkpointpaths = comfy_paths.get_folder_paths("checkpoints")[0]
+                        model_full_path = checkpointpaths + os.sep + model_name
+                        if os.path.isfile(model_full_path):
+                            model_hash_exif = get_model_hash(model_name)
+                        else:
+                            model_hash_exif = 'no_hash_data'
+
+                    if 'model' in reader.parameter:
+                        model_name_exif = reader.parameter["model"]
+                        model_name = check_model_from_exif(model_hash_exif, model_name_exif, model_name, model_hash_check)
+                    else:
+                        model_name = comfy_paths.get_filename_list("checkpoints")[0]
 
                 if use_sampler ==True:
-                    sampler_name = reader.parameter["sampler"]
+                    sampler_name_exif = reader.parameter["sampler"]
+                    samplers = check_sampler_from_exif(sampler_name_exif.lower(), sampler_name, scheduler_name)
+                    sampler_name = samplers['sampler']
+                    scheduler_name = samplers['scheduler']
 
                 if use_seed == True:
                     seed = int(reader.parameter["seed"])
@@ -441,11 +467,11 @@ class PrimereMetaRead:
 
             except ValueError as VE:
                 print(VE)
-                return (positive_g, negative_g, model_hash, model_name, sampler_name, seed, original_width, original_height, cfg_scale, steps)
+                return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps)
 
-            return (reader.positive, reader.negative, model_hash, model_name, sampler_name, seed, original_width, original_height, cfg_scale, steps)
+            return (reader.positive, reader.negative, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps)
         else:
-            return (positive_g, negative_g, model_hash, model_name, sampler_name, seed, original_width, original_height, cfg_scale, steps)
+            return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps)
 
     @classmethod
     def IS_CHANGED(s, image):
@@ -455,8 +481,12 @@ class PrimereMetaRead:
             m.update(f.read())
         return m.digest().hex()
 
+'''
     @classmethod
     def VALIDATE_INPUTS(s, image):
+        print(s)
+        print(image)
         if not comfy_paths.exists_annotated_filepath(image):
             return "Invalid image file: {}".format(image)
         return True
+'''
