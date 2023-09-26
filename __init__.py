@@ -1,6 +1,5 @@
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.IO.ImageMeta as PriIO
-
-import shutil
+from custom_nodes.ComfyUI_Primere_Nodes.components.startup import symlink_primere_frontend
 import folder_paths
 import os
 
@@ -19,12 +18,4 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereImageMetaReader": "Primere Image Meta Reader"
 }
 
-def setup_js():
-    js_dest_path = os.path.join(comfy_path, "web", "extensions", "primere")
-    if not os.path.exists(js_dest_path):
-        os.makedirs(js_dest_path)
-
-    js_src_path = os.path.join(tk_nodes_path, "javascript", "primere_metadata.js")
-    shutil.copy(js_src_path, js_dest_path)
-
-setup_js()
+symlink_primere_frontend("javascript", "Primere", tk_nodes_path)

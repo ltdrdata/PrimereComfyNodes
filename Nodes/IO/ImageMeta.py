@@ -284,8 +284,8 @@ class TextTokens:
 
 class PrimereMetaRead:
     CATEGORY = TREE_IO
-    RETURN_TYPES = ("STRING", "STRING", "STRING", "CHECKPOINT_NAME", comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "INT", "INT", "FLOAT", "INT", "TUPLE")
-    RETURN_NAMES = ("positive", "negative", "model_hash", "model_name", "sampler_name", "scheduler_name", "seed", "width", "height", "cfg", "steps", "data")
+    RETURN_TYPES = ("STRING", "STRING", "CHECKPOINT_NAME", comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "INT", "INT", "FLOAT", "INT", "TUPLE")
+    RETURN_NAMES = ("positive", "negative", "model_name", "sampler_name", "scheduler_name", "seed", "width", "height", "cfg", "steps", "data")
     FUNCTION = "load_image"
 
     @classmethod
@@ -440,7 +440,7 @@ class PrimereMetaRead:
                 data_json['cfg_scale'] = cfg_scale
                 data_json['steps'] = steps
 
-                return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
+                return (positive_g, negative_g, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
 
             try:
                 if use_model == True:
@@ -450,7 +450,7 @@ class PrimereMetaRead:
                         checkpointpaths = comfy_paths.get_folder_paths("checkpoints")[0]
                         model_full_path = checkpointpaths + os.sep + model_name
                         if os.path.isfile(model_full_path):
-                            model_hash_exif = get_model_hash(model_name)
+                            model_hash_exif = get_model_hash(model_full_path)
                         else:
                             model_hash_exif = 'no_hash_data'
 
@@ -495,7 +495,7 @@ class PrimereMetaRead:
                 data_json['cfg_scale'] = cfg_scale
                 data_json['steps'] = steps
 
-                return (positive_g, negative_g, model_hash_exif, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
+                return (positive_g, negative_g, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
 
             data_json['positive_g'] = reader.positive
             data_json['negative_g'] = reader.negative
@@ -509,7 +509,7 @@ class PrimereMetaRead:
             data_json['cfg_scale'] = cfg_scale
             data_json['steps'] = steps
 
-            return (reader.positive, reader.negative, model_hash_exif, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
+            return (reader.positive, reader.negative, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
         else:
             data_json['positive_g'] = positive_g
             data_json['negative_g'] = negative_g
@@ -523,7 +523,7 @@ class PrimereMetaRead:
             data_json['cfg_scale'] = cfg_scale
             data_json['steps'] = steps
 
-            return (positive_g, negative_g, model_hash, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
+            return (positive_g, negative_g, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
 
     @classmethod
     def IS_CHANGED(cls, image):
