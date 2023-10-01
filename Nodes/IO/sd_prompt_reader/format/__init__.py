@@ -1,3 +1,4 @@
+from .automatic1111 import Automatic1111
 from .a1111 import A1111
 from .easydiffusion import EasyDiffusion
 from .invokeai import InvokeAI
