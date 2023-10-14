@@ -14,6 +14,7 @@ from PIL import Image, ImageOps
 import hashlib
 import difflib
 import comfy.samplers
+import custom_nodes
 
 # OopCompanion:suppressRename
 class PrimereSamplers:
@@ -285,8 +286,8 @@ class TextTokens:
 
 class PrimereMetaRead:
     CATEGORY = TREE_IO
-    RETURN_TYPES = ("STRING", "STRING", "CHECKPOINT_NAME", comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "INT", "INT", "FLOAT", "INT", "TUPLE")
-    RETURN_NAMES = ("positive", "negative", "model_name", "sampler_name", "scheduler_name", "seed", "width", "height", "cfg", "steps", "data")
+    RETURN_TYPES = ("STRING", "STRING", "STRING", comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "INT", "INT", "FLOAT", "INT", "STRING", "TUPLE")
+    RETURN_NAMES = ("positive", "negative", "model_name", "sampler_name", "scheduler_name", "seed", "width", "height", "cfg", "steps", "vae", "data")
     FUNCTION = "load_image"
 
     @classmethod
@@ -304,6 +305,7 @@ class PrimereMetaRead:
                 "use_size": ("BOOLEAN", {"default": True}),
                 "use_cfg_scale": ("BOOLEAN", {"default": True}),
                 "use_steps": ("BOOLEAN", {"default": True}),
+                "use_vae": ("BOOLEAN", {"default": True}),
                 "image": (sorted(files),),
             },
             "optional": {
@@ -313,20 +315,21 @@ class PrimereMetaRead:
                 "negative_l": ('STRING', {"forceInput": True, "default": ""}),
                 "positive_refiner": ('STRING', {"forceInput": True, "default": ""}),
                 "negative_refiner": ('STRING', {"forceInput": True, "default": ""}),
-                "model_name": ('CHECKPOINT_NAME', {"forceInput": True, "default": ""}),
+                "model_name": ('STRING', {"forceInput": True, "default": ""}),
                 "sampler_name": (comfy.samplers.KSampler.SAMPLERS, {"forceInput": True, "default": "euler"}),
                 "scheduler_name": (comfy.samplers.KSampler.SCHEDULERS, {"forceInput": True, "default": "normal"}),
                 "seed": ('INT', {"forceInput": True, "default": 0}),
                 "original_width": ('INT', {"forceInput": True, "default": 512}),
                 "original_height": ('INT', {"forceInput": True, "default": 512}),
                 "cfg_scale": ('FLOAT', {"forceInput": True, "default": 7}),
-                "steps": ('INT', {"forceInput": True, "default": 12})
+                "steps": ('INT', {"forceInput": True, "default": 12}),
+                "vae_name": ('STRING', {"forceInput": True, "default": ""}),
             },
         }
 
-    def load_image(self, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, use_cfg_scale, use_steps, image,
+    def load_image(self, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, use_cfg_scale, use_steps, use_vae, image,
                    positive_g="", negative_g="", positive_l="", negative_l="", positive_refiner="", negative_refiner="",
-                   model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, original_width=512, original_height=512, cfg_scale=7, steps=12):
+                   model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, original_width=512, original_height=512, cfg_scale=7, steps=12, vae_name=""):
 
         data_json = {}
         data_json['positive_g'] = positive_g
@@ -340,6 +343,7 @@ class PrimereMetaRead:
         data_json['height'] = original_height
         data_json['cfg_scale'] = cfg_scale
         data_json['steps'] = steps
+        data_json['vae_name'] = vae_name
 
         if use_exif:
             def get_model_hash(filename):
@@ -434,72 +438,81 @@ class PrimereMetaRead:
                 return {'sampler': sampler_name, 'scheduler': scheduler_name}
 
             image_path = comfy_paths.get_annotated_filepath(image)
-            readerResult = ImageExifReader(image_path)
-            reader = readerResult.parser
+            if os.path.isfile(image_path):
+                readerResult = ImageExifReader(image_path)
+                reader = readerResult.parser
 
-            if 'positive_g' in reader.parameter:
-                data_json['positive_g'] = reader.parameter["positive_g"]
-            else:
-                data_json['positive_g'] = ""
+                if 'positive_g' in reader.parameter:
+                    data_json['positive_g'] = reader.parameter["positive_g"]
+                else:
+                    data_json['positive_g'] = ""
 
-            if 'negative_g' in reader.parameter:
-                data_json['negative_g'] = reader.parameter["negative_g"]
-            else:
-                data_json['negative_g'] = ""
+                if 'negative_g' in reader.parameter:
+                    data_json['negative_g'] = reader.parameter["negative_g"]
+                else:
+                    data_json['negative_g'] = ""
 
-            if (readerResult.tool == ''):
-                print('Reader tool return empty, using node input')
-                return (positive_g, negative_g, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, data_json)
+                if (readerResult.tool == ''):
+                    print('Reader tool return empty, using node input')
+                    return (positive_g, negative_g, model_name, sampler_name, scheduler_name, seed, original_width, original_height, cfg_scale, steps, vae_name, data_json)
 
-            try:
-                if use_model == True:
-                    if 'model_hash' in reader.parameter:
-                        data_json['model_hash'] = reader.parameter["model_hash"]
-                    else:
-                        checkpointpaths = comfy_paths.get_folder_paths("checkpoints")[0]
-                        model_full_path = checkpointpaths + os.sep + model_name
-                        if os.path.isfile(model_full_path):
-                            data_json['model_hash'] = get_model_hash(model_full_path)
+                try:
+                    if use_model == True:
+                        if 'model_hash' in reader.parameter:
+                            data_json['model_hash'] = reader.parameter["model_hash"]
                         else:
-                            data_json['model_hash'] = 'no_hash_data'
+                            checkpointpaths = comfy_paths.get_folder_paths("checkpoints")[0]
+                            model_full_path = checkpointpaths + os.sep + model_name
+                            if os.path.isfile(model_full_path):
+                                data_json['model_hash'] = get_model_hash(model_full_path)
+                            else:
+                                data_json['model_hash'] = 'no_hash_data'
 
-                    if 'model' in reader.parameter:
-                        model_name_exif = reader.parameter["model"]
-                        data_json['model_name'] = check_model_from_exif(data_json['model_hash'], model_name_exif, model_name, model_hash_check)
-                    else:
-                        data_json['model_name'] = comfy_paths.get_filename_list("checkpoints")[0]
+                        if 'model' in reader.parameter:
+                            model_name_exif = reader.parameter["model"]
+                            data_json['model_name'] = check_model_from_exif(data_json['model_hash'], model_name_exif, model_name, model_hash_check)
+                        else:
+                            data_json['model_name'] = comfy_paths.get_filename_list("checkpoints")[0]
 
-                if use_sampler ==True:
-                    if 'sampler' in reader.parameter:
-                        sampler_name_exif = reader.parameter["sampler"]
-                        samplers = check_sampler_from_exif(sampler_name_exif.lower(), sampler_name, scheduler_name)
-                        data_json['sampler_name'] = samplers['sampler']
-                        data_json['scheduler_name'] = samplers['scheduler']
+                    if use_sampler ==True:
+                        if 'sampler' in reader.parameter:
+                            sampler_name_exif = reader.parameter["sampler"]
+                            samplers = check_sampler_from_exif(sampler_name_exif.lower(), sampler_name, scheduler_name)
+                            data_json['sampler_name'] = samplers['sampler']
+                            data_json['scheduler_name'] = samplers['scheduler']
 
-                if use_seed == True:
-                    if 'seed' in reader.parameter:
-                        data_json['seed'] = reader.parameter["seed"]
+                    if use_seed == True:
+                        if 'seed' in reader.parameter:
+                            data_json['seed'] = reader.parameter["seed"]
 
-                if use_cfg_scale == True:
-                    if 'cfg_scale' in reader.parameter:
-                        data_json['cfg_scale'] = reader.parameter["cfg_scale"]
+                    if use_cfg_scale == True:
+                        if 'cfg_scale' in reader.parameter:
+                            data_json['cfg_scale'] = reader.parameter["cfg_scale"]
 
-                if use_steps == True:
-                    if 'steps' in reader.parameter:
-                        data_json['steps'] = reader.parameter["steps"]
+                    if use_steps == True:
+                        if 'steps' in reader.parameter:
+                            data_json['steps'] = reader.parameter["steps"]
 
-                if use_size == True:
-                    if 'size_string' in reader.parameter:
-                        data_json['width'] = reader.parameter["width"]
-                        data_json['height'] = reader.parameter["height"]
+                    if use_vae == True:
+                        if 'vae' in reader.parameter:
+                            data_json['vae'] = reader.parameter["vae"]
 
-            except ValueError as VE:
-                print(VE)
-                return (data_json['positive_g'], data_json['negative_g'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json)
+                    if use_size == True:
+                        if 'size_string' in reader.parameter:
+                            data_json['width'] = reader.parameter["width"]
+                            data_json['height'] = reader.parameter["height"]
 
-            return (data_json['positive_g'], data_json['negative_g'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json)
+                except ValueError as VE:
+                    print(VE)
+                    return (data_json['positive_g'], data_json['negative_g'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json['vae_name'], data_json)
+            else:
+                print('No source image loaded.')
+                return (data_json['positive_g'], data_json['negative_g'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json['vae_name'], data_json)
+
+            return (data_json['positive_g'], data_json['negative_g'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json['vae_name'], data_json)
         else:
-            return (data_json['positive_g'], data_json['negative_g'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json)
+            print('Exif reader off.')
+            return (data_json['positive_g'], data_json['negative_g'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json['vae_name'], data_json)
 
     @classmethod
     def IS_CHANGED(cls, image):

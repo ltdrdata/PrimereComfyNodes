@@ -3,10 +3,7 @@ __filename__ = "utility.py"
 __copyright__ = "Copyright 2023"
 __email__ = "receyuki@gmail.com"
 
-from pathlib import Path
-
 SUPPORTED_FORMATS = [".png", ".jpg", ".jpeg", ".webp"]
-
 
 def merge_str_to_tuple(item1, item2):
     if not isinstance(item1, tuple):
