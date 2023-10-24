@@ -1,3 +1,4 @@
 TREE_MAIN = "Primere Nodes"
 
-TREE_IO = TREE_MAIN + "/IO"
+TREE_DASHBOARD = TREE_MAIN + "/Dashboard"
+TREE_INPUTS = TREE_MAIN + "/Inputs"
