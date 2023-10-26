@@ -103,10 +103,8 @@ class AnyType(str):
 class PrimerePromptSwitch:
     any_typ = AnyType("*")
 
-    # RETURN_TYPES = (any_typ, any_typ, "STRING", "INT")
-    RETURN_TYPES = (any_typ, "STRING", "INT")
-    # RETURN_NAMES = ("selected_pos", "selected_neg", "selected_label", "selected_index")
-    RETURN_NAMES = ("selected_pos", "selected_label", "selected_index")
+    RETURN_TYPES = (any_typ, any_typ, "INT")
+    RETURN_NAMES = ("selected_pos", "selected_neg", "selected_index")
     FUNCTION = "promptswitch"
     CATEGORY = TREE_DASHBOARD
 
@@ -119,21 +117,19 @@ class PrimerePromptSwitch:
                 "select": ("INT", {"default": 1, "min": 1, "max": 20, "step": 1}),
             },
             "optional": {
-                "prompt_p1": (any_typ,),
-                # "prompt_n1": (any_typ,),
+                "prompt_pos_1": (any_typ,),
+                "prompt_neg_1": (any_typ,),
             },
         }
 
     def promptswitch(self, *args, **kwargs):
         selected_index = int(kwargs['select'])
-        input_namep = f"prompt_p{selected_index}"
-        # input_namen = f"prompt_n{selected_index}"
-        selected_label = input_namep
+        input_namep = f"prompt_pos_{selected_index}"
+        input_namen = f"prompt_neg_{selected_index}"
+        # selected_label = input_namep
 
         if input_namep in kwargs:
-            # return (kwargs[input_namep], kwargs[input_namen], selected_label, selected_index)
-            return (kwargs[input_namep], selected_label, selected_index)
+            return (kwargs[input_namep], kwargs[input_namen], selected_index)
         else:
             print(f"ImpactSwitch: invalid select index (ignored)")
-            # return (None, "", "", selected_index)
-            return (None, "", selected_index)
+            return (None, None, selected_index)

@@ -5,33 +5,41 @@ app.registerExtension({
 
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
         if (nodeData.name == 'PrimerePromptSwitch') {
-            var input_name = "prompt_p";
+            var input_name_pos = "prompt_pos_";
+            var input_name_neg = "prompt_neg_";
+            var n = 0;
 
             const onConnectionsChange = nodeType.prototype.onConnectionsChange;
-            nodeType.prototype.onConnectionsChange = function (type, index, connected, link_info) {
+            nodeType.prototype.onConnectionsChange = function(type, index, connected, link_info) {
                 if(!link_info)
                     return;
 
                 if (type == 2) {
                     if (connected && index == 0){
-                        if(this.outputs[0].type == '*'){
-                            if(link_info.type == '*') {
+                        if (this.outputs[0].type == '*'){
+                            if (link_info.type == '*') {
                                 app.graph._nodes_by_id[link_info.target_id].disconnectInput(link_info.target_slot);
                             } else {
                                 this.outputs[0].type = link_info.type;
-                                this.outputs[0].label = link_info.type;
-                                this.outputs[0].name = link_info.type;
+                                this.outputs[1].type = origin_type;
 
                                 for (let i in this.inputs) {
-                                    let input_i = this.inputs[i];
-                                    if (input_i.name != 'select')
-                                        input_i.type = link_info.type;
+                                    n = parseInt(i);
+                                    if (this.inputs[i].name.includes(input_name_pos) === true) {
+                                        let input_i_pos = this.inputs[n];
+                                        let input_i_neg = this.inputs[(n + 1)];
+                                        input_i_pos.type = link_info.type;
+                                        input_i_neg.type = link_info.type;
+                                    }
                                 }
                             }
                         }
                     }
                     return;
                 } else {
+                    //if (this.inputs[index].name.includes(input_name_neg) === true)
+                        //return;
+
                     if (this.inputs[index].name == 'select')
                         return;
 
@@ -45,14 +53,17 @@ app.registerExtension({
                         }
 
                         for (let i in this.inputs) {
-                            let input_i = this.inputs[i];
-                            if (input_i.name != 'select')
-                                input_i.type = origin_type;
+                            n = parseInt(i);
+                            if (this.inputs[i].name.includes(input_name_pos) === true) {
+                                let input_i_pos = this.inputs[n];
+                                let input_i_neg = this.inputs[(n + 1)];
+                                input_i_pos.type = origin_type;
+                                input_i_neg.type = origin_type;
+                            }
                         }
 
                         this.outputs[0].type = origin_type;
-                        this.outputs[0].label = origin_type;
-                        this.outputs[0].name = origin_type;
+                        this.outputs[1].type = origin_type;
                     }
                 }
 
@@ -60,37 +71,56 @@ app.registerExtension({
                 let converted_count = 0;
                 converted_count += select_slot ? 1 : 0;
 
-                if (!connected && (this.inputs.length > 1 + converted_count)) {
+                if (!connected && (this.inputs.length > 2 + converted_count)) {
                     const stackTrace = new Error().stack;
 
                     if (!stackTrace.includes('LGraphNode.prototype.connect') && // for touch device
                         !stackTrace.includes('LGraphNode.connect') && // for mouse device
                         !stackTrace.includes('loadGraphData') &&
                         this.inputs[index].name != 'select') {
-                        this.removeInput(index);
+
+                        let last_pos_slot = this.inputs[this.inputs.length - 2];
+                        let last_neg_slot = this.inputs[this.inputs.length - 1];
+                        if (last_pos_slot.link == undefined && last_neg_slot.link == undefined) {
+                            this.removeInput(this.inputs.length - 1);
+                            this.removeInput(this.inputs.length - 1);
+                        }
                     }
                 }
 
 				let slot_i = 1;
                 for (let i = 0; i < this.inputs.length; i++) {
-                    let input_i = this.inputs[i];
-                    if (input_i.name != 'select') {
-	                    input_i.name = `${input_name}${slot_i}`
+                    if (this.inputs[i].name.includes(input_name_pos) === true) {
+                        let input_i_pos = this.inputs[i];
+                        let input_i_neg = this.inputs[(i + 1)];
+	                    input_i_pos.name = `${input_name_pos}${slot_i}`
+                        input_i_neg.name = `${input_name_neg}${slot_i}`
                         slot_i++;
                     }
                 }
 
-				let last_slot = this.inputs[this.inputs.length - 1];
-                if ((last_slot.name == 'select' && this.inputs[this.inputs.length - 2].link != undefined)
-                    || (last_slot.name != 'select' && last_slot.link != undefined)) {
-                        this.addInput(`${input_name}${slot_i}`, this.outputs[0].type);
+				let last_pos_slot = this.inputs[this.inputs.length - 2];
+                let last_neg_slot = this.inputs[this.inputs.length - 1];
+                if (last_pos_slot.name.includes(input_name_pos) === true && last_neg_slot.link != undefined && last_pos_slot.link != undefined) {
+                        this.addInput(`${input_name_pos}${slot_i}`, this.outputs[0].type);
+                        this.addInput(`${input_name_neg}${slot_i}`, this.outputs[1].type);
                 }
 
                 if (this.widgets) {
-                    this.widgets[0].options.max = select_slot ? this.inputs.length - 2 : this.inputs.length - 1;
+                    let last_pos_slot = this.inputs[this.inputs.length - 2];
+                    let last_neg_slot = this.inputs[this.inputs.length - 1];
+
+                    var additionalMax = 0;
+                    if (last_pos_slot.link == undefined && last_neg_slot.link == undefined) {
+                        additionalMax = -1;
+                    }
+                    var selectMax = Math.round((this.inputs.length / 2) + additionalMax);
                     this.widgets[0].value = Math.min(this.widgets[0].value, this.widgets[0].options.max);
-                    if (this.widgets[0].options.max > 0 && this.widgets[0].value == 0)
+                    this.widgets[0].options.max = selectMax;
+                    if (this.widgets[0].options.max > 0 && this.widgets[0].value <= 0)
                         this.widgets[0].value = 1;
+                    if (this.widgets[0].value > selectMax)
+                        this.widgets[0].value = selectMax;
                 }
             }
         }

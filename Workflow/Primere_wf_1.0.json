@@ -1,6 +1,6 @@
 {
-  "last_node_id": 130,
-  "last_link_id": 161,
+  "last_node_id": 144,
+  "last_link_id": 188,
   "nodes": [
     {
       "id": 60,
@@ -63,7 +63,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "Design\\interiordesignsuperm_v2.safetensors"
+        "BestAll\\realisticVisionV40.safetensors"
       ]
     },
     {
@@ -153,6 +153,47 @@
       ]
     },
     {
+      "id": 130,
+      "type": "PrimereStyleLoader",
+      "pos": [
+        197,
+        705
+      ],
+      "size": {
+        "0": 315,
+        "1": 78
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            171
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            172
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereStyleLoader"
+      },
+      "widgets_values": [
+        "Testprompt - Product design"
+      ]
+    },
+    {
       "id": 81,
       "type": "Seed (rgthree)",
       "pos": [
@@ -164,7 +205,7 @@
         "1": 130
       },
       "flags": {},
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "outputs": [
         {
@@ -181,7 +222,9 @@
             113,
             147,
             148,
-            149
+            149,
+            175,
+            176
           ],
           "shape": 3,
           "slot_index": 0
@@ -198,26 +241,89 @@
       ]
     },
     {
+      "id": 143,
+      "type": "JWStringMultiline",
+      "pos": [
+        67,
+        85
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            185
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JWStringMultiline"
+      },
+      "widgets_values": [
+        "minimalist interior, colorful beautiful {large|small|huge} {modern|retro|old style|abandoned, messy|futuristic} {bedroom|hall|kitchen}, Bauhaus modern minimalist abstract paint on the wall, glassy desk, leather bed, large windows, small messy desk in the corner with computer screen old books papers notes and color pencils, professional interior photography"
+      ]
+    },
+    {
+      "id": 144,
+      "type": "Text Multiline",
+      "pos": [
+        487,
+        71
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            187
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Text Multiline"
+      },
+      "widgets_values": [
+        "minimalist interior, colorful beautiful {large|small|huge} {modern|retro|old style|abandoned, messy|futuristic} {bedroom|hall|kitchen}, Bauhaus modern minimalist abstract paint on the wall, glassy desk, leather bed, large windows, small messy desk in the corner with computer screen old books papers notes and color pencils, professional interior photography"
+      ]
+    },
+    {
       "id": 121,
       "type": "PrimerePrompt",
       "pos": [
-        502,
-        476
+        355,
+        345
       ],
       "size": {
         "0": 438,
         "1": 284
       },
       "flags": {},
-      "order": 5,
+      "order": 8,
       "mode": 0,
       "outputs": [
         {
           "name": "positive_prompt",
           "type": "STRING",
           "links": [
-            157,
-            159
+            177
           ],
           "shape": 3,
           "slot_index": 0
@@ -226,7 +332,9 @@
           "name": "negative_prompt",
           "type": "STRING",
           "links": [
-            158
+            178,
+            186,
+            188
           ],
           "shape": 3,
           "slot_index": 1
@@ -241,89 +349,6 @@
       ]
     },
     {
-      "id": 129,
-      "type": "PrimerePromptSwitch",
-      "pos": [
-        569,
-        1003
-      ],
-      "size": {
-        "0": 315,
-        "1": 98
-      },
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "prompt_p1",
-          "type": "*",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "selected_pos",
-          "type": "*",
-          "links": null,
-          "shape": 3
-        },
-        {
-          "name": "selected_label",
-          "type": "STRING",
-          "links": null,
-          "shape": 3
-        },
-        {
-          "name": "selected_index",
-          "type": "INT",
-          "links": null,
-          "shape": 3
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimerePromptSwitch"
-      },
-      "widgets_values": [
-        1
-      ]
-    },
-    {
-      "id": 130,
-      "type": "PrimereStyleLoader",
-      "pos": [
-        556,
-        828
-      ],
-      "size": [
-        315,
-        78
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "positive_prompt",
-          "type": "STRING",
-          "links": null,
-          "shape": 3
-        },
-        {
-          "name": "negative_prompt",
-          "type": "STRING",
-          "links": null,
-          "shape": 3
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereStyleLoader"
-      },
-      "widgets_values": [
-        "Testprompt - Woman SFW"
-      ]
-    },
-    {
       "id": 62,
       "type": "PrimereVAELoader",
       "pos": [
@@ -335,7 +360,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -376,7 +401,7 @@
         "1": 66
       },
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -429,152 +454,107 @@
       }
     },
     {
-      "id": 118,
-      "type": "ShowText|pysssss",
+      "id": 133,
+      "type": "Nui.DynamicPromptsTextGen",
       "pos": [
-        1036,
-        783
+        683,
+        693
       ],
-      "size": {
-        "0": 339,
-        "1": 217
-      },
+      "size": [
+        217,
+        54
+      ],
       "flags": {},
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
           "name": "text",
           "type": "STRING",
-          "link": 159,
+          "link": 171,
           "widget": {
             "name": "text"
-          },
-          "slot_index": 0
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 175,
+          "widget": {
+            "name": "seed"
+          }
         }
       ],
       "outputs": [
         {
           "name": "STRING",
           "type": "STRING",
-          "links": null,
-          "shape": 6
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ShowText|pysssss"
-      },
-      "widgets_values": [
-        "minimalist interior, colorful beautiful huge abandoned, messy hall, Bauhaus modern minimalist abstract paint on the wall, glassy desk, leather bed, large windows, small messy desk in the corner with computer screen old books papers notes and color pencils, professional interior photography"
-      ]
-    },
-    {
-      "id": 17,
-      "type": "BNK_CLIPTextEncodeAdvanced",
-      "pos": [
-        1478,
-        556
-      ],
-      "size": {
-        "0": 350,
-        "1": 102
-      },
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 63
-        },
-        {
-          "name": "text",
-          "type": "STRING",
-          "link": 157,
-          "widget": {
-            "name": "text"
-          },
-          "slot_index": 1
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
           "links": [
-            9,
-            88,
-            105,
-            135,
-            136,
-            137
+            179
           ],
           "shape": 3,
           "slot_index": 0
         }
       ],
       "properties": {
-        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+        "Node name for S&R": "Nui.DynamicPromptsTextGen"
       },
       "widgets_values": [
         "",
-        "length+mean",
-        "comfy++"
+        99537413202066,
+        "randomize"
       ]
     },
     {
-      "id": 18,
-      "type": "BNK_CLIPTextEncodeAdvanced",
+      "id": 134,
+      "type": "Nui.DynamicPromptsTextGen",
       "pos": [
-        1475,
-        719
+        700,
+        825
       ],
-      "size": {
-        "0": 350,
-        "1": 102
-      },
+      "size": [
+        210,
+        54
+      ],
       "flags": {},
       "order": 12,
       "mode": 0,
       "inputs": [
         {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 64
-        },
-        {
           "name": "text",
           "type": "STRING",
-          "link": 158,
+          "link": 172,
           "widget": {
             "name": "text"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 176,
+          "widget": {
+            "name": "seed"
           }
         }
       ],
       "outputs": [
         {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
+          "name": "STRING",
+          "type": "STRING",
           "links": [
-            10,
-            89,
-            106,
-            138,
-            139,
-            140
+            180
           ],
           "shape": 3,
           "slot_index": 0
         }
       ],
       "properties": {
-        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+        "Node name for S&R": "Nui.DynamicPromptsTextGen"
       },
       "widgets_values": [
         "",
-        "length+mean",
-        "comfy++"
+        500456270962609,
+        "randomize"
       ]
     },
     {
@@ -644,7 +624,7 @@
         30,
         0.23,
         0.75,
-        401411055230123,
+        772893052771206,
         "randomize",
         "cuda"
       ]
@@ -710,7 +690,7 @@
         1,
         1.45,
         1.3,
-        393837467207920,
+        940499379015520,
         "randomize",
         "cuda"
       ]
@@ -776,7 +756,7 @@
         1,
         1,
         1.2,
-        604159734700744,
+        150070552093043,
         "randomize",
         "cuda"
       ]
@@ -842,7 +822,7 @@
         1,
         0.8,
         0.8,
-        248587266527133,
+        686142491119175,
         "randomize",
         "cuda"
       ]
@@ -908,177 +888,110 @@
         1,
         1.25,
         1.8,
-        956373954548079,
+        266966085901809,
         "randomize",
         "cpu"
       ]
     },
     {
-      "id": 77,
-      "type": "KSampler",
+      "id": 135,
+      "type": "PrimerePromptSwitch",
       "pos": [
-        2528,
-        320
+        1037,
+        463
       ],
       "size": {
-        "0": 315,
-        "1": 262
+        "0": 228.39999389648438,
+        "1": 238
       },
       "flags": {},
       "order": 18,
       "mode": 0,
       "inputs": [
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 87
+          "name": "prompt_pos_1",
+          "type": "STRING",
+          "link": 177
         },
         {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 88
+          "name": "prompt_neg_1",
+          "type": "STRING",
+          "link": 178
         },
         {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 89
+          "name": "prompt_pos_2",
+          "type": "STRING",
+          "link": 179
         },
         {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 83
+          "name": "prompt_neg_2",
+          "type": "STRING",
+          "link": 180
         },
         {
-          "name": "sampler_name",
-          "type": "COMBO",
-          "link": 90,
-          "widget": {
-            "name": "sampler_name"
-          }
+          "name": "prompt_pos_3",
+          "type": "STRING",
+          "link": 185
         },
         {
-          "name": "scheduler",
-          "type": "COMBO",
-          "link": 91,
-          "widget": {
-            "name": "scheduler"
-          }
+          "name": "prompt_neg_3",
+          "type": "STRING",
+          "link": 186
         },
         {
-          "name": "seed",
-          "type": "INT",
-          "link": 97,
-          "widget": {
-            "name": "seed"
-          }
+          "name": "prompt_pos_4",
+          "type": "STRING",
+          "link": 187
+        },
+        {
+          "name": "prompt_neg_4",
+          "type": "STRING",
+          "link": 188
+        },
+        {
+          "name": "prompt_pos_5",
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "prompt_neg_5",
+          "type": "STRING",
+          "link": null
         }
       ],
       "outputs": [
         {
-          "name": "LATENT",
-          "type": "LATENT",
+          "name": "selected_pos",
+          "type": "STRING",
           "links": [
-            95
+            181,
+            183
           ],
           "shape": 3,
           "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "KSampler"
-      },
-      "widgets_values": [
-        152523262363159,
-        "randomize",
-        20,
-        8,
-        "euler",
-        "normal",
-        1
-      ]
-    },
-    {
-      "id": 83,
-      "type": "KSampler",
-      "pos": [
-        2535,
-        656
-      ],
-      "size": {
-        "0": 315,
-        "1": 262
-      },
-      "flags": {},
-      "order": 19,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 107
         },
         {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 105
+          "name": "selected_neg",
+          "type": "STRING",
+          "links": [
+            182,
+            184
+          ],
+          "shape": 3,
+          "slot_index": 1
         },
         {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 106
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 102
-        },
-        {
-          "name": "sampler_name",
-          "type": "COMBO",
-          "link": 103,
-          "widget": {
-            "name": "sampler_name"
-          }
-        },
-        {
-          "name": "scheduler",
-          "type": "COMBO",
-          "link": 104,
-          "widget": {
-            "name": "scheduler"
-          }
-        },
-        {
-          "name": "seed",
+          "name": "selected_index",
           "type": "INT",
-          "link": 98,
-          "widget": {
-            "name": "seed"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            99
-          ],
-          "shape": 3,
-          "slot_index": 0
+          "links": null,
+          "shape": 3
         }
       ],
       "properties": {
-        "Node name for S&R": "KSampler"
+        "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        4295310842266,
-        "randomize",
-        20,
-        8,
-        "euler",
-        "normal",
-        1
+        4
       ]
     },
     {
@@ -1093,7 +1006,7 @@
         "1": 246
       },
       "flags": {},
-      "order": 20,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -1108,6 +1021,299 @@
       }
     },
     {
+      "id": 65,
+      "type": "PreviewImage",
+      "pos": [
+        3067,
+        92
+      ],
+      "size": {
+        "0": 189,
+        "1": 246
+      },
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 82,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 89,
+      "type": "PreviewImage",
+      "pos": [
+        4365,
+        22
+      ],
+      "size": {
+        "0": 189,
+        "1": 246
+      },
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 114,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 90,
+      "type": "PreviewImage",
+      "pos": [
+        4365,
+        599
+      ],
+      "size": {
+        "0": 189,
+        "1": 246
+      },
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 115,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 91,
+      "type": "PreviewImage",
+      "pos": [
+        4363,
+        1159
+      ],
+      "size": {
+        "0": 189,
+        "1": 246
+      },
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 116,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 17,
+      "type": "BNK_CLIPTextEncodeAdvanced",
+      "pos": [
+        1478,
+        556
+      ],
+      "size": {
+        "0": 350,
+        "1": 102
+      },
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 63
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 181,
+          "widget": {
+            "name": "text"
+          },
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            9,
+            88,
+            105,
+            135,
+            136,
+            137
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+      },
+      "widgets_values": [
+        "",
+        "length+mean",
+        "comfy++"
+      ]
+    },
+    {
+      "id": 118,
+      "type": "ShowText|pysssss",
+      "pos": [
+        1023,
+        748
+      ],
+      "size": {
+        "0": 339,
+        "1": 217
+      },
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 183,
+          "widget": {
+            "name": "text"
+          },
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "minimalist interior, colorful beautiful large modern kitchen, Bauhaus modern minimalist abstract paint on the wall, glassy desk, leather bed, large windows, small messy desk in the corner with computer screen old books papers notes and color pencils, professional interior photography"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "BNK_CLIPTextEncodeAdvanced",
+      "pos": [
+        1475,
+        719
+      ],
+      "size": {
+        "0": 350,
+        "1": 102
+      },
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 64
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 182,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            10,
+            89,
+            106,
+            138,
+            139,
+            140
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BNK_CLIPTextEncodeAdvanced"
+      },
+      "widgets_values": [
+        "",
+        "length+mean",
+        "comfy++"
+      ]
+    },
+    {
+      "id": 132,
+      "type": "ShowText|pysssss",
+      "pos": [
+        1028,
+        1026
+      ],
+      "size": {
+        "0": 339,
+        "1": 217
+      },
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 184,
+          "widget": {
+            "name": "text"
+          },
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null,
+          "shape": 6
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "cute animal, draw, low quality, illustration, man, woman, human, text, watermark, greyscale"
+      ]
+    },
+    {
       "id": 19,
       "type": "KSampler",
       "pos": [
@@ -1119,7 +1325,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 21,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
@@ -1182,7 +1388,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        7450006523865,
+        789006663998700,
         "randomize",
         20,
         8,
@@ -1192,30 +1398,172 @@
       ]
     },
     {
-      "id": 65,
-      "type": "PreviewImage",
+      "id": 77,
+      "type": "KSampler",
       "pos": [
-        3067,
-        92
+        2528,
+        320
       ],
       "size": {
-        "0": 189,
-        "1": 246
+        "0": 315,
+        "1": 262
       },
       "flags": {},
-      "order": 22,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 82,
+          "name": "model",
+          "type": "MODEL",
+          "link": 87
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 88
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 89
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 83
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "link": 90,
+          "widget": {
+            "name": "sampler_name"
+          }
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "link": 91,
+          "widget": {
+            "name": "scheduler"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 97,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            95
+          ],
+          "shape": 3,
           "slot_index": 0
         }
       ],
       "properties": {
-        "Node name for S&R": "PreviewImage"
-      }
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        839186137679638,
+        "randomize",
+        20,
+        8,
+        "euler",
+        "normal",
+        1
+      ]
+    },
+    {
+      "id": 83,
+      "type": "KSampler",
+      "pos": [
+        2535,
+        656
+      ],
+      "size": {
+        "0": 315,
+        "1": 262
+      },
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 107
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 105
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 106
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 102
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "link": 103,
+          "widget": {
+            "name": "sampler_name"
+          }
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "link": 104,
+          "widget": {
+            "name": "scheduler"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 98,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            99
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        957458005120368,
+        "randomize",
+        20,
+        8,
+        "euler",
+        "normal",
+        1
+      ]
     },
     {
       "id": 98,
@@ -1229,7 +1577,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 23,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
@@ -1292,7 +1640,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        499466987874211,
+        185250688698459,
         "randomize",
         20,
         8,
@@ -1300,32 +1648,6 @@
         "normal",
         1
       ]
-    },
-    {
-      "id": 89,
-      "type": "PreviewImage",
-      "pos": [
-        4365,
-        22
-      ],
-      "size": {
-        "0": 189,
-        "1": 246
-      },
-      "flags": {},
-      "order": 24,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 114,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PreviewImage"
-      }
     },
     {
       "id": 99,
@@ -1339,7 +1661,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 25,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -1402,7 +1724,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        365482652978215,
+        396192610662301,
         "randomize",
         20,
         8,
@@ -1410,32 +1732,6 @@
         "normal",
         1
       ]
-    },
-    {
-      "id": 90,
-      "type": "PreviewImage",
-      "pos": [
-        4365,
-        599
-      ],
-      "size": {
-        "0": 189,
-        "1": 246
-      },
-      "flags": {},
-      "order": 26,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 115,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PreviewImage"
-      }
     },
     {
       "id": 100,
@@ -1449,7 +1745,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 27,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
@@ -1512,7 +1808,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        946468833001900,
+        17792965918247,
         "randomize",
         20,
         8,
@@ -1522,29 +1818,44 @@
       ]
     },
     {
-      "id": 91,
-      "type": "PreviewImage",
+      "id": 21,
+      "type": "VAEDecode",
       "pos": [
-        4363,
-        1159
+        3036,
+        -5
       ],
       "size": {
-        "0": 189,
-        "1": 246
+        "0": 210,
+        "1": 46
       },
       "flags": {},
-      "order": 28,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
-          "name": "images",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 12
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 66,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
           "type": "IMAGE",
-          "link": 116,
-          "slot_index": 0
+          "links": [
+            14
+          ],
+          "shape": 3
         }
       ],
       "properties": {
-        "Node name for S&R": "PreviewImage"
+        "Node name for S&R": "VAEDecode"
       }
     },
     {
@@ -1559,7 +1870,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 29,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
@@ -1601,7 +1912,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 30,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
@@ -1632,47 +1943,6 @@
       }
     },
     {
-      "id": 21,
-      "type": "VAEDecode",
-      "pos": [
-        3036,
-        -5
-      ],
-      "size": {
-        "0": 210,
-        "1": 46
-      },
-      "flags": {},
-      "order": 31,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 12
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 66,
-          "slot_index": 1
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            14
-          ],
-          "shape": 3
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "VAEDecode"
-      }
-    },
-    {
       "id": 92,
       "type": "VAEDecode",
       "pos": [
@@ -1684,7 +1954,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 32,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
@@ -1726,7 +1996,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 33,
+      "order": 38,
       "mode": 0,
       "inputs": [
         {
@@ -1768,7 +2038,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 34,
+      "order": 39,
       "mode": 0,
       "inputs": [
         {
@@ -1799,6 +2069,34 @@
       }
     },
     {
+      "id": 22,
+      "type": "PreviewImage",
+      "pos": [
+        3279,
+        9
+      ],
+      "size": {
+        "0": 468,
+        "1": 502
+      },
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 14,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
       "id": 79,
       "type": "PreviewImage",
       "pos": [
@@ -1810,7 +2108,7 @@
         "1": 502
       },
       "flags": {},
-      "order": 35,
+      "order": 41,
       "mode": 0,
       "inputs": [
         {
@@ -1836,7 +2134,7 @@
         "1": 502
       },
       "flags": {},
-      "order": 36,
+      "order": 42,
       "mode": 0,
       "inputs": [
         {
@@ -1848,33 +2146,9 @@
       ],
       "properties": {
         "Node name for S&R": "PreviewImage"
-      }
-    },
-    {
-      "id": 22,
-      "type": "PreviewImage",
-      "pos": [
-        3279,
-        9
-      ],
-      "size": {
-        "0": 468,
-        "1": 502
       },
-      "flags": {},
-      "order": 37,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 14,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PreviewImage"
-      }
+      "color": "#322",
+      "bgcolor": "#533"
     },
     {
       "id": 95,
@@ -1888,7 +2162,7 @@
         "1": 502
       },
       "flags": {},
-      "order": 38,
+      "order": 43,
       "mode": 0,
       "inputs": [
         {
@@ -1914,7 +2188,7 @@
         "1": 502
       },
       "flags": {},
-      "order": 39,
+      "order": 44,
       "mode": 0,
       "inputs": [
         {
@@ -1940,7 +2214,7 @@
         "1": 502
       },
       "flags": {},
-      "order": 40,
+      "order": 45,
       "mode": 0,
       "inputs": [
         {
@@ -2589,27 +2863,131 @@
       "INT"
     ],
     [
-      157,
+      171,
+      130,
+      0,
+      133,
+      0,
+      "STRING"
+    ],
+    [
+      172,
+      130,
+      1,
+      134,
+      0,
+      "STRING"
+    ],
+    [
+      175,
+      81,
+      0,
+      133,
+      1,
+      "INT"
+    ],
+    [
+      176,
+      81,
+      0,
+      134,
+      1,
+      "INT"
+    ],
+    [
+      177,
       121,
+      0,
+      135,
+      0,
+      "*"
+    ],
+    [
+      178,
+      121,
+      1,
+      135,
+      1,
+      "STRING"
+    ],
+    [
+      179,
+      133,
+      0,
+      135,
+      2,
+      "STRING"
+    ],
+    [
+      180,
+      134,
+      0,
+      135,
+      3,
+      "STRING"
+    ],
+    [
+      181,
+      135,
       0,
       17,
       1,
       "STRING"
     ],
     [
-      158,
-      121,
+      182,
+      135,
       1,
       18,
       1,
       "STRING"
     ],
     [
-      159,
-      121,
+      183,
+      135,
       0,
       118,
       0,
+      "STRING"
+    ],
+    [
+      184,
+      135,
+      1,
+      132,
+      0,
+      "STRING"
+    ],
+    [
+      185,
+      143,
+      0,
+      135,
+      4,
+      "STRING"
+    ],
+    [
+      186,
+      121,
+      1,
+      135,
+      5,
+      "STRING"
+    ],
+    [
+      187,
+      144,
+      0,
+      135,
+      6,
+      "STRING"
+    ],
+    [
+      188,
+      121,
+      1,
+      135,
+      7,
       "STRING"
     ]
   ],
