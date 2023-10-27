@@ -51,6 +51,7 @@ NODE_CLASS_MAPPINGS = {
 
     "PrimerePrompt": Inputs.PrimereDoublePrompt,
     "PrimereStyleLoader": Inputs.PrimereStyleLoader,
+    "PrimereDynamicParser": Inputs.PrimereDynParser,
     # "PrimereImageMetaSaver": PriIO.PrimereMetaSave,
     # "PrimereImageMetaReader": PriIO.PrimereMetaRead
 }
@@ -65,6 +66,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
     "PrimerePrompt": "Primere Prompt",
     "PrimereStyleLoader": "Primere Styles",
+    "PrimereDynamicParser": "Primere Dynamic",
     # "PrimereImageMetaSaver": "Primere Image Meta Saver",
     # "PrimereImageMetaReader": "Primere Image Meta Reader"
 }
