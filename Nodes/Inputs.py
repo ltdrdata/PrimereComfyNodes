@@ -2,10 +2,11 @@ from custom_nodes.ComfyUI_Primere_Nodes.components.tree import TREE_INPUTS
 from custom_nodes.ComfyUI_Primere_Nodes.components.tree import PRIMERE_ROOT
 import os
 import re
-import folder_paths
 from dynamicprompts.parser.parse import ParserConfig
 from dynamicprompts.wildcards.wildcard_manager import WildcardManager
 from dynamicprompts.generators import RandomPromptGenerator
+import chardet
+import pandas
 
 class PrimereDoublePrompt:
     RETURN_TYPES = ("STRING", "STRING")
@@ -34,24 +35,20 @@ class PrimereStyleLoader:
 
     @staticmethod
     def load_styles_csv(styles_path: str):
-        STYLE_DIR = os.path.join(PRIMERE_ROOT, 'stylecsv')
-        styles = {"Error loading styles.csv, check the console": ["", ""]}
-        if not os.path.exists(styles_path):
-            print(f"""Error. No styles.csv found. Put your styles.csv in the node directory then press "Refresh".
-                  Your current node directory is: {STYLE_DIR}
-            """)
-            return styles
-        try:
-            with open(styles_path, "r", encoding="utf-8") as f:
-                styles = [[x.replace('"', '').replace('\n', '') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)]
-                          for line in f.readlines()[1:]]
-                styles = {x[0]: [x[1], x[2]] for x in styles}
-        except Exception as e:
-            print(f"""Error loading styles.csv. Make sure it is in the root directory of node. Then press "Refresh".
-                    Your current node directory is: {STYLE_DIR}
-                    Error: {e}
-            """)
-        return styles
+        fileTest = open(styles_path, 'rb').readline()
+        result = chardet.detect(fileTest)
+        ENCODING = result['encoding']
+        if ENCODING == 'ascii':
+            ENCODING = 'UTF-8'
+
+        with open(styles_path, "r", newline = '', encoding = ENCODING) as csv_file:
+            try:
+                return pandas.read_csv(csv_file)
+            except pandas.errors.ParserError as e:
+                errorstring = repr(e)
+                matchre = re.compile('Expected (\d+) fields in line (\d+), saw (\d+)')
+                (expected, line, saw) = map(int, matchre.search(errorstring).groups())
+                print(f'Error at line {line}. Fields added : {saw - expected}.')
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -59,13 +56,15 @@ class PrimereStyleLoader:
         cls.styles_csv = cls.load_styles_csv(os.path.join(STYLE_DIR, "styles.csv"))
         return {
             "required": {
-                "styles": (list(cls.styles_csv.keys()),),
+                "styles": (list(cls.styles_csv['name']),),
             },
-
         }
 
     def load_csv(self, styles):
-        return (self.styles_csv[styles][0], self.styles_csv[styles][1])
+        positive_prompt = self.styles_csv[self.styles_csv['name'] == styles]['prompt'].values[0]
+        negative_prompt = self.styles_csv[self.styles_csv['name'] == styles]['negative_prompt'].values[0]
+        return (positive_prompt, negative_prompt)
+
 
 class PrimereDynParser:
     RETURN_TYPES = ("STRING",)
@@ -102,5 +101,26 @@ class PrimereDynParser:
 
         all_prompts = prompt_generator.generate(dyn_prompt, 1) or [""]
         prompt = all_prompts[0]
-
         return (prompt, )
+
+class PrimereVAESelector:
+    RETURN_TYPES = ("VAE",)
+    RETURN_NAMES = ("VAE",)
+    FUNCTION = "primere_vae_selector"
+    CATEGORY = TREE_INPUTS
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "vae_sd": ("VAE",),
+                "vae_sdxl": ("VAE",),
+                "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
+            }
+        }
+
+    def primere_vae_selector(self, vae_sd, vae_sdxl, is_sdxl = 0):
+        if int(round(is_sdxl)) == 1:
+            return (vae_sdxl, )
+        else:
+            return (vae_sd, )

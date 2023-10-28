@@ -48,10 +48,13 @@ NODE_CLASS_MAPPINGS = {
     "PrimereVAELoader": Dashboard.PrimereVAELoader,
     "PrimereCKPTLoader": Dashboard.PrimereCKPTLoader,
     "PrimerePromptSwitch": Dashboard.PrimerePromptSwitch,
+    "PrimereSeed": Dashboard.PrimereSeed,
+    "PrimereLatentNoise": Dashboard.PrimereFractalLatent,
 
     "PrimerePrompt": Inputs.PrimereDoublePrompt,
     "PrimereStyleLoader": Inputs.PrimereStyleLoader,
     "PrimereDynamicParser": Inputs.PrimereDynParser,
+    "PrimereVAESelector": Inputs.PrimereVAESelector,
     # "PrimereImageMetaSaver": PriIO.PrimereMetaSave,
     # "PrimereImageMetaReader": PriIO.PrimereMetaRead
 }
@@ -63,10 +66,13 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereVAELoader": "Primere VAE Loader",
     "PrimereCKPTLoader": "Primere CKPT Loader",
     "PrimerePromptSwitch": "Primere Prompt Switch",
+    "PrimereSeed": 'Primere Seed',
+    "PrimereLatentNoise": "Primere Noise Latent",
 
     "PrimerePrompt": "Primere Prompt",
     "PrimereStyleLoader": "Primere Styles",
     "PrimereDynamicParser": "Primere Dynamic",
+    "PrimereVAESelector": "Primere VAE Selector",
     # "PrimereImageMetaSaver": "Primere Image Meta Saver",
     # "PrimereImageMetaReader": "Primere Image Meta Reader"
 }
