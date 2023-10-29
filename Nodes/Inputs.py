@@ -61,8 +61,23 @@ class PrimereStyleLoader:
         }
 
     def load_csv(self, styles):
-        positive_prompt = self.styles_csv[self.styles_csv['name'] == styles]['prompt'].values[0]
-        negative_prompt = self.styles_csv[self.styles_csv['name'] == styles]['negative_prompt'].values[0]
+        try:
+            positive_prompt = self.styles_csv[self.styles_csv['name'] == styles]['prompt'].values[0]
+        except Exception:
+            positive_prompt = ''
+
+        try:
+            negative_prompt = self.styles_csv[self.styles_csv['name'] == styles]['negative_prompt'].values[0]
+        except Exception:
+            negative_prompt = ''
+
+        pos_type = type(positive_prompt).__name__
+        neg_type = type(negative_prompt).__name__
+        if (pos_type != 'str'):
+            positive_prompt = ''
+        if (neg_type != 'str'):
+            negative_prompt = ''
+
         return (positive_prompt, negative_prompt)
 
 
@@ -99,7 +114,15 @@ class PrimereDynParser:
             ignore_whitespace = False
         )
 
-        all_prompts = prompt_generator.generate(dyn_prompt, 1) or [""]
+        dyn_type = type(dyn_prompt).__name__
+        if (dyn_type != 'str'):
+            dyn_prompt = ''
+
+        try:
+            all_prompts = prompt_generator.generate(dyn_prompt, 1) or [""]
+        except Exception:
+            all_prompts = [""]
+
         prompt = all_prompts[0]
         return (prompt, )
 
