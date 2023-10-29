@@ -92,7 +92,7 @@ class PrimereDynParser:
         return {
             "required": {
                 "dyn_prompt": ("STRING", {"multiline": True, "forceInput": True}),
-                "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff, "forceInput": True}),
+                "seed": ("INT", {"default": 0, "min": -18446744073709551615, "max": 18446744073709551615, "forceInput": True}),
             }
         }
 

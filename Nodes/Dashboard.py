@@ -1,4 +1,5 @@
 from custom_nodes.ComfyUI_Primere_Nodes.components.tree import TREE_DASHBOARD
+from custom_nodes.ComfyUI_Primere_Nodes.components.tree import PRIMERE_ROOT
 import comfy.samplers
 import folder_paths
 import nodes
@@ -7,6 +8,7 @@ import torch.nn.functional as F
 from .modules.latent_noise import PowerLawNoise
 import random
 import os
+import tomli
 
 class PrimereSamplers:
     CATEGORY = TREE_DASHBOARD
@@ -242,3 +244,60 @@ class PrimereFractalLatent:
 
         latents = torch.cat(latents)
         return {'samples': latents}, tensors
+
+class PrimereCLIP:
+    RETURN_TYPES = ("CONDITIONING", "CONDITIONING",)
+    RETURN_NAMES = ("COND_POS", "COND_NEG",)
+    FUNCTION = "clip_encode"
+    CATEGORY = TREE_DASHBOARD
+
+    @staticmethod
+    def get_default_neg(toml_path: str):
+        with open(toml_path, "rb") as f:
+            style_def_neg = tomli.load(f)
+        return style_def_neg
+    @ classmethod
+    def INPUT_TYPES(cls):
+        DEF_NEG_DIR = os.path.join(PRIMERE_ROOT, 'Toml')
+        cls.default_neg = cls.get_default_neg(os.path.join(DEF_NEG_DIR, "default_neg.toml"))
+
+        return {
+            "required": {
+                "clip": ("CLIP", ),
+                "positive_prompt": ("STRING", {"forceInput": True}),
+                "negative_prompt": ("STRING", {"forceInput": True}),
+                "negative_strength": ("FLOAT", {"default": 1.2, "min": 0.0, "max": 10.0, "step": 0.01}),
+                "use_additional": ("BOOLEAN", {"default": False}),
+                "additional": (list(cls.default_neg.keys()),),
+                "additional_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
+            },
+            "optional": {
+                "opt_pos_prompt": ("STRING", {"forceInput": True}),
+                "opt_pos_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
+                "opt_neg_prompt": ("STRING", {"forceInput": True}),
+                "opt_neg_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),            }
+        }
+
+    def clip_encode(self, clip, negative_strength, additional_strength, opt_pos_strength, opt_neg_strength, additional, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", use_additional = False):
+        additional_positive = None
+        additional_negative = None
+        if use_additional == True:
+            additional_positive = self.default_neg[additional]['positive'].strip(' ,;')
+            additional_negative = self.default_neg[additional]['negative'].strip(' ,;')
+
+        additional_positive = f'({additional_positive}:{additional_strength:.2f})' if additional_positive is not None and additional_positive != '' else ''
+        additional_negative = f'({additional_negative}:{additional_strength:.2f})' if additional_negative is not None and additional_negative != '' else ''
+
+        negative_prompt = f'({negative_prompt}:{negative_strength:.2f})' if negative_prompt is not None and negative_prompt.strip(' ,;') != '' else ''
+        opt_pos_prompt = f'({opt_pos_prompt}:{opt_pos_strength:.2f})' if opt_pos_prompt is not None and opt_pos_prompt.strip(' ,;') != '' else ''
+        opt_neg_prompt = f'({opt_neg_prompt}:{opt_neg_strength:.2f})' if opt_neg_prompt is not None and opt_neg_prompt.strip(' ,;') != '' else ''
+
+        positive_text = f'{positive_prompt}, {opt_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ")
+        negative_text = f'{negative_prompt}, {opt_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ")
+
+        tokens = clip.tokenize(positive_text)
+        cond_pos, pooled_pos = clip.encode_from_tokens(tokens, return_pooled=True)
+
+        tokens = clip.tokenize(negative_text)
+        cond_neg, pooled_neg = clip.encode_from_tokens(tokens, return_pooled=True)
+        return ([[cond_pos, {"pooled_output": pooled_pos}]], [[cond_neg, {"pooled_output": pooled_neg}]],)

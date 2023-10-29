@@ -8,9 +8,9 @@ comfy_frontend = comfy_dir/"web"/"extensions"
 frontend_target = comfy_frontend/"Primere"
 
 if frontend_target.exists():
-    print(f"Primere front-end folder found at {frontend_target}")
-    # if not os.path.islink(frontend_target.as_posix()):
-    #    print(f"Primere front-end folder at {frontend_target} is not a symlink, if updating please delete it before")
+    # print(f"Primere front-end folder found at {frontend_target}")
+    if not os.path.islink(frontend_target.as_posix()):
+        print(f"Primere front-end folder at {frontend_target} is not a symlink, if updating please delete it before")
 
 elif comfy_frontend.exists():
     frontend_source = here/"front_end"
@@ -50,6 +50,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimerePromptSwitch": Dashboard.PrimerePromptSwitch,
     "PrimereSeed": Dashboard.PrimereSeed,
     "PrimereLatentNoise": Dashboard.PrimereFractalLatent,
+    "PrimereCLIPEncoder": Dashboard.PrimereCLIP,
 
     "PrimerePrompt": Inputs.PrimereDoublePrompt,
     "PrimereStyleLoader": Inputs.PrimereStyleLoader,
@@ -68,6 +69,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimerePromptSwitch": "Primere Prompt Switch",
     "PrimereSeed": 'Primere Seed',
     "PrimereLatentNoise": "Primere Noise Latent",
+    "PrimereCLIPEncoder": "Primere Prompt Encoder",
 
     "PrimerePrompt": "Primere Prompt",
     "PrimereStyleLoader": "Primere Styles",
