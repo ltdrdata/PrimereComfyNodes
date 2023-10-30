@@ -10,6 +10,8 @@ import random
 import os
 import tomli
 import math
+from .modules.adv_encode import advanced_encode, advanced_encode_XL
+from nodes import MAX_RESOLUTION
 
 class PrimereSamplers:
     CATEGORY = TREE_DASHBOARD
@@ -265,21 +267,38 @@ class PrimereCLIP:
         return {
             "required": {
                 "clip": ("CLIP", ),
+                "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
                 "positive_prompt": ("STRING", {"forceInput": True}),
                 "negative_prompt": ("STRING", {"forceInput": True}),
                 "negative_strength": ("FLOAT", {"default": 1.2, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "use_additional": ("BOOLEAN", {"default": False}),
                 "additional": (list(cls.default_neg.keys()),),
                 "additional_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
+                "adv_encode": ("BOOLEAN", {"default": False}),
+                "token_normalization": (["none", "mean", "length", "length+mean"],),
+                "weight_interpretation": (["comfy", "A1111", "compel", "comfy++", "down_weight"],),
+                "affect_pooled": ("BOOLEAN", {"default": False}),
             },
             "optional": {
                 "opt_pos_prompt": ("STRING", {"forceInput": True}),
                 "opt_pos_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "opt_neg_prompt": ("STRING", {"forceInput": True}),
-                "opt_neg_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),            }
+                "opt_neg_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
+
+                "style_pos_prompt": ("STRING", {"forceInput": True}),
+                "style_pos_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
+                "style_neg_prompt": ("STRING", {"forceInput": True}),
+                "style_neg_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
+
+                "sdxl_positive_l": ("STRING", {"forceInput": True}),
+                "sdxl_negative_l": ("STRING", {"forceInput": True}),
+                "sdxl_balance_l": ("FLOAT", {"default": .5, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "width": ("INT", {"default": 1024.0, "min": 0, "max": MAX_RESOLUTION, "forceInput": True}),
+                "height": ("INT", {"default": 1024.0, "min": 0, "max": MAX_RESOLUTION, "forceInput": True}),
+            }
         }
 
-    def clip_encode(self, clip, negative_strength, additional_strength, opt_pos_strength, opt_neg_strength, additional, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", use_additional = False):
+    def clip_encode(self, clip, negative_strength, additional_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, additional, adv_encode, token_normalization, weight_interpretation, sdxl_balance_l, width = 1024, height = 1024, affect_pooled = False, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_additional = False, is_sdxl = 0):
         additional_positive = None
         additional_negative = None
         if use_additional == True:
@@ -292,16 +311,45 @@ class PrimereCLIP:
         negative_prompt = f'({negative_prompt}:{negative_strength:.2f})' if negative_prompt is not None and negative_prompt.strip(' ,;') != '' else ''
         opt_pos_prompt = f'({opt_pos_prompt}:{opt_pos_strength:.2f})' if opt_pos_prompt is not None and opt_pos_prompt.strip(' ,;') != '' else ''
         opt_neg_prompt = f'({opt_neg_prompt}:{opt_neg_strength:.2f})' if opt_neg_prompt is not None and opt_neg_prompt.strip(' ,;') != '' else ''
+        style_pos_prompt = f'({style_pos_prompt}:{style_pos_strength:.2f})' if style_pos_prompt is not None and style_pos_prompt.strip(' ,;') != '' else ''
+        style_neg_prompt = f'({style_neg_prompt}:{style_neg_strength:.2f})' if style_neg_prompt is not None and style_neg_prompt.strip(' ,;') != '' else ''
 
-        positive_text = f'{positive_prompt}, {opt_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ")
-        negative_text = f'{negative_prompt}, {opt_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ")
+        positive_text = f'{positive_prompt}, {opt_pos_prompt}, {style_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ")
+        negative_text = f'{negative_prompt}, {opt_neg_prompt}, {style_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ")
 
-        tokens = clip.tokenize(positive_text)
-        cond_pos, pooled_pos = clip.encode_from_tokens(tokens, return_pooled=True)
+        if (adv_encode == True):
+            if (is_sdxl == 0):
+                embeddings_final_pos, pooled_pos = advanced_encode(clip, positive_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = affect_pooled)
+                embeddings_final_neg, pooled_neg = advanced_encode(clip, negative_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = affect_pooled)
+                return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]], [[embeddings_final_neg, {"pooled_output": pooled_neg}]],)
+            else:
+                embeddings_final_pos, pooled_pos = advanced_encode_XL(clip, sdxl_positive_l, positive_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = affect_pooled)
+                embeddings_final_neg, pooled_neg = advanced_encode_XL(clip, sdxl_negative_l, negative_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = affect_pooled)
+                return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]],[[embeddings_final_neg, {"pooled_output": pooled_neg}]],)
 
-        tokens = clip.tokenize(negative_text)
-        cond_neg, pooled_neg = clip.encode_from_tokens(tokens, return_pooled=True)
-        return ([[cond_pos, {"pooled_output": pooled_pos}]], [[cond_neg, {"pooled_output": pooled_neg}]],)
+        else:
+            tokens = clip.tokenize(positive_text)
+            cond_pos, pooled_pos = clip.encode_from_tokens(tokens, return_pooled = True)
+
+            tokens = clip.tokenize(negative_text)
+            cond_neg, pooled_neg = clip.encode_from_tokens(tokens, return_pooled = True)
+            return ([[cond_pos, {"pooled_output": pooled_pos}]], [[cond_neg, {"pooled_output": pooled_neg}]],)
+
+        '''
+        def encode(self, clip, width, height, crop_w, crop_h, target_width, target_height, text_g, text_l):
+        tokens = clip.tokenize(text_g)
+        tokens["l"] = clip.tokenize(text_l)["l"]
+        
+        if len(tokens["l"]) != len(tokens["g"]):
+            empty = clip.tokenize("")
+            while len(tokens["l"]) < len(tokens["g"]):
+                tokens["l"] += empty["l"]
+            while len(tokens["l"]) > len(tokens["g"]):
+                tokens["g"] += empty["g"]
+                
+        cond, pooled = clip.encode_from_tokens(tokens, return_pooled=True)
+        return ([[cond, {"pooled_output": pooled, "width": width, "height": height, "crop_w": crop_w, "crop_h": crop_h, "target_width": target_width, "target_height": target_height}]], )
+        '''
 
 class PrimereResolution:
     RETURN_TYPES = ("INT", "INT",)

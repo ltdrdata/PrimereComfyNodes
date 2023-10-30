@@ -1,13 +1,13 @@
 {
-  "last_node_id": 283,
-  "last_link_id": 402,
+  "last_node_id": 287,
+  "last_link_id": 417,
   "nodes": [
     {
       "id": 207,
       "type": "BNK_CLIPTextEncodeAdvanced",
       "pos": [
-        1846,
-        1025
+        1944,
+        1073
       ],
       "size": {
         "0": 350,
@@ -68,19 +68,19 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "SDXL\\copaxTimelessxlSDXL1_v7.safetensors"
+        "SDXL\\HEPHAISTOSSD10XL.safetensors"
       ]
     },
     {
       "id": 254,
       "type": "CLIPTextEncodeSDXL",
       "pos": [
-        1853,
-        679
+        2323,
+        962
       ],
       "size": {
-        "0": 329,
-        "1": 270
+        "0": 298.4346923828125,
+        "1": 218
       },
       "flags": {},
       "order": 2,
@@ -90,6 +90,22 @@
           "name": "clip",
           "type": "CLIP",
           "link": null
+        },
+        {
+          "name": "text_g",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "text_g"
+          }
+        },
+        {
+          "name": "text_l",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "text_l"
+          }
         }
       ],
       "outputs": [
@@ -339,98 +355,6 @@
       ]
     },
     {
-      "id": 256,
-      "type": "PrimerePrompt",
-      "pos": [
-        16,
-        387
-      ],
-      "size": {
-        "0": 532.4132080078125,
-        "1": 409.7142639160156
-      },
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "positive_prompt",
-          "type": "STRING",
-          "links": [
-            347
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "negative_prompt",
-          "type": "STRING",
-          "links": [
-            348
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimerePrompt"
-      },
-      "widgets_values": [
-        "With a degree in French, which she barely spoke, and an art degree she didn’t have, Head hustled her way into a job by borrowing another student's sketches. Once in, she began her career as a low-level sketch artist at Paramount and then climbed her way up, armed with wit, verve, and an uncanny knack for understanding personalities. It was as if she could look at an actor and know the fabric of their souls, which she'd translate into the fabric of their costumes.\nHer professional journey wasn't always a red carpet. The competition was fierce, the critics numerous, but Head had an arsenal of ambition and resilience. She worked her needle and thread through the tides of cinematic evolution, enduring the transition from black-and-white to Technicolor, never once losing her signature flair.\nHer influence was as wide as her round, signature glasses, stretching beyond film to fashion trends and popular culture. Her work continues to inspire designers and artists who know",
-        ""
-      ]
-    },
-    {
-      "id": 264,
-      "type": "PromptGenerator",
-      "pos": [
-        2234,
-        918
-      ],
-      "size": {
-        "0": 315,
-        "1": 438
-      },
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "prompt",
-          "type": "STRING",
-          "links": null,
-          "shape": 3
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "links": null,
-          "shape": 3
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PromptGenerator"
-      },
-      "widgets_values": [
-        202448116718134,
-        "randomize",
-        "",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random",
-        "random"
-      ]
-    },
-    {
       "id": 270,
       "type": "Prettify Prompt Using distilgpt2",
       "pos": [
@@ -442,7 +366,7 @@
         "1": 189.99996948242188
       },
       "flags": {},
-      "order": 11,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -470,7 +394,7 @@
         8,
         80,
         1.2,
-        392766852,
+        728826548,
         "randomize",
         "cat"
       ]
@@ -487,7 +411,7 @@
         "1": 409.7142639160156
       },
       "flags": {},
-      "order": 12,
+      "order": 10,
       "mode": 0,
       "outputs": [
         {
@@ -513,8 +437,51 @@
         "Node name for S&R": "PrimerePrompt"
       },
       "widgets_values": [
-        "modern artistic paint style, minimalist fire (panther:1.4), (embedding:Paintmagic:1.5), <hypernet:styltokSplashOf_v10:0.7>, embedding:PNmagic",
+        "modern artistic paint style, difficult sun (human-animal hybrid:1.4), (embedding:Paintmagic:1), <hypernet:styltokSplashOf_v10:0.8>, (embedding:PNmagic:0.8)",
         "embedding:add_nsfw, nude, nudity, porn"
+      ]
+    },
+    {
+      "id": 256,
+      "type": "PrimerePrompt",
+      "pos": [
+        16,
+        387
+      ],
+      "size": {
+        "0": 532.4132080078125,
+        "1": 409.7142639160156
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            347
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            348,
+            403
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePrompt"
+      },
+      "widgets_values": [
+        "With a degree in French, which she barely spoke, and an art degree she didn’t have, Head hustled her way into a job by borrowing another student's sketches. Once in, she began her career as a low-level sketch artist at Paramount and then climbed her way up, armed with wit, verve, and an uncanny knack for understanding personalities. It was as if she could look at an actor and know the fabric of their souls, which she'd translate into the fabric of their costumes.\nHer professional journey wasn't always a red carpet. The competition was fierce, the critics numerous, but Head had an arsenal of ambition and resilience. She worked her needle and thread through the tides of cinematic evolution, enduring the transition from black-and-white to Technicolor, never once losing her signature flair.\nHer influence was as wide as her round, signature glasses, stretching beyond film to fashion trends and popular culture. Her work continues to inspire designers and artists who know",
+        "porn, nudity"
       ]
     },
     {
@@ -529,7 +496,7 @@
         "1": 118
       },
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -553,7 +520,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            370
+            415
           ],
           "shape": 3,
           "slot_index": 1
@@ -572,7 +539,8 @@
           "links": [
             341,
             342,
-            397
+            397,
+            414
           ],
           "shape": 3,
           "slot_index": 3
@@ -597,7 +565,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 14,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -633,7 +601,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 15,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -669,7 +637,7 @@
         26
       ],
       "flags": {},
-      "order": 16,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -687,7 +655,8 @@
             352,
             353,
             364,
-            371
+            371,
+            405
           ],
           "shape": 3,
           "label": "INT",
@@ -697,105 +666,6 @@
       "properties": {
         "Node name for S&R": "ReroutePrimitive|pysssss"
       }
-    },
-    {
-      "id": 239,
-      "type": "PrimerePromptSwitch",
-      "pos": [
-        640,
-        670
-      ],
-      "size": {
-        "0": 228.39999389648438,
-        "1": 238
-      },
-      "flags": {},
-      "order": 17,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "prompt_pos_1",
-          "type": "STRING",
-          "link": 343
-        },
-        {
-          "name": "prompt_neg_1",
-          "type": "STRING",
-          "link": 344
-        },
-        {
-          "name": "prompt_pos_2",
-          "type": "STRING",
-          "link": 345
-        },
-        {
-          "name": "prompt_neg_2",
-          "type": "STRING",
-          "link": 346
-        },
-        {
-          "name": "prompt_pos_3",
-          "type": "STRING",
-          "link": 347
-        },
-        {
-          "name": "prompt_neg_3",
-          "type": "STRING",
-          "link": 348
-        },
-        {
-          "name": "prompt_pos_4",
-          "type": "STRING",
-          "link": 401
-        },
-        {
-          "name": "prompt_neg_4",
-          "type": "STRING",
-          "link": 402
-        },
-        {
-          "name": "prompt_pos_5",
-          "type": "STRING",
-          "link": null
-        },
-        {
-          "name": "prompt_neg_5",
-          "type": "STRING",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "selected_pos",
-          "type": "STRING",
-          "links": [
-            384
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "selected_neg",
-          "type": "STRING",
-          "links": [
-            386
-          ],
-          "shape": 3,
-          "slot_index": 1
-        },
-        {
-          "name": "selected_index",
-          "type": "INT",
-          "links": null,
-          "shape": 3
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimerePromptSwitch"
-      },
-      "widgets_values": [
-        1
-      ]
     },
     {
       "id": 249,
@@ -809,7 +679,7 @@
         "1": 76
       },
       "flags": {},
-      "order": 18,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -838,7 +708,7 @@
         "1": 198
       },
       "flags": {},
-      "order": 19,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -874,13 +744,13 @@
         "Node name for S&R": "PrimereResolution"
       },
       "widgets_values": [
-        "Photo [19:13]",
-        "Horizontal",
-        "SD 1.x",
+        "Portrait [9:7]",
+        "Vertical",
+        "SD 2.x",
         "",
         false,
         3,
-        1
+        1.2000000000000002
       ]
     },
     {
@@ -895,7 +765,7 @@
         "1": 94.24665069580078
       },
       "flags": {},
-      "order": 20,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -936,87 +806,66 @@
       ]
     },
     {
-      "id": 266,
-      "type": "Text Parse A1111 Embeddings",
+      "id": 264,
+      "type": "PromptGenerator",
       "pos": [
-        640,
-        490
+        607,
+        1233
       ],
       "size": {
-        "0": 226.8000030517578,
-        "1": 53.26813507080078
+        "0": 521.0973510742188,
+        "1": 473.7483215332031
       },
       "flags": {},
-      "order": 21,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
-          "name": "text",
-          "type": "STRING",
-          "link": 384,
+          "name": "seed",
+          "type": "INT",
+          "link": 405,
           "widget": {
-            "name": "text"
+            "name": "seed"
           }
         }
       ],
       "outputs": [
         {
-          "name": "STRING",
+          "name": "prompt",
           "type": "STRING",
           "links": [
-            385
+            404
           ],
           "shape": 3,
           "slot_index": 0
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": null,
+          "shape": 3
         }
       ],
       "properties": {
-        "Node name for S&R": "Text Parse A1111 Embeddings"
+        "Node name for S&R": "PromptGenerator"
       },
       "widgets_values": [
-        ""
-      ]
-    },
-    {
-      "id": 267,
-      "type": "Text Parse A1111 Embeddings",
-      "pos": [
-        640,
-        579
-      ],
-      "size": {
-        "0": 227.60723876953125,
-        "1": 52.63264465332031
-      },
-      "flags": {},
-      "order": 22,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "text",
-          "type": "STRING",
-          "link": 386,
-          "widget": {
-            "name": "text"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            387
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "Text Parse A1111 Embeddings"
-      },
-      "widgets_values": [
-        ""
+        268369882387584,
+        "randomize",
+        "(professional sexy 36 year old woman model transparent luxury wear, huge necklace photography:1.15)",
+        "photography",
+        "Traditional posed portrait",
+        "a woman",
+        "as a ((luxury person))",
+        "with ((messy hair))",
+        "wearing (silk)",
+        "high fashion photography",
+        "Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II",
+        "random",
+        "random",
+        "random",
+        "glamour photography",
+        "bokeh"
       ]
     },
     {
@@ -1031,7 +880,7 @@
         "1": 391.5194396972656
       },
       "flags": {},
-      "order": 23,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -1101,10 +950,228 @@
         1.3,
         0.8,
         1.4,
-        -885180551333082,
+        500748102128854,
         "randomize",
         true,
         "cuda"
+      ]
+    },
+    {
+      "id": 239,
+      "type": "PrimerePromptSwitch",
+      "pos": [
+        640,
+        672
+      ],
+      "size": {
+        "0": 228.39999389648438,
+        "1": 278
+      },
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "prompt_pos_1",
+          "type": "STRING",
+          "link": 343
+        },
+        {
+          "name": "prompt_neg_1",
+          "type": "STRING",
+          "link": 344
+        },
+        {
+          "name": "prompt_pos_2",
+          "type": "STRING",
+          "link": 345
+        },
+        {
+          "name": "prompt_neg_2",
+          "type": "STRING",
+          "link": 346
+        },
+        {
+          "name": "prompt_pos_3",
+          "type": "STRING",
+          "link": 347
+        },
+        {
+          "name": "prompt_neg_3",
+          "type": "STRING",
+          "link": 348
+        },
+        {
+          "name": "prompt_pos_4",
+          "type": "STRING",
+          "link": 401
+        },
+        {
+          "name": "prompt_neg_4",
+          "type": "STRING",
+          "link": 402
+        },
+        {
+          "name": "prompt_pos_5",
+          "type": "STRING",
+          "link": 404
+        },
+        {
+          "name": "prompt_neg_5",
+          "type": "STRING",
+          "link": 403
+        },
+        {
+          "name": "prompt_pos_6",
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "prompt_neg_6",
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "selected_pos",
+          "type": "STRING",
+          "links": [
+            384
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "selected_neg",
+          "type": "STRING",
+          "links": [
+            386
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "selected_index",
+          "type": "INT",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePromptSwitch"
+      },
+      "widgets_values": [
+        5
+      ]
+    },
+    {
+      "id": 216,
+      "type": "PreviewImage",
+      "pos": [
+        2648,
+        582
+      ],
+      "size": {
+        "0": 292.3070983886719,
+        "1": 246
+      },
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 357
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 266,
+      "type": "Text Parse A1111 Embeddings",
+      "pos": [
+        640,
+        490
+      ],
+      "size": {
+        "0": 226.8000030517578,
+        "1": 53.26813507080078
+      },
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 384,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            385
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Text Parse A1111 Embeddings"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 267,
+      "type": "Text Parse A1111 Embeddings",
+      "pos": [
+        640,
+        579
+      ],
+      "size": {
+        "0": 226.8000030517578,
+        "1": 54.57228469848633
+      },
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 386,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            387
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Text Parse A1111 Embeddings"
+      },
+      "widgets_values": [
+        ""
       ]
     },
     {
@@ -1119,7 +1186,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 24,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -1156,7 +1223,7 @@
       },
       "widgets_values": [
         "",
-        595850656816268,
+        956784367763831,
         "randomize"
       ]
     },
@@ -1168,11 +1235,11 @@
         580
       ],
       "size": {
-        "0": 225.1533966064453,
+        "0": 219.4158935546875,
         "1": 54
       },
       "flags": {},
-      "order": 25,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -1209,34 +1276,9 @@
       },
       "widgets_values": [
         "",
-        -815603948656638,
+        -992559404990027,
         "randomize"
       ]
-    },
-    {
-      "id": 216,
-      "type": "PreviewImage",
-      "pos": [
-        2648,
-        582
-      ],
-      "size": {
-        "0": 292.3070983886719,
-        "1": 246
-      },
-      "flags": {},
-      "order": 26,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 357
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PreviewImage"
-      }
     },
     {
       "id": 259,
@@ -1265,8 +1307,8 @@
           "name": "*",
           "type": "STRING",
           "links": [
-            367,
-            391
+            391,
+            412
           ],
           "shape": 3,
           "label": "STRING",
@@ -1304,8 +1346,8 @@
           "name": "*",
           "type": "STRING",
           "links": [
-            368,
-            392
+            392,
+            413
           ],
           "shape": 3,
           "label": "STRING",
@@ -1353,96 +1395,7 @@
         "Node name for S&R": "ShowText|pysssss"
       },
       "widgets_values": [
-        "modern artistic paint style, colorful rain (hill:1.4), (embedding:Paintmagic:1.5), <hypernet:styltokSplashOf_v10:0.7>, embedding:PNmagic"
-      ]
-    },
-    {
-      "id": 257,
-      "type": "PrimereCLIPEncoder",
-      "pos": [
-        1656,
-        196
-      ],
-      "size": {
-        "0": 372.4890441894531,
-        "1": 258
-      },
-      "flags": {},
-      "order": 30,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 370
-        },
-        {
-          "name": "positive_prompt",
-          "type": "STRING",
-          "link": 367,
-          "widget": {
-            "name": "positive_prompt"
-          }
-        },
-        {
-          "name": "negative_prompt",
-          "type": "STRING",
-          "link": 368,
-          "widget": {
-            "name": "negative_prompt"
-          }
-        },
-        {
-          "name": "opt_pos_prompt",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "opt_pos_prompt"
-          }
-        },
-        {
-          "name": "opt_neg_prompt",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "opt_neg_prompt"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "COND_POS",
-          "type": "CONDITIONING",
-          "links": [
-            362
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "COND_NEG",
-          "type": "CONDITIONING",
-          "links": [
-            363
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereCLIPEncoder"
-      },
-      "widgets_values": [
-        "",
-        "",
-        1.1,
-        true,
-        "SHORT_DEFAULT_NEG",
-        1.3,
-        "",
-        1,
-        "",
-        1
+        "Traditional posed portrait of bokeh (professional sexy 36 year old woman model transparent luxury wear, huge necklace photography:1.15) as a ((luxury person)) with ((messy hair)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II photo by Roger Ballen"
       ]
     },
     {
@@ -1457,7 +1410,7 @@
         "1": 195.16903686523438
       },
       "flags": {},
-      "order": 31,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -1482,7 +1435,166 @@
         "Node name for S&R": "ShowText|pysssss"
       },
       "widgets_values": [
-        "embedding:add_nsfw, nude, nudity, porn"
+        "porn, nudity"
+      ]
+    },
+    {
+      "id": 287,
+      "type": "PrimereCLIPEncoder",
+      "pos": [
+        1658,
+        194
+      ],
+      "size": [
+        372.4890441894531,
+        606
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 415
+        },
+        {
+          "name": "is_sdxl",
+          "type": "INT",
+          "link": 414,
+          "widget": {
+            "name": "is_sdxl"
+          }
+        },
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "link": 412,
+          "widget": {
+            "name": "positive_prompt"
+          }
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "link": 413,
+          "widget": {
+            "name": "negative_prompt"
+          }
+        },
+        {
+          "name": "opt_pos_prompt",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "opt_pos_prompt"
+          }
+        },
+        {
+          "name": "opt_neg_prompt",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "opt_neg_prompt"
+          }
+        },
+        {
+          "name": "style_pos_prompt",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "style_pos_prompt"
+          }
+        },
+        {
+          "name": "style_neg_prompt",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "style_neg_prompt"
+          }
+        },
+        {
+          "name": "sdxl_positive_l",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "sdxl_positive_l"
+          }
+        },
+        {
+          "name": "sdxl_negative_l",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "sdxl_negative_l"
+          }
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "width"
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "COND_POS",
+          "type": "CONDITIONING",
+          "links": [
+            416
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "COND_NEG",
+          "type": "CONDITIONING",
+          "links": [
+            417
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereCLIPEncoder"
+      },
+      "widgets_values": [
+        "",
+        "",
+        "",
+        1.2,
+        true,
+        "PORTRAITS_PETS_DEFAULTS_NEG",
+        1.2,
+        false,
+        "length+mean",
+        "comfy",
+        false,
+        "",
+        1,
+        "",
+        1,
+        "",
+        1,
+        "",
+        1,
+        "",
+        "",
+        1,
+        "",
+        ""
       ]
     },
     {
@@ -1508,12 +1620,12 @@
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 362
+          "link": 416
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 363
+          "link": 417
         },
         {
           "name": "latent_image",
@@ -1560,7 +1672,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        46555260468212,
+        705234614876124,
         "randomize",
         20,
         9,
@@ -1709,7 +1821,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "584"
+        "896"
       ]
     },
     {
@@ -1739,7 +1851,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "1768"
+        "1160"
       ]
     }
   ],
@@ -1929,22 +2041,6 @@
       "VAE"
     ],
     [
-      362,
-      257,
-      0,
-      208,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      363,
-      257,
-      1,
-      208,
-      2,
-      "CONDITIONING"
-    ],
-    [
       364,
       258,
       0,
@@ -1969,36 +2065,12 @@
       "COMBO"
     ],
     [
-      367,
-      259,
-      0,
-      257,
-      1,
-      "STRING"
-    ],
-    [
-      368,
-      260,
-      0,
-      257,
-      2,
-      "STRING"
-    ],
-    [
       369,
       250,
       0,
       208,
       0,
       "MODEL"
-    ],
-    [
-      370,
-      250,
-      1,
-      257,
-      0,
-      "CLIP"
     ],
     [
       371,
@@ -2127,6 +2199,78 @@
       239,
       7,
       "STRING"
+    ],
+    [
+      403,
+      256,
+      1,
+      239,
+      9,
+      "STRING"
+    ],
+    [
+      404,
+      264,
+      0,
+      239,
+      8,
+      "STRING"
+    ],
+    [
+      405,
+      258,
+      0,
+      264,
+      0,
+      "INT"
+    ],
+    [
+      412,
+      259,
+      0,
+      287,
+      2,
+      "STRING"
+    ],
+    [
+      413,
+      260,
+      0,
+      287,
+      3,
+      "STRING"
+    ],
+    [
+      414,
+      250,
+      3,
+      287,
+      1,
+      "INT"
+    ],
+    [
+      415,
+      250,
+      1,
+      287,
+      0,
+      "CLIP"
+    ],
+    [
+      416,
+      287,
+      0,
+      208,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      417,
+      287,
+      1,
+      208,
+      2,
+      "CONDITIONING"
     ]
   ],
   "groups": [],
