@@ -51,6 +51,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereSeed": Dashboard.PrimereSeed,
     "PrimereLatentNoise": Dashboard.PrimereFractalLatent,
     "PrimereCLIPEncoder": Dashboard.PrimereCLIP,
+    "PrimereResolution": Dashboard.PrimereResolution,
 
     "PrimerePrompt": Inputs.PrimereDoublePrompt,
     "PrimereStyleLoader": Inputs.PrimereStyleLoader,
@@ -70,6 +71,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereSeed": 'Primere Seed',
     "PrimereLatentNoise": "Primere Noise Latent",
     "PrimereCLIPEncoder": "Primere Prompt Encoder",
+    "PrimereResolution": "Primere Resolution",
 
     "PrimerePrompt": "Primere Prompt",
     "PrimereStyleLoader": "Primere Styles",

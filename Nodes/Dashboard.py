@@ -9,6 +9,7 @@ from .modules.latent_noise import PowerLawNoise
 import random
 import os
 import tomli
+import math
 
 class PrimereSamplers:
     CATEGORY = TREE_DASHBOARD
@@ -258,8 +259,8 @@ class PrimereCLIP:
         return style_def_neg
     @ classmethod
     def INPUT_TYPES(cls):
-        DEF_NEG_DIR = os.path.join(PRIMERE_ROOT, 'Toml')
-        cls.default_neg = cls.get_default_neg(os.path.join(DEF_NEG_DIR, "default_neg.toml"))
+        DEF_TOML_DIR = os.path.join(PRIMERE_ROOT, 'Toml')
+        cls.default_neg = cls.get_default_neg(os.path.join(DEF_TOML_DIR, "default_neg.toml"))
 
         return {
             "required": {
@@ -301,3 +302,75 @@ class PrimereCLIP:
         tokens = clip.tokenize(negative_text)
         cond_neg, pooled_neg = clip.encode_from_tokens(tokens, return_pooled=True)
         return ([[cond_pos, {"pooled_output": pooled_pos}]], [[cond_neg, {"pooled_output": pooled_neg}]],)
+
+class PrimereResolution:
+    RETURN_TYPES = ("INT", "INT",)
+    RETURN_NAMES = ("WIDTH", "HEIGHT",)
+    FUNCTION = "calculate_dimensions"
+    CATEGORY = TREE_DASHBOARD
+
+    @staticmethod
+    def get_ratios(toml_path: str):
+        with open(toml_path, "rb") as f:
+            image_ratios = tomli.load(f)
+        return image_ratios
+
+    @ classmethod
+    def INPUT_TYPES(cls):
+        DEF_TOML_DIR = os.path.join(PRIMERE_ROOT, 'Toml')
+        cls.sd_ratios = cls.get_ratios(os.path.join(DEF_TOML_DIR, "resolution_ratios.toml"))
+
+        namelist = {}
+        for sd_ratio_key in cls.sd_ratios:
+            rationName = cls.sd_ratios[sd_ratio_key]['name']
+            namelist[rationName] = sd_ratio_key
+
+        cls.ratioNames = namelist
+
+        return {
+            "required": {
+                "ratio": (list(namelist.keys()),),
+                "orientation": (["Horizontal", "Vertical"], {"default": "Horizontal"}),
+                "default_sd": (["SD 1.x", "SD 2.x"], {"default": "SD 1.x"}),
+                "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
+                "calculate_by_custom": ("BOOLEAN", {"default": False}),
+                "custom_side_a": ("FLOAT", {"default": 1.6, "min": 1.0, "max": 100.0, "step": 0.1}),
+                "custom_side_b": ("FLOAT", {"default": 2.8, "min": 1.0, "max": 100.0, "step": 0.1}),
+            },
+        }
+
+    def calculate_dimensions(self, ratio: str, orientation: str, is_sdxl: int, default_sd: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
+        SD_1 = 512
+        SD_2 = 768
+        SDXL_1 = 1024
+        DEFAULT_RES = SD_1
+
+        if (default_sd == 'SD 2.x'):
+            DEFAULT_RES = SD_2
+
+        if (is_sdxl == 1):
+            DEFAULT_RES = SDXL_1
+        def calculate(ratio_1: float, ratio_2: float, side: int):
+            FullPixels = side ** 2
+            result_x = FullPixels / ratio_2
+            result_y = result_x / ratio_1
+            side_base = round(math.sqrt(result_y))
+            side_a = round(ratio_1 * side_base)
+            side_b = round(FullPixels / side_a)
+            return sorted([side_a, side_b], reverse=True)
+
+        if (calculate_by_custom == True and isinstance(custom_side_a, (int, float)) and isinstance(custom_side_b, (int, float)) and custom_side_a >= 1 and custom_side_b >= 1):
+            ratio_x = custom_side_a
+            ratio_y = custom_side_b
+        else:
+            RatioLabel = self.ratioNames[ratio]
+            ratio_x = self.sd_ratios[RatioLabel]['side_x']
+            ratio_y = self.sd_ratios[RatioLabel]['side_y']
+
+        dimensions = calculate(ratio_x, ratio_y, DEFAULT_RES)
+        if (orientation == 'Vertical'):
+            dimensions = sorted(dimensions)
+
+        dimension_x = dimensions[0]
+        dimension_y = dimensions[1]
+        return (dimension_x, dimension_y,)
