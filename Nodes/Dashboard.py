@@ -189,19 +189,19 @@ class PrimereFractalLatent:
                 "width": ("INT", {"default": 512, "max": 8192, "min": 64, "forceInput": True}),
                 "height": ("INT", {"default": 512, "max": 8192, "min": 64, "forceInput": True}),
                 # "resampling": (["nearest-exact", "bilinear", "area", "bicubic", "bislerp"],),
-                "rnd_noise_type": ("BOOLEAN", {"default": False}),
+                "rand_noise_type": ("BOOLEAN", {"default": False}),
                 "noise_type": (pln.get_noise_types(),),
                 # "scale": ("FLOAT", {"default": 1.0, "max": 1024.0, "min": 0.01, "step": 0.001}),
-                "rnd_alpha_exponent": ("BOOLEAN", {"default": True}),
+                "rand_alpha_exponent": ("BOOLEAN", {"default": True}),
                 "alpha_exponent": ("FLOAT", {"default": 1.0, "max": 12.0, "min": -12.0, "step": 0.001}),
-                "alpha_exp_rnd_min": ("FLOAT", {"default": 0.5, "max": 12.0, "min": -12.0, "step": 0.001}),
-                "alpha_exp_rnd_max": ("FLOAT", {"default": 1.5, "max": 12.0, "min": -12.0, "step": 0.001}),
-                "rnd_modulator": ("BOOLEAN", {"default": True}),
+                "alpha_exp_rand_min": ("FLOAT", {"default": 0.5, "max": 12.0, "min": -12.0, "step": 0.001}),
+                "alpha_exp_rand_max": ("FLOAT", {"default": 1.5, "max": 12.0, "min": -12.0, "step": 0.001}),
+                "rand_modulator": ("BOOLEAN", {"default": True}),
                 "modulator": ("FLOAT", {"default": 1.0, "max": 2.0, "min": 0.1, "step": 0.01}),
-                "modulator_rnd_min": ("FLOAT", {"default": 0.8, "max": 2.0, "min": 0.1, "step": 0.01}),
-                "modulator_rnd_max": ("FLOAT", {"default": 1.4, "max": 2.0, "min": 0.1, "step": 0.01}),
+                "modulator_rand_min": ("FLOAT", {"default": 0.8, "max": 2.0, "min": 0.1, "step": 0.01}),
+                "modulator_rand_max": ("FLOAT", {"default": 1.4, "max": 2.0, "min": 0.1, "step": 0.01}),
                 "seed": ("INT", {"default": 0, "min": -18446744073709551615, "max": 18446744073709551615, "forceInput": True}),
-                "rnd_device": ("BOOLEAN", {"default": False}),
+                "rand_device": ("BOOLEAN", {"default": False}),
                 "device": (["cpu", "cuda"],),
             },
             "optional": {
@@ -214,19 +214,19 @@ class PrimereFractalLatent:
     FUNCTION = "primere_latent_noise"
     CATEGORY = TREE_DASHBOARD
 
-    def primere_latent_noise(self, width, height, rnd_noise_type, noise_type, rnd_alpha_exponent, alpha_exponent, alpha_exp_rnd_min, alpha_exp_rnd_max, rnd_modulator, modulator, modulator_rnd_min, modulator_rnd_max, seed, rnd_device, device, optional_vae = None):
-        if rnd_device == True:
+    def primere_latent_noise(self, width, height, rand_noise_type, noise_type, rand_alpha_exponent, alpha_exponent, alpha_exp_rand_min, alpha_exp_rand_max, rand_modulator, modulator, modulator_rand_min, modulator_rand_max, seed, rand_device, device, optional_vae = None):
+        if rand_device == True:
             device = random.choice(["cpu", "cuda"])
 
         power_law = PowerLawNoise(device = device)
 
-        if rnd_alpha_exponent == True:
-            alpha_exponent = round(random.uniform(alpha_exp_rnd_min, alpha_exp_rnd_max), 3)
+        if rand_alpha_exponent == True:
+            alpha_exponent = round(random.uniform(alpha_exp_rand_min, alpha_exp_rand_max), 3)
 
-        if rnd_modulator == True:
-            modulator = round(random.uniform(modulator_rnd_min, modulator_rnd_max), 2)
+        if rand_modulator == True:
+            modulator = round(random.uniform(modulator_rand_min, modulator_rand_max), 2)
 
-        if rnd_noise_type == True:
+        if rand_noise_type == True:
             pln = PowerLawNoise(device)
             noise_type = random.choice(pln.get_noise_types())
 
@@ -249,8 +249,8 @@ class PrimereFractalLatent:
         return {'samples': latents}, tensors
 
 class PrimereCLIP:
-    RETURN_TYPES = ("CONDITIONING", "CONDITIONING",)
-    RETURN_NAMES = ("COND_POS", "COND_NEG",)
+    RETURN_TYPES = ("CONDITIONING", "CONDITIONING", "STRING", "STRING")
+    RETURN_NAMES = ("COND+", "COND-", "PROMPT+", "PROMPT-")
     FUNCTION = "clip_encode"
     CATEGORY = TREE_DASHBOARD
 
@@ -277,7 +277,7 @@ class PrimereCLIP:
                 "adv_encode": ("BOOLEAN", {"default": False}),
                 "token_normalization": (["none", "mean", "length", "length+mean"],),
                 "weight_interpretation": (["comfy", "A1111", "compel", "comfy++", "down_weight"],),
-                "affect_pooled": ("BOOLEAN", {"default": False}),
+                # "affect_pooled": ("BOOLEAN", {"default": False}),
             },
             "optional": {
                 "opt_pos_prompt": ("STRING", {"forceInput": True}),
@@ -292,13 +292,13 @@ class PrimereCLIP:
 
                 "sdxl_positive_l": ("STRING", {"forceInput": True}),
                 "sdxl_negative_l": ("STRING", {"forceInput": True}),
-                "sdxl_balance_l": ("FLOAT", {"default": .5, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "sdxl_l_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "width": ("INT", {"default": 1024.0, "min": 0, "max": MAX_RESOLUTION, "forceInput": True}),
                 "height": ("INT", {"default": 1024.0, "min": 0, "max": MAX_RESOLUTION, "forceInput": True}),
             }
         }
 
-    def clip_encode(self, clip, negative_strength, additional_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, additional, adv_encode, token_normalization, weight_interpretation, sdxl_balance_l, width = 1024, height = 1024, affect_pooled = False, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_additional = False, is_sdxl = 0):
+    def clip_encode(self, clip, negative_strength, additional_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, additional, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_additional = False, is_sdxl = 0):
         additional_positive = None
         additional_negative = None
         if use_additional == True:
@@ -313,19 +313,45 @@ class PrimereCLIP:
         opt_neg_prompt = f'({opt_neg_prompt}:{opt_neg_strength:.2f})' if opt_neg_prompt is not None and opt_neg_prompt.strip(' ,;') != '' else ''
         style_pos_prompt = f'({style_pos_prompt}:{style_pos_strength:.2f})' if style_pos_prompt is not None and style_pos_prompt.strip(' ,;') != '' else ''
         style_neg_prompt = f'({style_neg_prompt}:{style_neg_strength:.2f})' if style_neg_prompt is not None and style_neg_prompt.strip(' ,;') != '' else ''
+        sdxl_positive_l = f'({sdxl_positive_l}:{sdxl_l_strength:.2f})' if sdxl_positive_l is not None and sdxl_positive_l.strip(' ,;') != '' else ''
+        sdxl_negative_l = f'({sdxl_negative_l}:{sdxl_l_strength:.2f})' if sdxl_negative_l is not None and sdxl_negative_l.strip(' ,;') != '' else ''
 
-        positive_text = f'{positive_prompt}, {opt_pos_prompt}, {style_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ")
-        negative_text = f'{negative_prompt}, {opt_neg_prompt}, {style_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ")
+        positive_text = f'{positive_prompt}, {opt_pos_prompt}, {style_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ")
+        negative_text = f'{negative_prompt}, {opt_neg_prompt}, {style_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ")
 
         if (adv_encode == True):
             if (is_sdxl == 0):
-                embeddings_final_pos, pooled_pos = advanced_encode(clip, positive_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = affect_pooled)
-                embeddings_final_neg, pooled_neg = advanced_encode(clip, negative_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = affect_pooled)
-                return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]], [[embeddings_final_neg, {"pooled_output": pooled_neg}]],)
+                embeddings_final_pos, pooled_pos = advanced_encode(clip, positive_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = True)
+                embeddings_final_neg, pooled_neg = advanced_encode(clip, negative_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = True)
+                return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]], [[embeddings_final_neg, {"pooled_output": pooled_neg}]], positive_text, negative_text)
             else:
-                embeddings_final_pos, pooled_pos = advanced_encode_XL(clip, sdxl_positive_l, positive_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = affect_pooled)
-                embeddings_final_neg, pooled_neg = advanced_encode_XL(clip, sdxl_negative_l, negative_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = affect_pooled)
-                return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]],[[embeddings_final_neg, {"pooled_output": pooled_neg}]],)
+                # embeddings_final_pos, pooled_pos = advanced_encode_XL(clip, sdxl_positive_l, positive_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = True)
+                # embeddings_final_neg, pooled_neg = advanced_encode_XL(clip, sdxl_negative_l, negative_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = True)
+                # return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]],[[embeddings_final_neg, {"pooled_output": pooled_neg}]],)
+
+                tokens_p = clip.tokenize(positive_text)
+                tokens_p["l"] = clip.tokenize(sdxl_positive_l)["l"]
+
+                if len(tokens_p["l"]) != len(tokens_p["g"]):
+                    empty = clip.tokenize("")
+                    while len(tokens_p["l"]) < len(tokens_p["g"]):
+                        tokens_p["l"] += empty["l"]
+                    while len(tokens_p["l"]) > len(tokens_p["g"]):
+                        tokens_p["g"] += empty["g"]
+
+                tokens_n = clip.tokenize(negative_text)
+                tokens_n["l"] = clip.tokenize(sdxl_negative_l)["l"]
+
+                if len(tokens_n["l"]) != len(tokens_n["g"]):
+                    empty = clip.tokenize("")
+                    while len(tokens_n["l"]) < len(tokens_n["g"]):
+                        tokens_n["l"] += empty["l"]
+                    while len(tokens_n["l"]) > len(tokens_n["g"]):
+                        tokens_n["g"] += empty["g"]
+
+                cond_p, pooled_p = clip.encode_from_tokens(tokens_p, return_pooled = True)
+                cond_n, pooled_n = clip.encode_from_tokens(tokens_n, return_pooled = True)
+                return ([[cond_p, {"pooled_output": pooled_p, "width": width, "height": height, "crop_w": 0, "crop_h": 0, "target_width": width, "target_height": height}]], [[cond_n, {"pooled_output": pooled_n, "width": width, "height": height, "crop_w": 0, "crop_h": 0, "target_width": width, "target_height": height}]], positive_text, negative_text)
 
         else:
             tokens = clip.tokenize(positive_text)
@@ -333,23 +359,7 @@ class PrimereCLIP:
 
             tokens = clip.tokenize(negative_text)
             cond_neg, pooled_neg = clip.encode_from_tokens(tokens, return_pooled = True)
-            return ([[cond_pos, {"pooled_output": pooled_pos}]], [[cond_neg, {"pooled_output": pooled_neg}]],)
-
-        '''
-        def encode(self, clip, width, height, crop_w, crop_h, target_width, target_height, text_g, text_l):
-        tokens = clip.tokenize(text_g)
-        tokens["l"] = clip.tokenize(text_l)["l"]
-        
-        if len(tokens["l"]) != len(tokens["g"]):
-            empty = clip.tokenize("")
-            while len(tokens["l"]) < len(tokens["g"]):
-                tokens["l"] += empty["l"]
-            while len(tokens["l"]) > len(tokens["g"]):
-                tokens["g"] += empty["g"]
-                
-        cond, pooled = clip.encode_from_tokens(tokens, return_pooled=True)
-        return ([[cond, {"pooled_output": pooled, "width": width, "height": height, "crop_w": crop_w, "crop_h": crop_h, "target_width": target_width, "target_height": target_height}]], )
-        '''
+            return ([[cond_pos, {"pooled_output": pooled_pos}]], [[cond_neg, {"pooled_output": pooled_neg}]], positive_text, negative_text)
 
 class PrimereResolution:
     RETURN_TYPES = ("INT", "INT",)
