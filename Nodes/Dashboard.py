@@ -50,8 +50,8 @@ class PrimereVAE:
         return vae_model,
 
 class PrimereCKPT:
-    RETURN_TYPES = ("CHECKPOINT_NAME", "INT",)
-    RETURN_NAMES = ("ckpt_name", "IS_SDXL",)
+    RETURN_TYPES = ("CHECKPOINT_NAME", "INT", "STRING")
+    RETURN_NAMES = ("ckpt_name", "is_sdxl", "sdxl_path")
     FUNCTION = "load_ckpt_list"
     CATEGORY = TREE_DASHBOARD
 
@@ -68,13 +68,14 @@ class PrimereCKPT:
 
     def load_ckpt_list(self, base_model, sdxl_path):
         is_sdxl = 0
+        sdxl_path_string = sdxl_path
         if sdxl_path:
             if not sdxl_path.endswith(os.sep):
                 sdxl_path = sdxl_path + os.sep
             if (base_model.startswith(sdxl_path) == True):
                 is_sdxl = 1
 
-        return (base_model, is_sdxl,)
+        return (base_model, is_sdxl, sdxl_path_string,)
 
 class PrimereVAELoader:
     RETURN_TYPES = ("VAE",)
