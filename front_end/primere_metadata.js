@@ -2,9 +2,9 @@ import { app } from "/scripts/app.js";
 
 // Adds an upload button to the nodes
 app.registerExtension({
-	name: "primere_meta.Imagebox",
+	name: "Primere.PrimereMetaRead",
 	async beforeRegisterNodeDef(nodeType, nodeData, app) {
-		if (nodeData.name === "PrimereImageMetaReader") {
+		if (nodeData.name === "PrimereMetaRead") {
 			nodeData.input.required.upload = ["IMAGEUPLOAD"];
 		}
 	},

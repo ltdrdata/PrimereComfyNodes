@@ -1,17 +1,17 @@
 {
-  "last_node_id": 298,
-  "last_link_id": 465,
+  "last_node_id": 299,
+  "last_link_id": 466,
   "nodes": [
     {
       "id": 214,
       "type": "PrimereCKPT",
       "pos": [
-        714,
-        -94
+        681,
+        -177
       ],
       "size": {
         "0": 812.2493896484375,
-        "1": 58
+        "1": 102
       },
       "flags": {},
       "order": 0,
@@ -24,20 +24,29 @@
             336
           ],
           "shape": 3
+        },
+        {
+          "name": "IS_SDXL",
+          "type": "INT",
+          "links": [
+            466
+          ],
+          "shape": 3
         }
       ],
       "properties": {
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "SDXL\\copaxTimelessxlSDXL1_v7.safetensors"
+        "BestAll\\icbinp_final.safetensors",
+        "SDXL"
       ]
     },
     {
       "id": 252,
       "type": "PrimereVAE",
       "pos": [
-        712,
+        702,
         3
       ],
       "size": {
@@ -62,15 +71,15 @@
         "Node name for S&R": "PrimereVAE"
       },
       "widgets_values": [
-        "difconsistencyRAWVAE_v10Safestensor.safetensors"
+        "vae-ft-mse-840000-ema-pruned.ckpt"
       ]
     },
     {
       "id": 213,
       "type": "PrimereVAE",
       "pos": [
-        716,
-        97
+        702,
+        101
       ],
       "size": {
         "0": 494.79486083984375,
@@ -135,7 +144,7 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Testprompt - Paint art"
+        "Character - Black girl in winter"
       ]
     },
     {
@@ -229,10 +238,10 @@
         23,
         841
       ],
-      "size": [
-        528.2181396484375,
-        201.48178100585938
-      ],
+      "size": {
+        "0": 528.2181396484375,
+        "1": 201.48178100585938
+      },
       "flags": {},
       "order": 6,
       "mode": 0,
@@ -311,8 +320,8 @@
       "id": 242,
       "type": "PrimereSeed",
       "pos": [
-        1227,
-        194
+        1225,
+        200
       ],
       "size": {
         "0": 301.9766845703125,
@@ -385,10 +394,10 @@
         25,
         1091
       ],
-      "size": [
-        575.2181396484375,
-        360.4818115234375
-      ],
+      "size": {
+        "0": 575.2181396484375,
+        "1": 360.4818115234375
+      },
       "flags": {},
       "order": 10,
       "mode": 0,
@@ -490,6 +499,36 @@
       ]
     },
     {
+      "id": 299,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1519,
+        -237
+      ],
+      "size": {
+        "0": 210,
+        "1": 76
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 466,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "0"
+      ]
+    },
+    {
       "id": 215,
       "type": "PrimereVAELoader",
       "pos": [
@@ -501,7 +540,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 12,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -537,7 +576,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 13,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -573,7 +612,7 @@
         26
       ],
       "flags": {},
-      "order": 14,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -606,15 +645,15 @@
       "id": 249,
       "type": "Display Any (rgthree)",
       "pos": [
-        1542,
-        -205
+        1791,
+        -72
       ],
       "size": {
         "0": 210,
         "1": 76
       },
       "flags": {},
-      "order": 15,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -635,15 +674,15 @@
       "id": 279,
       "type": "PrimereResolution",
       "pos": [
-        905,
-        194
+        701,
+        200
       ],
       "size": {
         "0": 306,
         "1": 198
       },
       "flags": {},
-      "order": 16,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -700,7 +739,7 @@
         "1": 94.24665069580078
       },
       "flags": {},
-      "order": 17,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -752,7 +791,7 @@
         "1": 473.7483215332031
       },
       "flags": {},
-      "order": 18,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -785,7 +824,7 @@
         "Node name for S&R": "PromptGenerator"
       },
       "widgets_values": [
-        918827938767148,
+        502304991408193,
         "randomize",
         "(professional sexy 36 year old woman model transparent luxury wear, huge necklace photography:1.15)",
         "photography",
@@ -815,7 +854,7 @@
         "1": 473.7483215332031
       },
       "flags": {},
-      "order": 19,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -831,9 +870,7 @@
         {
           "name": "prompt",
           "type": "STRING",
-          "links": [
-            460
-          ],
+          "links": [],
           "shape": 3,
           "slot_index": 0
         },
@@ -848,7 +885,7 @@
         "Node name for S&R": "PromptGenerator"
       },
       "widgets_values": [
-        196236823454862,
+        356963867167743,
         "randomize",
         "",
         "photography",
@@ -878,7 +915,7 @@
         "1": 391.5194396972656
       },
       "flags": {},
-      "order": 20,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -948,7 +985,7 @@
         1.3,
         0.8,
         1.4,
-        922096332273012,
+        -716315063484444,
         "randomize",
         true,
         "cpu"
@@ -966,7 +1003,7 @@
         "1": 318
       },
       "flags": {},
-      "order": 21,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -1070,7 +1107,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        6
+        1
       ]
     },
     {
@@ -1080,12 +1117,12 @@
         2648,
         582
       ],
-      "size": [
-        298.2181396484375,
-        298.4817810058594
-      ],
+      "size": {
+        "0": 298.2181396484375,
+        "1": 298.4817810058594
+      },
       "flags": {},
-      "order": 22,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -1110,7 +1147,7 @@
         "1": 53.26813507080078
       },
       "flags": {},
-      "order": 23,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
@@ -1152,7 +1189,7 @@
         "1": 54.57228469848633
       },
       "flags": {},
-      "order": 24,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -1194,7 +1231,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 25,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -1231,7 +1268,7 @@
       },
       "widgets_values": [
         "",
-        -82905209996683,
+        400404410312771,
         "randomize"
       ]
     },
@@ -1247,7 +1284,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 26,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -1284,7 +1321,7 @@
       },
       "widgets_values": [
         "",
-        -1026860182883762,
+        -1011675223705390,
         "randomize"
       ]
     },
@@ -1300,7 +1337,7 @@
         26
       ],
       "flags": {},
-      "order": 27,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
@@ -1339,7 +1376,7 @@
         26
       ],
       "flags": {},
-      "order": 28,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -1369,15 +1406,15 @@
       "id": 270,
       "type": "Prettify Prompt Using distilgpt2",
       "pos": [
-        1247,
-        417
+        2161,
+        1196
       ],
-      "size": [
-        376.7893371582031,
-        190
-      ],
+      "size": {
+        "0": 376.7893371582031,
+        "1": 190
+      },
       "flags": {},
-      "order": 29,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -1406,7 +1443,7 @@
         7,
         60,
         0.5,
-        596730335,
+        669810476,
         "randomize",
         "cat"
       ]
@@ -1418,12 +1455,12 @@
         1658,
         194
       ],
-      "size": [
-        371,
-        542
-      ],
+      "size": {
+        "0": 371,
+        "1": 542
+      },
       "flags": {},
-      "order": 30,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
@@ -1474,7 +1511,7 @@
         {
           "name": "style_pos_prompt",
           "type": "STRING",
-          "link": 460,
+          "link": null,
           "widget": {
             "name": "style_pos_prompt"
           }
@@ -1569,20 +1606,20 @@
         true,
         "BETTER_IMAGES_NEG",
         1,
-        false,
+        true,
         "mean",
         "comfy++",
         "",
-        0.4,
+        1,
         "",
         1,
         "",
-        0.9,
+        1,
         "",
         1,
         "",
         "",
-        0.4,
+        1,
         "",
         1
       ]
@@ -1599,7 +1636,7 @@
         "1": 226
       },
       "flags": {},
-      "order": 31,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -1684,7 +1721,7 @@
         "1": 195.16903686523438
       },
       "flags": {},
-      "order": 32,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
@@ -1709,7 +1746,7 @@
         "Node name for S&R": "ShowText|pysssss"
       },
       "widgets_values": [
-        "(aggressive and scary Halloween yellow pumpkin with giant teeth), (fiery monster eyes attacks a cute little kid). The pumpkin burns with fire and smokes, the child is scared and screams. (embedding:Sci-fi_Horror, Apocalypse, apocalyptic horror scene:1.4), fire, smoke, blood, (photorealistic post-apocaliptic scarry scene), death, dark, fear, movie style, (devil lucifer evil laughs loudly in the background:1.4), pumkins attack and kill the kid, (embedding:embedding:Sci-fi_Horror\\Apocalypse:0.6), (horror portrait of dynamic composition with ((long hair)) wearing (grunge clothes) Smoke and ash in the air documentary photography shot on Fujifilm X-Pro3 with Fujinon XF 56mm f-1.2 R photo by Brooke DiDonato:0.90)"
+        "(beautiful sexy 30 years old (American black:1.4) model woman:1.2), (standing in the green park:1.3), near blue lake, closeup outdoor color professional model photography, soft natural lights, unhappy mood, open mouth, (wear white, leather, jacket:1.6), (wear maroon, luxury, silk, underwear:1.6), (wear leather, long, black, trousers:1.6), (long, black, straight, hair:1.6), small cleavage, natural tits, snow, (embedding:Winter:1.4), blury background, bokeh, (film grain:1.6), (detailed face:1.6), (detailed skin:1.6), (funny yellow hat:0.7)"
       ]
     },
     {
@@ -1724,7 +1761,7 @@
         "1": 195.16903686523438
       },
       "flags": {},
-      "order": 33,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
@@ -1749,7 +1786,7 @@
         "Node name for S&R": "ShowText|pysssss"
       },
       "widgets_values": [
-        "(nude, nudity, porn:1.20), , (Amputee, Autograph, Bad anatomy, Bad illustration, Bad proportions, Beyond the borders, Blank background, Blurry, Body out of frame, Boring background, Branding, Cropped, Cut off, Deformed, Disfigured, Dismembered, Disproportioned, Distorted, Draft, Duplicate, Duplicated features, Extra arms, Extra fingers, Extra hands, Extra legs, Extra limbs, Fault, Flaw, Fused fingers, Grains, Grainy, Gross proportions, Hazy, Identifying mark, Improper scale, Incorrect physiology, Incorrect ratio, Indistinct, Kitsch, Logo, Long neck, Low quality, Low resolution, Macabre, Malformed, Mark, Misshapen, Missing arms, Missing fingers, Missing hands, Missing legs, Mistake, Morbid, Mutated hands, Mutation, Mutilated, Off-screen, Out of frame, Outside the picture, Pixelated, Poorly drawn face, Poorly drawn feet, Poorly drawn hands, Printed words, Render, Repellent, Replicate, Reproduce, Revolting dimensions, Script, Shortened, Sign, Signature, Split image, Squint, Storyboard, Text, Tiling, Trimmed, Ugly, Unfocused, Unattractive, Unnatural pose, Unreal engine, Unsightly, Watermark, Written language:1.00)"
+        "(porn, sex, nude, nudity, child, childish, embedding:Asian-Less-Neg, embedding:FastNegativeEmbedding, embedding:negative_hand, draw, illustration, telephoto, earrings, necklace, embedding:add_nsfw, bra, lingerie, underwear:1.20), (Amputee, Autograph, Bad anatomy, Bad illustration, Bad proportions, Beyond the borders, Blank background, Blurry, Body out of frame, Boring background, Branding, Cropped, Cut off, Deformed, Disfigured, Dismembered, Disproportioned, Distorted, Draft, Duplicate, Duplicated features, Extra arms, Extra fingers, Extra hands, Extra legs, Extra limbs, Fault, Flaw, Fused fingers, Grains, Grainy, Gross proportions, Hazy, Identifying mark, Improper scale, Incorrect physiology, Incorrect ratio, Indistinct, Kitsch, Logo, Long neck, Low quality, Low resolution, Macabre, Malformed, Mark, Misshapen, Missing arms, Missing fingers, Missing hands, Missing legs, Mistake, Morbid, Mutated hands, Mutation, Mutilated, Off-screen, Out of frame, Outside the picture, Pixelated, Poorly drawn face, Poorly drawn feet, Poorly drawn hands, Printed words, Render, Repellent, Replicate, Reproduce, Revolting dimensions, Script, Shortened, Sign, Signature, Split image, Squint, Storyboard, Text, Tiling, Trimmed, Ugly, Unfocused, Unattractive, Unnatural pose, Unreal engine, Unsightly, Watermark, Written language:1.00)"
       ]
     },
     {
@@ -1764,7 +1801,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 34,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
@@ -1806,7 +1843,7 @@
         "1": 1103.84326171875
       },
       "flags": {},
-      "order": 35,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
@@ -1833,7 +1870,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 36,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
@@ -1877,7 +1914,7 @@
         "1": 76
       },
       "flags": {},
-      "order": 37,
+      "order": 38,
       "mode": 0,
       "inputs": [
         {
@@ -1907,7 +1944,7 @@
         "1": 76
       },
       "flags": {},
-      "order": 38,
+      "order": 39,
       "mode": 0,
       "inputs": [
         {
@@ -2368,20 +2405,20 @@
       "INT"
     ],
     [
-      460,
-      298,
-      0,
-      295,
-      6,
-      "STRING"
-    ],
-    [
       462,
       259,
       0,
       270,
       0,
       "STRING"
+    ],
+    [
+      466,
+      214,
+      1,
+      299,
+      0,
+      "*"
     ]
   ],
   "groups": [],

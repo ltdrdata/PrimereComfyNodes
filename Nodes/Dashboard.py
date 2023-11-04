@@ -50,8 +50,8 @@ class PrimereVAE:
         return vae_model,
 
 class PrimereCKPT:
-    RETURN_TYPES = ("CHECKPOINT_NAME", )
-    RETURN_NAMES = ("ckpt_name", )
+    RETURN_TYPES = ("CHECKPOINT_NAME", "INT",)
+    RETURN_NAMES = ("ckpt_name", "IS_SDXL",)
     FUNCTION = "load_ckpt_list"
     CATEGORY = TREE_DASHBOARD
 
@@ -61,10 +61,20 @@ class PrimereCKPT:
             "required": {
                 "base_model": (folder_paths.get_filename_list("checkpoints"),)
             },
+            "optional": {
+                "sdxl_path": ("STRING", {"default": 'SDXL'}),
+            },
         }
 
-    def load_ckpt_list(self, base_model):
-        return base_model,
+    def load_ckpt_list(self, base_model, sdxl_path):
+        is_sdxl = 0
+        if sdxl_path:
+            if not sdxl_path.endswith(os.sep):
+                sdxl_path = sdxl_path + os.sep
+            if (base_model.startswith(sdxl_path) == True):
+                is_sdxl = 1
+
+        return (base_model, is_sdxl,)
 
 class PrimereVAELoader:
     RETURN_TYPES = ("VAE",)
@@ -432,3 +442,21 @@ class PrimereResolution:
         dimension_x = dimensions[0]
         dimension_y = dimensions[1]
         return (dimension_x, dimension_y,)
+
+class PrimereStepsCfg:
+  RETURN_TYPES = ("INT", "FLOAT")
+  RETURN_NAMES = ("Steps", "CFG")
+  FUNCTION = "steps_cfg"
+  CATEGORY = TREE_DASHBOARD
+
+  @classmethod
+  def INPUT_TYPES(cls):
+    return {
+      "required": {
+        "steps": ("INT", {"default": 12, "min": 1, "max": 1000, "step": 1}),
+        "cfg": ("FLOAT", {"default": 7, "min": 0.1, "max": 100, "step": 0.01}),
+      },
+    }
+
+  def steps_cfg(self, steps = 12, cfg = 7):
+    return (steps, cfg,)
