@@ -2,7 +2,7 @@ class BaseFormat:
     def __init__(self, info: dict = None, raw: str = ""):
         self._info = info
         self._raw = raw
-        self._parameter = {} # dict.fromkeys(self._parameter_key, PARAMETER_PLACEHOLDER)
+        self._parameter = {}
 
     @property
     def info(self):

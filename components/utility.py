@@ -1,9 +1,7 @@
-__author__ = "receyuki"
-__filename__ = "utility.py"
-__copyright__ = "Copyright 2023"
-__email__ = "receyuki@gmail.com"
+import math
 
 SUPPORTED_FORMATS = [".png", ".jpg", ".jpeg", ".webp"]
+STANDARD_SIDES = [64, 80, 96, 128, 144, 160, 192, 256, 320, 368, 400, 480, 512, 560, 640, 704, 768, 832, 896, 960, 1024, 1088, 1152, 1216, 1280, 1344, 1408, 1472, 1536, 1600, 1664, 1728, 1792, 1856, 1920, 1984, 2048]
 
 def merge_str_to_tuple(item1, item2):
     if not isinstance(item1, tuple):
@@ -23,3 +21,41 @@ def remove_quotes(string):
 
 def add_quotes(string):
     return '"' + str(string) + '"'
+
+def calculate_dimensions(self, ratio: str, orientation: str, round_to_standard: bool, is_sdxl: int, default_sd: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
+    SD_1 = 512
+    SD_2 = 768
+    SDXL_1 = 1024
+    DEFAULT_RES = SD_1
+
+    if (default_sd == 'SD 2.x'):
+        DEFAULT_RES = SD_2
+
+    if (is_sdxl == 1):
+        DEFAULT_RES = SDXL_1
+    def calculate(ratio_1: float, ratio_2: float, side: int):
+        FullPixels = side ** 2
+        result_x = FullPixels / ratio_2
+        result_y = result_x / ratio_1
+        side_base = round(math.sqrt(result_y))
+        side_a = round(ratio_1 * side_base)
+        if round_to_standard == True:
+            side_a = min(STANDARD_SIDES, key=lambda x: abs(side_a - x))
+        side_b = round(FullPixels / side_a)
+        return sorted([side_a, side_b], reverse=True)
+
+    if (calculate_by_custom == True and isinstance(custom_side_a, (int, float)) and isinstance(custom_side_b, (int, float)) and custom_side_a >= 1 and custom_side_b >= 1):
+        ratio_x = custom_side_a
+        ratio_y = custom_side_b
+    else:
+        RatioLabel = self.ratioNames[ratio]
+        ratio_x = self.sd_ratios[RatioLabel]['side_x']
+        ratio_y = self.sd_ratios[RatioLabel]['side_y']
+
+    dimensions = calculate(ratio_x, ratio_y, DEFAULT_RES)
+    if (orientation == 'Vertical'):
+        dimensions = sorted(dimensions)
+
+    dimension_x = dimensions[0]
+    dimension_y = dimensions[1]
+    return (dimension_x, dimension_y,)

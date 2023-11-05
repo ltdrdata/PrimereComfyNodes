@@ -12,6 +12,8 @@ import tomli
 import math
 from .modules.adv_encode import advanced_encode, advanced_encode_XL
 from nodes import MAX_RESOLUTION
+from custom_nodes.ComfyUI_Primere_Nodes.components.utility import STANDARD_SIDES
+from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 
 class PrimereSamplers:
     CATEGORY = TREE_DASHBOARD
@@ -375,7 +377,7 @@ class PrimereCLIP:
 class PrimereResolution:
     RETURN_TYPES = ("INT", "INT",)
     RETURN_NAMES = ("WIDTH", "HEIGHT",)
-    FUNCTION = "calculate_dimensions"
+    FUNCTION = "calculate_imagesize"
     CATEGORY = TREE_DASHBOARD
 
     @staticmethod
@@ -400,6 +402,7 @@ class PrimereResolution:
             "required": {
                 "ratio": (list(namelist.keys()),),
                 "orientation": (["Horizontal", "Vertical"], {"default": "Horizontal"}),
+                "round_to_standard": ("BOOLEAN", {"default": False}),
                 "default_sd": (["SD 1.x", "SD 2.x"], {"default": "SD 1.x"}),
                 "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
                 "calculate_by_custom": ("BOOLEAN", {"default": False}),
@@ -408,38 +411,8 @@ class PrimereResolution:
             },
         }
 
-    def calculate_dimensions(self, ratio: str, orientation: str, is_sdxl: int, default_sd: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
-        SD_1 = 512
-        SD_2 = 768
-        SDXL_1 = 1024
-        DEFAULT_RES = SD_1
-
-        if (default_sd == 'SD 2.x'):
-            DEFAULT_RES = SD_2
-
-        if (is_sdxl == 1):
-            DEFAULT_RES = SDXL_1
-        def calculate(ratio_1: float, ratio_2: float, side: int):
-            FullPixels = side ** 2
-            result_x = FullPixels / ratio_2
-            result_y = result_x / ratio_1
-            side_base = round(math.sqrt(result_y))
-            side_a = round(ratio_1 * side_base)
-            side_b = round(FullPixels / side_a)
-            return sorted([side_a, side_b], reverse=True)
-
-        if (calculate_by_custom == True and isinstance(custom_side_a, (int, float)) and isinstance(custom_side_b, (int, float)) and custom_side_a >= 1 and custom_side_b >= 1):
-            ratio_x = custom_side_a
-            ratio_y = custom_side_b
-        else:
-            RatioLabel = self.ratioNames[ratio]
-            ratio_x = self.sd_ratios[RatioLabel]['side_x']
-            ratio_y = self.sd_ratios[RatioLabel]['side_y']
-
-        dimensions = calculate(ratio_x, ratio_y, DEFAULT_RES)
-        if (orientation == 'Vertical'):
-            dimensions = sorted(dimensions)
-
+    def calculate_imagesize(self, ratio: str, orientation: str, round_to_standard: bool, is_sdxl: int, default_sd: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
+        dimensions = utility.calculate_dimensions(self, ratio, orientation, round_to_standard, is_sdxl, default_sd, calculate_by_custom, custom_side_a, custom_side_b)
         dimension_x = dimensions[0]
         dimension_y = dimensions[1]
         return (dimension_x, dimension_y,)

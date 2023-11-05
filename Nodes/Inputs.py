@@ -13,6 +13,7 @@ import hashlib
 from .modules.image_meta_reader import ImageExifReader
 from .modules import exif_data_checker
 import nodes
+from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 
 class PrimereDoublePrompt:
     RETURN_TYPES = ("STRING", "STRING")
@@ -178,6 +179,7 @@ class PrimereMetaRead:
                 "use_sampler": ("BOOLEAN", {"default": True}),
                 "use_seed": ("BOOLEAN", {"default": True}),
                 "use_size": ("BOOLEAN", {"default": True}),
+                "recount_size": ("BOOLEAN", {"default": False}),
                 "use_cfg_scale": ("BOOLEAN", {"default": True}),
                 "use_steps": ("BOOLEAN", {"default": True}),
                 "use_exif_vae": ("BOOLEAN", {"default": True}),
@@ -204,7 +206,7 @@ class PrimereMetaRead:
             },
         }
 
-    def load_image_meta(self, sdxl_path, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, use_cfg_scale, use_steps, use_exif_vae, force_model_vae, image,
+    def load_image_meta(self, sdxl_path, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, recount_size, use_cfg_scale, use_steps, use_exif_vae, force_model_vae, image,
                         positive="", negative="", positive_l="", negative_l="", positive_r="", negative_r="",
                         model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl=""):
 
@@ -250,7 +252,6 @@ class PrimereMetaRead:
                 readerResult = ImageExifReader(image_path)
                 if (type(readerResult.parser).__name__ == 'dict'):
                     print('Reader tool return empty, using node input')
-
                     if (force_model_vae == True):
                         realvae = self.chkp_loader.load_checkpoint(model_name)[2]
                     else:
@@ -272,7 +273,6 @@ class PrimereMetaRead:
 
                 if (readerResult.tool == ''):
                     print('Reader tool return empty, using node input')
-
                     if (force_model_vae == True):
                         realvae = self.chkp_loader.load_checkpoint(model_name)[2]
                     else:
@@ -350,12 +350,22 @@ class PrimereMetaRead:
                         if 'size_string' in reader.parameter:
                             data_json['width'] = reader.parameter["width"]
                             data_json['height'] = reader.parameter["height"]
+                        if recount_size == True:
+                            if (data_json['width'] > data_json['height']):
+                                orientation = 'Horizontal'
+                            else:
+                                orientation = 'Vertical'
+
+                            image_sides = sorted([data_json['width'], data_json['height']])
+                            custom_side_b = round((image_sides[1] / image_sides[0]), 4)
+                            dimensions = utility.calculate_dimensions(self, "Square [1:1]", orientation, 1, is_sdxl, 'SD 2.x', True, 1, custom_side_b)
+                            data_json['width'] = dimensions[0]
+                            data_json['height'] = dimensions[1]
 
                     return (data_json['positive'], data_json['negative'], data_json['positive_l'], data_json['negative_l'], data_json['positive_r'], data_json['negative_r'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json['vae_name'], realvae, data_json)
 
                 except ValueError as VE:
                     print(VE)
-
                     if (force_model_vae == True):
                         realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
                     else:
@@ -365,7 +375,6 @@ class PrimereMetaRead:
 
             else:
                 print('No source image loaded')
-
                 if (force_model_vae == True):
                     realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
                 else:
@@ -375,7 +384,6 @@ class PrimereMetaRead:
 
         else:
             print('Exif reader off')
-
             if (force_model_vae == True):
                 realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
             else:

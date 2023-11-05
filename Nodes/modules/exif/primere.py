@@ -14,11 +14,9 @@ class Primere(BaseFormat):
         self._parameter["steps"] = data_json['steps']
         self._parameter["model"] = data_json['model_name']
         self._parameter["sampler"] = data_json['sampler_name']
-        self._parameter["size"] = (
-            str(data_json.get("original_width")) + "x" + str(data_json.get("original_height"))
-        )
+        self._parameter["size"] = (str(data_json.get("original_width")) + "x" + str(data_json.get("original_height")))
 
-        self._positive = data_json['positive_g']
-        self._negative = data_json['negative_g']
+        self._positive = data_json['positive']
+        self._negative = data_json['negative']
         self._raw = "\n".join([self._positive, self._negative, str(data_json)])
         self._setting = remove_quotes(str(data_json)[1:-1])

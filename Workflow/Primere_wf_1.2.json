@@ -1,6 +1,6 @@
 {
-  "last_node_id": 47,
-  "last_link_id": 131,
+  "last_node_id": 53,
+  "last_link_id": 139,
   "nodes": [
     {
       "id": 22,
@@ -324,7 +324,7 @@
         "Node name for S&R": "PrimereVAE"
       },
       "widgets_values": [
-        "vae-ft-mse-840000-ema-pruned.ckpt"
+        "difconsistencyRAWVAE_v10Safestensor.safetensors"
       ]
     },
     {
@@ -480,6 +480,48 @@
       ]
     },
     {
+      "id": 52,
+      "type": "PrimerePrompt",
+      "pos": [
+        77,
+        1398
+      ],
+      "size": {
+        "0": 575.2181396484375,
+        "1": 360.4818115234375
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            135
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            136
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePrompt"
+      },
+      "widgets_values": [
+        "(beautiful sexy 30 years old (American black:1.4) model woman:1.2), (standing in the green park:1.3), near blue lake, closeup outdoor color professional model photography, soft natural lights, interested mood, kissing mouth, (wear white leather jacket:1.6), (wear maroon luxury silk underwear:1.6), (wear black leather long trousers:1.6), (long black straight hair:1.6), small cleavage, natural tits, (covered bra:1.2), snow, (embedding:Winter:1.3), blury background, bokeh, (film grain:1.6), (detailed face:1.6), (detailed skin:1.6), funny red hat",
+        "(porn, sex, nude, nudity, child, childish, embedding:Asian-Less-Neg, embedding:FastNegativeEmbedding, embedding:negative_hand, draw, illustration, telephoto, earrings, necklace, nsfw:1.20)"
+      ]
+    },
+    {
       "id": 4,
       "type": "PrimereCKPT",
       "pos": [
@@ -491,7 +533,7 @@
         "1": 122
       },
       "flags": {},
-      "order": 12,
+      "order": 13,
       "mode": 0,
       "outputs": [
         {
@@ -507,8 +549,8 @@
           "name": "IS_SDXL",
           "type": "INT",
           "links": [
-            13,
-            43
+            43,
+            139
           ],
           "shape": 3,
           "slot_index": 1
@@ -528,7 +570,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "BestAll\\photon_v1.safetensors",
+        "SDXL\\HEPHAISTOSSD10XL.safetensors",
         "SDXL"
       ]
     },
@@ -544,7 +586,7 @@
         "1": 473.7483215332031
       },
       "flags": {},
-      "order": 13,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -577,7 +619,7 @@
         "Node name for S&R": "PromptGenerator"
       },
       "widgets_values": [
-        627098972857925,
+        214080422011505,
         "randomize",
         "(professional sexy 36 year old woman model transparent luxury wear, huge necklace photography:1.15)",
         "photography",
@@ -596,72 +638,15 @@
       ]
     },
     {
-      "id": 10,
-      "type": "PrimereResolution",
-      "pos": [
-        273,
-        1121
-      ],
-      "size": {
-        "0": 315,
-        "1": 222
-      },
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "is_sdxl",
-          "type": "INT",
-          "link": 13,
-          "widget": {
-            "name": "is_sdxl"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "WIDTH",
-          "type": "INT",
-          "links": [
-            91
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "HEIGHT",
-          "type": "INT",
-          "links": [
-            92
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereResolution"
-      },
-      "widgets_values": [
-        "Photo [19:13]",
-        "Vertical",
-        "SD 2.x",
-        0,
-        false,
-        1.6,
-        2.8
-      ]
-    },
-    {
       "id": 21,
       "type": "Display Any (rgthree)",
       "pos": [
-        557,
-        3
+        588,
+        67
       ],
       "size": {
-        "0": 243.49998474121094,
-        "1": 115.64999389648438
+        "0": 210,
+        "1": 76
       },
       "flags": {},
       "order": 15,
@@ -679,7 +664,65 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "0"
+        "1"
+      ]
+    },
+    {
+      "id": 53,
+      "type": "PrimereResolution",
+      "pos": [
+        270,
+        1124
+      ],
+      "size": {
+        "0": 315,
+        "1": 222
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "is_sdxl",
+          "type": "INT",
+          "link": 139,
+          "widget": {
+            "name": "is_sdxl"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "WIDTH",
+          "type": "INT",
+          "links": [
+            137
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "HEIGHT",
+          "type": "INT",
+          "links": [
+            138
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereResolution"
+      },
+      "widgets_values": [
+        "Photo [19:13]",
+        "Vertical",
+        true,
+        "SD 2.x",
+        0,
+        false,
+        1.5,
+        2.8
       ]
     },
     {
@@ -690,11 +733,11 @@
         200
       ],
       "size": {
-        "0": 228.39999389648438,
-        "1": 318
+        "0": 308.2091064453125,
+        "1": 416.9234313964844
       },
       "flags": {},
-      "order": 16,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -760,10 +803,20 @@
         {
           "name": "prompt_pos_7",
           "type": "STRING",
-          "link": null
+          "link": 135
         },
         {
           "name": "prompt_neg_7",
+          "type": "STRING",
+          "link": 136
+        },
+        {
+          "name": "prompt_pos_8",
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "prompt_neg_8",
           "type": "STRING",
           "link": null
         }
@@ -798,7 +851,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        2
+        7
       ]
     },
     {
@@ -813,7 +866,7 @@
         "1": 1121.9696044921875
       },
       "flags": {},
-      "order": 17,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -915,7 +968,7 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 91,
+          "link": 137,
           "widget": {
             "name": "width"
           }
@@ -923,7 +976,7 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 92,
+          "link": 138,
           "widget": {
             "name": "height"
           }
@@ -1105,8 +1158,8 @@
         true,
         true,
         true,
-        "00001-20230927204216-3494054024.jpg",
-        "image",
+        false,
+        "00001-20230629202652-1341145896.jpg",
         "",
         "",
         "",
@@ -1115,27 +1168,28 @@
         "",
         "euler",
         "normal",
-        114,
-        "randomize",
+        706,
+        0,
         0,
         512,
         512,
-        7
+        7,
+        12
       ]
     },
     {
       "id": 14,
       "type": "PrimereCKPTLoader",
       "pos": [
-        1547,
-        718
+        1509,
+        649
       ],
-      "size": [
-        308.2399777832029,
-        94
-      ],
+      "size": {
+        "0": 308.239990234375,
+        "1": 94
+      },
       "flags": {},
-      "order": 18,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -1205,12 +1259,12 @@
         1600,
         270
       ],
-      "size": [
-        210,
-        54
-      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
       "flags": {},
-      "order": 19,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -1247,7 +1301,7 @@
       },
       "widgets_values": [
         "",
-        -699681296221708,
+        -286779644664117,
         "randomize"
       ]
     },
@@ -1258,12 +1312,12 @@
         1590,
         370
       ],
-      "size": [
-        210,
-        54
-      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
       "flags": {},
-      "order": 20,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -1300,7 +1354,7 @@
       },
       "widgets_values": [
         "",
-        -294660420842833,
+        -41820993450059,
         "randomize"
       ]
     },
@@ -1316,7 +1370,7 @@
         "1": 397.8281555175781
       },
       "flags": {},
-      "order": 21,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -1331,7 +1385,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\", \"negative\": \"kid, child, childish, text, frame, nude, nudity, porn, sex\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"31e35c80fc\", \"model_name\": \"SDXL\\\\sd_xl_base_1.0.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 1106225263597350, \"width\": 512, \"height\": 768, \"cfg_scale\": 9.0, \"steps\": 30, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": true}"
+        "{\"positive\": \"Mint Green abandoned fast American small sport bus in the street of small city, moving, professional car photography\", \"negative\": \"\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"inf\", \"model_name\": \"BestAll\\\\consistentColorful_v104.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 1013649991825143, \"width\": 922, \"height\": 640, \"cfg_scale\": 11.0, \"steps\": 40, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"vae_name\": \"difconsistencyRAWVAE_v10Safestensor.safetensors\", \"force_model_vae\": false}"
       ]
     },
     {
@@ -1346,7 +1400,7 @@
         "1": 438
       },
       "flags": {},
-      "order": 22,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -1416,7 +1470,7 @@
         1,
         0.8,
         1.4,
-        -838802667098642,
+        -174362070237983,
         "randomize",
         true,
         "cpu"
@@ -1426,15 +1480,15 @@
       "id": 20,
       "type": "Display Any (rgthree)",
       "pos": [
-        1647,
-        36
+        1570,
+        754
       ],
       "size": {
-        "0": 243.49998474121094,
-        "1": 115.64999389648438
+        "0": 246.96006774902344,
+        "1": 76
       },
       "flags": {},
-      "order": 23,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
@@ -1449,7 +1503,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "1"
+        "0"
       ]
     },
     {
@@ -1459,12 +1513,12 @@
         1590,
         480
       ],
-      "size": [
-        226.8000030517578,
-        34
-      ],
+      "size": {
+        "0": 226.8000030517578,
+        "1": 34
+      },
       "flags": {},
-      "order": 24,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -1498,12 +1552,12 @@
         1590,
         560
       ],
-      "size": [
-        226.8000030517578,
-        34
-      ],
+      "size": {
+        "0": 226.8000030517578,
+        "1": 34
+      },
       "flags": {},
-      "order": 25,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -1542,7 +1596,7 @@
         "1": 625.4931640625
       },
       "flags": {},
-      "order": 26,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -1686,7 +1740,7 @@
         "",
         1.2,
         false,
-        "BETTER_IMAGES_NEG",
+        "PORTRAITS_PETS_DEFAULTS_NEG",
         1.25,
         true,
         "mean",
@@ -1718,7 +1772,7 @@
         "1": 246
       },
       "flags": {},
-      "order": 27,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
@@ -1743,7 +1797,7 @@
         "1": 262
       },
       "flags": {},
-      "order": 28,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -1824,7 +1878,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        448570283146651,
+        181294800191081,
         "randomize",
         20,
         8,
@@ -1845,7 +1899,7 @@
         "1": 334.5897216796875
       },
       "flags": {},
-      "order": 29,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -1860,7 +1914,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\""
+        "\"Mint Green abandoned fast American small sport bus in the street of small city, moving, professional car photography\""
       ]
     },
     {
@@ -1875,7 +1929,7 @@
         "1": 271.0892333984375
       },
       "flags": {},
-      "order": 30,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
@@ -1890,7 +1944,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(kid, child, childish, text, frame, nude, nudity, porn, sex:1.20)\""
+        "\"\""
       ]
     },
     {
@@ -1905,7 +1959,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 31,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -1926,9 +1980,11 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            39
+            39,
+            132
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 0
         }
       ],
       "properties": {
@@ -1947,7 +2003,7 @@
         "1": 1180.0111083984375
       },
       "flags": {},
-      "order": 32,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
@@ -1960,17 +2016,112 @@
       "properties": {
         "Node name for S&R": "PreviewImage"
       }
+    },
+    {
+      "id": 49,
+      "type": "GetImageSize",
+      "pos": [
+        3034,
+        -5
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 132
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            133
+          ],
+          "shape": 3
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            134
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetImageSize"
+      }
+    },
+    {
+      "id": 50,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        3273,
+        -36
+      ],
+      "size": {
+        "0": 210,
+        "1": 76
+      },
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 133,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "920"
+      ]
+    },
+    {
+      "id": 51,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        3515,
+        -34
+      ],
+      "size": {
+        "0": 210,
+        "1": 76
+      },
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 134,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "640"
+      ]
     }
   ],
   "links": [
-    [
-      13,
-      4,
-      1,
-      10,
-      0,
-      "INT"
-    ],
     [
       16,
       14,
@@ -2260,22 +2411,6 @@
       "INT"
     ],
     [
-      91,
-      10,
-      0,
-      39,
-      13,
-      "INT"
-    ],
-    [
-      92,
-      10,
-      1,
-      39,
-      14,
-      "INT"
-    ],
-    [
       95,
       39,
       6,
@@ -2466,6 +2601,70 @@
       39,
       5,
       "STRING"
+    ],
+    [
+      132,
+      18,
+      0,
+      49,
+      0,
+      "IMAGE"
+    ],
+    [
+      133,
+      49,
+      0,
+      50,
+      0,
+      "*"
+    ],
+    [
+      134,
+      49,
+      1,
+      51,
+      0,
+      "*"
+    ],
+    [
+      135,
+      52,
+      0,
+      26,
+      12,
+      "STRING"
+    ],
+    [
+      136,
+      52,
+      1,
+      26,
+      13,
+      "STRING"
+    ],
+    [
+      137,
+      53,
+      0,
+      39,
+      13,
+      "INT"
+    ],
+    [
+      138,
+      53,
+      1,
+      39,
+      14,
+      "INT"
+    ],
+    [
+      139,
+      4,
+      1,
+      53,
+      0,
+      "INT"
     ]
   ],
   "groups": [],
