@@ -59,3 +59,44 @@ def calculate_dimensions(self, ratio: str, orientation: str, round_to_standard: 
     dimension_x = dimensions[0]
     dimension_y = dimensions[1]
     return (dimension_x, dimension_y,)
+
+def clear_prompt(NETWORK_START, NETWORK_END, promptstring):
+    promptstring_temp = promptstring
+
+    for LABEL in NETWORK_START:
+        if LABEL in promptstring:
+            LabelStartIndexes = [n for n in range(len(promptstring)) if promptstring.find(LABEL, n) == n]
+
+            for LabelStartIndex in LabelStartIndexes:
+                Matches = []
+                for endString in NETWORK_END:
+                    Match = promptstring.find(endString, (LabelStartIndex + 1))
+                    if (Match > 0):
+                        Matches.append(Match)
+
+                LabelEndIndex = sorted(Matches)[0]
+                MatchedString = promptstring[LabelStartIndex:(LabelEndIndex + 1)]
+                if len(MatchedString) > 0:
+                    if '<' in MatchedString:
+                        endString = '>'
+                        Match = promptstring.find(endString, (LabelStartIndex + 1))
+                        if (Match > 0):
+                            LabelEndIndex = Match
+                            MatchedString = promptstring[LabelStartIndex:(LabelEndIndex + 1)]
+                            promptstring_temp = promptstring_temp.replace(MatchedString, "")
+
+                    if '{' in MatchedString:
+                        endString = '}'
+                        Match = promptstring.find(endString, (LabelStartIndex + 1))
+                        if (Match > 0):
+                            LabelEndIndex = Match
+                            MatchedString = promptstring[LabelStartIndex:(LabelEndIndex + 1)]
+                            promptstring_temp = promptstring_temp.replace(MatchedString, "")
+
+                    if ')' in MatchedString:
+                        MatchedString = promptstring[(LabelStartIndex - 1):(LabelEndIndex + 1)]
+                        promptstring_temp = promptstring_temp.replace(MatchedString, "")
+
+                    promptstring_temp = promptstring_temp.replace(MatchedString, "")
+
+    return promptstring_temp.replace('()', '').replace(' , ,', ',').replace('||', '').replace('{,', '').replace('  ', ' ').replace(', ,', ',').strip(', ')

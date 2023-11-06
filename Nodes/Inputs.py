@@ -14,6 +14,7 @@ from .modules.image_meta_reader import ImageExifReader
 from .modules import exif_data_checker
 import nodes
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
+from pathlib import Path
 
 class PrimereDoublePrompt:
     RETURN_TYPES = ("STRING", "STRING")
@@ -28,11 +29,26 @@ class PrimereDoublePrompt:
                 "positive_prompt": ("STRING", {"default": "", "multiline": True}),
                 "negative_prompt": ("STRING", {"default": "", "multiline": True}),
             },
+            "hidden": {
+                "extra_pnginfo": "EXTRA_PNGINFO",
+                "id": "UNIQUE_ID",
+            },
         }
 
-    def get_prompt(self, positive_prompt, negative_prompt):
-        return positive_prompt, negative_prompt,
+    def get_prompt(self, positive_prompt, negative_prompt, extra_pnginfo, id):
+        def debug_state(self, extra_pnginfo, id):
+            workflow = extra_pnginfo["workflow"]
+            for node in workflow["nodes"]:
+                node_id = str(node["id"])
+                name = node["type"]
+                if node_id == id:
+                    if "Debug" in name or "Show" in name or "Function" in name or "Evaluate" in name:
+                        continue
 
+                    return node['widgets_values']
+
+        rawResult = debug_state(self, extra_pnginfo, id)
+        return rawResult[0], rawResult[1],
 
 class PrimereStyleLoader:
     RETURN_TYPES = ("STRING", "STRING")
@@ -87,7 +103,6 @@ class PrimereStyleLoader:
 
         return (positive_prompt, negative_prompt)
 
-
 class PrimereDynParser:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("prompt",)
@@ -132,6 +147,36 @@ class PrimereDynParser:
 
         prompt = all_prompts[0]
         return (prompt, )
+
+class PrimereEmbeddingHandler:
+    RETURN_TYPES = ("STRING", "STRING",)
+    RETURN_NAMES = ("prompt+", "prompt-",)
+    FUNCTION = "embedding_handler"
+    CATEGORY = TREE_INPUTS
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "positive_prompt": ("STRING", {"multiline": True, "forceInput": True}),
+                "negative_prompt": ("STRING", {"multiline": True, "forceInput": True}),
+            }
+        }
+
+    def embedding_handler(self, positive_prompt, negative_prompt):
+        return (self.EmbeddingConverter(positive_prompt), self.EmbeddingConverter(negative_prompt),)
+
+    def EmbeddingConverter(self, text):
+        EMBEDDINGS = folder_paths.get_filename_list("embeddings")
+        text = text.replace('embedding:', '')
+        for embeddings_path in EMBEDDINGS:
+            path = Path(embeddings_path)
+            embedding_name = path.stem
+            text = text.replace(embedding_name, 'embedding:' + embedding_name)
+
+        return text
 
 class PrimereVAESelector:
     RETURN_TYPES = ("VAE",)

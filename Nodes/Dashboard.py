@@ -434,3 +434,40 @@ class PrimereStepsCfg:
 
   def steps_cfg(self, steps = 12, cfg = 7):
     return (steps, cfg,)
+
+class PrimereClearPrompt:
+  RETURN_TYPES = ("STRING", "STRING")
+  RETURN_NAMES = ("Prompt+", "Prompt-")
+  FUNCTION = "clean_prompt"
+  CATEGORY = TREE_DASHBOARD
+
+  @classmethod
+  def INPUT_TYPES(cls):
+      return {
+          "required": {
+              "positive_prompt": ("STRING", {"forceInput": True}),
+              "negative_prompt": ("STRING", {"forceInput": True}),
+              "remove_embedding": ("BOOLEAN", {"default": False}),
+              "remove_lora": ("BOOLEAN", {"default": False}),
+              "remove_hypernetwork": ("BOOLEAN", {"default": False}),
+          },
+      }
+
+  def clean_prompt(self, positive_prompt, negative_prompt, remove_embedding, remove_lora, remove_hypernetwork):
+      NETWORK_START = []
+
+      if remove_embedding == True:
+          NETWORK_START.append('embedding:')
+
+      if remove_lora == True:
+          NETWORK_START.append('<lora:')
+
+      if remove_hypernetwork == True:
+          NETWORK_START.append('<hypernet:')
+
+      if len(NETWORK_START) > 0:
+        NETWORK_END = ['\n', '>', ' ', ',', '}', ')', '|'] + NETWORK_START
+        positive_prompt = utility.clear_prompt(NETWORK_START, NETWORK_END, positive_prompt)
+        negative_prompt = utility.clear_prompt(NETWORK_START, NETWORK_END, negative_prompt)
+
+      return (positive_prompt, negative_prompt,)
