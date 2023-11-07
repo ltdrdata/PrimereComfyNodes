@@ -262,8 +262,8 @@ class PrimereFractalLatent:
         return {'samples': latents}, tensors
 
 class PrimereCLIP:
-    RETURN_TYPES = ("CONDITIONING", "CONDITIONING", "STRING", "STRING")
-    RETURN_NAMES = ("COND+", "COND-", "PROMPT+", "PROMPT-")
+    RETURN_TYPES = ("CONDITIONING", "CONDITIONING", "STRING", "STRING", "STRING", "STRING")
+    RETURN_NAMES = ("COND+", "COND-", "PROMPT+", "PROMPT-", "PROMPT L+", "PROMPT L-")
     FUNCTION = "clip_encode"
     CATEGORY = TREE_DASHBOARD
 
@@ -283,6 +283,7 @@ class PrimereCLIP:
                 "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
                 "positive_prompt": ("STRING", {"forceInput": True}),
                 "negative_prompt": ("STRING", {"forceInput": True}),
+                "copy_prompt_to_l": ("BOOLEAN", {"default": True}),
                 "negative_strength": ("FLOAT", {"default": 1.2, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "use_additional": ("BOOLEAN", {"default": False}),
                 "additional": (list(cls.default_neg.keys()),),
@@ -311,7 +312,7 @@ class PrimereCLIP:
             }
         }
 
-    def clip_encode(self, clip, negative_strength, additional_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, additional, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_additional = False, is_sdxl = 0):
+    def clip_encode(self, clip, negative_strength, additional_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, additional, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_additional = False, is_sdxl = 0):
         additional_positive = None
         additional_negative = None
         if use_additional == True:
@@ -320,6 +321,10 @@ class PrimereCLIP:
 
         additional_positive = f'({additional_positive}:{additional_strength:.2f})' if additional_positive is not None and additional_positive != '' else ''
         additional_negative = f'({additional_negative}:{additional_strength:.2f})' if additional_negative is not None and additional_negative != '' else ''
+
+        if copy_prompt_to_l == True:
+            sdxl_positive_l = positive_prompt
+            sdxl_negative_l = negative_prompt
 
         negative_prompt = f'({negative_prompt}:{negative_strength:.2f})' if negative_prompt is not None and negative_prompt.strip(' ,;') != '' else ''
         opt_pos_prompt = f'({opt_pos_prompt}:{opt_pos_strength:.2f})' if opt_pos_prompt is not None and opt_pos_prompt.strip(' ,;') != '' else ''
@@ -336,7 +341,7 @@ class PrimereCLIP:
             if (is_sdxl == 0):
                 embeddings_final_pos, pooled_pos = advanced_encode(clip, positive_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = True)
                 embeddings_final_neg, pooled_neg = advanced_encode(clip, negative_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = True)
-                return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]], [[embeddings_final_neg, {"pooled_output": pooled_neg}]], positive_text, negative_text)
+                return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]], [[embeddings_final_neg, {"pooled_output": pooled_neg}]], positive_text, negative_text, "", "")
             else:
                 # embeddings_final_pos, pooled_pos = advanced_encode_XL(clip, sdxl_positive_l, positive_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = True)
                 # embeddings_final_neg, pooled_neg = advanced_encode_XL(clip, sdxl_negative_l, negative_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = True)
@@ -364,7 +369,7 @@ class PrimereCLIP:
 
                 cond_p, pooled_p = clip.encode_from_tokens(tokens_p, return_pooled = True)
                 cond_n, pooled_n = clip.encode_from_tokens(tokens_n, return_pooled = True)
-                return ([[cond_p, {"pooled_output": pooled_p, "width": width, "height": height, "crop_w": 0, "crop_h": 0, "target_width": width, "target_height": height}]], [[cond_n, {"pooled_output": pooled_n, "width": width, "height": height, "crop_w": 0, "crop_h": 0, "target_width": width, "target_height": height}]], positive_text, negative_text)
+                return ([[cond_p, {"pooled_output": pooled_p, "width": width, "height": height, "crop_w": 0, "crop_h": 0, "target_width": width, "target_height": height}]], [[cond_n, {"pooled_output": pooled_n, "width": width, "height": height, "crop_w": 0, "crop_h": 0, "target_width": width, "target_height": height}]], positive_text, negative_text, sdxl_positive_l, sdxl_negative_l)
 
         else:
             tokens = clip.tokenize(positive_text)
@@ -372,7 +377,7 @@ class PrimereCLIP:
 
             tokens = clip.tokenize(negative_text)
             cond_neg, pooled_neg = clip.encode_from_tokens(tokens, return_pooled = True)
-            return ([[cond_pos, {"pooled_output": pooled_pos}]], [[cond_neg, {"pooled_output": pooled_neg}]], positive_text, negative_text)
+            return ([[cond_pos, {"pooled_output": pooled_pos}]], [[cond_neg, {"pooled_output": pooled_neg}]], positive_text, negative_text, "", "")
 
 class PrimereResolution:
     RETURN_TYPES = ("INT", "INT",)
@@ -447,16 +452,17 @@ class PrimereClearPrompt:
           "required": {
               "positive_prompt": ("STRING", {"forceInput": True}),
               "negative_prompt": ("STRING", {"forceInput": True}),
-              "remove_embedding": ("BOOLEAN", {"default": False}),
+              "remove_comfy_embedding": ("BOOLEAN", {"default": False}),
+              "remove_a1111_embedding": ("BOOLEAN", {"default": False}),
               "remove_lora": ("BOOLEAN", {"default": False}),
               "remove_hypernetwork": ("BOOLEAN", {"default": False}),
           },
       }
 
-  def clean_prompt(self, positive_prompt, negative_prompt, remove_embedding, remove_lora, remove_hypernetwork):
+  def clean_prompt(self, positive_prompt, negative_prompt, remove_comfy_embedding, remove_a1111_embedding, remove_lora, remove_hypernetwork):
       NETWORK_START = []
 
-      if remove_embedding == True:
+      if remove_comfy_embedding == True:
           NETWORK_START.append('embedding:')
 
       if remove_lora == True:

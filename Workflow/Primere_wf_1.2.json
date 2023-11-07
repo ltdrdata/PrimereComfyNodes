@@ -1,6 +1,6 @@
 {
-  "last_node_id": 59,
-  "last_link_id": 153,
+  "last_node_id": 64,
+  "last_link_id": 169,
   "nodes": [
     {
       "id": 22,
@@ -131,7 +131,7 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Testprompt - Paint art"
+        "Testprompt - Woman SFW"
       ]
     },
     {
@@ -569,7 +569,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "BestAll\\icbinp_final.safetensors",
+        "SDXL\\nightvisionXLPhotorealistic.safetensors",
         "SDXL"
       ]
     },
@@ -654,10 +654,10 @@
         -1300.2399853515624,
         523.940092163086
       ],
-      "size": [
-        629.2,
-        578.38
-      ],
+      "size": {
+        "0": 654.239990234375,
+        "1": 358.0599060058594
+      },
       "flags": {},
       "order": 16,
       "mode": 0,
@@ -690,6 +690,90 @@
       ]
     },
     {
+      "id": 61,
+      "type": "PrimerePrompt",
+      "pos": [
+        -1293,
+        932
+      ],
+      "size": [
+        654.60009765625,
+        290.0999999999999
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            164
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            165
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePrompt"
+      },
+      "widgets_values": [
+        "a late autumn mood, chilly breeze, fallen leaves, misty harbor, crowded streets, vintage fashion, gas lamps, cobblestone roads, tall ships, bustling activity, somber atmosphere, worn-out buildings, dampness, muted colors, hidden mysteries, nostalgia, umbrellas, top hats, bonnets, smokestacks, hazy skies, whispered conversations camera settings: Canon EOS 5D Mark IV, Fujifilm Pro 400H film, 35mm lens, long exposure technique -c 10 -ar 2:3 + rtx on -v 5.2  -q 5 -style raw directors, cinematographers, photographers, fashion designers: Alfred Hitchcock, Roger Deakins, Julia Margaret Cameron, Alexander McQueen, Tim Burton, Dorothea Lange, Cecil Beaton, David Lynch, Lewis Carroll, Vivienne Westwood, Wong Kar-wai, Edward Steichen, Robert Doisneau, Stanley Kubrick, Annie Leibovitz, Charles Dickens,",
+        "watermark, text"
+      ]
+    },
+    {
+      "id": 64,
+      "type": "PrimerePrompt",
+      "pos": [
+        -1299,
+        1281
+      ],
+      "size": {
+        "0": 654.60009765625,
+        "1": 290.1000061035156
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            168
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            169
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePrompt"
+      },
+      "widgets_values": [
+        "chronic method, photorealism, again quietly in harmony far from the bustling world, zwd backlighting intricate details, hyperdetailed, surrealism, westernkoholic",
+        "watermark, text"
+      ]
+    },
+    {
       "id": 21,
       "type": "Display Any (rgthree)",
       "pos": [
@@ -701,7 +785,7 @@
         "1": 76
       },
       "flags": {},
-      "order": 17,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -716,7 +800,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "0"
+        "1"
       ]
     },
     {
@@ -731,7 +815,7 @@
         "1": 222
       },
       "flags": {},
-      "order": 18,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -748,7 +832,8 @@
           "name": "WIDTH",
           "type": "INT",
           "links": [
-            137
+            137,
+            158
           ],
           "shape": 3,
           "slot_index": 0
@@ -757,7 +842,8 @@
           "name": "HEIGHT",
           "type": "INT",
           "links": [
-            138
+            138,
+            159
           ],
           "shape": 3,
           "slot_index": 1
@@ -767,7 +853,7 @@
         "Node name for S&R": "PrimereResolution"
       },
       "widgets_values": [
-        "Photo [19:13]",
+        "Portrait [9:7]",
         "Vertical",
         true,
         "SD 2.x",
@@ -789,7 +875,7 @@
         "1": 473.7483215332031
       },
       "flags": {},
-      "order": 19,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -830,7 +916,7 @@
         "Node name for S&R": "PromptGenerator"
       },
       "widgets_values": [
-        554434741546529,
+        812683109786399,
         "randomize",
         "",
         "photography",
@@ -856,11 +942,11 @@
         200
       ],
       "size": {
-        "0": 228.39999389648438,
-        "1": 398
+        "0": 236.8000030517578,
+        "1": 478
       },
       "flags": {},
-      "order": 20,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -946,10 +1032,30 @@
         {
           "name": "prompt_pos_9",
           "type": "STRING",
-          "link": null
+          "link": 164
         },
         {
           "name": "prompt_neg_9",
+          "type": "STRING",
+          "link": 165
+        },
+        {
+          "name": "prompt_pos_10",
+          "type": "STRING",
+          "link": 168
+        },
+        {
+          "name": "prompt_neg_10",
+          "type": "STRING",
+          "link": 169
+        },
+        {
+          "name": "prompt_pos_11",
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "prompt_neg_11",
           "type": "STRING",
           "link": null
         }
@@ -984,7 +1090,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        8
+        1
       ]
     },
     {
@@ -999,7 +1105,7 @@
         "1": 1121.9696044921875
       },
       "flags": {},
-      "order": 21,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -1217,8 +1323,7 @@
           "name": "width",
           "type": "INT",
           "links": [
-            99,
-            108
+            99
           ],
           "shape": 3,
           "slot_index": 10
@@ -1227,8 +1332,7 @@
           "name": "height",
           "type": "INT",
           "links": [
-            100,
-            109
+            100
           ],
           "shape": 3,
           "slot_index": 11
@@ -1322,7 +1426,7 @@
         "1": 94
       },
       "flags": {},
-      "order": 22,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
@@ -1354,7 +1458,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            20
+            154
           ],
           "shape": 3,
           "slot_index": 1
@@ -1372,7 +1476,7 @@
           "type": "INT",
           "links": [
             42,
-            121
+            155
           ],
           "shape": 3,
           "slot_index": 3
@@ -1397,7 +1501,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 23,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -1433,7 +1537,7 @@
       },
       "widgets_values": [
         "",
-        -879606144416612,
+        -492832060404928,
         "randomize"
       ]
     },
@@ -1449,7 +1553,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 24,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -1485,7 +1589,7 @@
       },
       "widgets_values": [
         "",
-        369576165809732,
+        256800212959657,
         "randomize"
       ]
     },
@@ -1501,7 +1605,7 @@
         "1": 397.8281555175781
       },
       "flags": {},
-      "order": 25,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -1516,7 +1620,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"exterior, extreme architecture, ({huge|large|small|friendly} {futuristic|modern|luxury|old style|retro|horror|Retro_Futuristic|abandoned|style-abandoned2|wooden|concrete|metallic|glassy|home|office building|castle} terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor {daytime|night|morning|evening|starry night|stormy, thunder, lightning} {|Summer|summer|Winter|winter|Spring|spring|Autumn|autumn|Apocalypse} professional architectural photography), beautiful nature on {Earth|Moon|Mars|Venus|Saturn|space|nature|huge spaceship|alien word}, large hill, (snow on hill:0.7), (a frightening sight:1.3), small {pool|swimming pool|lake}, (solar panels:0.6), ({volcano in the background with smoke and fire|forest with trees|huge rocky mountain, stones|}:0.6)\", \"negative\": \"watermark, person, text, china style, indian style\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\icbinp_final.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 651780528925616, \"width\": 614, \"height\": 960, \"cfg_scale\": 8.5, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false}"
+        "{\"positive\": \"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\", \"negative\": \"kid, child, childish, text, frame, nude, nudity, porn, sex\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\nightvisionXLPhotorealistic.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 1044760397616147, \"width\": 910, \"height\": 1152, \"cfg_scale\": 8.5, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
       ]
     },
     {
@@ -1531,7 +1635,7 @@
         "1": 438
       },
       "flags": {},
-      "order": 26,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
@@ -1601,7 +1705,7 @@
         1.2,
         0.9,
         1.25,
-        -470868514597731,
+        766554655774132,
         "randomize",
         true,
         "cpu"
@@ -1619,7 +1723,7 @@
         "1": 76
       },
       "flags": {},
-      "order": 27,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -1634,7 +1738,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "0"
+        "1"
       ]
     },
     {
@@ -1649,7 +1753,7 @@
         "1": 174
       },
       "flags": {},
-      "order": 28,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -1695,9 +1799,10 @@
       "widgets_values": [
         "",
         "",
-        false,
-        false,
-        false
+        true,
+        true,
+        true,
+        true
       ]
     },
     {
@@ -1712,7 +1817,7 @@
         "1": 246
       },
       "flags": {},
-      "order": 29,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
@@ -1732,12 +1837,12 @@
         2008,
         158
       ],
-      "size": [
-        240,
-        54
-      ],
+      "size": {
+        "0": 240,
+        "1": 54
+      },
       "flags": {},
-      "order": 30,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -1762,7 +1867,7 @@
           "name": "prompt+",
           "type": "STRING",
           "links": [
-            150
+            156
           ],
           "shape": 3,
           "slot_index": 0
@@ -1771,7 +1876,7 @@
           "name": "prompt-",
           "type": "STRING",
           "links": [
-            151
+            157
           ],
           "shape": 3,
           "slot_index": 1
@@ -1786,29 +1891,29 @@
       ]
     },
     {
-      "id": 15,
+      "id": 60,
       "type": "PrimereCLIPEncoder",
       "pos": [
-        2292,
-        191
+        2295,
+        178
       ],
       "size": {
-        "0": 371.6446533203125,
-        "1": 625.4931640625
+        "0": 373,
+        "1": 566
       },
       "flags": {},
-      "order": 31,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 20
+          "link": 154
         },
         {
           "name": "is_sdxl",
           "type": "INT",
-          "link": 121,
+          "link": 155,
           "widget": {
             "name": "is_sdxl"
           }
@@ -1816,7 +1921,7 @@
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 150,
+          "link": 156,
           "widget": {
             "name": "positive_prompt"
           }
@@ -1824,7 +1929,7 @@
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 151,
+          "link": 157,
           "widget": {
             "name": "negative_prompt"
           }
@@ -1880,7 +1985,7 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 108,
+          "link": 158,
           "widget": {
             "name": "width"
           }
@@ -1888,7 +1993,7 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 109,
+          "link": 159,
           "widget": {
             "name": "height"
           }
@@ -1899,7 +2004,7 @@
           "name": "COND+",
           "type": "CONDITIONING",
           "links": [
-            28
+            160
           ],
           "shape": 3,
           "slot_index": 0
@@ -1908,7 +2013,7 @@
           "name": "COND-",
           "type": "CONDITIONING",
           "links": [
-            29
+            161
           ],
           "shape": 3,
           "slot_index": 1
@@ -1917,7 +2022,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            73
+            162
           ],
           "shape": 3,
           "slot_index": 2
@@ -1926,10 +2031,28 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            74
+            163
           ],
           "shape": 3,
           "slot_index": 3
+        },
+        {
+          "name": "PROMPT L+",
+          "type": "STRING",
+          "links": [
+            166
+          ],
+          "shape": 3,
+          "slot_index": 4
+        },
+        {
+          "name": "PROMPT L-",
+          "type": "STRING",
+          "links": [
+            167
+          ],
+          "shape": 3,
+          "slot_index": 5
         }
       ],
       "properties": {
@@ -1939,11 +2062,12 @@
         0,
         "",
         "",
-        1.17,
-        false,
-        "PORTRAITS_PETS_DEFAULTS_NEG",
-        1.22,
-        false,
+        true,
+        1.2,
+        true,
+        "BETTER_IMAGES_NEG",
+        1.3,
+        true,
         "mean",
         "comfy++",
         "",
@@ -1956,7 +2080,7 @@
         1,
         "",
         "",
-        1,
+        1.3,
         1024,
         1024
       ]
@@ -1965,15 +2089,15 @@
       "id": 16,
       "type": "KSampler",
       "pos": [
-        2686,
-        180
+        2684,
+        178
       ],
       "size": {
         "0": 315.5999755859375,
         "1": 218
       },
       "flags": {},
-      "order": 32,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
@@ -1984,12 +2108,12 @@
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 28
+          "link": 160
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 29
+          "link": 161
         },
         {
           "name": "latent_image",
@@ -2054,7 +2178,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        136700810044832,
+        432490851966092,
         "randomize",
         20,
         8,
@@ -2067,21 +2191,21 @@
       "id": 37,
       "type": "Display Any (rgthree)",
       "pos": [
-        2310,
-        840
+        2297,
+        769
       ],
       "size": {
-        "0": 694.5776977539062,
-        "1": 334.5897216796875
+        "0": 702.6953735351562,
+        "1": 187.62889099121094
       },
       "flags": {},
-      "order": 33,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 73,
+          "link": 162,
           "dir": 3,
           "slot_index": 0
         }
@@ -2090,28 +2214,28 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"exterior, extreme architecture, (small concrete terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor daytime embedding:Winter professional architectural photography), beautiful nature on nature, large hill, (snow on hill:0.7), (a frightening sight:1.3), small swimming pool, (solar panels:0.6), (forest with trees:0.6)\""
+        "\"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\""
       ]
     },
     {
       "id": 36,
       "type": "Display Any (rgthree)",
       "pos": [
-        2310,
-        1190
+        2299,
+        970
       ],
       "size": {
-        "0": 694.5776977539062,
-        "1": 271.0892333984375
+        "0": 700.6953735351562,
+        "1": 175.82888793945312
       },
       "flags": {},
-      "order": 34,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 74,
+          "link": 163,
           "dir": 3,
           "slot_index": 0
         }
@@ -2120,7 +2244,67 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(watermark, person, text, china style, indian style:1.17)\""
+        "\"(kid, child, childish, text, frame, nude, nudity, porn, sex:1.20), (Amputee, Autograph, Bad anatomy, Bad illustration, Bad proportions, Beyond the borders, Blank background, Blurry, Body out of frame, Boring background, Branding, Cropped, Cut off, Deformed, Disfigured, Dismembered, Disproportioned, Distorted, Draft, Duplicate, Duplicated features, Extra arms, Extra fingers, Extra hands, Extra legs, Extra limbs, Fault, Flaw, Fused fingers, Grains, Grainy, Gross proportions, Hazy, Identifying mark, Improper scale, Incorrect physiology, Incorrect ratio, Indistinct, Kitsch, Logo, Long neck, Low quality, Low resolution, Macabre, Malformed, Mark, Misshapen, Missing arms, Missing fingers, Missing hands, Missing legs, Mistake, Morbid, Mutated hands, Mutation, Mutilated, Off-screen, Out of frame, Outside the picture, Pixelated, Poorly drawn face, Poorly drawn feet, Poorly drawn hands, Printed words, Render, Repellent, Replicate, Reproduce, Revolting dimensions, Script, Shortened, Sign, Signature, Split image, Squint, Storyboard, Text, Tiling, Trimmed, Ugly, Unfocused, Unattractive, Unnatural pose, Unreal engine, Unsightly, Watermark, Written language:1.30)\""
+      ]
+    },
+    {
+      "id": 62,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        2297,
+        1159
+      ],
+      "size": {
+        "0": 702.6953735351562,
+        "1": 187.62889099121094
+      },
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 166,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "\"(beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography:1.30)\""
+      ]
+    },
+    {
+      "id": 63,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        2294,
+        1354
+      ],
+      "size": {
+        "0": 702.6953735351562,
+        "1": 187.62889099121094
+      },
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 167,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "\"(kid, child, childish, text, frame, nude, nudity, porn, sex:1.30)\""
       ]
     },
     {
@@ -2128,14 +2312,14 @@
       "type": "VAEDecode",
       "pos": [
         2771,
-        90
+        83
       ],
       "size": {
         "0": 210,
         "1": 46
       },
       "flags": {},
-      "order": 35,
+      "order": 39,
       "mode": 0,
       "inputs": [
         {
@@ -2179,7 +2363,7 @@
         "1": 1369.0999755859375
       },
       "flags": {},
-      "order": 36,
+      "order": 40,
       "mode": 0,
       "inputs": [
         {
@@ -2205,7 +2389,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 37,
+      "order": 41,
       "mode": 0,
       "inputs": [
         {
@@ -2248,7 +2432,7 @@
         "1": 76
       },
       "flags": {},
-      "order": 38,
+      "order": 42,
       "mode": 0,
       "inputs": [
         {
@@ -2263,7 +2447,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "608"
+        "1152"
       ]
     },
     {
@@ -2278,7 +2462,7 @@
         "1": 76
       },
       "flags": {},
-      "order": 39,
+      "order": 43,
       "mode": 0,
       "inputs": [
         {
@@ -2293,7 +2477,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "960"
+        "904"
       ]
     }
   ],
@@ -2305,30 +2489,6 @@
       11,
       0,
       "VAE"
-    ],
-    [
-      20,
-      14,
-      1,
-      15,
-      0,
-      "CLIP"
-    ],
-    [
-      28,
-      15,
-      0,
-      16,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      29,
-      15,
-      1,
-      16,
-      2,
-      "CONDITIONING"
     ],
     [
       30,
@@ -2481,22 +2641,6 @@
       33,
       0,
       "INT"
-    ],
-    [
-      73,
-      15,
-      2,
-      37,
-      0,
-      "*"
-    ],
-    [
-      74,
-      15,
-      3,
-      36,
-      0,
-      "*"
     ],
     [
       77,
@@ -2659,36 +2803,12 @@
       "VAE"
     ],
     [
-      108,
-      39,
-      10,
-      15,
-      10,
-      "INT"
-    ],
-    [
-      109,
-      39,
-      11,
-      15,
-      11,
-      "INT"
-    ],
-    [
       120,
       4,
       2,
       14,
       1,
       "STRING"
-    ],
-    [
-      121,
-      14,
-      3,
-      15,
-      1,
-      "INT"
     ],
     [
       124,
@@ -2851,22 +2971,6 @@
       "STRING"
     ],
     [
-      150,
-      58,
-      0,
-      15,
-      2,
-      "STRING"
-    ],
-    [
-      151,
-      58,
-      1,
-      15,
-      3,
-      "STRING"
-    ],
-    [
       152,
       59,
       0,
@@ -2880,6 +2984,134 @@
       1,
       26,
       15,
+      "STRING"
+    ],
+    [
+      154,
+      14,
+      1,
+      60,
+      0,
+      "CLIP"
+    ],
+    [
+      155,
+      14,
+      3,
+      60,
+      1,
+      "INT"
+    ],
+    [
+      156,
+      58,
+      0,
+      60,
+      2,
+      "STRING"
+    ],
+    [
+      157,
+      58,
+      1,
+      60,
+      3,
+      "STRING"
+    ],
+    [
+      158,
+      53,
+      0,
+      60,
+      10,
+      "INT"
+    ],
+    [
+      159,
+      53,
+      1,
+      60,
+      11,
+      "INT"
+    ],
+    [
+      160,
+      60,
+      0,
+      16,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      161,
+      60,
+      1,
+      16,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      162,
+      60,
+      2,
+      37,
+      0,
+      "*"
+    ],
+    [
+      163,
+      60,
+      3,
+      36,
+      0,
+      "*"
+    ],
+    [
+      164,
+      61,
+      0,
+      26,
+      16,
+      "STRING"
+    ],
+    [
+      165,
+      61,
+      1,
+      26,
+      17,
+      "STRING"
+    ],
+    [
+      166,
+      60,
+      4,
+      62,
+      0,
+      "*"
+    ],
+    [
+      167,
+      60,
+      5,
+      63,
+      0,
+      "*"
+    ],
+    [
+      168,
+      64,
+      0,
+      26,
+      18,
+      "STRING"
+    ],
+    [
+      169,
+      64,
+      1,
+      26,
+      19,
       "STRING"
     ]
   ],
