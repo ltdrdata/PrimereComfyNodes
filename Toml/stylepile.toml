@@ -1,0 +1,222 @@
+[art-type.None]
+positive = ''
+negative = ''
+[art-type.3d-rendering]
+positive = 'Professional 3D rendering,CGSociety,ArtStation'
+negative = '((Wireframe)),Polygons,Screenshot,Character design,Software,UI'
+[art-type.digital-artwork]
+positive = 'Digital Artwork,CGSociety,ArtStation'
+negative = 'Scribbles,Low quality,Low rated,Mediocre,3D rendering,Screenshot,Software,UI'
+[art-type.drawing]
+positive = 'Drawing'
+negative = 'Low quality,Photo,Artifacts,Table,Paper,Pencils,Pages,Wall'
+[art-type.painting]
+positive = 'Painting'
+negative = 'Low quality,Bad composition,Faded,(Photo:1.5),(Frame:1.3)'
+[art-type.photo]
+positive = 'Photo,Highly Detailed'
+negative = 'Low rated,Phone,Wedding,Frame,Painting,tumblr'
+[art-type.vector-art]
+positive = 'Vector art'
+negative = '(Watermark:1.5),(Text:1.3)'
+[concepts]
+concepts = [
+    "Acclaimed",
+    "Alternative",
+    "Amateur",
+    "Artificial",
+    "Award Winning",
+    "Basic",
+    "Beginner",
+    "Bipolar",
+    "Boyish",
+    "Childish",
+    "Cinematic",
+    "Clever",
+    "Clumsy",
+    "Cognitive",
+    "Complex",
+    "Compressed",
+    "Controllable",
+    "Corrupted",
+    "Damaged",
+    "Destroyed",
+    "Disgusting",
+    "Divisive",
+    "Dramatic",
+    "Dumb",
+    "Eliminated",
+    "Excessive",
+    "Exciting",
+    "Extreme",
+    "Feminine",
+    "Filtered",
+    "Fixated",
+    "Fixed",
+    "Foolish",
+    "Fragile",
+    "Girlish",
+    "Gorgeous",
+    "Groundbreaking",
+    "Hated",
+    "Hidden",
+    "Highly Rated",
+    "Horrifying",
+    "Imaginary",
+    "Imaginative",
+    "Imitated",
+    "Jaded",
+    "Light hearted",
+    "Loved",
+    "Low Rated",
+    "Magical",
+    "Masculine",
+    "Masterful",
+    "Masterpiece",
+    "Maximalist",
+    "Methodological",
+    "Misunderstood",
+    "Mundane",
+    "Overprocessed",
+    "Pathetic",
+    "Photoshopped",
+    "Preview",
+    "Raw",
+    "Recycled",
+    "Religious",
+    "Rough",
+    "Sacrificial",
+    "Sacrilegious",
+    "Schematic",
+    "Simple",
+    "Sophisticated",
+    "Stupid",
+    "Trustworthy",
+    "Unbelievable",
+    "Understandable",
+    "Unearthed",
+    "Unfiltered",
+    "Unfinished",
+    "Unhinged",
+    "Universal",
+    "Unsuccessful",
+    "Venerable",
+    "Visionary",
+    "Vivacious"
+]
+[artists]
+artists = [
+    "Scott Listfield", "Carel Willink", "Eve Ventrue", "John Howe",
+    "Leonardo Coccorante", "Ed Mell", "Vasily Vereschagin", "Frank Bowling",
+    "Pang Xunqin", "James Gilleard", "Bill Sienkiewicz", "Makoto Shinkai",
+    "Mike Allred", "Jeannette Guichard-Bunel", "Wadim Kashin", "Peter Gric",
+    "Earnst Haeckel", "Hannah Yata", "Richard Avedon", "Harrison Fisher",
+    "Peter Elson", "Akihiko Yoshida", "Tarsila do Amaral", "Earl Norem", "Albert Lynch",
+    "Anna Dittman", "Georgia O’Keeffe", "Jon Whitcomb", "Arthur Adams", "Raymond Swanland",
+    "Ernie Barnes", "Claude Monet", "Aubrey Beardsley", "Trina Robbins", "Peter Mohrbacher",
+    "Zdzislaw Beksinski", "Jeremy Lipking", "Jeffrey Smith", "Andre Masson", "Bob Eggleton",
+    "Christopher Balaskas", "Todd McFarlane", "Don Bergland", "Carmine Infantino", "Mead Schaeffer",
+    "Lyubov Popova", "Kaws", "Bill Ward", "Anato Finnstark", "Hsiao-Ron Cheng", "Peter Wileman",
+    "Tomer Hanuka", "Ralph Gibson", "Umberto Boccioni", "Al Williamson", "John T. Biggers", "RHADS",
+    "Lisa Frank", "Joe Jusko", "Eyvind Earle", "Esteban Maroto", "Jian Chong Min", "Philippe Druillet",
+    "Barbara Kruger", "Simon Bisley", "Koho Shoda", "Gustaf Tenggren", "Thomas Blackshear", "H.P. Lovecraft",
+    "Ian Kennedy", "Ivan Bilibin", "Phil Noto", "Martin Schongauer", "Charles Adams", "Yoshitaka Amano",
+    "Gil Kane", "RossDraws", "J.C. Leyendecker", "Stanislaw Wyspianski", "Fujishima Takeji", "William Eggleston",
+    "Stephan Martinière", "Tom Whalen", "Charlie Bowater", "James Gurney", "Gene Colan", "Jacek Yerka",
+    "Ted Nasmith", "Joao Ruas", "Bruce Pennington", "Alex Grey", "Kadir Nelson", "Alex Ross",
+    "Thomas Shotter Boys", "Roberto Matta", "Mary Jane Ansell", "Alvar Aalto", "Brian Bolland",
+    "Cedric Peyravernay", "Ilya Repin", "Ulisse Aldrovandi", "John Lavery", "Mark Ryden", "Ilya Kuvshinov",
+    "Brandon Woelfel", "Jan Urschel", "Ruan Jia", "Carrie Ann Baade", "Austin Briggs", "Robert Bissell",
+    "Ed Emshwiller", "Gil Elvgren", "Sam Gilliam", "Dan Mumford", "Artgerm", "Thomas Kinkade",
+    "Jan Hendrik Weissenbruch", "Gustav Klimt", "Jay Anacleto", "Bastien Lecouffe Deharme", "Ayami Kojima",
+    "Alex Toth", "Juan Gris", "Frank Xavier", "Syd Mead", "Alex Andreev", "Kehinde Wiley",
+    "Mike Winkelmann", "W. Heath Robinson", "Stanhope Forbes", "Robert McCall", "Karol Bak",
+    "Jim Holland", "Wangechi Mutu", "Alexander Archipenko", "Ethan Van Sciver", "Franklin Booth",
+    "Hiroshi Nagai", "Paul Lehr", "M.C. Escher", "Michael Cheval", "Martin Ansin", "Yanjun Cheng",
+    "Ron Miller", "Georgy Kurasov", "Adi Granov", "Tsutomu Nihei", "Filippino Lippi", "Coles Phillips",
+    "Igor Zenin", "Sabbas Apterus", "Dorina Costras", "Igor Morski", "Erin Hanson", "James Jean",
+    "Alberto Vargas", "Harry Clarke", "Henry Clive", "Edith Head", "Earle Bergey", "Greg Manchess",
+    "Arthur Rackham", "John Philip Falter", "Moebius", "Alphonse Mucha", "Brian Froud", "Lee Bogle",
+    "Henri Matisse", "Maxfield Parrish", "Jim Burns", "Trevor Brown", "Esao Andrews", "Rob Gonsalves",
+    "Alena Aenami", "E.H. Shepard", "Kawase Hasui", "Joe Kubert", "F. Scott Hess", "Jasmine Becket-Griffith",
+    "Wayne Barlowe", "Alfred Steiglitz", "Butcher Billy", "Boris Vallejo", "P.A. Works", "William Dodge",
+    "Petros Afshar", "Beeple", "Rolf Armstrong", "Julian Onderdonk", "Ivan Aivazovsky", "Mort Kunstler",
+    "Jean Giraud", "Chris Foss", "Conrad Roset", "Shinji Aramaki", "Yoji Shinkawa", "Milton Caniff",
+    "Simon Stalenhag", "Herbert James Gunn", "Mati Klarwein", "Takashi Murakami", "John Singer Sargent",
+    "Miho Hirano", "Romero Britto", "Junji Ito", "Gediminas Pranckevicius", "Tom Bagshaw", "Joop Polder",
+    "Edmund Dulac", "Ryohei Hase", "Eric Kennington", "Joseph Leyendecker", "Njideka Akunyili Crosby",
+    "Neal Adams", "Marc Chagall", "Bryan Hitch", "Paul Signac", "Ross Tran", "Huang Guangjian",
+    "Richard Corben", "Johan Heinrich Fussli", "Roy Lichtenstein", "Hiroshi Yoshida", "Adam Hughes",
+    "Apollonia Saintclair", "Greg Rutkowski", "Theo Van Rysselberghe", "Camille Walala", "Loish",
+    "H.R. Giger", "Will Barnet", "Krenz Cushart", "Adolf Kosarek", "Rafael Albuquerque", "Siya Oum",
+    "Gabriel Von Max", "Enki Bilal", "Diego Rivera", "Curt Swan", "Norman Rockwell", "Marc Simonetti",
+    "Adolph Von Menzel", "Vincent DiFate", "Geof Darrow", "Clive Barker", "Salvador Dali", "Miles Aldridge",
+    "William McGregor Paxton", "Kelly McKernan", "Fred Calleri", "Edvard Munch", "Frank Frazetta",
+    "Paul Cadmus", "Gertrude Abercrombie", "Frank Tenney Johnson", "John Romita Jr", "Shigenori Soejima",
+    "Bo Bartlett", "Chesley Bonestell", "Jack Kirby", "Tom Lovell", "Leonid Afremov", "Nikolai Astrup",
+    "Warwick Goble", "Sachin Teng", "Mike Mignola", "Victor Nizovtsev", "Andy Fairhurst", "Casey Baugh",
+    "WLOP", "Ellen Jewett", "Andrew Loomis", "Fernand Khnopff", "Alexander Jansson", "Emily Balivet",
+    "Ryan Pancoast", "Victo Ngai", "Hikari Shimoda", "William Holbrook Beard", "Casey Weldon", "Karel Thole",
+    "Michael Whelan", "Jackson Pollock", "Bob Haberfield", "Walter Crane", "Alberto Seveso",
+    "Vittorio Reggianini", "Frank Cadogan Cowper", "Jason Edmiston", "Bob Peak", "Gerald Brom",
+    "James C. Christensen", "Sam bosma", "Donato Giancola", "Richard Lindner", "Bob Byerley",
+    "Tara McPherson", "Jeremiah Ketner", "Masamune Shirow", "Steve Ditko"
+]
+[art-movements]
+art-movements = [
+  "Suprematism", "Arts and Crafts Movement",
+  "Ukiyo-E", "Orphism", "Normcore Art", "Qajar Art",
+  "Hippie Art", "Neoclassicism", "Magical Realism",
+  "Cyberpunk Art", "Fluxus Art", "Retrofuturism", "Yuccie Art",
+  "Vaporwave Art", "Action Painting", "Academism", "Health Goth Art",
+  "Surrealism Art", "Shin Hanga", "Afrofuturism", "Kinetic Pointillism",
+  "Seapunk Art", "Neogothic Art", "Cubism", "Baroque Art", "Modern Art",
+  "Metaphysical Painting", "Cubo-Futurism", "Renaissance", "Computer Art",
+  "Memecore Art", "Glitch Art", "Hardcore Art", "Solarpunk Art", "Pop Art",
+  "Futurism", "Tonalism", "Rococo", "Ashcan School", "Primitivism Art",
+  "Vorticism Art", "Classicism Art", "Fauvism", "Pre-Raphaelitism",
+  "Process Art", "Lowbrow Art", "Harlem Renaissance", "Bauhaus Art",
+  "Aestheticism", "Impressionism", "Sōsaku Hanga", "Graffiti Street Art",
+  "Emo Art", "Art Nouveau", "Cloisonnism", "60s Art", "Steampunk Art",
+  "Neo Dada Art", "Art Photography", "Realism", "Vanitas", "Toyism Art",
+  "Neo-Expressionism", "70s Art", "Remodernism", "Expressionism", "50s Art",
+  "CGI Art", "Synthetism", "Panfuturism", "Land Art", "Neo-Primitivism", "Pointillism",
+  "Crystal Cubism", "Psychedelic Art", "Pastel Goth Art", "Folk Art", "80s Art",
+  "Minimalism Art", "Queercore Art", "Mingei", "Hyperrealism", "Pixel Art",
+  "American Scene Painting", "Figurative Art", "Constructivism Art",
+  "Abstract Art", "Cutester Art", "Cybergoth Art", "Australian Tonalism",
+  "Conceptual Art", "Dark Wave Art", "Abstract Illusionism", "Ascii Art",
+  "Classical Realism", "Art Brut", "Digital Art", "Neo", "Grunge Art",
+  "Victorian Gothic Art", "Temp", "Street Art", "Post-Impressionism",
+  "Lyrical Abstraction", "Modern European Ink Painting", "Neo-Fauvism",
+  "Neo-Dadaism Art", "Mannerism Art", "Serial Art", "Gutai Group",
+  "New Wave Art", "Photorealism", "Berlin Secession", "Hipster Art",
+  "Primitivism", "Nu Goth Art", "Funk Art", "Art Deco", "Heidelberg School",
+  "Private Press", "American Impressionism", "Geometric Abstract Art",
+  "Modernism Art", "Abstract Expressionism",
+  "Dada Art", "Psytrance Art", "Naive Art", "Industrial Art"
+]
+[colors]
+colors=[
+  "Technicolor", "Kodachrome", "Pastel Colors", "Colorful", "Blue hue", "Cathode tube",
+  "CMYK Colors", "Hypersaturated", "Electric Colors", "Provia", "Kinemacolor", "High Contrast",
+  "Velvia", "One Color", "Kodak Portra", "Vivid Colors", "Infrared", "Muted Colors", "Colorless",
+  "Red hue", "Cyan hue", "Primary Colors", "Dark hue", "Purple hue", "Polychromatic", "Grayscale",
+  "Kodak Ektar", "Fujifilm Superia", "CineColor", "Dichromatic", "Magenta hue", "Agfacolor",
+  "Low Contrast", "Yellow hue", "Offset print", "Warm Colors", "BW", "Single Color",
+  "Desaturated", "Saturated", "Mono Color", "Oversaturated", "Green hue", "Cold Colors"
+]
+[directions]
+directions=[
+  "Illustration", "Sketch", "Detailed illustration", "Realistic", "Simple illustration",
+  "Cel shading", "Screen print", "Visual novel", "Sketched", "Masterpiece", "Ultrarealistic",
+  "Technical illustration", "Graphic novel", "Rough sketch", "Cel shaded", "Ultra detailed"
+]
+[moods]
+moods=[
+  "Lustful", "Sad", "Hopeless", "Cosy", "Happy", "Romantic",
+  "Amusing", "Depressing", "Shameful", "Satisfying", "Energetic",
+  "Proud", "Hopeful", "Evil", "Guilty", "Surprising", "Relieving",
+  "Frightening", "Grim", "Disgusting", "Peaceful", "Lonely",
+  "Embarrassing", "Angry", "Fearful"
+]

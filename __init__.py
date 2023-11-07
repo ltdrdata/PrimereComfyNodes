@@ -40,6 +40,7 @@ if frontend_target.exists() == False:
 
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Dashboard as Dashboard
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Inputs as Inputs
+import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Styles as Styles
 
 NODE_CLASS_MAPPINGS = {
     "PrimereSamplers": Dashboard.PrimereSamplers,
@@ -62,6 +63,8 @@ NODE_CLASS_MAPPINGS = {
     "PrimereMetaRead": Inputs.PrimereMetaRead,
     "PrimereEmbeddingHandler": Inputs.PrimereEmbeddingHandler,
     # "PrimereImageMetaSaver": PriIO.PrimereMetaSave,
+
+    "PrimereStylePile": Styles.PrimereStylePile,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -85,4 +88,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereMetaRead": "Primere Exif Reader",
     "PrimereEmbeddingHandler": "Primere Embedding Handler",
     # "PrimereImageMetaSaver": "Primere Image Meta Saver",
+
+    "PrimereStylePile": "Primere Style Pile",
 }
