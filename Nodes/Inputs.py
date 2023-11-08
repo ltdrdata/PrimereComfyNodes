@@ -79,7 +79,7 @@ class PrimereStyleLoader:
         cls.styles_csv = cls.load_styles_csv(os.path.join(STYLE_DIR, "styles.csv"))
         return {
             "required": {
-                "styles": (list(cls.styles_csv['name']),),
+                "styles": (sorted(list(cls.styles_csv['name'])),),
             },
         }
 

@@ -276,6 +276,7 @@ class PrimereCLIP:
     def INPUT_TYPES(cls):
         DEF_TOML_DIR = os.path.join(PRIMERE_ROOT, 'Toml')
         cls.default_neg = cls.get_default_neg(os.path.join(DEF_TOML_DIR, "default_neg.toml"))
+        cls.default_pos = cls.get_default_neg(os.path.join(DEF_TOML_DIR, "default_pos.toml"))
 
         return {
             "required": {
@@ -283,11 +284,13 @@ class PrimereCLIP:
                 "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
                 "positive_prompt": ("STRING", {"forceInput": True}),
                 "negative_prompt": ("STRING", {"forceInput": True}),
-                "copy_prompt_to_l": ("BOOLEAN", {"default": True}),
                 "negative_strength": ("FLOAT", {"default": 1.2, "min": 0.0, "max": 10.0, "step": 0.01}),
-                "use_additional": ("BOOLEAN", {"default": False}),
-                "additional": (list(cls.default_neg.keys()),),
-                "additional_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
+                "copy_prompt_to_l": ("BOOLEAN", {"default": True}),
+                "use_int_style": ("BOOLEAN", {"default": False}),
+                "int_style_pos": (['None'] + list(cls.default_pos.keys()),),
+                "int_style_pos_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
+                "int_style_neg": (['None'] + list(cls.default_neg.keys()),),
+                "int_style_neg_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "adv_encode": ("BOOLEAN", {"default": False}),
                 "token_normalization": (["none", "mean", "length", "length+mean"],),
                 "weight_interpretation": (["comfy", "A1111", "compel", "comfy++", "down_weight"],),
@@ -312,30 +315,37 @@ class PrimereCLIP:
             }
         }
 
-    def clip_encode(self, clip, negative_strength, additional_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, additional, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_additional = False, is_sdxl = 0):
-        additional_positive = None
-        additional_negative = None
-        if use_additional == True:
-            additional_positive = self.default_neg[additional]['positive'].strip(' ,;')
-            additional_negative = self.default_neg[additional]['negative'].strip(' ,;')
+    def clip_encode(self, clip, negative_strength, int_style_pos_strength, int_style_neg_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, int_style_pos, int_style_neg, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_int_style = False, is_sdxl = 0):
+        additional_positive = int_style_pos
+        additional_negative = int_style_neg
+        if int_style_pos == 'None':
+            additional_positive = None
+        if int_style_neg == 'None':
+            additional_negative = None
 
-        additional_positive = f'({additional_positive}:{additional_strength:.2f})' if additional_positive is not None and additional_positive != '' else ''
-        additional_negative = f'({additional_negative}:{additional_strength:.2f})' if additional_negative is not None and additional_negative != '' else ''
+        if use_int_style == True:
+            if int_style_pos != 'None':
+                additional_positive = self.default_pos[int_style_pos]['positive'].strip(' ,;')
+            if int_style_neg != 'None':
+                additional_negative = self.default_neg[int_style_neg]['negative'].strip(' ,;')
 
+        additional_positive = f'({additional_positive}:{int_style_pos_strength:.2f})' if additional_positive is not None and additional_positive != '' else ''
+        additional_negative = f'({additional_negative}:{int_style_neg_strength:.2f})' if additional_negative is not None and additional_negative != '' else ''
+
+        negative_prompt = f'({negative_prompt}:{negative_strength:.2f})' if negative_prompt is not None and negative_prompt.strip(' ,;') != '' else ''
         if copy_prompt_to_l == True:
             sdxl_positive_l = positive_prompt
             sdxl_negative_l = negative_prompt
 
-        negative_prompt = f'({negative_prompt}:{negative_strength:.2f})' if negative_prompt is not None and negative_prompt.strip(' ,;') != '' else ''
         opt_pos_prompt = f'({opt_pos_prompt}:{opt_pos_strength:.2f})' if opt_pos_prompt is not None and opt_pos_prompt.strip(' ,;') != '' else ''
         opt_neg_prompt = f'({opt_neg_prompt}:{opt_neg_strength:.2f})' if opt_neg_prompt is not None and opt_neg_prompt.strip(' ,;') != '' else ''
         style_pos_prompt = f'({style_pos_prompt}:{style_pos_strength:.2f})' if style_pos_prompt is not None and style_pos_prompt.strip(' ,;') != '' else ''
         style_neg_prompt = f'({style_neg_prompt}:{style_neg_strength:.2f})' if style_neg_prompt is not None and style_neg_prompt.strip(' ,;') != '' else ''
-        sdxl_positive_l = f'({sdxl_positive_l}:{sdxl_l_strength:.2f})' if sdxl_positive_l is not None and sdxl_positive_l.strip(' ,;') != '' else ''
-        sdxl_negative_l = f'({sdxl_negative_l}:{sdxl_l_strength:.2f})' if sdxl_negative_l is not None and sdxl_negative_l.strip(' ,;') != '' else ''
+        sdxl_positive_l = f'({sdxl_positive_l}:{sdxl_l_strength:.2f})'.replace(":1.0", "") if sdxl_positive_l is not None and sdxl_positive_l.strip(' ,;') != '' else ''
+        sdxl_negative_l = f'({sdxl_negative_l}:{sdxl_l_strength:.2f})'.replace(":1.0", "") if sdxl_negative_l is not None and sdxl_negative_l.strip(' ,;') != '' else ''
 
-        positive_text = f'{positive_prompt}, {opt_pos_prompt}, {style_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ")
-        negative_text = f'{negative_prompt}, {opt_neg_prompt}, {style_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ")
+        positive_text = f'{positive_prompt}, {opt_pos_prompt}, {style_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ").replace(":1.00", "")
+        negative_text = f'{negative_prompt}, {opt_neg_prompt}, {style_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ").replace(":1.00", "")
 
         if (adv_encode == True):
             if (is_sdxl == 0):
