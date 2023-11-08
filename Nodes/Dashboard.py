@@ -14,6 +14,8 @@ from .modules.adv_encode import advanced_encode, advanced_encode_XL
 from nodes import MAX_RESOLUTION
 from custom_nodes.ComfyUI_Primere_Nodes.components.utility import STANDARD_SIDES
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
+from pathlib import Path
+import re
 
 class PrimereSamplers:
     CATEGORY = TREE_DASHBOARD
@@ -287,9 +289,9 @@ class PrimereCLIP:
                 "negative_strength": ("FLOAT", {"default": 1.2, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "copy_prompt_to_l": ("BOOLEAN", {"default": True}),
                 "use_int_style": ("BOOLEAN", {"default": False}),
-                "int_style_pos": (['None'] + list(cls.default_pos.keys()),),
+                "int_style_pos": (['None'] + sorted(list(cls.default_pos.keys())),),
                 "int_style_pos_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
-                "int_style_neg": (['None'] + list(cls.default_neg.keys()),),
+                "int_style_neg": (['None'] + sorted(list(cls.default_neg.keys())),),
                 "int_style_neg_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "adv_encode": ("BOOLEAN", {"default": False}),
                 "token_normalization": (["none", "mean", "length", "length+mean"],),
@@ -318,9 +320,9 @@ class PrimereCLIP:
     def clip_encode(self, clip, negative_strength, int_style_pos_strength, int_style_neg_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, int_style_pos, int_style_neg, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_int_style = False, is_sdxl = 0):
         additional_positive = int_style_pos
         additional_negative = int_style_neg
-        if int_style_pos == 'None':
+        if int_style_pos == 'None' or use_int_style == False:
             additional_positive = None
-        if int_style_neg == 'None':
+        if int_style_neg == 'None' or use_int_style == False:
             additional_negative = None
 
         if use_int_style == True:
@@ -460,8 +462,10 @@ class PrimereClearPrompt:
   def INPUT_TYPES(cls):
       return {
           "required": {
+              "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
               "positive_prompt": ("STRING", {"forceInput": True}),
               "negative_prompt": ("STRING", {"forceInput": True}),
+              "remove_if_sdxl": ("BOOLEAN", {"default": False}),
               "remove_comfy_embedding": ("BOOLEAN", {"default": False}),
               "remove_a1111_embedding": ("BOOLEAN", {"default": False}),
               "remove_lora": ("BOOLEAN", {"default": False}),
@@ -469,8 +473,11 @@ class PrimereClearPrompt:
           },
       }
 
-  def clean_prompt(self, positive_prompt, negative_prompt, remove_comfy_embedding, remove_a1111_embedding, remove_lora, remove_hypernetwork):
+  def clean_prompt(self, positive_prompt, negative_prompt, remove_comfy_embedding, remove_a1111_embedding, remove_lora, remove_hypernetwork, remove_if_sdxl, is_sdxl = 0):
       NETWORK_START = []
+
+      if remove_if_sdxl == True and is_sdxl == 0:
+          return (positive_prompt, negative_prompt,)
 
       if remove_comfy_embedding == True:
           NETWORK_START.append('embedding:')
@@ -480,6 +487,18 @@ class PrimereClearPrompt:
 
       if remove_hypernetwork == True:
           NETWORK_START.append('<hypernet:')
+
+      if remove_a1111_embedding == True:
+          positive_prompt = positive_prompt.replace('embedding:', '')
+          negative_prompt = negative_prompt.replace('embedding:', '')
+          EMBEDDINGS = folder_paths.get_filename_list("embeddings")
+          for embeddings_path in EMBEDDINGS:
+              path = Path(embeddings_path)
+              embedding_name = path.stem
+              positive_prompt = re.sub("(\(" + embedding_name + ":\d+\.\d+\))|(\(" + embedding_name + ":\d+\))|(" + embedding_name + ":\d+\.\d+)|(" + embedding_name + ":\d+)|(" + embedding_name + ":)|(\(" + embedding_name + "\))|(" + embedding_name + ")", "", positive_prompt)
+              negative_prompt = re.sub("(\(" + embedding_name + ":\d+\.\d+\))|(\(" + embedding_name + ":\d+\))|(" + embedding_name + ":\d+\.\d+)|(" + embedding_name + ":\d+)|(" + embedding_name + ":)|(\(" + embedding_name + "\))|(" + embedding_name + ")", "", negative_prompt)
+              positive_prompt = re.sub(r'(, )\1+', r', ', positive_prompt).strip(', ').replace(' ,', ',')
+              negative_prompt = re.sub(r'(, )\1+', r', ', negative_prompt).strip(', ').replace(' ,', ',')
 
       if len(NETWORK_START) > 0:
         NETWORK_END = ['\n', '>', ' ', ',', '}', ')', '|'] + NETWORK_START
