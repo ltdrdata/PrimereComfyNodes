@@ -19,12 +19,12 @@ negative=''
 [PHOTO_POS]
 positive='Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus,'
 negative=''
-[BW_FILM_NOIR]
+[BW_FILM_NOIR_POS]
 positive='(b&w, Monochromatic, Film Photography:1.3),  Photorealistic, Hyperrealistic, Hyperdetailed, film noir, analog style, hip cocked, demure, low cut, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus,'
 negative=''
-[MANGA]
+[MANGA_POS]
 positive='(Manga Style, Yusuke Murata, Satoshi Kon, Ken Sugimori, Hiromu Arakawa), Pencil drawing, (B&W:1.2), Low detail, sketch, concept art, Anime style, line art, webtoon, manhua, chalk, hand drawn, defined lines, simple shades, simplistic, manga page, minimalistic, High contrast, Precision artwork, Linear compositions, Scalable artwork, Digital art, High Contrast Shadows,'
 negative=''
-[ANIME]
+[ANIME_POS]
 positive='(Anime Scene, Toonshading, Satoshi Kon, Ken Sugimori, Hiromu Arakawa:1.2), (Anime Style, Manga Style:1.3), Low detail, sketch, concept art, line art, webtoon, manhua, hand drawn, defined lines, simple shades, minimalistic, High contrast, Linear compositions, Scalable artwork, Digital art, High Contrast Shadows, glow effects, humorous illustration, big depth of field, Masterpiece, colors, concept art, trending on artstation, Vivid colors, dramatic,'
 negative=''

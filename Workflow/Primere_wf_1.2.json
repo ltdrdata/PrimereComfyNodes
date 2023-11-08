@@ -1,6 +1,6 @@
 {
-  "last_node_id": 67,
-  "last_link_id": 187,
+  "last_node_id": 69,
+  "last_link_id": 191,
   "nodes": [
     {
       "id": 22,
@@ -94,47 +94,6 @@
       ]
     },
     {
-      "id": 27,
-      "type": "PrimereStyleLoader",
-      "pos": [
-        -580,
-        180
-      ],
-      "size": {
-        "0": 513.783203125,
-        "1": 82.79425048828125
-      },
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "positive_prompt",
-          "type": "STRING",
-          "links": [
-            49
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "negative_prompt",
-          "type": "STRING",
-          "links": [
-            50
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereStyleLoader"
-      },
-      "widgets_values": [
-        "Testprompt - Woman SFW"
-      ]
-    },
-    {
       "id": 28,
       "type": "PrimerePrompt",
       "pos": [
@@ -146,7 +105,7 @@
         "1": 409.7142639160156
       },
       "flags": {},
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "outputs": [
         {
@@ -188,7 +147,7 @@
         "1": 201.48178100585938
       },
       "flags": {},
-      "order": 4,
+      "order": 3,
       "mode": 0,
       "outputs": [
         {
@@ -230,7 +189,7 @@
         "1": 360.4818115234375
       },
       "flags": {},
-      "order": 5,
+      "order": 4,
       "mode": 0,
       "outputs": [
         {
@@ -272,7 +231,7 @@
         "1": 26
       },
       "flags": {},
-      "order": 6,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -306,7 +265,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 7,
+      "order": 6,
       "mode": 0,
       "outputs": [
         {
@@ -338,7 +297,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 8,
+      "order": 7,
       "mode": 0,
       "outputs": [
         {
@@ -370,7 +329,7 @@
         "1": 102
       },
       "flags": {},
-      "order": 9,
+      "order": 8,
       "mode": 0,
       "outputs": [
         {
@@ -412,7 +371,7 @@
         "1": 102
       },
       "flags": {},
-      "order": 10,
+      "order": 9,
       "mode": 0,
       "outputs": [
         {
@@ -454,7 +413,7 @@
         "1": 130
       },
       "flags": {},
-      "order": 11,
+      "order": 10,
       "mode": 0,
       "outputs": [
         {
@@ -490,7 +449,7 @@
         "1": 360.4818115234375
       },
       "flags": {},
-      "order": 12,
+      "order": 11,
       "mode": 0,
       "outputs": [
         {
@@ -525,14 +484,14 @@
       "type": "PrimereCKPT",
       "pos": [
         282,
-        188
+        181
       ],
       "size": {
         "0": 516,
         "1": 122
       },
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "outputs": [
         {
@@ -569,7 +528,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "SDXL\\HEPHAISTOSSD10XL.safetensors",
+        "BestAll\\icbinp_final.safetensors",
         "SDXL"
       ]
     },
@@ -585,7 +544,7 @@
         "1": 200
       },
       "flags": {},
-      "order": 14,
+      "order": 13,
       "mode": 0,
       "outputs": [
         {
@@ -617,7 +576,7 @@
         "1": 358.0599060058594
       },
       "flags": {},
-      "order": 15,
+      "order": 14,
       "mode": 0,
       "outputs": [
         {
@@ -659,7 +618,7 @@
         "1": 290.1000061035156
       },
       "flags": {},
-      "order": 16,
+      "order": 15,
       "mode": 0,
       "outputs": [
         {
@@ -701,7 +660,7 @@
         "1": 290.1000061035156
       },
       "flags": {},
-      "order": 17,
+      "order": 16,
       "mode": 0,
       "outputs": [
         {
@@ -743,7 +702,7 @@
         "1": 414
       },
       "flags": {},
-      "order": 18,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -795,7 +754,7 @@
         1,
         "None",
         1,
-        "Girlish",
+        "Gorgeous",
         2,
         "None",
         1,
@@ -803,6 +762,89 @@
         1,
         "",
         ""
+      ]
+    },
+    {
+      "id": 55,
+      "type": "PrimerePrompt",
+      "pos": [
+        -1211,
+        1756
+      ],
+      "size": {
+        "0": 606.4273681640625,
+        "1": 441.62725830078125
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            141
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            140
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePrompt"
+      },
+      "widgets_values": [
+        "(professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old beautiful perfect body sexy nude woman, sex-model in {nude|transparent fishnet lingerie|bra|fishnet panties|transparent panties|full nude}, ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) {({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3)|nude breast:1.2}, beautiful natural sexy {middle|small|large|big}-size breasts, {visible|covered} nipples, ({covered|uncovered|nude} breast:1.2), erotic mood, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional|sex} pose, luxury erotic {nude|sex|porn} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4), add_nsfw, nudity, porn, sex",
+        "childish, plastic breast, covered pussy, covered breast, eye-catching makeup, perfect skin"
+      ]
+    },
+    {
+      "id": 69,
+      "type": "PrimereStyleLoader",
+      "pos": [
+        -385,
+        184
+      ],
+      "size": {
+        "0": 315,
+        "1": 78
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            190
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            191
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereStyleLoader"
+      },
+      "widgets_values": [
+        "Luxury model NSFW"
       ]
     },
     {
@@ -832,7 +874,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "1"
+        "0"
       ]
     },
     {
@@ -946,18 +988,18 @@
         "Node name for S&R": "PromptGenerator"
       },
       "widgets_values": [
-        377067051805108,
+        330531656608121,
         "randomize",
         "",
         "photography",
-        "random",
+        "glamour portrait",
         "a woman",
         "as a ((luxury person))",
         "with ((curtain bangs haircut))",
-        "wearing (silk)",
-        "high fashion photography",
+        "disabled",
+        "fashion photography",
         "Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II",
-        "random",
+        "disabled",
         "disabled",
         "disabled",
         "glamour photography",
@@ -968,8 +1010,8 @@
       "id": 26,
       "type": "PrimerePromptSwitch",
       "pos": [
-        -8,
-        192
+        -5,
+        187
       ],
       "size": {
         "0": 236.8000030517578,
@@ -982,12 +1024,12 @@
         {
           "name": "prompt_pos_1",
           "type": "STRING",
-          "link": 49
+          "link": 190
         },
         {
           "name": "prompt_neg_1",
           "type": "STRING",
-          "link": 50
+          "link": 191
         },
         {
           "name": "prompt_pos_2",
@@ -1120,7 +1162,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        5
+        1
       ]
     },
     {
@@ -1569,7 +1611,7 @@
       },
       "widgets_values": [
         "",
-        -352640477687854,
+        500707154402584,
         "randomize"
       ]
     },
@@ -1621,7 +1663,7 @@
       },
       "widgets_values": [
         "",
-        -265833712612314,
+        -670382065527480,
         "randomize"
       ]
     },
@@ -1652,7 +1694,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"glamour close up portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II photo by Harry Callahan\", \"negative\": \"nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\HEPHAISTOSSD10XL.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 39319026552003, \"width\": 910, \"height\": 1152, \"cfg_scale\": 8.5, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
+        "{\"positive\": \"glamour portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old beautiful perfect body sexy nude woman, sex-model in {nude|transparent fishnet lingerie|bra|fishnet panties|transparent panties|full nude}, ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) {({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3)|nude breast:1.2}, beautiful natural sexy {middle|small|large|big}-size breasts, {visible|covered} nipples, ({covered|uncovered|nude} breast:1.2), erotic mood, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional|sex} pose, luxury erotic {nude|sex|porn} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4), add_nsfw, nudity, porn, sex as a ((luxury person)) with ((curtain bangs haircut)) glamour photography fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\", \"negative\": \"childish, plastic breast, covered pussy, covered breast, eye-catching makeup, perfect skin\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\realisticVisionV40.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 798400236335791, \"width\": 658, \"height\": 896, \"cfg_scale\": 8.5, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false}"
       ]
     },
     {
@@ -1737,7 +1779,7 @@
         1.2,
         0.9,
         1.25,
-        424050327489793,
+        1087441795323024,
         "randomize",
         true,
         "cpu"
@@ -1770,7 +1812,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "1"
+        "0"
       ]
     },
     {
@@ -1929,10 +1971,10 @@
         2296,
         174
       ],
-      "size": [
-        428.72725053267004,
-        614
-      ],
+      "size": {
+        "0": 428.7272644042969,
+        "1": 614
+      },
       "flags": {},
       "order": 34,
       "mode": 0,
@@ -2097,10 +2139,10 @@
         1.2,
         true,
         true,
-        "None",
+        "PHOTO_POS",
         1.3,
         "PORTRAITS_PETS_DEFAULTS_NEG",
-        1.3,
+        1.2,
         true,
         "mean",
         "comfy++",
@@ -2109,9 +2151,9 @@
         "",
         1,
         "",
-        1,
+        1.2,
         "",
-        1,
+        1.2,
         "",
         "",
         1,
@@ -2126,10 +2168,10 @@
         2747,
         173
       ],
-      "size": [
-        261.9999778053975,
-        218
-      ],
+      "size": {
+        "0": 261.9999694824219,
+        "1": 218
+      },
       "flags": {},
       "order": 35,
       "mode": 0,
@@ -2212,7 +2254,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        634567074928353,
+        540037326188177,
         "randomize",
         20,
         8,
@@ -2248,7 +2290,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"black and white portrait of bokeh (professional sexy 42 year old glamour woman photomodel in black transparent luxury silk lingerie, (short black hair) (multicolor luxury bra:1.3), beautiful natural sexy middle-size breasts, nipples, (covered breast:1.2), large erotic necklace, erotic face, erotic pose, luxury erotic fashion photography:1.3), (huge striking expensive sparkling diamond luxury jewellery in her neck:1.2), luxury modern style beautiful bedroom interior with large curtains and expensive leather bed, less soft makeup, natural skin, (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II photo by Anne Brigman, ((Romantic0), (Girlish:2.00)0), ((Manga Style, Yusuke Murata, Satoshi Kon, Ken Sugimori, Hiromu Arakawa), Pencil drawing, (B&W:1.2), Low detail, sketch, concept art, Anime style, line art, webtoon, manhua, chalk, hand drawn, defined lines, simple shades, simplistic, manga page, minimalistic, High contrast, Precision artwork, Linear compositions, Scalable artwork, Digital art, High Contrast Shadows:1.30)\""
+        "\"glamour portrait of bokeh (professional sexy 32 year old beautiful perfect body sexy nude woman, sex-model in full nude, (long straight brown hair) (yellow luxury expensive bra:1.3), beautiful natural sexy small-size breasts, covered nipples, (nude breast:1.2), erotic mood, satisfied face, sex pose, luxury erotic sex photography:1.3), (huge striking expensive sparkling gold diamond luxury jewellery in her neck:1.2), luxury London style beautiful bedroom interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4), embedding:add_nsfw, nudity, porn, sex as a ((luxury person)) with ((curtain bangs haircut)) glamour photography fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II, ((Romantic), (Gorgeous:2.00):1.20), (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:1.30)\""
       ]
     },
     {
@@ -2278,7 +2320,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin:1.20)\""
+        "\"(childish, plastic breast, covered pussy, covered breast, eye-catching makeup, perfect skin:1.20), (3D, Absent limbs, Additional appendages, Additional digits, Additional limbs, Altered appendages, Amputee, Asymmetric, Asymmetric ears, Bad anatomy, Bad ears, Bad eyes, Bad face, Bad proportions, Beard (optional), Broken finger, Broken hand, Broken leg, Broken wrist, Cartoon, Childish (optional), Cloned face, Cloned head, Collapsed eyeshadow, Combined appendages, Conjoined, Copied visage, Corpse, Cripple, Cropped head, Cross-eyed, Depressed, Desiccated, Disconnected limb, Disfigured, Dismembered, Disproportionate, Double face, Duplicated features, Eerie, Elongated throat:1.20)\""
       ]
     },
     {
@@ -2308,7 +2350,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(black and white portrait of bokeh (professional sexy 42 year old glamour woman photomodel in black transparent luxury silk lingerie, (short black hair) (multicolor luxury bra:1.3), beautiful natural sexy middle-size breasts, nipples, (covered breast:1.2), large erotic necklace, erotic face, erotic pose, luxury erotic fashion photography:1.3), (huge striking expensive sparkling diamond luxury jewellery in her neck:1.2), luxury modern style beautiful bedroom interior with large curtains and expensive leather bed, less soft makeup, natural skin, (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II photo by Anne Brigman0)\""
+        "\"\""
       ]
     },
     {
@@ -2338,7 +2380,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"((nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin:1.20)0)\""
+        "\"\""
       ]
     },
     {
@@ -2481,7 +2523,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "904"
+        "656"
       ]
     },
     {
@@ -2511,49 +2553,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "1152"
-      ]
-    },
-    {
-      "id": 55,
-      "type": "PrimerePrompt",
-      "pos": [
-        -1211,
-        1756
-      ],
-      "size": [
-        606.4273437500001,
-        441.6272705078127
-      ],
-      "flags": {},
-      "order": 19,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "positive_prompt",
-          "type": "STRING",
-          "links": [
-            141
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "negative_prompt",
-          "type": "STRING",
-          "links": [
-            140
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimerePrompt"
-      },
-      "widgets_values": [
-        "(professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4)",
-        "nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin"
+        "896"
       ]
     }
   ],
@@ -2621,22 +2621,6 @@
       21,
       0,
       "*"
-    ],
-    [
-      49,
-      27,
-      0,
-      26,
-      0,
-      "STRING"
-    ],
-    [
-      50,
-      27,
-      1,
-      26,
-      1,
-      "STRING"
     ],
     [
       51,
@@ -3205,6 +3189,22 @@
       67,
       11,
       "INT"
+    ],
+    [
+      190,
+      69,
+      0,
+      26,
+      0,
+      "STRING"
+    ],
+    [
+      191,
+      69,
+      1,
+      26,
+      1,
+      "STRING"
     ]
   ],
   "groups": [],
