@@ -41,13 +41,15 @@ class PrimereDoublePrompt:
             for node in workflow["nodes"]:
                 node_id = str(node["id"])
                 name = node["type"]
-                if node_id == id:
+                if node_id == id and name == 'PrimerePrompt':
                     if "Debug" in name or "Show" in name or "Function" in name or "Evaluate" in name:
                         continue
 
                     return node['widgets_values']
 
         rawResult = debug_state(self, extra_pnginfo, id)
+        if not rawResult:
+            rawResult = (positive_prompt, negative_prompt)
         return rawResult[0], rawResult[1],
 
 class PrimereStyleLoader:

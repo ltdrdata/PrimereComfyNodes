@@ -438,6 +438,48 @@
       ]
     },
     {
+      "id": 52,
+      "type": "PrimerePrompt",
+      "pos": [
+        179,
+        1300
+      ],
+      "size": [
+        618.5997851562502,
+        217.71703308105475
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            135
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            136
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePrompt"
+      },
+      "widgets_values": [
+        "female warrior, best award winning photo, dark purple and mauve, majestic nightscape, panorama, nebulae, (close up photo of Scythian warrior female woman:1.35), (Scythian age:1.2)",
+        "(porn, sex, nude, nudity, child, childish, Asian-Less-Neg, FastNegativeEmbedding, negative_hand, draw, illustration, telephoto, earrings, necklace, man, nsfw:1.20)"
+      ]
+    },
+    {
       "id": 4,
       "type": "PrimereCKPT",
       "pos": [
@@ -486,7 +528,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "SDXL\\devlishphotorealism_sdxl12.safetensors",
+        "BestAll\\realisticVision_v5.1.safetensors",
         "SDXL"
       ]
     },
@@ -802,15 +844,15 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Paint art"
+        "UFO"
       ]
     },
     {
       "id": 21,
       "type": "Display Any (rgthree)",
       "pos": [
-        588,
-        67
+        579,
+        56
       ],
       "size": {
         "0": 210,
@@ -832,7 +874,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "1"
+        "0"
       ]
     },
     {
@@ -946,7 +988,7 @@
         "Node name for S&R": "PromptGenerator"
       },
       "widgets_values": [
-        122708974353953,
+        517196804846047,
         "randomize",
         "",
         "photography",
@@ -1570,7 +1612,7 @@
       },
       "widgets_values": [
         "",
-        143855084464645,
+        -181396312693171,
         "randomize"
       ]
     },
@@ -1622,7 +1664,7 @@
       },
       "widgets_values": [
         "",
-        -583035432555337,
+        -155072338746500,
         "randomize"
       ]
     },
@@ -1653,7 +1695,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"best award winning photo, dark purple and mauve, majestic nightscape, panorama, nebulae, (close up photo of Scythian warrior women:1.35)\", \"negative\": \"(porn, sex, nude, nudity, child, childish, Asian-Less-Neg, FastNegativeEmbedding, negative_hand, draw, illustration, telephoto, earrings, necklace, nsfw:1.20)\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\devlishphotorealism_sdxl12.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 824171191942458, \"width\": 910, \"height\": 1152, \"cfg_scale\": 8.5, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
+        "{\"positive\": \"best award winning photo, dark purple and mauve, majestic nightscape, panorama, nebulae, (close up photo of Scythian warrior women:1.35)\", \"negative\": \"(porn, sex, nude, nudity, child, childish, Asian-Less-Neg, FastNegativeEmbedding, negative_hand, draw, illustration, telephoto, earrings, necklace, nsfw:1.20)\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\realisticVision_v5.1.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 1016728183386990, \"width\": 658, \"height\": 896, \"cfg_scale\": 8.5, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false}"
       ]
     },
     {
@@ -1738,7 +1780,7 @@
         1.2,
         0.9,
         1.25,
-        552499782147274,
+        700506524163688,
         "randomize",
         true,
         "cpu"
@@ -1771,7 +1813,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "1"
+        "0"
       ]
     },
     {
@@ -2107,7 +2149,7 @@
         "",
         1.2,
         true,
-        true,
+        false,
         "PHOTO",
         1,
         "PORTRAITS_PETS",
@@ -2223,7 +2265,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        279962276896678,
+        970720678381226,
         "randomize",
         20,
         8,
@@ -2259,7 +2301,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"best award winning photo, dark purple and mauve, majestic nightscape, panorama, nebulae, (close up photo of Scythian warrior women:1.35), (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus)\""
+        "\"best award winning photo, dark purple and mauve, majestic nightscape, panorama, nebulae, (close up photo of Scythian warrior women:1.35)\""
       ]
     },
     {
@@ -2289,7 +2331,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"((porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw:1.20):1.20), (3D, Absent limbs, Additional appendages, Additional digits, Additional limbs, Altered appendages, Amputee, Asymmetric, Asymmetric ears, Bad anatomy, Bad ears, Bad eyes, Bad face, Bad proportions, Beard (optional), Broken finger, Broken hand, Broken leg, Broken wrist, Cartoon, Childish (optional), Cloned face, Cloned head, Collapsed eyeshadow, Combined appendages, Conjoined, Copied visage, Corpse, Cripple, Cropped head, Cross-eyed, Depressed, Desiccated, Disconnected limb, Disfigured, Dismembered, Disproportionate, Double face, Duplicated features, Eerie, Elongated throat:1.20)\""
+        "\"((porn, sex, nude, nudity, child, childish, embedding:Asian-Less-Neg, embedding:FastNegativeEmbedding, embedding:negative_hand, draw, illustration, telephoto, earrings, necklace, nsfw:1.20):1.20)\""
       ]
     },
     {
@@ -2319,7 +2361,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(best award winning photo, dark purple and mauve, majestic nightscape, panorama, nebulae, (close up photo of Scythian warrior women:1.35)0)\""
+        "\"\""
       ]
     },
     {
@@ -2349,7 +2391,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(((porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw:1.20):1.20)0)\""
+        "\"\""
       ]
     },
     {
@@ -2492,7 +2534,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "904"
+        "656"
       ]
     },
     {
@@ -2522,49 +2564,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "1152"
-      ]
-    },
-    {
-      "id": 52,
-      "type": "PrimerePrompt",
-      "pos": [
-        102,
-        1300
-      ],
-      "size": [
-        618.5997851562502,
-        217.71703308105475
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "positive_prompt",
-          "type": "STRING",
-          "links": [
-            135
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "negative_prompt",
-          "type": "STRING",
-          "links": [
-            136
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimerePrompt"
-      },
-      "widgets_values": [
-        "best award winning photo, dark purple and mauve, majestic nightscape, panorama, nebulae, (close up photo of Scythian warrior women:1.35), (Scythian age:1.2)",
-        "(porn, sex, nude, nudity, child, childish, Asian-Less-Neg, FastNegativeEmbedding, negative_hand, draw, illustration, telephoto, earrings, necklace, nsfw:1.20)"
+        "896"
       ]
     }
   ],
