@@ -166,7 +166,7 @@ class PrimerePromptSwitch:
         if input_namep in kwargs:
             return (kwargs[input_namep], kwargs[input_namen], selected_index)
         else:
-            print(f"ImpactSwitch: invalid select index (ignored)")
+            print(f"PrimerePromptSwitch: invalid select index (ignored)")
             return (None, None, selected_index)
 
 class PrimereSeed:
@@ -287,7 +287,6 @@ class PrimereCLIP:
                 "positive_prompt": ("STRING", {"forceInput": True}),
                 "negative_prompt": ("STRING", {"forceInput": True}),
                 "negative_strength": ("FLOAT", {"default": 1.2, "min": 0.0, "max": 10.0, "step": 0.01}),
-                "copy_prompt_to_l": ("BOOLEAN", {"default": True}),
                 "use_int_style": ("BOOLEAN", {"default": False}),
                 "int_style_pos": (['None'] + sorted(list(cls.default_pos.keys())),),
                 "int_style_pos_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
@@ -311,6 +310,7 @@ class PrimereCLIP:
 
                 "sdxl_positive_l": ("STRING", {"forceInput": True}),
                 "sdxl_negative_l": ("STRING", {"forceInput": True}),
+                "copy_prompt_to_l": ("BOOLEAN", {"default": True}),
                 "sdxl_l_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "width": ("INT", {"default": 1024.0, "min": 0, "max": MAX_RESOLUTION, "forceInput": True}),
                 "height": ("INT", {"default": 1024.0, "min": 0, "max": MAX_RESOLUTION, "forceInput": True}),
@@ -465,7 +465,7 @@ class PrimereClearPrompt:
               "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
               "positive_prompt": ("STRING", {"forceInput": True}),
               "negative_prompt": ("STRING", {"forceInput": True}),
-              "remove_if_sdxl": ("BOOLEAN", {"default": False}),
+              "remove_only_if_sdxl": ("BOOLEAN", {"default": False}),
               "remove_comfy_embedding": ("BOOLEAN", {"default": False}),
               "remove_a1111_embedding": ("BOOLEAN", {"default": False}),
               "remove_lora": ("BOOLEAN", {"default": False}),
@@ -473,10 +473,10 @@ class PrimereClearPrompt:
           },
       }
 
-  def clean_prompt(self, positive_prompt, negative_prompt, remove_comfy_embedding, remove_a1111_embedding, remove_lora, remove_hypernetwork, remove_if_sdxl, is_sdxl = 0):
+  def clean_prompt(self, positive_prompt, negative_prompt, remove_comfy_embedding, remove_a1111_embedding, remove_lora, remove_hypernetwork, remove_only_if_sdxl, is_sdxl = 0):
       NETWORK_START = []
 
-      if remove_if_sdxl == True and is_sdxl == 0:
+      if remove_only_if_sdxl == True and is_sdxl == 0:
           return (positive_prompt, negative_prompt,)
 
       if remove_comfy_embedding == True:
