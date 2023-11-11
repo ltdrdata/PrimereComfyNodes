@@ -1,6 +1,6 @@
 {
-  "last_node_id": 44,
-  "last_link_id": 111,
+  "last_node_id": 46,
+  "last_link_id": 127,
   "nodes": [
     {
       "id": 1,
@@ -40,7 +40,7 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Luxury model NSFW"
+        "Woman SFW"
       ]
     },
     {
@@ -390,8 +390,8 @@
         "Node name for S&R": "PrimereStepsCfg"
       },
       "widgets_values": [
-        20,
-        9
+        25,
+        8.5
       ]
     },
     {
@@ -446,80 +446,6 @@
       ]
     },
     {
-      "id": 42,
-      "type": "PrimereStylePile",
-      "pos": [
-        2800,
-        863
-      ],
-      "size": {
-        "0": 342.34326171875,
-        "1": 390
-      },
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "opt_pos_style",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "opt_pos_style"
-          }
-        },
-        {
-          "name": "opt_neg_style",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "opt_neg_style"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STYLE+",
-          "type": "STRING",
-          "links": [
-            106
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "STYLE-",
-          "type": "STRING",
-          "links": [
-            107
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereStylePile"
-      },
-      "widgets_values": [
-        "None",
-        1.2,
-        "None",
-        1.25,
-        "None",
-        1,
-        "None",
-        1,
-        "None",
-        1.3,
-        "None",
-        1,
-        "None",
-        1.25,
-        "",
-        ""
-      ]
-    },
-    {
       "id": 43,
       "type": "PrimerePrompt",
       "pos": [
@@ -531,7 +457,7 @@
         "1": 200
       },
       "flags": {},
-      "order": 12,
+      "order": 11,
       "mode": 0,
       "outputs": [
         {
@@ -557,8 +483,8 @@
         "Node name for S&R": "PrimerePrompt"
       },
       "widgets_values": [
-        "beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear blue one-piece swimsuit:1.2), sexy middle sized breasts, huge necklace, smile romantic satisfied face ",
-        "dry hair, porn, nudity, nsfw"
+        "beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair",
+        "dry hair, porn, nudity, nsfw, necklace add_nsfw"
       ]
     },
     {
@@ -573,7 +499,7 @@
         "1": 200
       },
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "outputs": [
         {
@@ -599,8 +525,124 @@
         "Node name for S&R": "PrimerePrompt"
       },
       "widgets_values": [
-        "beautiful sexy 42 year old perfect body model woman walking in the stormy rainy day in the street of big city, (dark night:1.3), street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy hair:1.3), nice breasts and necklace, wear leather jacket and sexy long jeans pants",
-        "dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear"
+        "beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants",
+        "dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw"
+      ]
+    },
+    {
+      "id": 42,
+      "type": "PrimereStylePile",
+      "pos": [
+        2800,
+        863
+      ],
+      "size": {
+        "0": 342.34326171875,
+        "1": 390
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "opt_pos_style",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "opt_pos_style"
+          }
+        },
+        {
+          "name": "opt_neg_style",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "opt_neg_style"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STYLE+",
+          "type": "STRING",
+          "links": [
+            122
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "STYLE-",
+          "type": "STRING",
+          "links": [
+            123
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereStylePile"
+      },
+      "widgets_values": [
+        "None",
+        1.2,
+        "None",
+        1.25,
+        "None",
+        1.5,
+        "None",
+        1,
+        "None",
+        1.3,
+        "None",
+        1,
+        "None",
+        1.25,
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 46,
+      "type": "PrimerePrompt",
+      "pos": [
+        71,
+        1632
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            126
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            127
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePrompt"
+      },
+      "widgets_values": [
+        "Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}",
+        "nsfw porn nudity male necklace smile smiling"
       ]
     },
     {
@@ -615,7 +657,7 @@
         "1": 246
       },
       "flags": {},
-      "order": 14,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -651,8 +693,8 @@
         "Node name for S&R": "PrimereResolution"
       },
       "widgets_values": [
-        "Old TV screen [4:3]",
-        "Vertical",
+        "HD+ screen [16:10]",
+        "Horizontal",
         true,
         "SD 2.x",
         0,
@@ -670,10 +712,10 @@
       ],
       "size": {
         "0": 228.39999389648438,
-        "1": 358
+        "1": 398
       },
       "flags": {},
-      "order": 15,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -749,10 +791,20 @@
         {
           "name": "prompt_pos_8",
           "type": "STRING",
-          "link": null
+          "link": 126
         },
         {
           "name": "prompt_neg_8",
+          "type": "STRING",
+          "link": 127
+        },
+        {
+          "name": "prompt_pos_9",
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "prompt_neg_9",
           "type": "STRING",
           "link": null
         }
@@ -789,7 +841,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        7
+        8
       ]
     },
     {
@@ -804,7 +856,7 @@
         "1": 257.8929443359375
       },
       "flags": {},
-      "order": 16,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -819,7 +871,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"beautiful sexy 42 year old perfect body model woman walking in the stormy rainy day in the street of big city, (dark night:1.3), street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy hair:1.3), nice breasts and necklace, wear leather jacket and sexy long jeans pants\""
+        "\"Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}\""
       ]
     },
     {
@@ -834,7 +886,7 @@
         "1": 1070.8800048828125
       },
       "flags": {},
-      "order": 17,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -1052,7 +1104,7 @@
           "type": "INT",
           "links": [
             77,
-            79
+            124
           ],
           "shape": 3,
           "slot_index": 10
@@ -1062,7 +1114,7 @@
           "type": "INT",
           "links": [
             78,
-            80
+            125
           ],
           "shape": 3,
           "slot_index": 11
@@ -1134,7 +1186,7 @@
         "",
         "euler",
         "normal",
-        1893,
+        585,
         "randomize",
         512,
         512,
@@ -1154,7 +1206,7 @@
         "1": 274.59295654296875
       },
       "flags": {},
-      "order": 18,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -1169,7 +1221,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear\""
+        "\"nsfw porn nudity male necklace smile smiling\""
       ]
     },
     {
@@ -1184,7 +1236,7 @@
         "1": 94
       },
       "flags": {},
-      "order": 19,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -1216,7 +1268,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            25
+            112
           ],
           "shape": 3,
           "slot_index": 1
@@ -1234,8 +1286,8 @@
           "name": "IS_SDXL",
           "type": "INT",
           "links": [
-            36,
-            101
+            101,
+            119
           ],
           "shape": 3,
           "slot_index": 3
@@ -1260,7 +1312,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 20,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -1296,7 +1348,7 @@
       },
       "widgets_values": [
         "",
-        672792339034714,
+        568809046382582,
         "randomize"
       ]
     },
@@ -1312,7 +1364,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 21,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -1348,7 +1400,7 @@
       },
       "widgets_values": [
         "",
-        -275553897062888,
+        -870929887822922,
         "randomize"
       ]
     },
@@ -1364,7 +1416,7 @@
         "1": 496.4829406738281
       },
       "flags": {},
-      "order": 22,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -1378,7 +1430,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"beautiful sexy 42 year old perfect body model woman walking in the stormy rainy day in the street of big city, (dark night:1.3), street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy hair:1.3), nice breasts and necklace, wear leather jacket and sexy long jeans pants\", \"negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\juggernautXL_version5.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 532763073766107, \"width\": 910, \"height\": 1152, \"cfg_scale\": 9, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
+        "{\"positive\": \"Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}\", \"negative\": \"nsfw porn nudity male necklace smile smiling\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\juggernautXL_version5.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 801177140585110, \"width\": 1280, \"height\": 819, \"cfg_scale\": 8, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
       ]
     },
     {
@@ -1393,7 +1445,7 @@
         "1": 382
       },
       "flags": {},
-      "order": 23,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
@@ -1462,7 +1514,7 @@
         1.2,
         0.9,
         1.25,
-        693666047893317,
+        -460823051381548,
         "randomize",
         true,
         "cpu"
@@ -1480,7 +1532,7 @@
         "1": 232.25914001464844
       },
       "flags": {},
-      "order": 24,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -1554,7 +1606,7 @@
         "1": 273
       },
       "flags": {},
-      "order": 25,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -1579,7 +1631,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 26,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -1604,7 +1656,7 @@
           "name": "prompt+",
           "type": "STRING",
           "links": [
-            104
+            120
           ],
           "shape": 3,
           "slot_index": 0
@@ -1613,7 +1665,7 @@
           "name": "prompt-",
           "type": "STRING",
           "links": [
-            105
+            121
           ],
           "shape": 3,
           "slot_index": 1
@@ -1628,29 +1680,29 @@
       ]
     },
     {
-      "id": 16,
+      "id": 45,
       "type": "PrimereCLIPEncoder",
       "pos": [
-        3170,
-        130
+        3174,
+        133
       ],
       "size": {
-        "0": 402.1600036621094,
+        "0": 412,
         "1": 614
       },
       "flags": {},
-      "order": 27,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 25
+          "link": 112
         },
         {
           "name": "is_sdxl",
           "type": "INT",
-          "link": 36,
+          "link": 119,
           "widget": {
             "name": "is_sdxl"
           }
@@ -1658,7 +1710,7 @@
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 104,
+          "link": 120,
           "widget": {
             "name": "positive_prompt"
           }
@@ -1666,7 +1718,7 @@
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 105,
+          "link": 121,
           "widget": {
             "name": "negative_prompt"
           }
@@ -1690,7 +1742,7 @@
         {
           "name": "style_pos_prompt",
           "type": "STRING",
-          "link": 106,
+          "link": 122,
           "widget": {
             "name": "style_pos_prompt"
           }
@@ -1698,7 +1750,7 @@
         {
           "name": "style_neg_prompt",
           "type": "STRING",
-          "link": 107,
+          "link": 123,
           "widget": {
             "name": "style_neg_prompt"
           }
@@ -1722,7 +1774,7 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 79,
+          "link": 124,
           "widget": {
             "name": "width"
           }
@@ -1730,7 +1782,7 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 80,
+          "link": 125,
           "widget": {
             "name": "height"
           }
@@ -1741,7 +1793,7 @@
           "name": "COND+",
           "type": "CONDITIONING",
           "links": [
-            27
+            113
           ],
           "shape": 3,
           "slot_index": 0
@@ -1750,7 +1802,7 @@
           "name": "COND-",
           "type": "CONDITIONING",
           "links": [
-            28
+            114
           ],
           "shape": 3,
           "slot_index": 1
@@ -1759,7 +1811,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            84
+            115
           ],
           "shape": 3,
           "slot_index": 2
@@ -1768,7 +1820,7 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            85
+            116
           ],
           "shape": 3,
           "slot_index": 3
@@ -1777,7 +1829,7 @@
           "name": "PROMPT L+",
           "type": "STRING",
           "links": [
-            86
+            117
           ],
           "shape": 3,
           "slot_index": 4
@@ -1786,7 +1838,7 @@
           "name": "PROMPT L-",
           "type": "STRING",
           "links": [
-            87
+            118
           ],
           "shape": 3,
           "slot_index": 5
@@ -1801,11 +1853,10 @@
         "",
         1.2,
         true,
-        true,
         "PHOTO",
-        1.25,
+        0.4,
         "None",
-        1.1,
+        0.7000000000000001,
         true,
         "mean",
         "comfy++",
@@ -1816,12 +1867,13 @@
         "",
         1.2,
         "",
-        1.1,
+        0.7000000000000001,
         "",
         "",
+        true,
         1,
         1,
-        1024
+        1
       ]
     },
     {
@@ -1836,7 +1888,7 @@
         "1": 218
       },
       "flags": {},
-      "order": 28,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -1847,12 +1899,12 @@
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 27
+          "link": 113
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 28
+          "link": 114
         },
         {
           "name": "latent_image",
@@ -1917,7 +1969,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        783930472408341,
+        283808409806217,
         "randomize",
         20,
         8,
@@ -1938,13 +1990,13 @@
         "1": 159.39295959472656
       },
       "flags": {},
-      "order": 29,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 84,
+          "link": 115,
           "dir": 3
         }
       ],
@@ -1952,7 +2004,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"beautiful sexy 42 year old perfect body model woman walking in the stormy rainy day in the street of big city, (dark night:1.3), street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy hair:1.3), nice breasts and necklace, wear leather jacket and sexy long jeans pants, (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:1.25)\""
+        "\"Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy small body, sexy natural small breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long brown hair, natural makeup. (wear rainbow luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal standing, (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:0.40)\""
       ]
     },
     {
@@ -1967,13 +2019,13 @@
         "1": 152.09295654296875
       },
       "flags": {},
-      "order": 30,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 85,
+          "link": 116,
           "dir": 3
         }
       ],
@@ -1981,7 +2033,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear:1.20)\""
+        "\"(nsfw porn nudity male necklace smile smiling:1.20)\""
       ]
     },
     {
@@ -1996,13 +2048,13 @@
         "1": 156.09295654296875
       },
       "flags": {},
-      "order": 31,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 86,
+          "link": 117,
           "dir": 3
         }
       ],
@@ -2010,7 +2062,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(beautiful sexy 42 year old perfect body model woman walking in the stormy rainy day in the street of big city, (dark night:1.3), street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy hair:1.3), nice breasts and necklace, wear leather jacket and sexy long jeans pants0)\""
+        "\"(Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy small body, sexy natural small breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long brown hair, natural makeup. (wear rainbow luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal standing0)\""
       ]
     },
     {
@@ -2025,13 +2077,13 @@
         "1": 159.59295654296875
       },
       "flags": {},
-      "order": 32,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 87,
+          "link": 118,
           "dir": 3
         }
       ],
@@ -2039,7 +2091,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"((dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear:1.20)0)\""
+        "\"((nsfw porn nudity male necklace smile smiling:1.20)0)\""
       ]
     },
     {
@@ -2054,7 +2106,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 33,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
@@ -2095,7 +2147,7 @@
         "1": 1246.6590576171875
       },
       "flags": {},
-      "order": 34,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
@@ -2215,36 +2267,12 @@
       "IMAGE"
     ],
     [
-      25,
-      21,
-      1,
-      16,
-      0,
-      "CLIP"
-    ],
-    [
       26,
       21,
       0,
       17,
       0,
       "MODEL"
-    ],
-    [
-      27,
-      16,
-      0,
-      17,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      28,
-      16,
-      1,
-      17,
-      2,
-      "CONDITIONING"
     ],
     [
       31,
@@ -2261,14 +2289,6 @@
       17,
       3,
       "LATENT"
-    ],
-    [
-      36,
-      21,
-      3,
-      16,
-      1,
-      "INT"
     ],
     [
       42,
@@ -2455,22 +2475,6 @@
       "INT"
     ],
     [
-      79,
-      28,
-      10,
-      16,
-      10,
-      "INT"
-    ],
-    [
-      80,
-      28,
-      11,
-      16,
-      11,
-      "INT"
-    ],
-    [
       81,
       14,
       0,
@@ -2491,38 +2495,6 @@
       28,
       16,
       30,
-      0,
-      "*"
-    ],
-    [
-      84,
-      16,
-      2,
-      31,
-      0,
-      "*"
-    ],
-    [
-      85,
-      16,
-      3,
-      32,
-      0,
-      "*"
-    ],
-    [
-      86,
-      16,
-      4,
-      33,
-      0,
-      "*"
-    ],
-    [
-      87,
-      16,
-      5,
-      34,
       0,
       "*"
     ],
@@ -2615,38 +2587,6 @@
       "STRING"
     ],
     [
-      104,
-      38,
-      0,
-      16,
-      2,
-      "STRING"
-    ],
-    [
-      105,
-      38,
-      1,
-      16,
-      3,
-      "STRING"
-    ],
-    [
-      106,
-      42,
-      0,
-      16,
-      6,
-      "STRING"
-    ],
-    [
-      107,
-      42,
-      1,
-      16,
-      7,
-      "STRING"
-    ],
-    [
       108,
       43,
       0,
@@ -2676,6 +2616,134 @@
       1,
       4,
       13,
+      "STRING"
+    ],
+    [
+      112,
+      21,
+      1,
+      45,
+      0,
+      "CLIP"
+    ],
+    [
+      113,
+      45,
+      0,
+      17,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      114,
+      45,
+      1,
+      17,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      115,
+      45,
+      2,
+      31,
+      0,
+      "*"
+    ],
+    [
+      116,
+      45,
+      3,
+      32,
+      0,
+      "*"
+    ],
+    [
+      117,
+      45,
+      4,
+      33,
+      0,
+      "*"
+    ],
+    [
+      118,
+      45,
+      5,
+      34,
+      0,
+      "*"
+    ],
+    [
+      119,
+      21,
+      3,
+      45,
+      1,
+      "INT"
+    ],
+    [
+      120,
+      38,
+      0,
+      45,
+      2,
+      "STRING"
+    ],
+    [
+      121,
+      38,
+      1,
+      45,
+      3,
+      "STRING"
+    ],
+    [
+      122,
+      42,
+      0,
+      45,
+      6,
+      "STRING"
+    ],
+    [
+      123,
+      42,
+      1,
+      45,
+      7,
+      "STRING"
+    ],
+    [
+      124,
+      28,
+      10,
+      45,
+      10,
+      "INT"
+    ],
+    [
+      125,
+      28,
+      11,
+      45,
+      11,
+      "INT"
+    ],
+    [
+      126,
+      46,
+      0,
+      4,
+      14,
+      "STRING"
+    ],
+    [
+      127,
+      46,
+      1,
+      4,
+      15,
       "STRING"
     ]
   ],

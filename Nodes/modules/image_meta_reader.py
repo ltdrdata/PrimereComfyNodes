@@ -7,6 +7,7 @@ from PIL import Image
 
 from .exif.automatic1111 import Automatic1111
 from .exif.primere import Primere
+from .exif.comfyui import ComfyUI
 
 # OopCompanion:suppressRename
 class ImageExifReader:
@@ -39,8 +40,13 @@ class ImageExifReader:
             else:
                 if f.format == "PNG":
                     if "parameters" in f.info:
+                        print('A11')
                         self._tool = "Automatic1111"
                         self._parser = Automatic1111(info=f.info)
+                    elif "prompt" in f.info:
+                        print('Comfy')
+                        self._tool = "ComfyUI"
+                        self._parser = ComfyUI(info=f.info)
 
                 elif f.format == "JPEG" or f.format == "WEBP":
                     exif = piexif.load(f.info.get("exif")) or {}
