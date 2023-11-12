@@ -296,12 +296,8 @@ class PrimereMetaRead:
 
         if use_exif:
             image_path = folder_paths.get_annotated_filepath(image)
-            print('----------- path ---------------')
-            print(image_path)
             if os.path.isfile(image_path):
                 readerResult = ImageExifReader(image_path)
-                print('----------- result type ---------------')
-                print(type(readerResult.parser).__name__)
 
                 if (type(readerResult.parser).__name__ == 'dict'):
                     print('Reader tool return empty, using node input')
@@ -313,11 +309,6 @@ class PrimereMetaRead:
                     return (positive, negative, positive_l, negative_l, positive_r, negative_r, model_name, sampler_name, scheduler_name, seed, width, height, cfg_scale, steps, data_json['vae_name'], realvae, data_json)
 
                 reader = readerResult.parser
-                print('----------- reader ---------------')
-                print(reader.__dict__)
-                json_object = json.dumps(reader.__dict__)
-                with open("reader.json", "w") as outfile:
-                    outfile.write(json_object)
 
                 if 'positive' in reader.parameter:
                     data_json['positive'] = reader.parameter["positive"]

@@ -35,17 +35,95 @@ class ComfyUI(BaseFormat):
         longest_nodes = []
         longest_flow_len = 0
 
-        print('----------- data ---------------')
-        print(end_nodes)
         for end_node in end_nodes:
             flow, nodes = self._comfy_traverse(prompt_json, str(end_node[0]))
-            print(flow)
-            print(nodes)
             if len(nodes) > longest_flow_len:
                 longest_flow = flow
                 longest_nodes = nodes
                 longest_flow_len = len(nodes)
-            print(longest_flow_len)
+
+        '''
+        jsonString = json.dumps(workflow)
+        jsonFile = open("workflow.json", "w")
+        jsonFile.write(jsonString)
+        jsonFile.close()
+
+        jsonString = json.dumps(end_nodes)
+        jsonFile = open("end_nodes.json", "w")
+        jsonFile.write(jsonString)
+        jsonFile.close()
+
+        print('------------- ez -------------')
+        print(flow)
+        print('------------- az -------------')
+        print(prompt_json)
+        print('------------- az  end-------------')
+
+        jsonString = json.dumps(flow)
+        jsonFile = open("flow.json", "w")
+        jsonFile.write(jsonString)
+        jsonFile.close()
+
+        jsonString = json.dumps(prompt)
+        jsonFile = open("prompt.json", "w")
+        jsonFile.write(jsonString)
+        jsonFile.close()
+        '''
+
+        SizeID = None
+        ModelID = None
+        PositiveID = None
+        NegativeID = None
+
+        if 'latent_image' in flow:
+            SizeID = flow['latent_image'][0]
+        if 'model' in flow:
+            ModelID = flow['model'][0]
+        if 'positive' in flow:
+            PositiveID = flow['positive'][0]
+        if 'negative' in flow:
+            NegativeID = flow['negative'][0]
+
+        FINAL_DICT = {}
+        FINAL_DICT['negative'] = ""
+        FINAL_DICT['positive'] = ""
+
+        if PositiveID and NegativeID and 'text_g' in prompt_json[PositiveID]['inputs']:
+            FINAL_DICT['positive'] = prompt_json[PositiveID]['inputs']['text_g']
+            FINAL_DICT['negative'] = prompt_json[NegativeID]['inputs']['text_g']
+
+        if PositiveID and NegativeID and 'text' in prompt_json[PositiveID]['inputs']:
+            FINAL_DICT['positive'] = prompt_json[PositiveID]['inputs']['text']
+            FINAL_DICT['negative'] = prompt_json[NegativeID]['inputs']['text']
+
+        if PositiveID == None or ('text_g' not in prompt_json[PositiveID]['inputs'] and 'text' not in prompt_json[PositiveID]['inputs']):
+            if hasattr(self, '_positive'):
+                FINAL_DICT['positive'] = self._positive
+            if hasattr(self, '_negative'):
+                FINAL_DICT['negative'] = self._negative
+
+        if 'steps' in flow and type(flow['steps']) == int:
+            FINAL_DICT['steps'] = flow['steps']
+        if 'sampler_name' in flow and 'scheduler' in flow and type(flow['sampler_name']) == str and type(flow['scheduler']) == str:
+            FINAL_DICT['sampler'] = flow['sampler_name'] + ' ' + flow['scheduler']
+        if 'seed' in flow and type(flow['seed']) == int:
+            FINAL_DICT['seed'] = flow['seed']
+        if 'cfg' in flow and (type(flow['cfg']) == int or type(flow['cfg']) == float):
+            FINAL_DICT['cfg_scale'] = flow['cfg']
+
+        if ModelID and 'ckpt_name' in prompt_json[ModelID]['inputs'] and type(prompt_json[ModelID]['inputs']['ckpt_name']) == str:
+            FINAL_DICT['model'] = prompt_json[ModelID]['inputs']['ckpt_name'] # flow['ckpt_name']
+        elif 'ckpt_name' in flow and type(flow['ckpt_name']) == str:
+            FINAL_DICT['model'] = flow['ckpt_name']
+
+        if SizeID and 'width' in prompt_json[SizeID]['inputs'] and 'height' in prompt_json[SizeID]['inputs'] and type(prompt_json[SizeID]['inputs']['width']) == int:
+            origwidth = str(prompt_json[SizeID]['inputs']['width'])
+            origheight = str(prompt_json[SizeID]['inputs']['height'])
+            FINAL_DICT['width'] = int(origwidth)
+            FINAL_DICT['height'] = int(origheight)
+            FINAL_DICT['size_string'] = origwidth + 'x' + origheight
+
+        self._parameter = FINAL_DICT
 
     def _comfy_traverse(self, prompt, end_node):
         flow = {}
