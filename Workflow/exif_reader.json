@@ -1,6 +1,6 @@
 {
-  "last_node_id": 13,
-  "last_link_id": 24,
+  "last_node_id": 16,
+  "last_link_id": 30,
   "nodes": [
     {
       "id": 1,
@@ -9,10 +9,10 @@
         830,
         177
       ],
-      "size": [
-        528,
-        122
-      ],
+      "size": {
+        "0": 528,
+        "1": 122
+      },
       "flags": {},
       "order": 0,
       "mode": 0,
@@ -57,10 +57,10 @@
         225,
         424
       ],
-      "size": [
-        315,
-        454
-      ],
+      "size": {
+        "0": 315,
+        "1": 454
+      },
       "flags": {},
       "order": 1,
       "mode": 0,
@@ -135,18 +135,113 @@
       ]
     },
     {
+      "id": 14,
+      "type": "PrimereSeed",
+      "pos": [
+        1159,
+        510
+      ],
+      "size": {
+        "0": 210,
+        "1": 130
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "SEED",
+          "type": "INT",
+          "links": [
+            25
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereSeed"
+      },
+      "widgets_values": [
+        -1,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": 5,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        597,
+        345
+      ],
+      "size": {
+        "0": 513,
+        "1": 392
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 4,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "\"beautiful scenery nature glass bottle landscape, , purple galaxy bottle,\""
+      ]
+    },
+    {
+      "id": 6,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        578,
+        796
+      ],
+      "size": {
+        "0": 513,
+        "1": 392
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 5,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "\"text, watermark\""
+      ]
+    },
+    {
       "id": 2,
       "type": "PrimereMetaRead",
       "pos": [
-        1472,
-        176
+        1442,
+        121
       ],
-      "size": [
-        355.20001220703125,
-        1026
-      ],
+      "size": {
+        "0": 465.35302734375,
+        "1": 1077.3974609375
+      },
       "flags": {},
-      "order": 2,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -239,7 +334,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": null,
+          "link": 25,
           "widget": {
             "name": "seed"
           }
@@ -405,9 +500,11 @@
           "name": "metadata",
           "type": "TUPLE",
           "links": [
-            3
+            3,
+            29
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 16
         }
       ],
       "properties": {
@@ -419,14 +516,14 @@
         true,
         false,
         true,
-        true,
+        false,
         true,
         false,
         true,
         true,
         true,
-        false,
-        "00002-20230620090934-1462755642.jpg",
+        true,
+        "00017-20230604150942-3552491153.jpg",
         "image",
         "",
         "",
@@ -436,72 +533,12 @@
         "",
         "euler",
         "normal",
-        996,
+        1002,
         "randomize",
         512,
         512,
         7,
         12
-      ]
-    },
-    {
-      "id": 5,
-      "type": "Display Any (rgthree)",
-      "pos": [
-        685,
-        370
-      ],
-      "size": {
-        "0": 513,
-        "1": 392
-      },
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 4,
-          "dir": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "Display Any (rgthree)"
-      },
-      "widgets_values": [
-        "\"beautiful scenery nature glass bottle landscape, , purple galaxy bottle,\""
-      ]
-    },
-    {
-      "id": 6,
-      "type": "Display Any (rgthree)",
-      "pos": [
-        670,
-        788
-      ],
-      "size": {
-        "0": 513,
-        "1": 392
-      },
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "source",
-          "type": "*",
-          "link": 5,
-          "dir": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "Display Any (rgthree)"
-      },
-      "widgets_values": [
-        "\"text, watermark\""
       ]
     },
     {
@@ -516,8 +553,8 @@
         "1": 118
       },
       "flags": {},
-      "order": 5,
-      "mode": 4,
+      "order": 6,
+      "mode": 0,
       "inputs": [
         {
           "name": "ckpt_name",
@@ -573,13 +610,13 @@
         2003,
         451
       ],
-      "size": [
-        242,
-        78
-      ],
+      "size": {
+        "0": 242,
+        "1": 78
+      },
       "flags": {},
-      "order": 6,
-      "mode": 4,
+      "order": 7,
+      "mode": 0,
       "inputs": [
         {
           "name": "width",
@@ -627,12 +664,12 @@
         1965,
         599
       ],
-      "size": [
-        513,
-        392
-      ],
+      "size": {
+        "0": 513,
+        "1": 392
+      },
       "flags": {},
-      "order": 7,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -647,7 +684,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"PromptHeist, modern artistic style, colorful painted (cat:1.6), perfect faces, perfect hands, Paintmagic, <hypernet:styltokSplashOf_v10:0.9>, PNmagic\", \"negative\": \"face, human, woman, man, portrait, closeup, photography, photorealistic, nsfw\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"014930c624\", \"model_name\": \"SDXL\\\\realvisxl_V20.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 1462755642, \"width\": 768, \"height\": 512, \"cfg_scale\": 7.0, \"steps\": 30, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"difconsistencyRAWVAE_v10Safestensor.safetensors\", \"force_model_vae\": false}"
+        "{\"positive\": \"beautiful 30 year old onyx-woman hybrid standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\", \"negative\": \"kid. child. childish. text, frame, nude, nudity, porn, sex\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"00773224ed\", \"model_name\": \"Character\\\\animalHumanHybrids_v10.safetensors\", \"sampler_name\": \"euler_ancestral\", \"scheduler_name\": \"normal\", \"seed\": 1100112708844453, \"width\": 512, \"height\": 768, \"cfg_scale\": 9.0, \"steps\": 30, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"vae_name\": \"difconsistencyRAWVAE_v10Safestensor.safetensors\", \"force_model_vae\": true}"
       ]
     },
     {
@@ -657,13 +694,13 @@
         1985,
         143
       ],
-      "size": [
-        280,
-        54
-      ],
+      "size": {
+        "0": 280,
+        "1": 54
+      },
       "flags": {},
-      "order": 8,
-      "mode": 4,
+      "order": 9,
+      "mode": 0,
       "inputs": [
         {
           "name": "clip",
@@ -710,8 +747,8 @@
         "1": 54
       },
       "flags": {},
-      "order": 9,
-      "mode": 4,
+      "order": 10,
+      "mode": 0,
       "inputs": [
         {
           "name": "clip",
@@ -753,13 +790,13 @@
         2514,
         227
       ],
-      "size": [
-        309,
-        218
-      ],
+      "size": {
+        "0": 309,
+        "1": 218
+      },
       "flags": {},
-      "order": 10,
-      "mode": 4,
+      "order": 11,
+      "mode": 0,
       "inputs": [
         {
           "name": "model",
@@ -838,7 +875,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        557737177311455,
+        126129301468128,
         "randomize",
         20,
         8,
@@ -859,8 +896,8 @@
         "1": 46
       },
       "flags": {},
-      "order": 11,
-      "mode": 4,
+      "order": 12,
+      "mode": 0,
       "inputs": [
         {
           "name": "samples",
@@ -878,7 +915,8 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            20
+            28,
+            30
           ],
           "shape": 3,
           "slot_index": 0
@@ -889,24 +927,68 @@
       }
     },
     {
+      "id": 16,
+      "type": "PrimereMetaSave",
+      "pos": [
+        3361,
+        -35
+      ],
+      "size": {
+        "0": 418.49981689453125,
+        "1": 342
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 28
+        },
+        {
+          "name": "image_metadata",
+          "type": "TUPLE",
+          "link": 29
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereMetaSave"
+      },
+      "widgets_values": [
+        "z:\\AIPICS\\Comfy\\[time(%Y-%m-Week-%W)]",
+        "None",
+        true,
+        "ComfyUI",
+        "_",
+        2,
+        false,
+        "jpg",
+        true,
+        true,
+        95,
+        "false"
+      ]
+    },
+    {
       "id": 12,
       "type": "PreviewImage",
       "pos": [
         2865,
         363
       ],
-      "size": [
-        552,
-        523
-      ],
+      "size": {
+        "0": 922.802978515625,
+        "1": 948.7774658203125
+      },
       "flags": {},
-      "order": 12,
-      "mode": 4,
+      "order": 14,
+      "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 20
+          "link": 30
         }
       ],
       "properties": {
@@ -1068,14 +1150,6 @@
       "VAE"
     ],
     [
-      20,
-      11,
-      0,
-      12,
-      0,
-      "IMAGE"
-    ],
-    [
       21,
       2,
       6,
@@ -1106,6 +1180,38 @@
       9,
       0,
       "CLIP"
+    ],
+    [
+      25,
+      14,
+      0,
+      2,
+      12,
+      "INT"
+    ],
+    [
+      28,
+      11,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      29,
+      2,
+      16,
+      16,
+      1,
+      "TUPLE"
+    ],
+    [
+      30,
+      11,
+      0,
+      12,
+      0,
+      "IMAGE"
     ]
   ],
   "groups": [],

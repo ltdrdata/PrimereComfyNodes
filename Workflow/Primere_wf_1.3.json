@@ -40,7 +40,7 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Woman SFW"
+        "Luxury model SFW"
       ]
     },
     {
@@ -391,7 +391,7 @@
       },
       "widgets_values": [
         25,
-        8.5
+        8
       ]
     },
     {
@@ -441,7 +441,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "SDXL\\juggernautXL_version5.safetensors",
+        "SDXL\\copaxTimelessxlSDXL1_v7.safetensors",
         "SDXL"
       ]
     },
@@ -585,20 +585,20 @@
         "Node name for S&R": "PrimereStylePile"
       },
       "widgets_values": [
-        "None",
-        1.2,
+        "photo",
+        0.7000000000000001,
         "None",
         1.25,
         "None",
         1.5,
+        "Ultra detailed",
+        0.8,
+        "Dramatic",
+        1.8,
         "None",
         1,
-        "None",
-        1.3,
-        "None",
-        1,
-        "None",
-        1.25,
+        "Seapunk Art",
+        1.8,
         "",
         ""
       ]
@@ -694,7 +694,7 @@
       },
       "widgets_values": [
         "HD+ screen [16:10]",
-        "Horizontal",
+        "Vertical",
         true,
         "SD 2.x",
         0,
@@ -841,7 +841,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        8
+        1
       ]
     },
     {
@@ -871,7 +871,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}\""
+        "\"portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\""
       ]
     },
     {
@@ -1169,7 +1169,7 @@
         true,
         false,
         true,
-        false,
+        true,
         true,
         true,
         true,
@@ -1186,7 +1186,7 @@
         "",
         "euler",
         "normal",
-        585,
+        1127,
         "randomize",
         512,
         512,
@@ -1221,7 +1221,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"nsfw porn nudity male necklace smile smiling\""
+        "\"nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\""
       ]
     },
     {
@@ -1348,7 +1348,7 @@
       },
       "widgets_values": [
         "",
-        568809046382582,
+        -666818810629383,
         "randomize"
       ]
     },
@@ -1400,7 +1400,7 @@
       },
       "widgets_values": [
         "",
-        -870929887822922,
+        -223532804859161,
         "randomize"
       ]
     },
@@ -1411,10 +1411,10 @@
         2052,
         800
       ],
-      "size": {
-        "0": 452.434814453125,
-        "1": 496.4829406738281
-      },
+      "size": [
+        712.9469726562502,
+        664.7458129882814
+      ],
       "flags": {},
       "order": 23,
       "mode": 0,
@@ -1430,7 +1430,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}\", \"negative\": \"nsfw porn nudity male necklace smile smiling\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\juggernautXL_version5.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 801177140585110, \"width\": 1280, \"height\": 819, \"cfg_scale\": 8, \"steps\": 20, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
+        "{\"positive\": \"portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\", \"negative\": \"nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\copaxTimelessxlSDXL1_v7.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 189219185238526, \"width\": 819, \"height\": 1280, \"cfg_scale\": 8, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
       ]
     },
     {
@@ -1514,7 +1514,7 @@
         1.2,
         0.9,
         1.25,
-        -460823051381548,
+        782105465506512,
         "randomize",
         true,
         "cpu"
@@ -1854,9 +1854,9 @@
         1.2,
         true,
         "PHOTO",
-        0.4,
-        "None",
-        0.7000000000000001,
+        0.8,
+        "PORTRAITS_PETS",
+        2,
         true,
         "mean",
         "comfy++",
@@ -1865,9 +1865,9 @@
         "",
         1,
         "",
-        1.2,
+        1.5,
         "",
-        0.7000000000000001,
+        1,
         "",
         "",
         true,
@@ -1969,7 +1969,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        283808409806217,
+        245410730417008,
         "randomize",
         20,
         8,
@@ -2004,7 +2004,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy small body, sexy natural small breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long brown hair, natural makeup. (wear rainbow luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal standing, (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:0.40)\""
+        "\"portrait of bokeh (professional sexy 28 year old glamour beautiful perfect body woman, photomodel in (red fishnet luxury elegant lingerie:1.25), (short straight black hair) (green luxury denim bra:1.3), beautiful natural sexy small-size breasts, hidden nipples, (covered breast:1.2), large erotic necklace, love face, romantic pose, luxury erotic woman photography:1.3), (huge striking expensive sparkling brown diamond luxury jewellery in her neck:1.2), luxury minimalist style beautiful bedroom interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II, ((Photo,Highly Detailed:0.70), (Ultra detailed:0.80), (Dramatic:1.80), (Seapunk Art:1.80):1.50), (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:0.80)\""
       ]
     },
     {
@@ -2033,7 +2033,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(nsfw porn nudity male necklace smile smiling:1.20)\""
+        "\"(nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin:1.20), ((Low rated,Phone,Wedding,Frame,Painting,tumblr:0.70)), (3D, Absent limbs, Additional appendages, Additional digits, Additional limbs, Altered appendages, Amputee, Asymmetric, Asymmetric ears, Bad anatomy, Bad ears, Bad eyes, Bad face, Bad proportions, Beard (optional), Broken finger, Broken hand, Broken leg, Broken wrist, Cartoon, Childish (optional), Cloned face, Cloned head, Collapsed eyeshadow, Combined appendages, Conjoined, Copied visage, Corpse, Cripple, Cropped head, Cross-eyed, Depressed, Desiccated, Disconnected limb, Disfigured, Dismembered, Disproportionate, Double face, Duplicated features, Eerie, Elongated throat:2.00)\""
       ]
     },
     {
@@ -2062,7 +2062,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy small body, sexy natural small breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long brown hair, natural makeup. (wear rainbow luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal standing0)\""
+        "\"(portrait of bokeh (professional sexy 28 year old glamour beautiful perfect body woman, photomodel in (red fishnet luxury elegant lingerie:1.25), (short straight black hair) (green luxury denim bra:1.3), beautiful natural sexy small-size breasts, hidden nipples, (covered breast:1.2), large erotic necklace, love face, romantic pose, luxury erotic woman photography:1.3), (huge striking expensive sparkling brown diamond luxury jewellery in her neck:1.2), luxury minimalist style beautiful bedroom interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II0)\""
       ]
     },
     {
@@ -2091,7 +2091,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"((nsfw porn nudity male necklace smile smiling:1.20)0)\""
+        "\"((nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin:1.20)0)\""
       ]
     },
     {
