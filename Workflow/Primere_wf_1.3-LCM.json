@@ -1,6 +1,6 @@
 {
-  "last_node_id": 47,
-  "last_link_id": 129,
+  "last_node_id": 49,
+  "last_link_id": 138,
   "nodes": [
     {
       "id": 1,
@@ -284,8 +284,8 @@
         "Node name for S&R": "PrimereSamplers"
       },
       "widgets_values": [
-        "dpmpp_sde",
-        "sgm_uniform"
+        "lcm",
+        "ddim_uniform"
       ]
     },
     {
@@ -390,8 +390,8 @@
         "Node name for S&R": "PrimereStepsCfg"
       },
       "widgets_values": [
-        25,
-        8.5
+        10,
+        1.28
       ]
     },
     {
@@ -878,12 +878,12 @@
       "id": 28,
       "type": "PrimereMetaRead",
       "pos": [
-        1544,
+        1528,
         228
       ],
       "size": {
-        "0": 483.70001220703125,
-        "1": 1070.8800048828125
+        "0": 492.60015869140625,
+        "1": 1033.699951171875
       },
       "flags": {},
       "order": 18,
@@ -1155,7 +1155,7 @@
           "type": "TUPLE",
           "links": [
             83,
-            129
+            137
           ],
           "shape": 3,
           "slot_index": 16
@@ -1187,7 +1187,7 @@
         "",
         "euler",
         "normal",
-        1820,
+        1776,
         "randomize",
         512,
         512,
@@ -1260,7 +1260,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            26
+            133
           ],
           "shape": 3,
           "slot_index": 0
@@ -1269,7 +1269,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            112
+            135
           ],
           "shape": 3,
           "slot_index": 1
@@ -1349,7 +1349,7 @@
       },
       "widgets_values": [
         "",
-        912359573646071,
+        -929544495619080,
         "randomize"
       ]
     },
@@ -1401,7 +1401,7 @@
       },
       "widgets_values": [
         "",
-        -67056843120653,
+        160371003424744,
         "randomize"
       ]
     },
@@ -1431,7 +1431,62 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\", \"negative\": \"nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\copaxTimelessxlSDXL1_v7.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"sgm_uniform\", \"seed\": 309819021821895, \"width\": 819, \"height\": 1280, \"cfg_scale\": 8.5, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
+        "{\"positive\": \"portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\", \"negative\": \"nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\copaxTimelessxlSDXL1_v7.safetensors\", \"sampler_name\": \"lcm\", \"scheduler_name\": \"ddim_uniform\", \"seed\": 663589508231990, \"width\": 819, \"height\": 1280, \"cfg_scale\": 1.28, \"steps\": 10, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
+      ]
+    },
+    {
+      "id": 47,
+      "type": "LoraLoader",
+      "pos": [
+        2146,
+        -85
+      ],
+      "size": {
+        "0": 497.9999694824219,
+        "1": 126
+      },
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 133
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 135
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            130
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            138
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "SDXL\\pytorch_lora_weights.safetensors",
+        0.5,
+        0.3
       ]
     },
     {
@@ -1446,7 +1501,7 @@
         "1": 382
       },
       "flags": {},
-      "order": 24,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -1515,7 +1570,7 @@
         1.2,
         0.9,
         1.25,
-        -306149190119577,
+        437292111306041,
         "randomize",
         true,
         "cpu"
@@ -1533,7 +1588,7 @@
         "1": 232.25914001464844
       },
       "flags": {},
-      "order": 25,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -1596,6 +1651,46 @@
       ]
     },
     {
+      "id": 48,
+      "type": "ModelSamplingDiscrete",
+      "pos": [
+        2713,
+        -86
+      ],
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 130
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            134
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ModelSamplingDiscrete"
+      },
+      "widgets_values": [
+        "lcm",
+        false
+      ]
+    },
+    {
       "id": 27,
       "type": "PreviewImage",
       "pos": [
@@ -1607,7 +1702,7 @@
         "1": 273
       },
       "flags": {},
-      "order": 26,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
@@ -1632,7 +1727,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 27,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -1692,13 +1787,13 @@
         "1": 614
       },
       "flags": {},
-      "order": 28,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 112
+          "link": 138
         },
         {
           "name": "is_sdxl",
@@ -1889,13 +1984,13 @@
         "1": 218
       },
       "flags": {},
-      "order": 29,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 26
+          "link": 134
         },
         {
           "name": "positive",
@@ -1970,7 +2065,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        783037711760555,
+        819582890541354,
         "randomize",
         20,
         8,
@@ -1991,7 +2086,7 @@
         "1": 159.39295959472656
       },
       "flags": {},
-      "order": 30,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -2005,7 +2100,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"portrait of bokeh (professional sexy 26 year old glamour beautiful perfect body woman, photomodel in (multicolor silk luxury silk sexy top:1.25), (long curly blonde hair) (green luxury leather bra:1.3), beautiful natural sexy middle-size breasts, visible nipples, (uncovered breast:1.2), large erotic necklace, romantic face, romantic pose, luxury erotic fashion photography:1.3), (huge striking expensive sparkling white diamond luxury jewellery in her neck:1.2), luxury Rome style beautiful bedroom interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II, (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus)\""
+        "\"portrait of bokeh (professional sexy 48 year old glamour beautiful perfect body woman, photomodel in (red silk luxury plastic lingerie:1.25), (long straight black hair) (blue luxury leather bra:1.3), beautiful natural sexy large-size breasts, visible nipples, (uncovered breast:1.2), large erotic necklace, romantic face, professional pose, luxury erotic clothes photography:1.3), (huge striking expensive sparkling green diamond luxury jewellery in her neck:1.2), luxury minimalist style beautiful office interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II, (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus)\""
       ]
     },
     {
@@ -2020,7 +2115,7 @@
         "1": 152.09295654296875
       },
       "flags": {},
-      "order": 31,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
@@ -2049,7 +2144,7 @@
         "1": 156.09295654296875
       },
       "flags": {},
-      "order": 32,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
@@ -2063,7 +2158,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(portrait of bokeh (professional sexy 26 year old glamour beautiful perfect body woman, photomodel in (multicolor silk luxury silk sexy top:1.25), (long curly blonde hair) (green luxury leather bra:1.3), beautiful natural sexy middle-size breasts, visible nipples, (uncovered breast:1.2), large erotic necklace, romantic face, romantic pose, luxury erotic fashion photography:1.3), (huge striking expensive sparkling white diamond luxury jewellery in her neck:1.2), luxury Rome style beautiful bedroom interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II0)\""
+        "\"(portrait of bokeh (professional sexy 48 year old glamour beautiful perfect body woman, photomodel in (red silk luxury plastic lingerie:1.25), (long straight black hair) (blue luxury leather bra:1.3), beautiful natural sexy large-size breasts, visible nipples, (uncovered breast:1.2), large erotic necklace, romantic face, professional pose, luxury erotic clothes photography:1.3), (huge striking expensive sparkling green diamond luxury jewellery in her neck:1.2), luxury minimalist style beautiful office interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II0)\""
       ]
     },
     {
@@ -2078,7 +2173,7 @@
         "1": 159.59295654296875
       },
       "flags": {},
-      "order": 33,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
@@ -2107,7 +2202,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 34,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
@@ -2127,7 +2222,7 @@
           "type": "IMAGE",
           "links": [
             22,
-            128
+            136
           ],
           "shape": 3,
           "slot_index": 0
@@ -2149,7 +2244,7 @@
         "1": 1246.6590576171875
       },
       "flags": {},
-      "order": 35,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
@@ -2163,29 +2258,30 @@
       }
     },
     {
-      "id": 47,
+      "id": 49,
       "type": "PrimereMetaSave",
       "pos": [
-        5319,
-        184
+        5314,
+        164
       ],
       "size": {
-        "0": 315,
+        "0": 375.07501220703125,
         "1": 342
       },
       "flags": {},
-      "order": 36,
+      "order": 38,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 128
+          "link": 136,
+          "slot_index": 0
         },
         {
           "name": "image_metadata",
           "type": "TUPLE",
-          "link": 129
+          "link": 137
         }
       ],
       "properties": {
@@ -2193,7 +2289,7 @@
       },
       "widgets_values": [
         "z:\\AIPICS\\Comfy\\[time(%Y-%m-Week-%W)]",
-        "Project",
+        "Test",
         true,
         "Image",
         "_",
@@ -2311,14 +2407,6 @@
       19,
       0,
       "IMAGE"
-    ],
-    [
-      26,
-      21,
-      0,
-      17,
-      0,
-      "MODEL"
     ],
     [
       31,
@@ -2665,14 +2753,6 @@
       "STRING"
     ],
     [
-      112,
-      21,
-      1,
-      45,
-      0,
-      "CLIP"
-    ],
-    [
       113,
       45,
       0,
@@ -2793,20 +2873,60 @@
       "STRING"
     ],
     [
-      128,
-      18,
+      130,
+      47,
+      0,
+      48,
+      0,
+      "MODEL"
+    ],
+    [
+      133,
+      21,
       0,
       47,
+      0,
+      "MODEL"
+    ],
+    [
+      134,
+      48,
+      0,
+      17,
+      0,
+      "MODEL"
+    ],
+    [
+      135,
+      21,
+      1,
+      47,
+      1,
+      "CLIP"
+    ],
+    [
+      136,
+      18,
+      0,
+      49,
       0,
       "IMAGE"
     ],
     [
-      129,
+      137,
       28,
       16,
-      47,
+      49,
       1,
       "TUPLE"
+    ],
+    [
+      138,
+      47,
+      1,
+      45,
+      0,
+      "CLIP"
     ]
   ],
   "groups": [],
