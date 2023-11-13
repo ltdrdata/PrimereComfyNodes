@@ -16,6 +16,7 @@ from custom_nodes.ComfyUI_Primere_Nodes.components.utility import STANDARD_SIDES
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 from pathlib import Path
 import re
+import requests
 
 class PrimereSamplers:
     CATEGORY = TREE_DASHBOARD
@@ -101,27 +102,85 @@ class PrimereVAELoader:
     def load_primere_vae(self, vae_name, ):
         return self.vae_loader.load_vae(vae_name)
 
+class PrimereLCMSelector:
+    RETURN_TYPES = (comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "FLOAT", "INT")
+    RETURN_NAMES = ("SAMPLER_NAME", "SCHEDULER_NAME", "STEPS", "CFG", "IS_LCM")
+    FUNCTION = "select_lcm_mode"
+    CATEGORY = TREE_DASHBOARD
+
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "is_lcm": ("BOOLEAN", {"default": False}),
+                "sampler_name": (comfy.samplers.KSampler.SAMPLERS, {"forceInput": True, "default": "euler"}),
+                "scheduler_name": (comfy.samplers.KSampler.SCHEDULERS, {"forceInput": True, "default": "normal"}),
+                "lcm_sampler_name": (comfy.samplers.KSampler.SAMPLERS, {"forceInput": True, "default": "lcm"}),
+                "lcm_scheduler_name": (comfy.samplers.KSampler.SCHEDULERS, {"forceInput": True, "default": "sgm_uniform"}),
+                "cfg_scale": ('FLOAT', {"forceInput": True, "default": 7}),
+                "steps": ('INT', {"forceInput": True, "default": 12}),
+                "lcm_cfg_scale": ('FLOAT', {"forceInput": True, "default": 1.2}),
+                "lcm_steps": ('INT', {"forceInput": True, "default": 6}),
+            },
+        }
+
+    def select_lcm_mode(self, is_lcm = False, sampler_name = 'euler', scheduler_name = 'normal', lcm_sampler_name = 'lcm', lcm_scheduler_name = 'sgm_uniform', cfg_scale = 7, steps = 12, lcm_cfg_scale = 1.2, lcm_steps = 6):
+        lcm_mode = 0
+        if is_lcm == True:
+            sampler_name = lcm_sampler_name
+            scheduler_name = lcm_scheduler_name
+            steps = lcm_steps
+            cfg_scale = lcm_cfg_scale
+            lcm_mode = 1
+
+        return (sampler_name, scheduler_name, steps, cfg_scale, lcm_mode,)
+
+
 class PrimereCKPTLoader:
     RETURN_TYPES = ("MODEL", "CLIP", "VAE", "INT",)
-    RETURN_NAMES = ("MODEL", "CLIP", "VAE", "IS_SDXL",)
+    RETURN_NAMES = ("MODEL", "CLIP", "VAE", "IS_SDXL")
     FUNCTION = "load_primere_ckpt"
     CATEGORY = TREE_DASHBOARD
 
     def __init__(self):
         self.chkp_loader = nodes.CheckpointLoaderSimple()
+        self.loaded_lora = None
 
     @classmethod
     def INPUT_TYPES(s):
         return {
             "required": {
                 "ckpt_name": ("CHECKPOINT_NAME",),
+                "is_lcm": ("INT", {"default": 0, "forceInput": True}),
+                "strength_lcm_model": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
+                "strength_lcm_clip": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
             },
             "optional": {
                 "sdxl_path": ("STRING", {"default": 'SDXL'}),
             },
         }
 
-    def load_primere_ckpt(self, ckpt_name, sdxl_path):
+    def load_primere_ckpt(self, ckpt_name, is_lcm, sdxl_path, strength_lcm_model, strength_lcm_clip):
+        LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(ckpt_name)
+        OUTPUT_MODEL = LOADED_CHECKPOINT[0]
+        OUTPUT_CLIP = LOADED_CHECKPOINT[1]
+        def lcm(self, model, zsnr=False):
+            m = model.clone()
+
+            sampling_base = comfy.model_sampling.ModelSamplingDiscrete
+            sampling_type = utility.LCM
+            sampling_base = utility.ModelSamplingDiscreteLCM
+
+            class ModelSamplingAdvanced(sampling_base, sampling_type):
+                pass
+
+            model_sampling = ModelSamplingAdvanced()
+            if zsnr:
+                model_sampling.set_sigmas(utility.rescale_zero_terminal_snr_sigmas(model_sampling.sigmas))
+
+            m.add_object_patch("model_sampling", model_sampling)
+            return m
+
         is_sdxl = 0
         if sdxl_path:
             if not sdxl_path.endswith(os.sep):
@@ -129,7 +188,56 @@ class PrimereCKPTLoader:
             if (ckpt_name.startswith(sdxl_path) == True):
                 is_sdxl = 1
 
-        return self.chkp_loader.load_checkpoint(ckpt_name) + (is_sdxl,)
+        if is_lcm == 1:
+            SDXL_LORA = 'https://huggingface.co/latent-consistency/lcm-lora-sdxl/resolve/main/pytorch_lora_weights.safetensors?download=true'
+            SD_LORA = 'https://huggingface.co/latent-consistency/lcm-lora-sdv1-5/resolve/main/pytorch_lora_weights.safetensors?download=true'
+            DOWNLOADED_SD_LORA = os.path.join(PRIMERE_ROOT, 'Nodes', 'Downloads', 'lcm_lora_sd.safetensors')
+            DOWNLOADED_SDXL_LORA = os.path.join(PRIMERE_ROOT, 'Nodes', 'Downloads', 'lcm_lora_sdxl.safetensors')
+
+            if os.path.exists(DOWNLOADED_SD_LORA) == False:
+                print('Downloading SD LCM LORA....')
+                reqsdlcm = requests.get(SD_LORA, allow_redirects=True)
+                if reqsdlcm.status_code == 200 and reqsdlcm.ok == True:
+                    open(DOWNLOADED_SD_LORA, 'wb').write(reqsdlcm.content)
+                else:
+                    print('ERROR: Cannot dowload SD LCM Lora')
+
+            if os.path.exists(DOWNLOADED_SDXL_LORA) == False:
+                print('Downloading SDXL LCM LORA....')
+                reqsdxllcm = requests.get(SDXL_LORA, allow_redirects=True)
+                if reqsdxllcm.status_code == 200 and reqsdxllcm.ok == True:
+                    open(DOWNLOADED_SDXL_LORA, 'wb').write(reqsdxllcm.content)
+                else:
+                    print('ERROR: Cannot dowload SDXL LCM Lora')
+
+            if is_sdxl == 0:
+                LORA_PATH = DOWNLOADED_SD_LORA
+            else:
+                LORA_PATH = DOWNLOADED_SDXL_LORA
+
+            if os.path.exists(LORA_PATH) == True:
+                if strength_lcm_model > 0 or strength_lcm_clip > 0:
+                    print('LCM mode on')
+                    lora = None
+
+                    if self.loaded_lora is not None:
+                        if self.loaded_lora[0] == LORA_PATH:
+                            lora = self.loaded_lora[1]
+                        else:
+                            temp = self.loaded_lora
+                            self.loaded_lora = None
+                            del temp
+
+                    if lora is None:
+                        lora = comfy.utils.load_torch_file(LORA_PATH, safe_load=True)
+                        self.loaded_lora = (LORA_PATH, lora)
+
+                    MODEL_LORA, CLIP_LORA = comfy.sd.load_lora_for_models(OUTPUT_MODEL, OUTPUT_CLIP, lora, strength_lcm_model, strength_lcm_clip)
+
+                    OUTPUT_MODEL = lcm(self, MODEL_LORA, False)
+                    OUTPUT_CLIP = CLIP_LORA
+
+        return (OUTPUT_MODEL,) + (OUTPUT_CLIP,) + (LOADED_CHECKPOINT[2],) + (is_sdxl,)
 
 class AnyType(str):
     def __ne__(self, __value: object) -> bool:

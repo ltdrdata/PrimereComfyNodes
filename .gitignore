@@ -3,3 +3,4 @@
 wildcards
 stylecsv
 consoletests
+*.safetensors
