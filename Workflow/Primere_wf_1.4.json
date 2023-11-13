@@ -1,6 +1,6 @@
 {
-  "last_node_id": 58,
-  "last_link_id": 162,
+  "last_node_id": 59,
+  "last_link_id": 164,
   "nodes": [
     {
       "id": 1,
@@ -557,7 +557,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "SDXL\\nightvisionXLPhotorealistic.safetensors",
+        "BestAll\\realisticVisionV40.safetensors",
         "SDXL"
       ]
     },
@@ -867,7 +867,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        1
+        7
       ]
     },
     {
@@ -1059,7 +1059,7 @@
         "Node name for S&R": "PrimereLCMSelector"
       },
       "widgets_values": [
-        true,
+        false,
         "euler",
         "normal",
         "lcm",
@@ -1097,7 +1097,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\""
+        "\"beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants\""
       ]
     },
     {
@@ -1127,7 +1127,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"kid, child, childish, text, frame, nude, nudity, porn, sex\""
+        "\"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw\""
       ]
     },
     {
@@ -1411,7 +1411,7 @@
           "type": "TUPLE",
           "links": [
             83,
-            129
+            164
           ],
           "shape": 3,
           "slot_index": 16
@@ -1443,7 +1443,7 @@
         "",
         "euler",
         "normal",
-        1687,
+        1680,
         "randomize",
         512,
         512,
@@ -1585,7 +1585,7 @@
       },
       "widgets_values": [
         "",
-        -527161270159566,
+        -967838747504662,
         "randomize"
       ]
     },
@@ -1637,7 +1637,7 @@
       },
       "widgets_values": [
         "",
-        527601158329881,
+        333671284096859,
         "randomize"
       ]
     },
@@ -1667,7 +1667,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\", \"negative\": \"kid, child, childish, text, frame, nude, nudity, porn, sex\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"SDXL\\\\nightvisionXLPhotorealistic.safetensors\", \"sampler_name\": \"lcm\", \"scheduler_name\": \"sgm_uniform\", \"seed\": 871776152768398, \"width\": 819, \"height\": 1280, \"cfg_scale\": 1.1300000000000001, \"steps\": 8, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 1, \"vae_name\": \"sdxl_vae.safetensors\", \"force_model_vae\": false}"
+        "{\"positive\": \"beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants\", \"negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\realisticVisionV40.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 612379177852672, \"width\": 614, \"height\": 960, \"cfg_scale\": 8.5, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false}"
       ]
     },
     {
@@ -1751,7 +1751,7 @@
         1.2,
         0.9,
         1.25,
-        457373738082803,
+        667845115105350,
         "randomize",
         true,
         "cpu"
@@ -2089,11 +2089,11 @@
         "",
         "",
         1.2,
-        false,
+        true,
         "PHOTO",
         1,
-        "PORTRAITS_PETS",
-        1.3,
+        "BETTER_IMAGES",
+        1.2,
         true,
         "mean",
         "comfy++",
@@ -2206,7 +2206,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        493074942243804,
+        700974158093605,
         "randomize",
         20,
         8,
@@ -2241,7 +2241,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\""
+        "\"beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear dark blue luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long red jeans pants, (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus)\""
       ]
     },
     {
@@ -2270,7 +2270,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(kid, child, childish, text, frame, nude, nudity, porn, sex:1.20)\""
+        "\"(dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace embedding:add_nsfw:1.20), (Amputee, Autograph, Bad anatomy, Bad illustration, Bad proportions, Beyond the borders, Blank background, Blurry, Body out of frame, Boring background, Branding, Cropped, Cut off, Deformed, Disfigured, Dismembered, Disproportioned, Distorted, Draft, Duplicate, Duplicated features, Extra arms, Extra fingers, Extra hands, Extra legs, Extra limbs, Fault, Flaw, Fused fingers, Grains, Grainy, Gross proportions, Hazy, Identifying mark, Improper scale, Incorrect physiology, Incorrect ratio, Indistinct, Kitsch, Logo, Long neck, Low quality, Low resolution, Macabre, Malformed, Mark, Misshapen, Missing arms, Missing fingers, Missing hands, Missing legs, Mistake, Morbid, Mutated hands, Mutation, Mutilated, Off-screen, Out of frame, Outside the picture, Pixelated, Poorly drawn face, Poorly drawn feet, Poorly drawn hands, Printed words, Render, Repellent, Replicate, Reproduce, Revolting dimensions, Script, Shortened, Sign, Signature, Split image, Squint, Storyboard, Text, Tiling, Trimmed, Ugly, Unfocused, Unattractive, Unnatural pose, Unreal engine, Unsightly, Watermark, Written language:1.20)\""
       ]
     },
     {
@@ -2299,7 +2299,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography0)\""
+        "\"\""
       ]
     },
     {
@@ -2328,7 +2328,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"((kid, child, childish, text, frame, nude, nudity, porn, sex:1.20)0)\""
+        "\"\""
       ]
     },
     {
@@ -2363,7 +2363,7 @@
           "type": "IMAGE",
           "links": [
             22,
-            128
+            163
           ],
           "shape": 3,
           "slot_index": 0
@@ -2377,8 +2377,8 @@
       "id": 19,
       "type": "PreviewImage",
       "pos": [
-        3970,
-        170
+        3968,
+        158
       ],
       "size": {
         "0": 1317.6729736328125,
@@ -2399,16 +2399,16 @@
       }
     },
     {
-      "id": 47,
+      "id": 59,
       "type": "PrimereMetaSave",
       "pos": [
         5319,
         184
       ],
-      "size": {
-        "0": 315,
-        "1": 342
-      },
+      "size": [
+        372,
+        462
+      ],
       "flags": {},
       "order": 39,
       "mode": 0,
@@ -2416,12 +2416,12 @@
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 128
+          "link": 163
         },
         {
           "name": "image_metadata",
           "type": "TUPLE",
-          "link": 129
+          "link": 164
         }
       ],
       "properties": {
@@ -2429,17 +2429,22 @@
       },
       "widgets_values": [
         "z:\\AIPICS\\Comfy\\[time(%Y-%m-Week-%W)]",
-        "Test",
+        "Dev",
         true,
         "Image",
         "_",
+        true,
+        true,
+        true,
+        true,
         2,
         false,
         "jpg",
         true,
         true,
         95,
-        "false"
+        "false",
+        false
       ]
     }
   ],
@@ -2941,22 +2946,6 @@
       "STRING"
     ],
     [
-      128,
-      18,
-      0,
-      47,
-      0,
-      "IMAGE"
-    ],
-    [
-      129,
-      28,
-      16,
-      47,
-      1,
-      "TUPLE"
-    ],
-    [
       143,
       12,
       2,
@@ -3115,6 +3104,22 @@
       39,
       0,
       "INT"
+    ],
+    [
+      163,
+      18,
+      0,
+      59,
+      0,
+      "IMAGE"
+    ],
+    [
+      164,
+      28,
+      16,
+      59,
+      1,
+      "TUPLE"
     ]
   ],
   "groups": [],

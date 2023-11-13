@@ -10,6 +10,7 @@ import pyexiv2
 from PIL.PngImagePlugin import PngInfo
 from PIL import Image, ImageOps
 from pathlib import Path
+import datetime
 
 ALLOWED_EXT = ('.jpeg', '.jpg', '.png', '.tiff', '.gif', '.bmp', '.webp')
 
@@ -31,6 +32,10 @@ class PrimereMetaSave:
                 "add_modelname_to_path": ("BOOLEAN", {"default": False}),
                 "filename_prefix": ("STRING", {"default": "ComfyUI"}),
                 "filename_delimiter": ("STRING", {"default": "_"}),
+                "add_date_to_filename": ("BOOLEAN", {"default": True}),
+                "add_time_to_filename": ("BOOLEAN", {"default": True}),
+                "add_seed_to_filename": ("BOOLEAN", {"default": True}),
+                "add_size_to_filename": ("BOOLEAN", {"default": True}),
                 "filename_number_padding": ("INT", {"default": 2, "min": 1, "max": 9, "step": 1}),
                 "filename_number_start": ("BOOLEAN", {"default":False}),
                 "extension": (['png', 'jpeg', 'jpg', 'gif', 'tiff', 'webp'], {"default": "jpg"}),
@@ -38,6 +43,7 @@ class PrimereMetaSave:
                 "image_embed_exif": ("BOOLEAN", {"default":False}),
                 "quality": ("INT", {"default": 95, "min": 1, "max": 100, "step": 1}),
                 "overwrite_mode": (["false", "prefix_as_filename"],),
+                "save_mata_to_json": ("BOOLEAN", {"default": False}),
             },
             "optional": {
                 "image_metadata": ('TUPLE', {"forceInput": True}),
@@ -52,7 +58,7 @@ class PrimereMetaSave:
     OUTPUT_NODE = True
     CATEGORY = TREE_OUTPUTS
 
-    def save_images_meta(self, images, image_metadata=None,
+    def save_images_meta(self, images, add_date_to_filename, add_time_to_filename, add_seed_to_filename, add_size_to_filename, save_mata_to_json, image_metadata=None,
                          output_path='[time(%Y-%m-%d)]', subpath='Project', add_modelname_to_path = False, filename_prefix="ComfyUI", filename_delimiter='_',
                          extension='jpg', quality=95, prompt=None, extra_pnginfo=None,
                          overwrite_mode='false', filename_number_padding=2, filename_number_start=False,
@@ -60,11 +66,22 @@ class PrimereMetaSave:
 
         delimiter = filename_delimiter
         number_padding = filename_number_padding
-
         tokens = TextTokens()
 
         original_output = self.output_dir
         filename_prefix = tokens.parseTokens(filename_prefix)
+        nowdate = datetime.datetime.now()
+
+        if add_date_to_filename:
+            filename_prefix = filename_prefix + '_' + nowdate.strftime("%Y%d%m")
+        if add_time_to_filename:
+            filename_prefix = filename_prefix + '_' + nowdate.strftime("%H%M%S")
+        if add_seed_to_filename:
+            if 'seed' in image_metadata:
+                filename_prefix = filename_prefix + '_' + str(image_metadata['seed'])
+        if add_size_to_filename:
+            if 'width' in image_metadata:
+                filename_prefix = filename_prefix + '_' + str(image_metadata['width']) + 'x' + str(image_metadata['height'])
 
         if output_path in [None, '', "none", "."]:
             output_path = self.output_dir
@@ -139,22 +156,6 @@ Negative prompt: {image_metadata['negative']}
 Steps: {str(image_metadata['steps'])}, Sampler: {image_metadata['sampler_name'] + ' ' + image_metadata['scheduler_name']}, CFG scale: {str(image_metadata['cfg_scale'])}, Seed: {str(image_metadata['seed'])}, Size: {str(image_metadata['width'])}x{str(image_metadata['height'])}, Model hash: {image_metadata['model_hash']}, Model: {image_metadata['model_name']}, VAE: {image_metadata['vae_name']}"""
 
                 exif_metadata_json = image_metadata
-                '''
-                exif_metadata_json['positive'] = positive
-                exif_metadata_json['negative'] = negative
-                exif_metadata_json['positive_l'] = positive_l
-                exif_metadata_json['negative_l'] = negative_l
-                exif_metadata_json['positive_refiner'] = positive_refiner
-                exif_metadata_json['negative_refiner'] = negative_refiner
-                exif_metadata_json['seed'] = str(seed)
-                exif_metadata_json['model_hash'] = model_hash
-                exif_metadata_json['model_name'] = model_name
-                exif_metadata_json['sampler_name'] = sampler_name
-                exif_metadata_json['original_width'] = str(original_width)
-                exif_metadata_json['original_height'] = str(original_height)
-                exif_metadata_json['steps'] = str(steps)
-                exif_metadata_json['cfg_scale'] = str(cfg_scale)
-                '''
 
                 if extension == 'png':
                     img.save(output_file, pnginfo=metadata, optimize=True)
@@ -173,6 +174,11 @@ Steps: {str(image_metadata['steps'])}, Sampler: {image_metadata['sampler_name'] 
                         else:
                             img.save(output_file, quality=quality, optimize=True)
                             print(f"Image file saved without exif: {output_file}")
+
+                if save_mata_to_json:
+                    jsonfile = os.path.splitext(output_file)[0] + '.json'
+                    with open(jsonfile, 'w', encoding='utf-8') as jf:
+                        json.dump(exif_metadata_json, jf, ensure_ascii=False, indent=4)
 
             except OSError as e:
                 print(f'Unable to save file to: {output_file}')
@@ -213,13 +219,6 @@ class TextTokens:
         }
         if '.' in self.tokens['[time]']: self.tokens['[time]'] = self.tokens['[time]'].split('.')[0]
 
-        '''
-        try:
-            self.tokens['[user]'] = (os.getlogin() if os.getlogin() else 'null')
-        except Exception:
-            self.tokens['[user]'] = 'null'
-        '''
-
     def format_time(self, format_code):
         return time.strftime(format_code, time.localtime(time.time()))
 
@@ -241,5 +240,4 @@ class TextTokens:
             return self.format_time(format_code)
 
         text = re.sub(r'\[time\((.*?)\)\]', replace_custom_time, text)
-
         return text
