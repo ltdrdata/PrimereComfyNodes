@@ -365,11 +365,11 @@ class PrimereMetaRead:
                         if 'seed' in reader.parameter:
                             data_json['seed'] = reader.parameter["seed"]
 
-                    if use_cfg_scale == True:
+                    if use_cfg_scale == True and data_json['is_lcm'] == 0:
                         if 'cfg_scale' in reader.parameter:
                             data_json['cfg_scale'] = reader.parameter["cfg_scale"]
 
-                    if use_steps == True:
+                    if use_steps == True and data_json['is_lcm'] == 0:
                         if 'steps' in reader.parameter:
                             data_json['steps'] = reader.parameter["steps"]
 
