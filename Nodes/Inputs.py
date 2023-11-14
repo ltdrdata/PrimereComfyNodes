@@ -130,24 +130,7 @@ class PrimereDynParser:
         )
 
     def dyndecoder(self, dyn_prompt, seed):
-        prompt_generator = RandomPromptGenerator(
-            self._wildcard_manager,
-            seed = seed,
-            parser_config = self._parser_config,
-            unlink_seed_from_prompt = False,
-            ignore_whitespace = False
-        )
-
-        dyn_type = type(dyn_prompt).__name__
-        if (dyn_type != 'str'):
-            dyn_prompt = ''
-
-        try:
-            all_prompts = prompt_generator.generate(dyn_prompt, 1) or [""]
-        except Exception:
-            all_prompts = [""]
-
-        prompt = all_prompts[0]
+        prompt = utility.DynPromptDecoder(self, dyn_prompt, seed)
         return (prompt, )
 
 class PrimereEmbeddingHandler:
@@ -211,6 +194,13 @@ class PrimereMetaRead:
     def __init__(self):
         self.chkp_loader = nodes.CheckpointLoaderSimple()
         self.vae_loader = nodes.VAELoader()
+        wildcard_dir = os.path.join(PRIMERE_ROOT, 'wildcards')
+        self._wildcard_manager = WildcardManager(wildcard_dir)
+        self._parser_config = ParserConfig(
+            variant_start = "{",
+            variant_end = "}",
+            wildcard_wrap = "__"
+        )
 
     @classmethod
     def INPUT_TYPES(s):
@@ -219,8 +209,8 @@ class PrimereMetaRead:
 
         return {
             "required": {
-                "sdxl_path": ("STRING", {"default": "SDXL", "forceInput": True}),
                 "use_exif": ("BOOLEAN", {"default": True}),
+                "use_decoded_dyn": ("BOOLEAN", {"default": False}),
                 "use_model": ("BOOLEAN", {"default": True}),
                 "model_hash_check": ("BOOLEAN", {"default": False}),
                 "use_sampler": ("BOOLEAN", {"default": True}),
@@ -231,6 +221,7 @@ class PrimereMetaRead:
                 "use_steps": ("BOOLEAN", {"default": True}),
                 "use_exif_vae": ("BOOLEAN", {"default": True}),
                 "force_model_vae": ("BOOLEAN", {"default": False}),
+                "sdxl_path": ("STRING", {"default": "SDXL", "forceInput": True}),
                 "image": (sorted(files),),
             },
             "optional": {
@@ -250,12 +241,13 @@ class PrimereMetaRead:
                 "steps": ('INT', {"forceInput": True, "default": 12}),
                 "vae_name_sd": ('VAE_NAME', {"forceInput": True, "default": ""}),
                 "vae_name_sdxl": ('VAE_NAME', {"forceInput": True, "default": ""}),
+                "is_lcm": ("INT", {"default": 0, "forceInput": True}),
             },
         }
 
-    def load_image_meta(self, sdxl_path, use_exif, use_model, model_hash_check, use_sampler, use_seed, use_size, recount_size, use_cfg_scale, use_steps, use_exif_vae, force_model_vae, image,
+    def load_image_meta(self, sdxl_path, use_exif, use_decoded_dyn, use_model, model_hash_check, use_sampler, use_seed, use_size, recount_size, use_cfg_scale, use_steps, use_exif_vae, force_model_vae, image,
                         positive="", negative="", positive_l="", negative_l="", positive_r="", negative_r="",
-                        model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl=""):
+                        model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl="", is_lcm=0 ):
 
         data_json = {}
         data_json['positive'] = positive
@@ -276,6 +268,7 @@ class PrimereMetaRead:
         data_json['sdxl_path'] = sdxl_path
         is_sdxl = 0
         data_json['is_sdxl'] = is_sdxl
+        data_json['is_lcm'] = is_lcm
         data_json['vae_name'] = vae_name_sd
         data_json['force_model_vae'] = force_model_vae
 
@@ -319,6 +312,9 @@ class PrimereMetaRead:
                 else:
                     data_json['negative'] = ""
 
+                data_json['dynamic_positive'] = utility.DynPromptDecoder(self, data_json['positive'], seed)
+                data_json['dynamic_negative'] = utility.DynPromptDecoder(self, data_json['negative'], seed)
+
                 if (readerResult.tool == ''):
                     print('Reader tool return empty, using node input')
                     if (force_model_vae == True):
@@ -355,7 +351,7 @@ class PrimereMetaRead:
 
                     data_json['is_sdxl'] = is_sdxl
 
-                    if use_sampler == True:
+                    if use_sampler == True and data_json['is_lcm'] == 0:
                         if 'sampler' in reader.parameter:
                             sampler_name_exif = reader.parameter["sampler"]
                             samplers = exif_data_checker.check_sampler_from_exif(sampler_name_exif.lower(), sampler_name, scheduler_name)
@@ -412,6 +408,12 @@ class PrimereMetaRead:
                             data_json['width'] = dimensions[0]
                             data_json['height'] = dimensions[1]
 
+                    if use_decoded_dyn == True:
+                        if 'dynamic_positive' in reader.parameter:
+                            data_json['positive'] = reader.parameter['dynamic_positive']
+                        if 'dynamic_negative' in reader.parameter:
+                            data_json['negative'] = reader.parameter['dynamic_negative']
+
                     return (data_json['positive'], data_json['negative'], data_json['positive_l'], data_json['negative_l'], data_json['positive_r'], data_json['negative_r'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json['vae_name'], realvae, data_json)
 
                 except ValueError as VE:
@@ -438,6 +440,9 @@ class PrimereMetaRead:
                 realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
             else:
                 realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
+
+            data_json['dynamic_positive'] = utility.DynPromptDecoder(self, data_json['positive'], seed)
+            data_json['dynamic_negative'] = utility.DynPromptDecoder(self, data_json['negative'], seed)
 
             return (data_json['positive'], data_json['negative'], data_json['positive_l'], data_json['negative_l'], data_json['positive_r'], data_json['negative_r'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json['vae_name'], realvae, data_json)
 

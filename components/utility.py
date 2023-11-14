@@ -1,6 +1,7 @@
 import math
 import comfy.model_sampling
 import torch
+from dynamicprompts.generators import RandomPromptGenerator
 
 SUPPORTED_FORMATS = [".png", ".jpg", ".jpeg", ".webp"]
 STANDARD_SIDES = [64, 80, 96, 128, 144, 160, 192, 256, 320, 368, 400, 480, 512, 560, 640, 704, 768, 832, 896, 960, 1024, 1088, 1152, 1216, 1280, 1344, 1408, 1472, 1536, 1600, 1664, 1728, 1792, 1856, 1920, 1984, 2048]
@@ -186,3 +187,24 @@ class LCM(comfy.model_sampling.EPS):
         c_out = scaled_timestep / (scaled_timestep**2 + sigma_data**2) ** 0.5
 
         return c_out * x0 + c_skip * model_input
+
+def DynPromptDecoder(self, dyn_prompt, seed):
+    prompt_generator = RandomPromptGenerator(
+        self._wildcard_manager,
+        seed = seed,
+        parser_config = self._parser_config,
+        unlink_seed_from_prompt = False,
+        ignore_whitespace = False
+    )
+
+    dyn_type = type(dyn_prompt).__name__
+    if (dyn_type != 'str'):
+        dyn_prompt = ''
+
+    try:
+        all_prompts = prompt_generator.generate(dyn_prompt, 1) or [""]
+    except Exception:
+        all_prompts = [""]
+
+    prompt = all_prompts[0]
+    return prompt
