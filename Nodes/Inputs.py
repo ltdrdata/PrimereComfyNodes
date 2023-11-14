@@ -351,7 +351,7 @@ class PrimereMetaRead:
 
                     data_json['is_sdxl'] = is_sdxl
 
-                    if use_sampler == True and data_json['is_lcm'] == 0:
+                    if use_sampler == True and data_json['is_lcm'] == 0 and (reader.parameter["cfg_scale"] >= 3 and reader.parameter["steps"] >= 9):
                         if 'sampler' in reader.parameter:
                             sampler_name_exif = reader.parameter["sampler"]
                             samplers = exif_data_checker.check_sampler_from_exif(sampler_name_exif.lower(), sampler_name, scheduler_name)
@@ -365,11 +365,11 @@ class PrimereMetaRead:
                         if 'seed' in reader.parameter:
                             data_json['seed'] = reader.parameter["seed"]
 
-                    if use_cfg_scale == True and data_json['is_lcm'] == 0:
+                    if use_cfg_scale == True and data_json['is_lcm'] == 0 and reader.parameter["cfg_scale"] >= 3:
                         if 'cfg_scale' in reader.parameter:
                             data_json['cfg_scale'] = reader.parameter["cfg_scale"]
 
-                    if use_steps == True and data_json['is_lcm'] == 0:
+                    if use_steps == True and data_json['is_lcm'] == 0 and reader.parameter["steps"] >= 9:
                         if 'steps' in reader.parameter:
                             data_json['steps'] = reader.parameter["steps"]
 
