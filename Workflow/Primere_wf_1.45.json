@@ -6,8 +6,8 @@
       "id": 1,
       "type": "PrimereStyleLoader",
       "pos": [
-        72,
-        67
+        30.381671819536418,
+        87.08414687866737
       ],
       "size": {
         "0": 402,
@@ -41,18 +41,20 @@
       },
       "widgets_values": [
         "Woman SFW"
-      ]
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
     },
     {
       "id": 5,
       "type": "PrimerePrompt",
       "pos": [
-        62,
-        190
+        30.381671819536418,
+        204.08414687866735
       ],
       "size": [
-        415.1892041015624,
-        188.51625976562502
+        402.90486416719955,
+        204.08538959368457
       ],
       "flags": {},
       "order": 1,
@@ -83,19 +85,21 @@
       "widgets_values": [
         "minimalist interior, colorful beautiful ({large|small|huge} {modern|retro|old style|abandoned, messy|futuristic} {bedroom|hall|kitchen|office|auto garage}:1.4), Bauhaus modern {minimalist|difficult} furniture, (abstract paint of female portrait on the wall:1.4), luxury {glassy|platina|silver|gold|wood|metal|plastic} desk, leather sofa in the corner, beautiful large windows, small messy desk in the corner with computer screen, old books papers notes and color pencils, professional interior photography",
         "cute animal, draw, low quality, illustration, man, woman, human, text, watermark, greyscale"
-      ]
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 6,
       "type": "PrimerePrompt",
       "pos": [
-        71,
-        431
+        32,
+        447
       ],
-      "size": {
-        "0": 400,
-        "1": 200
-      },
+      "size": [
+        403.15882627055817,
+        206.76532023406207
+      ],
       "flags": {},
       "order": 2,
       "mode": 0,
@@ -125,19 +129,21 @@
       "widgets_values": [
         "With a degree in French, which she barely spoke, and an art degree she didn’t have, Head hustled her way into a job by borrowing another student's sketches. Once in, she began her career as a low-level sketch artist at Paramount and then climbed her way up, armed with wit, verve, and an uncanny knack for understanding personalities. It was as if she could look at an actor and know the fabric of their souls, which she'd translate into the fabric of their costumes.\nHer professional journey wasn't always a red carpet. The competition was fierce, the critics numerous, but Head had an arsenal of ambition and resilience. She worked her needle and thread through the tides of cinematic evolution, enduring the transition from black-and-white to Technicolor, never once losing her signature flair.\nHer influence was as wide as her round, signature glasses, stretching beyond film to fashion trends and popular culture. Her work continues to inspire designers and artists who know",
         "porn, nudity"
-      ]
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 7,
       "type": "PrimerePrompt",
       "pos": [
-        73,
-        668
+        31.381671819536418,
+        690.0841468786675
       ],
-      "size": {
-        "0": 400,
-        "1": 200
-      },
+      "size": [
+        404.15886185529234,
+        198.92685868559147
+      ],
       "flags": {},
       "order": 3,
       "mode": 0,
@@ -167,19 +173,21 @@
       "widgets_values": [
         "a late autumn mood, chilly breeze, fallen leaves, misty harbor, crowded streets, vintage fashion, gas lamps, cobblestone roads, tall ships, bustling activity, somber atmosphere, worn-out buildings, dampness, muted colors, hidden mysteries, nostalgia, umbrellas, top hats, bonnets, smokestacks, hazy skies, whispered conversations camera settings: Canon EOS 5D Mark IV, Fujifilm Pro 400H film, 35mm lens, long exposure technique -c 10 -ar 2:3 + rtx on -v 5.2  -q 5 -style raw directors, cinematographers, photographers, fashion designers: Alfred Hitchcock, Roger Deakins, Julia Margaret Cameron, Alexander McQueen, Tim Burton, Dorothea Lange, Cecil Beaton, David Lynch, Lewis Carroll, Vivienne Westwood, Wong Kar-wai, Edward Steichen, Robert Doisneau, Stanley Kubrick, Annie Leibovitz, Charles Dickens,",
         "watermark, text"
-      ]
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 8,
       "type": "PrimerePrompt",
       "pos": [
-        72,
-        906
+        32.381671819536415,
+        925.0841468786675
       ],
-      "size": {
-        "0": 400,
-        "1": 200
-      },
+      "size": [
+        404.66137961280833,
+        209.6067702295543
+      ],
       "flags": {},
       "order": 4,
       "mode": 0,
@@ -209,14 +217,16 @@
       "widgets_values": [
         "exterior, extreme architecture, ({huge|large|small|friendly} {futuristic|modern|luxury|old style|retro|horror|Retro_Futuristic|abandoned|style-abandoned2|wooden|concrete|metallic|glassy|home|office building|castle} terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor {daytime|night|morning|evening|starry night|stormy, thunder, lightning} {|Summer|summer|Winter|winter|Spring|spring|Autumn|autumn|Apocalypse} professional architectural photography), beautiful nature on {Earth|Moon|Mars|Venus|Saturn|space|nature|huge spaceship|alien word}, large hill, (snow on hill:0.7), (a frightening sight:1.3), small {pool|swimming pool|lake}, (solar panels:0.6), ({volcano in the background with smoke and fire|forest with trees|huge rocky mountain, stones|}:0.6)",
         "watermark, person, text, china style, indian style"
-      ]
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 24,
       "type": "PrimereSeed",
       "pos": [
-        810,
-        570
+        574.6783737504843,
+        -478.2258977039062
       ],
       "size": {
         "0": 314,
@@ -244,19 +254,21 @@
         null,
         null,
         null
-      ]
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 10,
       "type": "PrimereVAE",
       "pos": [
-        810,
-        380
+        33.6783737504835,
+        -317.22589770390596
       ],
-      "size": {
-        "0": 527,
-        "1": 58
-      },
+      "size": [
+        528.3360595703125,
+        58
+      ],
       "flags": {},
       "order": 6,
       "mode": 0,
@@ -271,24 +283,27 @@
           "slot_index": 0
         }
       ],
+      "title": "Primere VAE Selector - SD VAE",
       "properties": {
         "Node name for S&R": "PrimereVAE"
       },
       "widgets_values": [
         "vae-ft-mse-840000-ema-pruned.ckpt"
-      ]
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
     },
     {
       "id": 13,
       "type": "PrimereVAE",
       "pos": [
-        810,
-        470
+        34.6783737504835,
+        -221.22589770390599
       ],
-      "size": {
-        "0": 527,
-        "1": 58
-      },
+      "size": [
+        528.3360595703125,
+        58
+      ],
       "flags": {},
       "order": 7,
       "mode": 0,
@@ -303,24 +318,27 @@
           "slot_index": 0
         }
       ],
+      "title": "Primere VAE Selector - SDXL VAE",
       "properties": {
         "Node name for S&R": "PrimereVAE"
       },
       "widgets_values": [
         "sdxl_vae.safetensors"
-      ]
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
     },
     {
       "id": 43,
       "type": "PrimerePrompt",
       "pos": [
-        73,
-        1151
+        34.38167181953642,
+        1171.0841468786675
       ],
-      "size": {
-        "0": 400,
-        "1": 200
-      },
+      "size": [
+        404.1640398468312,
+        202.52492715217932
+      ],
       "flags": {},
       "order": 8,
       "mode": 0,
@@ -350,19 +368,21 @@
       "widgets_values": [
         "beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair",
         "dry hair, porn, nudity, nsfw, necklace add_nsfw"
-      ]
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 44,
       "type": "PrimerePrompt",
       "pos": [
-        73,
-        1391
+        33,
+        1410
       ],
-      "size": {
-        "0": 400,
-        "1": 200
-      },
+      "size": [
+        405.9153953225514,
+        198.6864591465237
+      ],
       "flags": {},
       "order": 9,
       "mode": 0,
@@ -392,14 +412,16 @@
       "widgets_values": [
         "beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants",
         "dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw"
-      ]
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 42,
       "type": "PrimereStylePile",
       "pos": [
-        2800,
-        863
+        1996,
+        88
       ],
       "size": {
         "0": 342.34326171875,
@@ -466,19 +488,21 @@
         1.8,
         "",
         ""
-      ]
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 46,
       "type": "PrimerePrompt",
       "pos": [
-        71,
-        1632
+        33.381671819536415,
+        1647.0841468786675
       ],
-      "size": {
-        "0": 400,
-        "1": 200
-      },
+      "size": [
+        407.41802492435454,
+        205.86376943953655
+      ],
       "flags": {},
       "order": 11,
       "mode": 0,
@@ -508,14 +532,16 @@
       "widgets_values": [
         "Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}",
         "nsfw porn nudity male necklace smile smiling"
-      ]
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 12,
       "type": "PrimereCKPT",
       "pos": [
-        810,
-        220
+        32.6783737504835,
+        -477.2258977039062
       ],
       "size": {
         "0": 530,
@@ -559,14 +585,16 @@
       "widgets_values": [
         "BestAll\\photon_v1.safetensors",
         "SDXL"
-      ]
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 9,
       "type": "PrimereSamplers",
       "pos": [
-        810,
-        1030
+        1224.6783737504838,
+        -478.2258977039062
       ],
       "size": {
         "0": 315,
@@ -595,20 +623,23 @@
           "slot_index": 1
         }
       ],
+      "title": "Primere Sampler Selector - NORMAL",
       "properties": {
         "Node name for S&R": "PrimereSamplers"
       },
       "widgets_values": [
         "dpmpp_sde",
         "karras"
-      ]
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 29,
       "type": "PrimereStepsCfg",
       "pos": [
-        809,
-        1173
+        1558.6783737504848,
+        -477.2258977039062
       ],
       "size": {
         "0": 315,
@@ -637,20 +668,23 @@
           "slot_index": 1
         }
       ],
+      "title": "Primere Steps & Cfg - NORMAL",
       "properties": {
         "Node name for S&R": "PrimereStepsCfg"
       },
       "widgets_values": [
         25,
         8.3
-      ]
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 49,
       "type": "PrimereSamplers",
       "pos": [
-        1185,
-        1015
+        1224.6783737504838,
+        -333.22589770390596
       ],
       "size": {
         "0": 315,
@@ -679,20 +713,23 @@
           "slot_index": 1
         }
       ],
+      "title": "Primere Sampler Selector - LCM",
       "properties": {
         "Node name for S&R": "PrimereSamplers"
       },
       "widgets_values": [
         "lcm",
         "sgm_uniform"
-      ]
+      ],
+      "color": "#00008c",
+      "bgcolor": "#0000a0"
     },
     {
       "id": 48,
       "type": "PrimereStepsCfg",
       "pos": [
-        1184,
-        1168
+        1558.6783737504848,
+        -332.22589770390596
       ],
       "size": {
         "0": 315,
@@ -721,25 +758,28 @@
           "slot_index": 1
         }
       ],
+      "title": "Primere Steps & Cfg - LCM",
       "properties": {
         "Node name for S&R": "PrimereStepsCfg"
       },
       "widgets_values": [
         8,
         1.18
-      ]
+      ],
+      "color": "#00008c",
+      "bgcolor": "#0000a0"
     },
     {
       "id": 4,
       "type": "PrimerePromptSwitch",
       "pos": [
-        505,
-        67
+        443,
+        582
       ],
-      "size": {
-        "0": 228.39999389648438,
-        "1": 398
-      },
+      "size": [
+        274.639246860689,
+        398
+      ],
       "flags": {},
       "order": 17,
       "mode": 0,
@@ -868,14 +908,16 @@
       },
       "widgets_values": [
         2
-      ]
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 14,
       "type": "PrimereResolution",
       "pos": [
-        810,
-        740
+        899.678373750485,
+        -478.2258977039062
       ],
       "size": {
         "0": 315,
@@ -926,19 +968,21 @@
         false,
         1.6,
         2.8
-      ]
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 60,
       "type": "PrimereLCMSelector",
       "pos": [
-        1198,
-        740
+        575.6783737504843,
+        -312.22589770390596
       ],
-      "size": {
-        "0": 288.42498779296875,
-        "1": 198
-      },
+      "size": [
+        312.3360595703125,
+        198
+      ],
       "flags": {},
       "order": 19,
       "mode": 0,
@@ -1069,19 +1113,21 @@
         false,
         false,
         false
-      ]
+      ],
+      "color": "#00008c",
+      "bgcolor": "#0000a0"
     },
     {
       "id": 35,
       "type": "Display Any (rgthree)",
       "pos": [
-        811,
-        1287
+        469,
+        1310
       ],
-      "size": {
-        "0": 693.10498046875,
-        "1": 257.8929443359375
-      },
+      "size": [
+        762.3360595703125,
+        250.507568359375
+      ],
       "flags": {},
       "order": 20,
       "mode": 0,
@@ -1099,19 +1145,21 @@
       },
       "widgets_values": [
         "\"minimalist interior, colorful beautiful ({large|small|huge} {modern|retro|old style|abandoned, messy|futuristic} {bedroom|hall|kitchen|office|auto garage}:1.4), Bauhaus modern {minimalist|difficult} furniture, (abstract paint of female portrait on the wall:1.4), luxury {glassy|platina|silver|gold|wood|metal|plastic} desk, leather sofa in the corner, beautiful large windows, small messy desk in the corner with computer screen, old books papers notes and color pencils, professional interior photography\""
-      ]
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     },
     {
       "id": 36,
       "type": "Display Any (rgthree)",
       "pos": [
-        814,
-        1557
+        468,
+        1569
       ],
-      "size": {
-        "0": 691.9049682617188,
-        "1": 274.59295654296875
-      },
+      "size": [
+        760.3360595703125,
+        279.507568359375
+      ],
       "flags": {},
       "order": 21,
       "mode": 0,
@@ -1129,18 +1177,20 @@
       },
       "widgets_values": [
         "\"cute animal, draw, low quality, illustration, man, woman, human, text, watermark, greyscale\""
-      ]
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
     },
     {
       "id": 64,
       "type": "PrimereMetaRead",
       "pos": [
-        1535,
-        225
+        728,
+        87
       ],
       "size": [
-        483.70001220703125,
-        1070.8800048828125
+        502.2860565185547,
+        1212.3075561523438
       ],
       "flags": {},
       "order": 22,
@@ -1432,7 +1482,7 @@
         "Node name for S&R": "PrimereMetaRead"
       },
       "widgets_values": [
-        false,
+        true,
         true,
         true,
         false,
@@ -1455,26 +1505,28 @@
         "",
         "euler",
         "normal",
-        137,
+        203,
         "randomize",
         1210,
         512,
         512,
         7,
         12
-      ]
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
     },
     {
       "id": 55,
       "type": "PrimereCKPTLoader",
       "pos": [
-        1629,
-        41
+        1559.5184176957969,
+        -191.2859270007811
       ],
-      "size": {
-        "0": 303,
-        "1": 142
-      },
+      "size": [
+        314.114035866477,
+        142
+      ],
       "flags": {},
       "order": 23,
       "mode": 0,
@@ -1548,19 +1600,21 @@
         1,
         1,
         "SDXL"
-      ]
+      ],
+      "color": "#6c0000",
+      "bgcolor": "#800000"
     },
     {
       "id": 40,
       "type": "PrimereDynamicParser",
       "pos": [
-        2061,
-        180
+        441,
+        316
       ],
-      "size": {
-        "0": 210,
-        "1": 54
-      },
+      "size": [
+        275.1943359375,
+        54
+      ],
       "flags": {},
       "order": 24,
       "mode": 0,
@@ -1598,21 +1652,23 @@
       },
       "widgets_values": [
         "",
-        579620156465543,
+        593707585251624,
         "randomize"
-      ]
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     },
     {
       "id": 41,
       "type": "PrimereDynamicParser",
       "pos": [
-        2061,
-        272
+        443,
+        404
       ],
-      "size": {
-        "0": 210,
-        "1": 54
-      },
+      "size": [
+        273.1943359375,
+        54
+      ],
       "flags": {},
       "order": 25,
       "mode": 0,
@@ -1650,21 +1706,23 @@
       },
       "widgets_values": [
         "",
-        -596765273237171,
+        239360699968902,
         "randomize"
-      ]
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
     },
     {
       "id": 30,
       "type": "Display Any (rgthree)",
       "pos": [
-        2048,
-        631
+        2366,
+        1445
       ],
-      "size": {
-        "0": 712.9469604492188,
-        "1": 664.7457885742188
-      },
+      "size": [
+        1115.5772504882802,
+        426.1001667480464
+      ],
       "flags": {},
       "order": 26,
       "mode": 0,
@@ -1680,15 +1738,17 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"minimalist interior, colorful beautiful ({large|small|huge} {modern|retro|old style|abandoned, messy|futuristic} {bedroom|hall|kitchen|office|auto garage}:1.4), Bauhaus modern {minimalist|difficult} furniture, (abstract paint of female portrait on the wall:1.4), luxury {glassy|platina|silver|gold|wood|metal|plastic} desk, leather sofa in the corner, beautiful large windows, small messy desk in the corner with computer screen, old books papers notes and color pencils, professional interior photography\", \"negative\": \"cute animal, draw, low quality, illustration, man, woman, human, text, watermark, greyscale\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\photon_v1.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 904594239756463, \"width\": 614, \"height\": 960, \"cfg_scale\": 8.3, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"is_lcm\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false, \"dynamic_positive\": \"minimalist interior, colorful beautiful (large abandoned, messy kitchen:1.4), Bauhaus modern difficult furniture, (abstract paint of female portrait on the wall:1.4), luxury glassy desk, leather sofa in the corner, beautiful large windows, small messy desk in the corner with computer screen, old books papers notes and color pencils, professional interior photography\", \"dynamic_negative\": \"cute animal, draw, low quality, illustration, man, woman, human, text, watermark, greyscale\"}"
-      ]
+        "{\"positive\": \"exterior, extreme architecture, (large castle terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor evening Autumn professional architectural photography), beautiful nature on space, large hill, (snow on hill:0.7), (a frightening sight:1.3), small swimming pool, (solar panels:0.6), (volcano in the background with smoke and fire:0.6)\", \"negative\": \"watermark, person, text, china style, indian style\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\photon_v1.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 1080688407371717, \"width\": 960, \"height\": 614, \"cfg_scale\": 8.3, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"is_lcm\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false, \"dynamic_positive\": \"exterior, extreme architecture, (large castle terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor evening Autumn professional architectural photography), beautiful nature on space, large hill, (snow on hill:0.7), (a frightening sight:1.3), small swimming pool, (solar panels:0.6), (volcano in the background with smoke and fire:0.6)\", \"dynamic_negative\": \"watermark, person, text, china style, indian style\"}"
+      ],
+      "color": "#002c6c",
+      "bgcolor": "#004080"
     },
     {
       "id": 23,
       "type": "PrimereLatentNoise",
       "pos": [
-        2800,
-        130
+        2375.398410750731,
+        90.05789473663344
       ],
       "size": {
         "0": 345,
@@ -1764,23 +1824,25 @@
         1.2,
         0.9,
         1.25,
-        200531159363540,
+        -88546930332539,
         "randomize",
         true,
         "cpu"
-      ]
+      ],
+      "color": "#6c0000",
+      "bgcolor": "#800000"
     },
     {
       "id": 39,
       "type": "PrimereClearPrompt",
       "pos": [
-        2319,
-        181
+        441,
+        86
       ],
-      "size": {
-        "0": 317.58349609375,
-        "1": 232.25914001464844
-      },
+      "size": [
+        275.65974564985777,
+        194
+      ],
       "flags": {},
       "order": 28,
       "mode": 0,
@@ -1842,14 +1904,16 @@
         true,
         true,
         true
-      ]
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
     },
     {
       "id": 27,
       "type": "PreviewImage",
       "pos": [
-        2800,
-        550
+        2375.398410750731,
+        510.0578947366335
       ],
       "size": {
         "0": 344,
@@ -1867,19 +1931,21 @@
       ],
       "properties": {
         "Node name for S&R": "PreviewImage"
-      }
+      },
+      "color": "#6c0000",
+      "bgcolor": "#800000"
     },
     {
       "id": 38,
       "type": "PrimereEmbeddingHandler",
       "pos": [
-        2061,
-        360
+        443,
+        493
       ],
-      "size": {
-        "0": 210,
-        "1": 54
-      },
+      "size": [
+        272.1943359375,
+        54
+      ],
       "flags": {},
       "order": 30,
       "mode": 0,
@@ -1927,14 +1993,16 @@
       "widgets_values": [
         "",
         ""
-      ]
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
     },
     {
       "id": 45,
       "type": "PrimereCLIPEncoder",
       "pos": [
-        3189,
-        110
+        2729.398410750731,
+        92.05789473663344
       ],
       "size": {
         "0": 412,
@@ -2124,14 +2192,16 @@
         1,
         1,
         1
-      ]
+      ],
+      "color": "#6c0000",
+      "bgcolor": "#800000"
     },
     {
       "id": 17,
       "type": "KSampler",
       "pos": [
-        3640,
-        250
+        3157.398410750731,
+        175.05789473663341
       ],
       "size": {
         "0": 306.52001953125,
@@ -2219,26 +2289,28 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        541657324873123,
+        845677984760804,
         "randomize",
         20,
         8,
         "euler",
         "normal",
         1
-      ]
+      ],
+      "color": "#6c0000",
+      "bgcolor": "#800000"
     },
     {
       "id": 31,
       "type": "Display Any (rgthree)",
       "pos": [
-        3170,
-        760
+        2360.398410750731,
+        810.0578947366333
       ],
-      "size": {
-        "0": 782.1049194335938,
-        "1": 159.39295959472656
-      },
+      "size": [
+        1121.1943359375,
+        154.3126220703125
+      ],
       "flags": {},
       "order": 33,
       "mode": 0,
@@ -2254,20 +2326,22 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"minimalist interior, colorful beautiful (large abandoned, messy kitchen:1.4), Bauhaus modern difficult furniture, (abstract paint of female portrait on the wall:1.4), luxury glassy desk, leather sofa in the corner, beautiful large windows, small messy desk in the corner with computer screen, old books papers notes and color pencils, professional interior photography\""
-      ]
+        "\"exterior, extreme architecture, (large castle terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor evening embedding:Autumn professional architectural photography), beautiful nature on space, large hill, (snow on hill:0.7), (a frightening sight:1.3), small swimming pool, (solar panels:0.6), (volcano in the background with smoke and fire:0.6)\""
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     },
     {
       "id": 32,
       "type": "Display Any (rgthree)",
       "pos": [
-        3170,
-        930
+        2363,
+        970
       ],
-      "size": {
-        "0": 778.804931640625,
-        "1": 152.09295654296875
-      },
+      "size": [
+        1119.1943359375,
+        152.3126220703125
+      ],
       "flags": {},
       "order": 34,
       "mode": 0,
@@ -2283,20 +2357,22 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(cute animal, draw, low quality, illustration, man, woman, human, text, watermark, greyscale:1.20)\""
-      ]
+        "\"(watermark, person, text, china style, indian style:1.20)\""
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
     },
     {
       "id": 33,
       "type": "Display Any (rgthree)",
       "pos": [
-        3170,
-        1090
+        2362,
+        1131
       ],
-      "size": {
-        "0": 777.804931640625,
-        "1": 156.09295654296875
-      },
+      "size": [
+        1118.1943359375,
+        147.3126220703125
+      ],
       "flags": {},
       "order": 35,
       "mode": 0,
@@ -2313,19 +2389,21 @@
       },
       "widgets_values": [
         "\"\""
-      ]
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     },
     {
       "id": 34,
       "type": "Display Any (rgthree)",
       "pos": [
-        3170,
-        1260
+        2364,
+        1287
       ],
-      "size": {
-        "0": 777.6049194335938,
-        "1": 159.59295654296875
-      },
+      "size": [
+        1116.1943359375,
+        147.3126220703125
+      ],
       "flags": {},
       "order": 36,
       "mode": 0,
@@ -2342,14 +2420,16 @@
       },
       "widgets_values": [
         "\"\""
-      ]
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
     },
     {
       "id": 18,
       "type": "VAEDecode",
       "pos": [
-        3640,
-        160
+        3155.398410750731,
+        92.05789473663344
       ],
       "size": {
         "0": 309,
@@ -2384,19 +2464,21 @@
       ],
       "properties": {
         "Node name for S&R": "VAEDecode"
-      }
+      },
+      "color": "#6c0000",
+      "bgcolor": "#800000"
     },
     {
       "id": 19,
       "type": "PreviewImage",
       "pos": [
-        3968,
-        158
+        3493,
+        46
       ],
-      "size": {
-        "0": 1317.6729736328125,
-        "1": 1246.6590576171875
-      },
+      "size": [
+        1366.1943359375,
+        1388.3126220703125
+      ],
       "flags": {},
       "order": 38,
       "mode": 0,
@@ -2409,19 +2491,21 @@
       ],
       "properties": {
         "Node name for S&R": "PreviewImage"
-      }
+      },
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 59,
       "type": "PrimereMetaSave",
       "pos": [
-        5319,
-        184
+        1886.5184176957962,
+        -477.28592700078104
       ],
-      "size": {
-        "0": 372,
-        "1": 462
-      },
+      "size": [
+        453.39009060498506,
+        472.66690844609354
+      ],
       "flags": {},
       "order": 39,
       "mode": 0,
@@ -2458,7 +2542,9 @@
         95,
         "false",
         false
-      ]
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     }
   ],
   "links": [
@@ -3143,7 +3229,56 @@
       "CHECKPOINT_NAME"
     ]
   ],
-  "groups": [],
+  "groups": [
+    {
+      "title": "Prompt inputs",
+      "bounding": [
+        18,
+        12,
+        1227,
+        1857
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "locked": false
+    },
+    {
+      "title": "Dashboard",
+      "bounding": [
+        18,
+        -550,
+        2334,
+        553
+      ],
+      "color": "#006ceb",
+      "font_size": 24,
+      "locked": false
+    },
+    {
+      "title": "Sampling, encoding",
+      "bounding": [
+        2363,
+        12,
+        1116,
+        780
+      ],
+      "color": "#eb6c6c",
+      "font_size": 24,
+      "locked": false
+    },
+    {
+      "title": "Styling",
+      "bounding": [
+        1256,
+        12,
+        1098,
+        1857
+      ],
+      "color": "#b58b2a",
+      "font_size": 24,
+      "locked": false
+    }
+  ],
   "config": {},
   "extra": {},
   "version": 0.4
