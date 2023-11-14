@@ -33,10 +33,10 @@ class ImageExifReader:
                 primere_exif_string = is_primere.get('Exif.Image.ImageDescription').strip()
                 if is_json(primere_exif_string) == True:
                     json_object = json.loads(primere_exif_string)
-                    keysList = {'positive', 'negative', 'positive_l', 'negative_l', 'positive_r', 'negative_r', 'seed', 'model_hash', 'model_name', 'sampler_name'}
-                    if not (keysList - json_object.keys()):
-                        self._tool = "Primere"
-                        self._parser = Primere(info=json_object)
+                    # keysList = {'positive', 'negative', 'positive_l', 'negative_l', 'positive_r', 'negative_r', 'seed', 'model_hash', 'model_name', 'sampler_name'}
+                    # if not (keysList - json_object.keys()):
+                    self._tool = "Primere"
+                    self._parser = Primere(info=json_object)
             else:
                 if f.format == "PNG":
                     if "parameters" in f.info:

@@ -1,5 +1,4 @@
 import json
-
 from ..exif.base_format import BaseFormat
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 
@@ -41,34 +40,6 @@ class ComfyUI(BaseFormat):
                 longest_flow = flow
                 longest_nodes = nodes
                 longest_flow_len = len(nodes)
-
-        '''
-        jsonString = json.dumps(workflow)
-        jsonFile = open("workflow.json", "w")
-        jsonFile.write(jsonString)
-        jsonFile.close()
-
-        jsonString = json.dumps(end_nodes)
-        jsonFile = open("end_nodes.json", "w")
-        jsonFile.write(jsonString)
-        jsonFile.close()
-
-        print('------------- ez -------------')
-        print(flow)
-        print('------------- az -------------')
-        print(prompt_json)
-        print('------------- az  end-------------')
-
-        jsonString = json.dumps(flow)
-        jsonFile = open("flow.json", "w")
-        jsonFile.write(jsonString)
-        jsonFile.close()
-
-        jsonString = json.dumps(prompt)
-        jsonFile = open("prompt.json", "w")
-        jsonFile.write(jsonString)
-        jsonFile.close()
-        '''
 
         SizeID = None
         ModelID = None
@@ -112,9 +83,9 @@ class ComfyUI(BaseFormat):
             FINAL_DICT['cfg_scale'] = flow['cfg']
 
         if ModelID and 'ckpt_name' in prompt_json[ModelID]['inputs'] and type(prompt_json[ModelID]['inputs']['ckpt_name']) == str:
-            FINAL_DICT['model'] = prompt_json[ModelID]['inputs']['ckpt_name'] # flow['ckpt_name']
+            FINAL_DICT['model_name'] = prompt_json[ModelID]['inputs']['ckpt_name'] # flow['ckpt_name']
         elif 'ckpt_name' in flow and type(flow['ckpt_name']) == str:
-            FINAL_DICT['model'] = flow['ckpt_name']
+            FINAL_DICT['model_name'] = flow['ckpt_name']
 
         if SizeID and 'width' in prompt_json[SizeID]['inputs'] and 'height' in prompt_json[SizeID]['inputs'] and type(prompt_json[SizeID]['inputs']['width']) == int:
             origwidth = str(prompt_json[SizeID]['inputs']['width'])

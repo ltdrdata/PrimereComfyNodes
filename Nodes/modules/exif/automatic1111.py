@@ -1,5 +1,4 @@
 from ..exif.base_format import BaseFormat
-import json
 import re
 
 class Automatic1111(BaseFormat):
@@ -23,7 +22,7 @@ class Automatic1111(BaseFormat):
             "variation_seed_strength":'Variation seed strength',
             "size_string":'Size',
             "model_hash":'Model hash',
-            'model':'Model',
+            'model_name':'Model',
             "vae_hash":'VAE hash',
             "vae":'VAE',
             "lora_hashes":'Lora hashes',

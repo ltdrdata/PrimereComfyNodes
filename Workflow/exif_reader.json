@@ -1,13 +1,13 @@
 {
-  "last_node_id": 16,
-  "last_link_id": 30,
+  "last_node_id": 24,
+  "last_link_id": 47,
   "nodes": [
     {
       "id": 1,
       "type": "PrimereCKPT",
       "pos": [
-        830,
-        177
+        607,
+        -11
       ],
       "size": {
         "0": 528,
@@ -46,7 +46,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        ".BestNSX\\Invisidubious_Centerfold.safetensors",
+        "BestAll\\Fruit_Fusion.safetensors",
         "SDXL"
       ]
     },
@@ -138,11 +138,11 @@
       "id": 14,
       "type": "PrimereSeed",
       "pos": [
-        1159,
-        510
+        825,
+        173
       ],
       "size": {
-        "0": 210,
+        "0": 262.98870849609375,
         "1": 130
       },
       "flags": {},
@@ -170,6 +170,38 @@
       ]
     },
     {
+      "id": 18,
+      "type": "JWInteger",
+      "pos": [
+        1445,
+        -117
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            35
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JWInteger"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
       "id": 5,
       "type": "Display Any (rgthree)",
       "pos": [
@@ -181,7 +213,7 @@
         "1": 392
       },
       "flags": {},
-      "order": 3,
+      "order": 4,
       "mode": 0,
       "inputs": [
         {
@@ -211,7 +243,7 @@
         "1": 392
       },
       "flags": {},
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -233,15 +265,15 @@
       "id": 2,
       "type": "PrimereMetaRead",
       "pos": [
-        1442,
-        121
+        1175,
+        36
       ],
       "size": {
         "0": 465.35302734375,
         "1": 1077.3974609375
       },
       "flags": {},
-      "order": 5,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
@@ -377,15 +409,16 @@
           "name": "prompt+",
           "type": "STRING",
           "links": [
-            6
+            42
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 0
         },
         {
           "name": "prompt-",
           "type": "STRING",
           "links": [
-            7
+            38
           ],
           "shape": 3
         },
@@ -417,9 +450,11 @@
           "name": "model_name",
           "type": "CHECKPOINT_NAME",
           "links": [
-            21
+            31,
+            47
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 6
         },
         {
           "name": "sampler_name",
@@ -442,7 +477,10 @@
           "name": "seed",
           "type": "INT",
           "links": [
-            15
+            15,
+            40,
+            44,
+            46
           ],
           "shape": 3,
           "slot_index": 9
@@ -516,14 +554,14 @@
         true,
         false,
         true,
-        false,
-        true,
-        false,
         true,
         true,
         true,
         true,
-        "00017-20230604150942-3552491153.jpg",
+        true,
+        true,
+        true,
+        "Image_20231311_210230_612379177852672_614x960_01.jpg",
         "image",
         "",
         "",
@@ -533,7 +571,7 @@
         "",
         "euler",
         "normal",
-        1002,
+        1101,
         "randomize",
         512,
         512,
@@ -542,25 +580,32 @@
       ]
     },
     {
-      "id": 13,
+      "id": 17,
       "type": "PrimereCKPTLoader",
       "pos": [
         1978,
-        -39
+        -130
       ],
       "size": {
         "0": 315,
-        "1": 118
+        "1": 190
       },
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
           "name": "ckpt_name",
           "type": "CHECKPOINT_NAME",
-          "link": 21,
-          "slot_index": 0
+          "link": 31
+        },
+        {
+          "name": "is_lcm",
+          "type": "INT",
+          "link": 35,
+          "widget": {
+            "name": "is_lcm"
+          }
         }
       ],
       "outputs": [
@@ -568,7 +613,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            22
+            32
           ],
           "shape": 3,
           "slot_index": 0
@@ -577,8 +622,8 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            23,
-            24
+            33,
+            34
           ],
           "shape": 3,
           "slot_index": 1
@@ -587,7 +632,8 @@
           "name": "VAE",
           "type": "VAE",
           "links": null,
-          "shape": 3
+          "shape": 3,
+          "slot_index": 2
         },
         {
           "name": "IS_SDXL",
@@ -600,22 +646,190 @@
         "Node name for S&R": "PrimereCKPTLoader"
       },
       "widgets_values": [
+        0,
+        1,
+        1,
         "SDXL"
+      ]
+    },
+    {
+      "id": 24,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1141,
+        1200
+      ],
+      "size": {
+        "0": 483,
+        "1": 94.00001525878906
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 47,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "\"BestAll\\\\realisticVisionV40.safetensors\""
+      ]
+    },
+    {
+      "id": 19,
+      "type": "PrimereDynamicParser",
+      "pos": [
+        1716,
+        163
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "dyn_prompt",
+          "type": "STRING",
+          "link": 38,
+          "widget": {
+            "name": "dyn_prompt"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 40,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            39
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereDynamicParser"
+      },
+      "widgets_values": [
+        "",
+        -790033451144924,
+        "randomize"
+      ]
+    },
+    {
+      "id": 21,
+      "type": "PrimereDynamicParser",
+      "pos": [
+        1715,
+        32
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "dyn_prompt",
+          "type": "STRING",
+          "link": 42,
+          "widget": {
+            "name": "dyn_prompt"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 44,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            43,
+            45
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereDynamicParser"
+      },
+      "widgets_values": [
+        "",
+        -265581124299067,
+        "randomize"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1709,
+        1186
+      ],
+      "size": [
+        483.0000061035157,
+        94.0000122070312
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 46,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "612379177852672"
       ]
     },
     {
       "id": 10,
       "type": "EmptyLatentImage",
       "pos": [
-        2003,
-        451
+        2195,
+        297
       ],
       "size": {
         "0": 242,
         "1": 78
       },
       "flags": {},
-      "order": 7,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -661,15 +875,15 @@
       "id": 3,
       "type": "Display Any (rgthree)",
       "pos": [
-        1965,
-        599
+        1668,
+        403
       ],
-      "size": {
-        "0": 513,
-        "1": 392
-      },
+      "size": [
+        789.8000061035159,
+        505.79999999999995
+      ],
       "flags": {},
-      "order": 8,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -684,81 +898,33 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"beautiful 30 year old onyx-woman hybrid standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\", \"negative\": \"kid. child. childish. text, frame, nude, nudity, porn, sex\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"00773224ed\", \"model_name\": \"Character\\\\animalHumanHybrids_v10.safetensors\", \"sampler_name\": \"euler_ancestral\", \"scheduler_name\": \"normal\", \"seed\": 1100112708844453, \"width\": 512, \"height\": 768, \"cfg_scale\": 9.0, \"steps\": 30, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"vae_name\": \"difconsistencyRAWVAE_v10Safestensor.safetensors\", \"force_model_vae\": true}"
-      ]
-    },
-    {
-      "id": 8,
-      "type": "CLIPTextEncode",
-      "pos": [
-        1985,
-        143
-      ],
-      "size": {
-        "0": 280,
-        "1": 54
-      },
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 23
-        },
-        {
-          "name": "text",
-          "type": "STRING",
-          "link": 6,
-          "widget": {
-            "name": "text"
-          },
-          "slot_index": 1
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            8
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        ""
+        "{\"positive\": \"beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants\", \"negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\realisticVisionV40.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 612379177852672, \"width\": 614, \"height\": 960, \"cfg_scale\": 8.5, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false}"
       ]
     },
     {
       "id": 9,
       "type": "CLIPTextEncode",
       "pos": [
-        1990,
-        245
+        2080,
+        203
       ],
       "size": {
         "0": 280,
         "1": 54
       },
       "flags": {},
-      "order": 10,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 24
+          "link": 34
         },
         {
           "name": "text",
           "type": "STRING",
-          "link": 7,
+          "link": 39,
           "widget": {
             "name": "text"
           },
@@ -784,24 +950,102 @@
       ]
     },
     {
+      "id": 8,
+      "type": "CLIPTextEncode",
+      "pos": [
+        2080,
+        110
+      ],
+      "size": {
+        "0": 280,
+        "1": 54
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 33
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 43,
+          "widget": {
+            "name": "text"
+          },
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            8
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 22,
+      "type": "Display Any (rgthree)",
+      "pos": [
+        1692,
+        945
+      ],
+      "size": [
+        510.5000061035157,
+        231.3000122070314
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 45,
+          "dir": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Display Any (rgthree)"
+      },
+      "widgets_values": [
+        "\"beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear dark blue luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long red jeans pants\""
+      ]
+    },
+    {
       "id": 7,
       "type": "KSampler",
       "pos": [
-        2514,
-        227
+        2467,
+        -103
       ],
       "size": {
         "0": 309,
         "1": 218
       },
       "flags": {},
-      "order": 11,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 22
+          "link": 32
         },
         {
           "name": "positive",
@@ -875,7 +1119,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        126129301468128,
+        491930192550585,
         "randomize",
         20,
         8,
@@ -888,15 +1132,15 @@
       "id": 11,
       "type": "VAEDecode",
       "pos": [
-        2890,
-        241
+        2963,
+        -94
       ],
       "size": {
         "0": 210,
         "1": 46
       },
       "flags": {},
-      "order": 12,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -930,16 +1174,16 @@
       "id": 16,
       "type": "PrimereMetaSave",
       "pos": [
-        3361,
-        -35
+        3433,
+        193
       ],
       "size": {
         "0": 418.49981689453125,
-        "1": 342
+        "1": 462
       },
       "flags": {},
-      "order": 13,
-      "mode": 0,
+      "order": 19,
+      "mode": 4,
       "inputs": [
         {
           "name": "images",
@@ -961,28 +1205,33 @@
         true,
         "ComfyUI",
         "_",
-        2,
         false,
-        "jpg",
+        false,
+        false,
         true,
         true,
+        false,
+        "false",
+        false,
+        false,
         95,
-        "false"
+        "false",
+        false
       ]
     },
     {
       "id": 12,
       "type": "PreviewImage",
       "pos": [
-        2865,
-        363
+        2496,
+        180
       ],
       "size": {
         "0": 922.802978515625,
         "1": 948.7774658203125
       },
       "flags": {},
-      "order": 14,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -1036,22 +1285,6 @@
       6,
       0,
       "*"
-    ],
-    [
-      6,
-      2,
-      0,
-      8,
-      1,
-      "STRING"
-    ],
-    [
-      7,
-      2,
-      1,
-      9,
-      1,
-      "STRING"
     ],
     [
       8,
@@ -1150,38 +1383,6 @@
       "VAE"
     ],
     [
-      21,
-      2,
-      6,
-      13,
-      0,
-      "CHECKPOINT_NAME"
-    ],
-    [
-      22,
-      13,
-      0,
-      7,
-      0,
-      "MODEL"
-    ],
-    [
-      23,
-      13,
-      1,
-      8,
-      0,
-      "CLIP"
-    ],
-    [
-      24,
-      13,
-      1,
-      9,
-      0,
-      "CLIP"
-    ],
-    [
       25,
       14,
       0,
@@ -1212,6 +1413,118 @@
       12,
       0,
       "IMAGE"
+    ],
+    [
+      31,
+      2,
+      6,
+      17,
+      0,
+      "CHECKPOINT_NAME"
+    ],
+    [
+      32,
+      17,
+      0,
+      7,
+      0,
+      "MODEL"
+    ],
+    [
+      33,
+      17,
+      1,
+      8,
+      0,
+      "CLIP"
+    ],
+    [
+      34,
+      17,
+      1,
+      9,
+      0,
+      "CLIP"
+    ],
+    [
+      35,
+      18,
+      0,
+      17,
+      1,
+      "INT"
+    ],
+    [
+      38,
+      2,
+      1,
+      19,
+      0,
+      "STRING"
+    ],
+    [
+      39,
+      19,
+      0,
+      9,
+      1,
+      "STRING"
+    ],
+    [
+      40,
+      2,
+      9,
+      19,
+      1,
+      "INT"
+    ],
+    [
+      42,
+      2,
+      0,
+      21,
+      0,
+      "STRING"
+    ],
+    [
+      43,
+      21,
+      0,
+      8,
+      1,
+      "STRING"
+    ],
+    [
+      44,
+      2,
+      9,
+      21,
+      1,
+      "INT"
+    ],
+    [
+      45,
+      21,
+      0,
+      22,
+      0,
+      "*"
+    ],
+    [
+      46,
+      2,
+      9,
+      23,
+      0,
+      "*"
+    ],
+    [
+      47,
+      2,
+      6,
+      24,
+      0,
+      "*"
     ]
   ],
   "groups": [],

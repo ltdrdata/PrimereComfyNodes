@@ -15,11 +15,10 @@ from .modules import exif_data_checker
 import nodes
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 from pathlib import Path
-import json
 
 class PrimereDoublePrompt:
     RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("positive_prompt", "negative_prompt")
+    RETURN_NAMES = ("PROMPT+", "PROMPT-")
     FUNCTION = "get_prompt"
     CATEGORY = TREE_INPUTS
 
@@ -55,7 +54,7 @@ class PrimereDoublePrompt:
 
 class PrimereStyleLoader:
     RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("positive_prompt", "negative_prompt")
+    RETURN_NAMES = ("PROMPT+", "PROMPT-")
     FUNCTION = "load_csv"
     CATEGORY = TREE_INPUTS
 
@@ -108,7 +107,7 @@ class PrimereStyleLoader:
 
 class PrimereDynParser:
     RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("prompt",)
+    RETURN_NAMES = ("PROMPT",)
     FUNCTION = "dyndecoder"
     CATEGORY = TREE_INPUTS
 
@@ -153,7 +152,7 @@ class PrimereDynParser:
 
 class PrimereEmbeddingHandler:
     RETURN_TYPES = ("STRING", "STRING",)
-    RETURN_NAMES = ("prompt+", "prompt-",)
+    RETURN_NAMES = ("PROMPT+", "PROMPT-",)
     FUNCTION = "embedding_handler"
     CATEGORY = TREE_INPUTS
     def __init__(self):
@@ -206,7 +205,7 @@ class PrimereVAESelector:
 class PrimereMetaRead:
     CATEGORY = TREE_INPUTS
     RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING", "STRING", "CHECKPOINT_NAME", comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS, "INT", "INT", "INT", "FLOAT", "INT", "VAE_NAME", "VAE", "TUPLE")
-    RETURN_NAMES = ("prompt+", "prompt-", "prompt L+", "prompt L-", "refiner+", "refiner-", "model_name", "sampler_name", "scheduler_name", "seed", "width", "height", "cfg", "steps", "vae_name", "vae", "metadata")
+    RETURN_NAMES = ("PROMPT+", "PROMPT-", "PROMPT L+", "PROMPT L-", "REFINER+", "REFINER-", "MODEL_NAME", "SAMPLER_NAME", "SCHEDULER_NAME", "SEED", "WIDTH", "HEIGHT", "CFG", "STEPS", "VAE_NAME", "VAE", "METADATA")
     FUNCTION = "load_image_meta"
 
     def __init__(self):
@@ -326,7 +325,6 @@ class PrimereMetaRead:
                         realvae = self.chkp_loader.load_checkpoint(model_name)[2]
                     else:
                         realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
-
                     return (positive, negative, positive_l, negative_l, positive_r, negative_r, model_name, sampler_name, scheduler_name, seed, width, height, cfg_scale, steps, data_json['vae_name'], realvae, data_json)
 
                 try:
@@ -341,8 +339,8 @@ class PrimereMetaRead:
                             else:
                                 data_json['model_hash'] = 'no_hash_data'
 
-                        if 'model' in reader.parameter:
-                            model_name_exif = reader.parameter["model"]
+                        if 'model_name' in reader.parameter:
+                            model_name_exif = reader.parameter["model_name"]
                             data_json['model_name'] = exif_data_checker.check_model_from_exif(data_json['model_hash'], model_name_exif, model_name, model_hash_check)
                         else:
                             data_json['model_name'] = folder_paths.get_filename_list("checkpoints")[0]
@@ -363,6 +361,9 @@ class PrimereMetaRead:
                             samplers = exif_data_checker.check_sampler_from_exif(sampler_name_exif.lower(), sampler_name, scheduler_name)
                             data_json['sampler_name'] = samplers['sampler']
                             data_json['scheduler_name'] = samplers['scheduler']
+                        elif ('sampler_name' in reader.parameter and 'scheduler_name' in reader.parameter):
+                            data_json['sampler_name'] = reader.parameter["sampler_name"]
+                            data_json['scheduler_name'] = reader.parameter["scheduler_name"]
 
                     if use_seed == True:
                         if 'seed' in reader.parameter:
@@ -396,7 +397,7 @@ class PrimereMetaRead:
                         realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
 
                     if use_size == True:
-                        if 'size_string' in reader.parameter:
+                        if 'size_string' in reader.parameter or ('width' in reader.parameter and 'height' in reader.parameter):
                             data_json['width'] = reader.parameter["width"]
                             data_json['height'] = reader.parameter["height"]
                         if recount_size == True:

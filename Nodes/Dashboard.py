@@ -9,10 +9,8 @@ from .modules.latent_noise import PowerLawNoise
 import random
 import os
 import tomli
-import math
 from .modules.adv_encode import advanced_encode, advanced_encode_XL
 from nodes import MAX_RESOLUTION
-from custom_nodes.ComfyUI_Primere_Nodes.components.utility import STANDARD_SIDES
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 from pathlib import Path
 import re
@@ -21,7 +19,7 @@ import requests
 class PrimereSamplers:
     CATEGORY = TREE_DASHBOARD
     RETURN_TYPES = (comfy.samplers.KSampler.SAMPLERS, comfy.samplers.KSampler.SCHEDULERS)
-    RETURN_NAMES = ("sampler_name", "scheduler_name")
+    RETURN_NAMES = ("SAMPLER_NAME", "SCHEDULER_NAME")
     FUNCTION = "get_sampler"
 
     @classmethod
@@ -39,7 +37,7 @@ class PrimereSamplers:
 
 class PrimereVAE:
     RETURN_TYPES = ("VAE_NAME",)
-    RETURN_NAMES = ("vae_name",)
+    RETURN_NAMES = ("VAE_NAME",)
     FUNCTION = "load_vae_list"
     CATEGORY = TREE_DASHBOARD
 
@@ -56,7 +54,7 @@ class PrimereVAE:
 
 class PrimereCKPT:
     RETURN_TYPES = ("CHECKPOINT_NAME", "INT", "STRING")
-    RETURN_NAMES = ("ckpt_name", "is_sdxl", "sdxl_path")
+    RETURN_NAMES = ("CKPT_NAME", "IS_SDXL", "SDXL_PATH")
     FUNCTION = "load_ckpt_list"
     CATEGORY = TREE_DASHBOARD
 
@@ -112,7 +110,7 @@ class PrimereLCMSelector:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "is_lcm": ("BOOLEAN", {"default": False}),
+                "use_lcm": ("BOOLEAN", {"default": False}),
                 "sampler_name": (comfy.samplers.KSampler.SAMPLERS, {"forceInput": True, "default": "euler"}),
                 "scheduler_name": (comfy.samplers.KSampler.SCHEDULERS, {"forceInput": True, "default": "normal"}),
                 "lcm_sampler_name": (comfy.samplers.KSampler.SAMPLERS, {"forceInput": True, "default": "lcm"}),
@@ -124,9 +122,9 @@ class PrimereLCMSelector:
             },
         }
 
-    def select_lcm_mode(self, is_lcm = False, sampler_name = 'euler', scheduler_name = 'normal', lcm_sampler_name = 'lcm', lcm_scheduler_name = 'sgm_uniform', cfg_scale = 7, steps = 12, lcm_cfg_scale = 1.2, lcm_steps = 6):
+    def select_lcm_mode(self, use_lcm = False, sampler_name = 'euler', scheduler_name = 'normal', lcm_sampler_name = 'lcm', lcm_scheduler_name = 'sgm_uniform', cfg_scale = 7, steps = 12, lcm_cfg_scale = 1.2, lcm_steps = 6):
         lcm_mode = 0
-        if is_lcm == True:
+        if use_lcm == True:
             sampler_name = lcm_sampler_name
             scheduler_name = lcm_scheduler_name
             steps = lcm_steps
@@ -247,7 +245,7 @@ class PrimerePromptSwitch:
     any_typ = AnyType("*")
 
     RETURN_TYPES = (any_typ, any_typ, "INT")
-    RETURN_NAMES = ("selected_pos", "selected_neg", "selected_index")
+    RETURN_NAMES = ("SELECTED_POS", "SELECTED_NEG", "SELECTED_INDEX")
     FUNCTION = "promptswitch"
     CATEGORY = TREE_DASHBOARD
 
@@ -333,7 +331,7 @@ class PrimereFractalLatent:
         }
 
     RETURN_TYPES = ("LATENT", "IMAGE")
-    RETURN_NAMES = ("latents", "previews")
+    RETURN_NAMES = ("LATENTS", "PREVIEWS")
     FUNCTION = "primere_latent_noise"
     CATEGORY = TREE_DASHBOARD
 
@@ -544,7 +542,7 @@ class PrimereResolution:
 
 class PrimereStepsCfg:
   RETURN_TYPES = ("INT", "FLOAT")
-  RETURN_NAMES = ("Steps", "CFG")
+  RETURN_NAMES = ("STEPS", "CFG")
   FUNCTION = "steps_cfg"
   CATEGORY = TREE_DASHBOARD
 
@@ -562,7 +560,7 @@ class PrimereStepsCfg:
 
 class PrimereClearPrompt:
   RETURN_TYPES = ("STRING", "STRING")
-  RETURN_NAMES = ("Prompt+", "Prompt-")
+  RETURN_NAMES = ("PROMPT+", "PROMPT-")
   FUNCTION = "clean_prompt"
   CATEGORY = TREE_DASHBOARD
 
