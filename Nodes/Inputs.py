@@ -28,12 +28,11 @@ class PrimereDoublePrompt:
             "required": {
                 "positive_prompt": ("STRING", {"default": "", "multiline": True}),
                 "negative_prompt": ("STRING", {"default": "", "multiline": True}),
-
             },
             "optional": {
                 "subpath": ("STRING", {"default": "", "multiline": False}),
-                "model": ("STRING", {"default": "", "multiline": False}),
-                "orientation": ("STRING", {"default": "", "multiline": False}),
+                "model": (["None"] + folder_paths.get_filename_list("checkpoints"), {"default": "None"}),
+                "orientation": (["None", "Horizontal", "Vertical"], {"default": "None"}),
             },
             "hidden": {
                 "extra_pnginfo": "EXTRA_PNGINFO",
@@ -57,11 +56,11 @@ class PrimereDoublePrompt:
         if not rawResult:
             rawResult = (positive_prompt, negative_prompt)
 
-        if len(subpath.strip()) < 1:
+        if len(subpath.strip()) < 1 or subpath.strip() == 'None':
             subpath = None
-        if len(model.strip()) < 1:
+        if len(model.strip()) < 1 or model.strip() == 'None':
             model = None
-        if len(orientation.strip()) < 1:
+        if len(orientation.strip()) < 1 or orientation.strip() == 'None':
             orientation = None
 
         return (rawResult[0], rawResult[1], subpath, model, orientation)

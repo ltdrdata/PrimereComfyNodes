@@ -82,10 +82,10 @@
         1222.078373559749,
         -500.2258977039062
       ],
-      "size": [
-        315,
-        102
-      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
       "flags": {},
       "order": 1,
       "mode": 0,
@@ -127,10 +127,10 @@
         1556.07837355975,
         -499.2258977039062
       ],
-      "size": [
-        315,
-        102
-      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
       "flags": {},
       "order": 2,
       "mode": 0,
@@ -172,10 +172,10 @@
         1222.078373559749,
         -355.22589770390596
       ],
-      "size": [
-        315,
-        102
-      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
       "flags": {},
       "order": 3,
       "mode": 0,
@@ -217,10 +217,10 @@
         1556.07837355975,
         -354.22589770390596
       ],
-      "size": [
-        315,
-        102
-      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
       "flags": {},
       "order": 4,
       "mode": 0,
@@ -262,10 +262,10 @@
         31.078373559748638,
         -339.22589770390596
       ],
-      "size": [
-        528.3360595703125,
-        58
-      ],
+      "size": {
+        "0": 528.3360595703125,
+        "1": 58
+      },
       "flags": {},
       "order": 5,
       "mode": 0,
@@ -297,10 +297,10 @@
         32.07837355974864,
         -243.22589770390599
       ],
-      "size": [
-        528.3360595703125,
-        58
-      ],
+      "size": {
+        "0": 528.3360595703125,
+        "1": 58
+      },
       "flags": {},
       "order": 6,
       "mode": 0,
@@ -332,10 +332,10 @@
         30,
         -499
       ],
-      "size": [
-        530,
-        122
-      ],
+      "size": {
+        "0": 530,
+        "1": 122
+      },
       "flags": {},
       "order": 7,
       "mode": 0,
@@ -386,10 +386,10 @@
         572,
         -500
       ],
-      "size": [
-        311.65581833478154,
-        130
-      ],
+      "size": {
+        "0": 311.65582275390625,
+        "1": 130
+      },
       "flags": {},
       "order": 8,
       "mode": 0,
@@ -423,10 +423,10 @@
         28,
         337
       ],
-      "size": [
-        402.6185302734375,
-        449.4836242675782
-      ],
+      "size": {
+        "0": 402.6185302734375,
+        "1": 449.4836120605469
+      },
       "flags": {},
       "order": 9,
       "mode": 0,
@@ -484,8 +484,8 @@
         "beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair",
         "dry hair, porn, nudity, nsfw, necklace add_nsfw",
         "Test",
-        "",
-        ""
+        "BestAll\\realisticVision_v5.1.safetensors",
+        "Horizontal"
       ],
       "color": "#432",
       "bgcolor": "#653"
@@ -497,10 +497,10 @@
         30,
         825
       ],
-      "size": [
-        402.6185302734375,
-        425.68363647460956
-      ],
+      "size": {
+        "0": 402.6185302734375,
+        "1": 425.6836242675781
+      },
       "flags": {},
       "order": 10,
       "mode": 0,
@@ -558,8 +558,8 @@
         "beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants",
         "dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw",
         "Test",
-        "",
-        ""
+        "BestAll\\photon_v1.safetensors",
+        "Vertical"
       ],
       "color": "#432",
       "bgcolor": "#653"
@@ -571,10 +571,10 @@
         29,
         1293
       ],
-      "size": [
-        404.91853027343745,
-        559.3836334228515
-      ],
+      "size": {
+        "0": 404.91851806640625,
+        "1": 559.3836059570312
+      },
       "flags": {},
       "order": 11,
       "mode": 0,
@@ -632,8 +632,8 @@
         "Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}",
         "nsfw porn nudity male necklace smile smiling",
         "Test",
-        "",
-        ""
+        "None",
+        "None"
       ],
       "color": "#432",
       "bgcolor": "#653"
@@ -645,10 +645,10 @@
         1996,
         88
       ],
-      "size": [
-        342.34326171875,
-        414
-      ],
+      "size": {
+        "0": 342.34326171875,
+        "1": 414
+      },
       "flags": {},
       "order": 12,
       "mode": 0,
@@ -721,10 +721,10 @@
         573.0783735597495,
         -334.22589770390596
       ],
-      "size": [
-        310.3948746303814,
-        198
-      ],
+      "size": {
+        "0": 310.3948669433594,
+        "1": 198
+      },
       "flags": {},
       "order": 13,
       "mode": 0,
@@ -866,10 +866,10 @@
         897.0783735597502,
         -500.2258977039062
       ],
-      "size": [
-        315,
-        246
-      ],
+      "size": {
+        "0": 315,
+        "1": 246
+      },
       "flags": {},
       "order": 14,
       "mode": 0,
@@ -926,10 +926,10 @@
         444,
         589
       ],
-      "size": [
-        271.8484814453127,
-        538
-      ],
+      "size": {
+        "0": 271.8484802246094,
+        "1": 538
+      },
       "flags": {},
       "order": 15,
       "mode": 0,
@@ -1195,10 +1195,10 @@
         728,
         87
       ],
-      "size": [
-        502.28607177734375,
-        1212.3076171875
-      ],
+      "size": {
+        "0": 502.28607177734375,
+        "1": 1212.3076171875
+      },
       "flags": {},
       "order": 18,
       "mode": 0,
@@ -1522,7 +1522,7 @@
         "",
         "euler",
         "normal",
-        786,
+        1379,
         "randomize",
         895,
         1210,
@@ -1542,10 +1542,10 @@
         1559,
         -215
       ],
-      "size": [
-        314.47990402814116,
-        142
-      ],
+      "size": {
+        "0": 314.4798889160156,
+        "1": 142
+      },
       "flags": {},
       "order": 19,
       "mode": 0,
@@ -1630,10 +1630,10 @@
         442,
         318
       ],
-      "size": [
-        271.31197691357806,
-        54
-      ],
+      "size": {
+        "0": 271.3119812011719,
+        "1": 54
+      },
       "flags": {},
       "order": 20,
       "mode": 0,
@@ -1671,7 +1671,7 @@
       },
       "widgets_values": [
         "",
-        -891648862291386,
+        -645998622858672,
         "randomize"
       ],
       "color": "#232",
@@ -1684,10 +1684,10 @@
         443,
         407
       ],
-      "size": [
-        270.31197691357806,
-        54
-      ],
+      "size": {
+        "0": 270.3119812011719,
+        "1": 54
+      },
       "flags": {},
       "order": 21,
       "mode": 0,
@@ -1725,7 +1725,7 @@
       },
       "widgets_values": [
         "",
-        -496362197996844,
+        -644118836217351,
         "randomize"
       ],
       "color": "#322",
@@ -1758,7 +1758,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair\", \"negative\": \"dry hair, porn, nudity, nsfw, necklace add_nsfw\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\photon_v1.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 291280532569038, \"width\": 976, \"height\": 604, \"cfg_scale\": 8.2, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"is_lcm\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false, \"prefered_model\": null, \"prefered_orientation\": null, \"dynamic_positive\": \"beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear red one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair\", \"dynamic_negative\": \"dry hair, porn, nudity, nsfw, necklace add_nsfw\"}"
+        "{\"positive\": \"beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair\", \"negative\": \"dry hair, porn, nudity, nsfw, necklace add_nsfw\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\photon_v1.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 1092466170433591, \"width\": 976, \"height\": 604, \"cfg_scale\": 8.2, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"is_lcm\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false, \"prefered_model\": null, \"prefered_orientation\": null, \"dynamic_positive\": \"beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear red one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair\", \"dynamic_negative\": \"dry hair, porn, nudity, nsfw, necklace add_nsfw\"}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -1770,10 +1770,10 @@
         2375,
         90
       ],
-      "size": [
-        341.4630949310872,
-        382
-      ],
+      "size": {
+        "0": 341.4631042480469,
+        "1": 382
+      },
       "flags": {},
       "order": 23,
       "mode": 0,
@@ -1845,7 +1845,7 @@
         1.2,
         0.9,
         1.25,
-        -907650029130678,
+        773184501385181,
         "randomize",
         true,
         "cpu"
@@ -1860,10 +1860,10 @@
         443,
         86
       ],
-      "size": [
-        271.9648694755615,
-        194
-      ],
+      "size": {
+        "0": 271.9648742675781,
+        "1": 194
+      },
       "flags": {},
       "order": 24,
       "mode": 0,
@@ -1963,10 +1963,10 @@
         444,
         498
       ],
-      "size": [
-        269.31197691357806,
-        54
-      ],
+      "size": {
+        "0": 269.3119812011719,
+        "1": 54
+      },
       "flags": {},
       "order": 26,
       "mode": 0,
@@ -2023,10 +2023,10 @@
         2729,
         92
       ],
-      "size": [
-        415.13423295454504,
-        614
-      ],
+      "size": {
+        "0": 415.1342468261719,
+        "1": 614
+      },
       "flags": {},
       "order": 27,
       "mode": 0,
@@ -2226,10 +2226,10 @@
         3157.398410750731,
         175.05789473663341
       ],
-      "size": [
-        307.64491311290476,
-        218
-      ],
+      "size": {
+        "0": 307.6449279785156,
+        "1": 218
+      },
       "flags": {},
       "order": 28,
       "mode": 0,
@@ -2315,7 +2315,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        35755423775128,
+        1101504466806758,
         "randomize",
         20,
         8,
@@ -2457,10 +2457,10 @@
         3155.398410750731,
         92.05789473663344
       ],
-      "size": [
-        309,
-        46
-      ],
+      "size": {
+        "0": 309,
+        "1": 46
+      },
       "flags": {},
       "order": 33,
       "mode": 0,
@@ -2529,10 +2529,10 @@
         1883.9184175050614,
         -499.28592700078104
       ],
-      "size": [
-        453.39007568359375,
-        486
-      ],
+      "size": {
+        "0": 453.39007568359375,
+        "1": 486
+      },
       "flags": {},
       "order": 35,
       "mode": 0,
