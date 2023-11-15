@@ -17,8 +17,8 @@ from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 from pathlib import Path
 
 class PrimereDoublePrompt:
-    RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("PROMPT+", "PROMPT-")
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING")
+    RETURN_NAMES = ("PROMPT+", "PROMPT-", "SUBPATH", "MODEL", "ORIENTATION")
     FUNCTION = "get_prompt"
     CATEGORY = TREE_INPUTS
 
@@ -28,6 +28,12 @@ class PrimereDoublePrompt:
             "required": {
                 "positive_prompt": ("STRING", {"default": "", "multiline": True}),
                 "negative_prompt": ("STRING", {"default": "", "multiline": True}),
+
+            },
+            "optional": {
+                "subpath": ("STRING", {"default": "", "multiline": False}),
+                "model": ("STRING", {"default": "", "multiline": False}),
+                "orientation": ("STRING", {"default": "", "multiline": False}),
             },
             "hidden": {
                 "extra_pnginfo": "EXTRA_PNGINFO",
@@ -35,7 +41,7 @@ class PrimereDoublePrompt:
             },
         }
 
-    def get_prompt(self, positive_prompt, negative_prompt, extra_pnginfo, id):
+    def get_prompt(self, positive_prompt, negative_prompt, extra_pnginfo, id, subpath="", model="", orientation=""):
         def debug_state(self, extra_pnginfo, id):
             workflow = extra_pnginfo["workflow"]
             for node in workflow["nodes"]:
@@ -50,11 +56,19 @@ class PrimereDoublePrompt:
         rawResult = debug_state(self, extra_pnginfo, id)
         if not rawResult:
             rawResult = (positive_prompt, negative_prompt)
-        return rawResult[0], rawResult[1],
+
+        if len(subpath.strip()) < 1:
+            subpath = None
+        if len(model.strip()) < 1:
+            model = None
+        if len(orientation.strip()) < 1:
+            orientation = None
+
+        return (rawResult[0], rawResult[1], subpath, model, orientation)
 
 class PrimereStyleLoader:
-    RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("PROMPT+", "PROMPT-")
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING")
+    RETURN_NAMES = ("PROMPT+", "PROMPT-", "SUBPATH", "MODEL", "ORIENTATION")
     FUNCTION = "load_csv"
     CATEGORY = TREE_INPUTS
 
@@ -82,10 +96,13 @@ class PrimereStyleLoader:
         return {
             "required": {
                 "styles": (sorted(list(cls.styles_csv['name'])),),
+                "use_subpath": ("BOOLEAN", {"default": False}),
+                "use_model": ("BOOLEAN", {"default": False}),
+                "use_orientation": ("BOOLEAN", {"default": False}),
             },
         }
 
-    def load_csv(self, styles):
+    def load_csv(self, styles, use_subpath, use_model, use_orientation):
         try:
             positive_prompt = self.styles_csv[self.styles_csv['name'] == styles]['prompt'].values[0]
         except Exception:
@@ -96,14 +113,52 @@ class PrimereStyleLoader:
         except Exception:
             negative_prompt = ''
 
+        try:
+            prefered_subpath = self.styles_csv[self.styles_csv['name'] == styles]['prefered_subpath'].values[0]
+        except Exception:
+            prefered_subpath = ''
+
+        try:
+            prefered_model = self.styles_csv[self.styles_csv['name'] == styles]['prefered_model'].values[0]
+        except Exception:
+            prefered_model = ''
+
+        try:
+            prefered_orientation = self.styles_csv[self.styles_csv['name'] == styles]['prefered_orientation'].values[0]
+        except Exception:
+            prefered_orientation = ''
+
         pos_type = type(positive_prompt).__name__
         neg_type = type(negative_prompt).__name__
+        subp_type = type(prefered_subpath).__name__
+        model_type = type(prefered_model).__name__
+        orientation_type = type(prefered_orientation).__name__
         if (pos_type != 'str'):
             positive_prompt = ''
         if (neg_type != 'str'):
             negative_prompt = ''
+        if (subp_type != 'str'):
+            prefered_subpath = ''
+        if (model_type != 'str'):
+            prefered_model = ''
+        if (orientation_type != 'str'):
+            prefered_orientation = ''
 
-        return (positive_prompt, negative_prompt)
+        if len(prefered_subpath.strip()) < 1:
+            prefered_subpath = None
+        if len(prefered_model.strip()) < 1:
+            prefered_model = None
+        if len(prefered_orientation.strip()) < 1:
+            prefered_orientation = None
+
+        if use_subpath == False:
+            prefered_subpath = None
+        if use_model == False:
+            prefered_model = None
+        if use_orientation == False:
+            prefered_orientation = None
+
+        return (positive_prompt, negative_prompt, prefered_subpath, prefered_model, prefered_orientation)
 
 class PrimereDynParser:
     RETURN_TYPES = ("STRING",)
@@ -242,12 +297,14 @@ class PrimereMetaRead:
                 "vae_name_sd": ('VAE_NAME', {"forceInput": True, "default": ""}),
                 "vae_name_sdxl": ('VAE_NAME', {"forceInput": True, "default": ""}),
                 "is_lcm": ("INT", {"default": 0, "forceInput": True}),
+                "prefered_model": ("STRING", {"default": "", "forceInput": True}),
+                "prefered_orientation": ("STRING", {"default": "", "forceInput": True}),
             },
         }
 
     def load_image_meta(self, sdxl_path, use_exif, use_decoded_dyn, use_model, model_hash_check, use_sampler, use_seed, use_size, recount_size, use_cfg_scale, use_steps, use_exif_vae, force_model_vae, image,
                         positive="", negative="", positive_l="", negative_l="", positive_r="", negative_r="",
-                        model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl="", is_lcm=0 ):
+                        model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl="", is_lcm=0, prefered_model="", prefered_orientation=""):
 
         data_json = {}
         data_json['positive'] = positive
@@ -271,6 +328,8 @@ class PrimereMetaRead:
         data_json['is_lcm'] = is_lcm
         data_json['vae_name'] = vae_name_sd
         data_json['force_model_vae'] = force_model_vae
+        data_json['prefered_model'] = prefered_model
+        data_json['prefered_orientation'] = prefered_orientation
 
         if sdxl_path:
             if not sdxl_path.endswith(os.sep):
@@ -443,6 +502,19 @@ class PrimereMetaRead:
 
             data_json['dynamic_positive'] = utility.DynPromptDecoder(self, data_json['positive'], seed)
             data_json['dynamic_negative'] = utility.DynPromptDecoder(self, data_json['negative'], seed)
+
+            if prefered_model is not None and len(prefered_model.strip()) > 0:
+                data_json['model_name'] = exif_data_checker.check_model_from_exif("no_hash_data", prefered_model, prefered_model, False)
+
+            if prefered_orientation is not None and len(prefered_orientation.strip()) > 0:
+                width = data_json['width']
+                height = data_json['height']
+                if prefered_orientation == 'Vertical' and (data_json['width'] > data_json['height']):
+                    data_json['width'] = height
+                    data_json['height'] = width
+                if prefered_orientation == 'Horizontal' and (data_json['height'] > data_json['width']):
+                    data_json['width'] = height
+                    data_json['height'] = width
 
             return (data_json['positive'], data_json['negative'], data_json['positive_l'], data_json['negative_l'], data_json['positive_r'], data_json['negative_r'], data_json['model_name'], data_json['sampler_name'], data_json['scheduler_name'], data_json['seed'], data_json['width'], data_json['height'], data_json['cfg_scale'], data_json['steps'], data_json['vae_name'], realvae, data_json)
 

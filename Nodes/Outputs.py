@@ -29,6 +29,7 @@ class PrimereMetaSave:
                 "images": ("IMAGE",),
                 "output_path": ("STRING", {"default": '[time(%Y-%m-%d)]', "multiline": False}),
                 "subpath": (["None", "Dev", "Test", "Production", "Project", "Portfolio", "Character", "Fun", "SFW", "NSFW"], {"default": "Project"}),
+                "prefered_subpath": ("STRING", {"default": "", "forceInput": True}),
                 "add_modelname_to_path": ("BOOLEAN", {"default": False}),
                 "filename_prefix": ("STRING", {"default": "ComfyUI"}),
                 "filename_delimiter": ("STRING", {"default": "_"}),
@@ -46,6 +47,7 @@ class PrimereMetaSave:
                 "save_mata_to_json": ("BOOLEAN", {"default": False}),
             },
             "optional": {
+                "prefered_subpath": ("STRING", {"default": "", "forceInput": True}),
                 "image_metadata": ('TUPLE', {"forceInput": True}),
             },
             "hidden": {
@@ -62,7 +64,7 @@ class PrimereMetaSave:
                          output_path='[time(%Y-%m-%d)]', subpath='Project', add_modelname_to_path = False, filename_prefix="ComfyUI", filename_delimiter='_',
                          extension='jpg', quality=95, prompt=None, extra_pnginfo=None,
                          overwrite_mode='false', filename_number_padding=2, filename_number_start=False,
-                         png_embed_workflow=False, image_embed_exif=False):
+                         png_embed_workflow=False, image_embed_exif=False, prefered_subpath=""):
 
         delimiter = filename_delimiter
         number_padding = filename_number_padding
@@ -97,7 +99,10 @@ class PrimereMetaSave:
             path = Path(output_path)
             ModelStartPath = output_path.replace(path.stem, '')
             ModelPath = Path(image_metadata['model_name'])
-            if subpath != 'None':
+            if prefered_subpath is not None and len(prefered_subpath.strip()) > 0:
+                subpath = prefered_subpath
+
+            if subpath is not None and subpath != 'None' and len(subpath.strip()) > 0:
                 output_path = ModelStartPath + ModelPath.stem.upper() + os.sep + subpath + os.sep + path.stem
             else:
                 output_path = ModelStartPath + ModelPath.stem.upper() + os.sep + path.stem

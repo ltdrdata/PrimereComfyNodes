@@ -1,246 +1,404 @@
 {
-  "last_node_id": 68,
-  "last_link_id": 242,
+  "last_node_id": 107,
+  "last_link_id": 355,
   "nodes": [
     {
-      "id": 1,
+      "id": 78,
       "type": "PrimereStyleLoader",
       "pos": [
-        30.381671819536418,
-        87.08414687866737
+        31,
+        85
       ],
       "size": {
-        "0": 402,
-        "1": 80
+        "0": 396.56884765625,
+        "1": 210
       },
       "flags": {},
       "order": 0,
       "mode": 0,
       "outputs": [
         {
-          "name": "positive_prompt",
+          "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            7
+            251
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "negative_prompt",
+          "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            8
+            252
           ],
           "shape": 3,
           "slot_index": 1
+        },
+        {
+          "name": "SUBPATH",
+          "type": "STRING",
+          "links": [
+            253
+          ],
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "MODEL",
+          "type": "STRING",
+          "links": [
+            254
+          ],
+          "shape": 3,
+          "slot_index": 3
+        },
+        {
+          "name": "ORIENTATION",
+          "type": "STRING",
+          "links": [
+            255
+          ],
+          "shape": 3,
+          "slot_index": 4
         }
       ],
       "properties": {
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Architechture Mountain architect"
+        "SFW Autumn model",
+        true,
+        false,
+        true
       ],
       "color": "#2a363b",
       "bgcolor": "#3f5159"
     },
     {
-      "id": 5,
-      "type": "PrimerePrompt",
+      "id": 93,
+      "type": "PrimereSamplers",
       "pos": [
-        30.381671819536418,
-        204.08414687866735
+        1222.078373559749,
+        -500.2258977039062
       ],
-      "size": {
-        "0": 402.9048767089844,
-        "1": 204.08538818359375
-      },
+      "size": [
+        315,
+        102
+      ],
       "flags": {},
       "order": 1,
       "mode": 0,
       "outputs": [
         {
-          "name": "positive_prompt",
-          "type": "STRING",
+          "name": "SAMPLER_NAME",
+          "type": "COMBO",
           "links": [
-            9
+            265
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "negative_prompt",
-          "type": "STRING",
+          "name": "SCHEDULER_NAME",
+          "type": "COMBO",
           "links": [
-            10
+            266
           ],
           "shape": 3,
           "slot_index": 1
         }
       ],
+      "title": "Primere Sampler Selector - NORMAL",
       "properties": {
-        "Node name for S&R": "PrimerePrompt"
+        "Node name for S&R": "PrimereSamplers"
       },
       "widgets_values": [
-        "minimalist interior, colorful beautiful ({large|small|huge} {modern|retro|old style|abandoned, messy|futuristic} {bedroom|hall|kitchen|office|auto garage}:1.4), Bauhaus modern {minimalist|difficult} furniture, (abstract paint of female portrait on the wall:1.4), luxury {glassy|platina|silver|gold|wood|metal|plastic} desk, leather sofa in the corner, beautiful large windows, small messy desk in the corner with computer screen, old books papers notes and color pencils, professional interior photography",
-        "cute animal, draw, low quality, illustration, man, woman, human, text, watermark, greyscale"
+        "dpmpp_sde",
+        "karras"
       ],
-      "color": "#432",
-      "bgcolor": "#653"
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
-      "id": 6,
-      "type": "PrimerePrompt",
+      "id": 95,
+      "type": "PrimereStepsCfg",
       "pos": [
-        32,
-        447
+        1556.07837355975,
+        -499.2258977039062
       ],
-      "size": {
-        "0": 403.1588134765625,
-        "1": 206.76531982421875
-      },
+      "size": [
+        315,
+        102
+      ],
       "flags": {},
       "order": 2,
       "mode": 0,
       "outputs": [
         {
-          "name": "positive_prompt",
-          "type": "STRING",
+          "name": "STEPS",
+          "type": "INT",
           "links": [
-            11
+            267
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "negative_prompt",
-          "type": "STRING",
+          "name": "CFG",
+          "type": "FLOAT",
           "links": [
-            12
+            268
           ],
           "shape": 3,
           "slot_index": 1
         }
       ],
+      "title": "Primere Steps & Cfg - NORMAL",
       "properties": {
-        "Node name for S&R": "PrimerePrompt"
+        "Node name for S&R": "PrimereStepsCfg"
       },
       "widgets_values": [
-        "With a degree in French, which she barely spoke, and an art degree she didn’t have, Head hustled her way into a job by borrowing another student's sketches. Once in, she began her career as a low-level sketch artist at Paramount and then climbed her way up, armed with wit, verve, and an uncanny knack for understanding personalities. It was as if she could look at an actor and know the fabric of their souls, which she'd translate into the fabric of their costumes.\nHer professional journey wasn't always a red carpet. The competition was fierce, the critics numerous, but Head had an arsenal of ambition and resilience. She worked her needle and thread through the tides of cinematic evolution, enduring the transition from black-and-white to Technicolor, never once losing her signature flair.\nHer influence was as wide as her round, signature glasses, stretching beyond film to fashion trends and popular culture. Her work continues to inspire designers and artists who know",
-        "porn, nudity"
+        25,
+        8.2
       ],
-      "color": "#432",
-      "bgcolor": "#653"
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
-      "id": 7,
-      "type": "PrimerePrompt",
+      "id": 94,
+      "type": "PrimereSamplers",
       "pos": [
-        31.381671819536418,
-        690.0841468786675
+        1222.078373559749,
+        -355.22589770390596
       ],
-      "size": {
-        "0": 404.15887451171875,
-        "1": 198.92686462402344
-      },
+      "size": [
+        315,
+        102
+      ],
       "flags": {},
       "order": 3,
       "mode": 0,
       "outputs": [
         {
-          "name": "positive_prompt",
-          "type": "STRING",
+          "name": "SAMPLER_NAME",
+          "type": "COMBO",
           "links": [
-            13
+            269
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "negative_prompt",
-          "type": "STRING",
+          "name": "SCHEDULER_NAME",
+          "type": "COMBO",
           "links": [
-            14
+            270
           ],
           "shape": 3,
           "slot_index": 1
         }
       ],
+      "title": "Primere Sampler Selector - LCM",
       "properties": {
-        "Node name for S&R": "PrimerePrompt"
+        "Node name for S&R": "PrimereSamplers"
       },
       "widgets_values": [
-        "a late autumn mood, chilly breeze, fallen leaves, misty harbor, crowded streets, vintage fashion, gas lamps, cobblestone roads, tall ships, bustling activity, somber atmosphere, worn-out buildings, dampness, muted colors, hidden mysteries, nostalgia, umbrellas, top hats, bonnets, smokestacks, hazy skies, whispered conversations camera settings: Canon EOS 5D Mark IV, Fujifilm Pro 400H film, 35mm lens, long exposure technique -c 10 -ar 2:3 + rtx on -v 5.2  -q 5 -style raw directors, cinematographers, photographers, fashion designers: Alfred Hitchcock, Roger Deakins, Julia Margaret Cameron, Alexander McQueen, Tim Burton, Dorothea Lange, Cecil Beaton, David Lynch, Lewis Carroll, Vivienne Westwood, Wong Kar-wai, Edward Steichen, Robert Doisneau, Stanley Kubrick, Annie Leibovitz, Charles Dickens,",
-        "watermark, text"
+        "lcm",
+        "sgm_uniform"
       ],
-      "color": "#432",
-      "bgcolor": "#653"
+      "color": "#00008c",
+      "bgcolor": "#0000a0"
     },
     {
-      "id": 8,
-      "type": "PrimerePrompt",
+      "id": 96,
+      "type": "PrimereStepsCfg",
       "pos": [
-        32.381671819536415,
-        925.0841468786675
+        1556.07837355975,
+        -354.22589770390596
       ],
-      "size": {
-        "0": 404.661376953125,
-        "1": 209.6067657470703
-      },
+      "size": [
+        315,
+        102
+      ],
       "flags": {},
       "order": 4,
       "mode": 0,
       "outputs": [
         {
-          "name": "positive_prompt",
-          "type": "STRING",
+          "name": "STEPS",
+          "type": "INT",
           "links": [
-            15
+            271
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "negative_prompt",
-          "type": "STRING",
+          "name": "CFG",
+          "type": "FLOAT",
           "links": [
-            16
+            272
           ],
           "shape": 3,
           "slot_index": 1
         }
       ],
+      "title": "Primere Steps & Cfg - LCM",
       "properties": {
-        "Node name for S&R": "PrimerePrompt"
+        "Node name for S&R": "PrimereStepsCfg"
       },
       "widgets_values": [
-        "exterior, extreme architecture, ({huge|large|small|friendly} {futuristic|modern|luxury|old style|retro|horror|Retro_Futuristic|abandoned|style-abandoned2|wooden|concrete|metallic|glassy|home|office building|castle} terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor {daytime|night|morning|evening|starry night|stormy, thunder, lightning} {|Summer|summer|Winter|winter|Spring|spring|Autumn|autumn|Apocalypse} professional architectural photography), beautiful nature on {Earth|Moon|Mars|Venus|Saturn|space|nature|huge spaceship|alien word}, large hill, (snow on hill:0.7), (a frightening sight:1.3), small {pool|swimming pool|lake}, (solar panels:0.6), ({volcano in the background with smoke and fire|forest with trees|huge rocky mountain, stones|}:0.6)",
-        "watermark, person, text, china style, indian style"
+        8,
+        1.18
       ],
-      "color": "#432",
-      "bgcolor": "#653"
+      "color": "#00008c",
+      "bgcolor": "#0000a0"
     },
     {
-      "id": 24,
-      "type": "PrimereSeed",
+      "id": 88,
+      "type": "PrimereVAE",
       "pos": [
-        574.6783737504843,
-        -478.2258977039062
+        31.078373559748638,
+        -339.22589770390596
       ],
-      "size": {
-        "0": 314,
-        "1": 130
-      },
+      "size": [
+        528.3360595703125,
+        58
+      ],
       "flags": {},
       "order": 5,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "VAE_NAME",
+          "type": "VAE_NAME",
+          "links": [
+            277
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Primere VAE Selector - SD VAE",
+      "properties": {
+        "Node name for S&R": "PrimereVAE"
+      },
+      "widgets_values": [
+        "vae-ft-mse-840000-ema-pruned.ckpt"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 89,
+      "type": "PrimereVAE",
+      "pos": [
+        32.07837355974864,
+        -243.22589770390599
+      ],
+      "size": [
+        528.3360595703125,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "VAE_NAME",
+          "type": "VAE_NAME",
+          "links": [
+            278
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Primere VAE Selector - SDXL VAE",
+      "properties": {
+        "Node name for S&R": "PrimereVAE"
+      },
+      "widgets_values": [
+        "sdxl_vae.safetensors"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 87,
+      "type": "PrimereCKPT",
+      "pos": [
+        30,
+        -499
+      ],
+      "size": [
+        530,
+        122
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CKPT_NAME",
+          "type": "CHECKPOINT_NAME",
+          "links": [
+            276
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "IS_SDXL",
+          "type": "INT",
+          "links": [
+            275
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "SDXL_PATH",
+          "type": "STRING",
+          "links": [
+            264,
+            279
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereCKPT"
+      },
+      "widgets_values": [
+        "BestAll\\photon_v1.safetensors",
+        "SDXL"
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
+      "id": 90,
+      "type": "PrimereSeed",
+      "pos": [
+        572,
+        -500
+      ],
+      "size": [
+        311.65581833478154,
+        130
+      ],
+      "flags": {},
+      "order": 8,
       "mode": 0,
       "outputs": [
         {
           "name": "SEED",
           "type": "INT",
           "links": [
-            217
+            284
           ],
           "shape": 3,
           "slot_index": 0
@@ -259,107 +417,64 @@
       "bgcolor": "#0000ff"
     },
     {
-      "id": 10,
-      "type": "PrimereVAE",
-      "pos": [
-        33.6783737504835,
-        -317.22589770390596
-      ],
-      "size": {
-        "0": 528.3360595703125,
-        "1": 58
-      },
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "vae_name",
-          "type": "VAE_NAME",
-          "links": [
-            210
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "title": "Primere VAE Selector - SD VAE",
-      "properties": {
-        "Node name for S&R": "PrimereVAE"
-      },
-      "widgets_values": [
-        "vae-ft-mse-840000-ema-pruned.ckpt"
-      ],
-      "color": "#223",
-      "bgcolor": "#335"
-    },
-    {
-      "id": 13,
-      "type": "PrimereVAE",
-      "pos": [
-        34.6783737504835,
-        -221.22589770390599
-      ],
-      "size": {
-        "0": 528.3360595703125,
-        "1": 58
-      },
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "vae_name",
-          "type": "VAE_NAME",
-          "links": [
-            211
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "title": "Primere VAE Selector - SDXL VAE",
-      "properties": {
-        "Node name for S&R": "PrimereVAE"
-      },
-      "widgets_values": [
-        "sdxl_vae.safetensors"
-      ],
-      "color": "#223",
-      "bgcolor": "#335"
-    },
-    {
-      "id": 43,
+      "id": 79,
       "type": "PrimerePrompt",
       "pos": [
-        34.38167181953642,
-        1171.0841468786675
+        28,
+        337
       ],
-      "size": {
-        "0": 404.1640319824219,
-        "1": 202.52493286132812
-      },
+      "size": [
+        402.6185302734375,
+        449.4836242675782
+      ],
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "outputs": [
         {
-          "name": "positive_prompt",
+          "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            108
+            256
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "negative_prompt",
+          "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            109
+            257
           ],
           "shape": 3,
           "slot_index": 1
+        },
+        {
+          "name": "SUBPATH",
+          "type": "STRING",
+          "links": [
+            303
+          ],
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "MODEL",
+          "type": "STRING",
+          "links": [
+            304
+          ],
+          "shape": 3,
+          "slot_index": 3
+        },
+        {
+          "name": "ORIENTATION",
+          "type": "STRING",
+          "links": [
+            305
+          ],
+          "shape": 3,
+          "slot_index": 4
         }
       ],
       "properties": {
@@ -367,43 +482,73 @@
       },
       "widgets_values": [
         "beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair",
-        "dry hair, porn, nudity, nsfw, necklace add_nsfw"
+        "dry hair, porn, nudity, nsfw, necklace add_nsfw",
+        "Test",
+        "",
+        ""
       ],
       "color": "#432",
       "bgcolor": "#653"
     },
     {
-      "id": 44,
+      "id": 80,
       "type": "PrimerePrompt",
       "pos": [
-        33,
-        1410
+        30,
+        825
       ],
-      "size": {
-        "0": 405.9154052734375,
-        "1": 198.68646240234375
-      },
+      "size": [
+        402.6185302734375,
+        425.68363647460956
+      ],
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "outputs": [
         {
-          "name": "positive_prompt",
+          "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            110
+            258
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "negative_prompt",
+          "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            111
+            259
           ],
           "shape": 3,
           "slot_index": 1
+        },
+        {
+          "name": "SUBPATH",
+          "type": "STRING",
+          "links": [
+            306
+          ],
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "MODEL",
+          "type": "STRING",
+          "links": [
+            307
+          ],
+          "shape": 3,
+          "slot_index": 3
+        },
+        {
+          "name": "ORIENTATION",
+          "type": "STRING",
+          "links": [
+            308
+          ],
+          "shape": 3,
+          "slot_index": 4
         }
       ],
       "properties": {
@@ -411,24 +556,101 @@
       },
       "widgets_values": [
         "beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants",
-        "dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw"
+        "dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw",
+        "Test",
+        "",
+        ""
       ],
       "color": "#432",
       "bgcolor": "#653"
     },
     {
-      "id": 42,
+      "id": 81,
+      "type": "PrimerePrompt",
+      "pos": [
+        29,
+        1293
+      ],
+      "size": [
+        404.91853027343745,
+        559.3836334228515
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "PROMPT+",
+          "type": "STRING",
+          "links": [
+            260
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "PROMPT-",
+          "type": "STRING",
+          "links": [
+            261
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "SUBPATH",
+          "type": "STRING",
+          "links": [
+            309
+          ],
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "MODEL",
+          "type": "STRING",
+          "links": [
+            310
+          ],
+          "shape": 3,
+          "slot_index": 3
+        },
+        {
+          "name": "ORIENTATION",
+          "type": "STRING",
+          "links": [
+            311
+          ],
+          "shape": 3,
+          "slot_index": 4
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimerePrompt"
+      },
+      "widgets_values": [
+        "Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}",
+        "nsfw porn nudity male necklace smile smiling",
+        "Test",
+        "",
+        ""
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 99,
       "type": "PrimereStylePile",
       "pos": [
         1996,
         88
       ],
-      "size": {
-        "0": 342.34326171875,
-        "1": 390
-      },
+      "size": [
+        342.34326171875,
+        414
+      ],
       "flags": {},
-      "order": 10,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -453,7 +675,7 @@
           "name": "STYLE+",
           "type": "STRING",
           "links": [
-            122
+            332
           ],
           "shape": 3,
           "slot_index": 0
@@ -462,7 +684,7 @@
           "name": "STYLE-",
           "type": "STRING",
           "links": [
-            123
+            333
           ],
           "shape": 3,
           "slot_index": 1
@@ -493,403 +715,24 @@
       "bgcolor": "#653"
     },
     {
-      "id": 46,
-      "type": "PrimerePrompt",
+      "id": 91,
+      "type": "PrimereLCMSelector",
       "pos": [
-        33.381671819536415,
-        1647.0841468786675
+        573.0783735597495,
+        -334.22589770390596
       ],
-      "size": {
-        "0": 407.41802978515625,
-        "1": 205.86376953125
-      },
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "positive_prompt",
-          "type": "STRING",
-          "links": [
-            126
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "negative_prompt",
-          "type": "STRING",
-          "links": [
-            127
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
+      "size": [
+        310.3948746303814,
+        198
       ],
-      "properties": {
-        "Node name for S&R": "PrimerePrompt"
-      },
-      "widgets_values": [
-        "Fast red racing sport car interior with beautiful sexy 40 year old European white model female driver. The female driver wear sexy {yellow|red|brown|black|white|small|green|pink|blue|sexy|transparent|fishnet} body, sexy natural {middle|small|sport} breasts, sexy neckline cleavage decolletage, romantic satisfied happy face, closeup half body portrait, detailed face, long {black|blonde|red|brown} hair, natural makeup.  (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3, side view) Professional Photo inside-out from the car. the cal {moving fast|racing|standing|moving slow}",
-        "nsfw porn nudity male necklace smile smiling"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 12,
-      "type": "PrimereCKPT",
-      "pos": [
-        32.6783737504835,
-        -477.2258977039062
-      ],
-      "size": {
-        "0": 530,
-        "1": 122
-      },
-      "flags": {},
-      "order": 12,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "ckpt_name",
-          "type": "CHECKPOINT_NAME",
-          "links": [
-            209
-          ],
-          "shape": 3
-        },
-        {
-          "name": "is_sdxl",
-          "type": "INT",
-          "links": [
-            76
-          ],
-          "shape": 3,
-          "slot_index": 1
-        },
-        {
-          "name": "sdxl_path",
-          "type": "STRING",
-          "links": [
-            143,
-            212
-          ],
-          "shape": 3,
-          "slot_index": 2
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereCKPT"
-      },
-      "widgets_values": [
-        "BestAll\\photon_v1.safetensors",
-        "SDXL"
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
-      "id": 9,
-      "type": "PrimereSamplers",
-      "pos": [
-        1224.6783737504838,
-        -478.2258977039062
-      ],
-      "size": {
-        "0": 315,
-        "1": 102
-      },
       "flags": {},
       "order": 13,
       "mode": 0,
-      "outputs": [
-        {
-          "name": "sampler_name",
-          "type": "COMBO",
-          "links": [
-            170
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "scheduler_name",
-          "type": "COMBO",
-          "links": [
-            171
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "title": "Primere Sampler Selector - NORMAL",
-      "properties": {
-        "Node name for S&R": "PrimereSamplers"
-      },
-      "widgets_values": [
-        "dpmpp_sde",
-        "karras"
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
-      "id": 29,
-      "type": "PrimereStepsCfg",
-      "pos": [
-        1558.6783737504848,
-        -477.2258977039062
-      ],
-      "size": {
-        "0": 315,
-        "1": 102
-      },
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "Steps",
-          "type": "INT",
-          "links": [
-            172
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "CFG",
-          "type": "FLOAT",
-          "links": [
-            173
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "title": "Primere Steps & Cfg - NORMAL",
-      "properties": {
-        "Node name for S&R": "PrimereStepsCfg"
-      },
-      "widgets_values": [
-        25,
-        8.2
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
-      "id": 49,
-      "type": "PrimereSamplers",
-      "pos": [
-        1224.6783737504838,
-        -333.22589770390596
-      ],
-      "size": {
-        "0": 315,
-        "1": 102
-      },
-      "flags": {},
-      "order": 15,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "sampler_name",
-          "type": "COMBO",
-          "links": [
-            174
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "scheduler_name",
-          "type": "COMBO",
-          "links": [
-            175
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "title": "Primere Sampler Selector - LCM",
-      "properties": {
-        "Node name for S&R": "PrimereSamplers"
-      },
-      "widgets_values": [
-        "lcm",
-        "sgm_uniform"
-      ],
-      "color": "#00008c",
-      "bgcolor": "#0000a0"
-    },
-    {
-      "id": 48,
-      "type": "PrimereStepsCfg",
-      "pos": [
-        1558.6783737504848,
-        -332.22589770390596
-      ],
-      "size": {
-        "0": 315,
-        "1": 102
-      },
-      "flags": {},
-      "order": 16,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "Steps",
-          "type": "INT",
-          "links": [
-            176
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "CFG",
-          "type": "FLOAT",
-          "links": [
-            177
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "title": "Primere Steps & Cfg - LCM",
-      "properties": {
-        "Node name for S&R": "PrimereStepsCfg"
-      },
-      "widgets_values": [
-        8,
-        1.18
-      ],
-      "color": "#00008c",
-      "bgcolor": "#0000a0"
-    },
-    {
-      "id": 65,
-      "type": "PrimerePrompt",
-      "pos": [
-        -702.92123046875,
-        316.27308929443365
-      ],
-      "size": {
-        "0": 669.519775390625,
-        "1": 995.0565185546875
-      },
-      "flags": {},
-      "order": 17,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "PROMPT+",
-          "type": "STRING",
-          "links": [
-            241
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "PROMPT-",
-          "type": "STRING",
-          "links": [
-            242
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimerePrompt"
-      },
-      "widgets_values": [
-        "(metallic {solid|soft|liquid} {iron|platina|gold|silver|rusty iron} mechanical robot-human {male|female|sexy female|sex-robot female} hybrid {face|half-body} photo), ({dead|lightning|blue|red|black|broken|glowing|lightning|burning|stormy} eyes:1.25), (The head of robot half-{metal|plastic|glass|liquid|soft|rusty|platina|diamond} and half-human skin with material and liquid), ({reflective|matte} {hard|soft|liquid|broken} mechanical electronic surface on skin), ({transparent|red|green|blue|colorful} liquid flowing down on his face), {Closeup face|face|head|half body|full body} realistic professional emotional photography. (Futuristic modern extreme sci-fi theme), (blur background), ({scary horror|friendly|lovely|emotion} situation). (The robot face and body is {new|old|abandoned|rusty|damaged and bleeding|half|broken|sick|opened|bloody scratched}). ({difficult|minimalist|damaged parts|blood|electronic circuits|fire|smoke|electrical sparks and discharges} on the robot head and body:1.25). (Clearly visible human {brain|blood vascular|musculature|meat|nerve|electric fibers|wires|microprocessors|heart|brain|lung} {in|within} the robot:1.2)",
-        "child childish retro old retro"
-      ]
-    },
-    {
-      "id": 14,
-      "type": "PrimereResolution",
-      "pos": [
-        899.678373750485,
-        -478.2258977039062
-      ],
-      "size": {
-        "0": 315,
-        "1": 246
-      },
-      "flags": {},
-      "order": 18,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "is_sdxl",
-          "type": "INT",
-          "link": 76,
-          "widget": {
-            "name": "is_sdxl"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "WIDTH",
-          "type": "INT",
-          "links": [
-            218
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "HEIGHT",
-          "type": "INT",
-          "links": [
-            219
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereResolution"
-      },
-      "widgets_values": [
-        "HD+ screen [16:10]",
-        "Horizontal",
-        true,
-        "SD 2.x",
-        0,
-        false,
-        1.6,
-        2.8
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
-      "id": 60,
-      "type": "PrimereLCMSelector",
-      "pos": [
-        575.6783737504843,
-        -312.22589770390596
-      ],
-      "size": {
-        "0": 312.3360595703125,
-        "1": 198
-      },
-      "flags": {},
-      "order": 19,
-      "mode": 0,
       "inputs": [
         {
           "name": "sampler_name",
           "type": "COMBO",
-          "link": 170,
+          "link": 265,
           "widget": {
             "name": "sampler_name"
           }
@@ -897,7 +740,7 @@
         {
           "name": "scheduler_name",
           "type": "COMBO",
-          "link": 171,
+          "link": 266,
           "widget": {
             "name": "scheduler_name"
           }
@@ -905,7 +748,7 @@
         {
           "name": "lcm_sampler_name",
           "type": "COMBO",
-          "link": 174,
+          "link": 269,
           "widget": {
             "name": "lcm_sampler_name"
           }
@@ -913,7 +756,7 @@
         {
           "name": "lcm_scheduler_name",
           "type": "COMBO",
-          "link": 175,
+          "link": 270,
           "widget": {
             "name": "lcm_scheduler_name"
           }
@@ -921,7 +764,7 @@
         {
           "name": "cfg_scale",
           "type": "FLOAT",
-          "link": 173,
+          "link": 268,
           "widget": {
             "name": "cfg_scale"
           }
@@ -929,7 +772,7 @@
         {
           "name": "steps",
           "type": "INT",
-          "link": 172,
+          "link": 267,
           "widget": {
             "name": "steps"
           }
@@ -937,7 +780,7 @@
         {
           "name": "lcm_cfg_scale",
           "type": "FLOAT",
-          "link": 177,
+          "link": 272,
           "widget": {
             "name": "lcm_cfg_scale"
           }
@@ -945,7 +788,7 @@
         {
           "name": "lcm_steps",
           "type": "INT",
-          "link": 176,
+          "link": 271,
           "widget": {
             "name": "lcm_steps"
           }
@@ -956,7 +799,7 @@
           "name": "SAMPLER_NAME",
           "type": "COMBO",
           "links": [
-            215
+            298
           ],
           "shape": 3,
           "slot_index": 0
@@ -965,7 +808,7 @@
           "name": "SCHEDULER_NAME",
           "type": "COMBO",
           "links": [
-            216
+            299
           ],
           "shape": 3,
           "slot_index": 1
@@ -974,7 +817,7 @@
           "name": "STEPS",
           "type": "INT",
           "links": [
-            221
+            300
           ],
           "shape": 3,
           "slot_index": 2
@@ -983,7 +826,7 @@
           "name": "CFG",
           "type": "FLOAT",
           "links": [
-            220
+            301
           ],
           "shape": 3,
           "slot_index": 3
@@ -992,8 +835,8 @@
           "name": "IS_LCM",
           "type": "INT",
           "links": [
-            169,
-            222
+            280,
+            302
           ],
           "shape": 3,
           "slot_index": 4
@@ -1017,144 +860,256 @@
       "bgcolor": "#0000a0"
     },
     {
-      "id": 4,
+      "id": 92,
+      "type": "PrimereResolution",
+      "pos": [
+        897.0783735597502,
+        -500.2258977039062
+      ],
+      "size": [
+        315,
+        246
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "is_sdxl",
+          "type": "INT",
+          "link": 275,
+          "widget": {
+            "name": "is_sdxl"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "WIDTH",
+          "type": "INT",
+          "links": [
+            292
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "HEIGHT",
+          "type": "INT",
+          "links": [
+            293
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereResolution"
+      },
+      "widgets_values": [
+        "HD+ screen [16:10]",
+        "Horizontal",
+        false,
+        "SD 2.x",
+        true,
+        false,
+        1.6,
+        2.8
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
+      "id": 76,
       "type": "PrimerePromptSwitch",
       "pos": [
-        443,
-        582
+        444,
+        589
       ],
-      "size": {
-        "0": 274.52203369140625,
-        "1": 438
-      },
+      "size": [
+        271.8484814453127,
+        538
+      ],
       "flags": {},
-      "order": 20,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
           "name": "prompt_pos_1",
           "type": "STRING",
-          "link": 7
+          "link": 251
         },
         {
           "name": "prompt_neg_1",
           "type": "STRING",
-          "link": 8
+          "link": 252
+        },
+        {
+          "name": "subpath_1",
+          "type": "STRING",
+          "link": 253
+        },
+        {
+          "name": "model_1",
+          "type": "STRING",
+          "link": 254
+        },
+        {
+          "name": "orientation_1",
+          "type": "STRING",
+          "link": 255
         },
         {
           "name": "prompt_pos_2",
           "type": "STRING",
-          "link": 9
+          "link": 256
         },
         {
           "name": "prompt_neg_2",
           "type": "STRING",
-          "link": 10
+          "link": 257
+        },
+        {
+          "name": "subpath_2",
+          "type": "STRING",
+          "link": 303
+        },
+        {
+          "name": "model_2",
+          "type": "STRING",
+          "link": 304
+        },
+        {
+          "name": "orientation_2",
+          "type": "STRING",
+          "link": 305
         },
         {
           "name": "prompt_pos_3",
           "type": "STRING",
-          "link": 11
+          "link": 258
         },
         {
           "name": "prompt_neg_3",
           "type": "STRING",
-          "link": 12
+          "link": 259
+        },
+        {
+          "name": "subpath_3",
+          "type": "STRING",
+          "link": 306
+        },
+        {
+          "name": "model_3",
+          "type": "STRING",
+          "link": 307
+        },
+        {
+          "name": "orientation_3",
+          "type": "STRING",
+          "link": 308
         },
         {
           "name": "prompt_pos_4",
           "type": "STRING",
-          "link": 13
+          "link": 260
         },
         {
           "name": "prompt_neg_4",
           "type": "STRING",
-          "link": 14
+          "link": 261
+        },
+        {
+          "name": "subpath_4",
+          "type": "STRING",
+          "link": 309
+        },
+        {
+          "name": "model_4",
+          "type": "STRING",
+          "link": 310
+        },
+        {
+          "name": "orientation_4",
+          "type": "STRING",
+          "link": 311
         },
         {
           "name": "prompt_pos_5",
           "type": "STRING",
-          "link": 15
+          "link": null
         },
         {
           "name": "prompt_neg_5",
           "type": "STRING",
-          "link": 16
+          "link": null
         },
         {
-          "name": "prompt_pos_6",
-          "type": "STRING",
-          "link": 108
-        },
-        {
-          "name": "prompt_neg_6",
-          "type": "STRING",
-          "link": 109
-        },
-        {
-          "name": "prompt_pos_7",
-          "type": "STRING",
-          "link": 110
-        },
-        {
-          "name": "prompt_neg_7",
-          "type": "STRING",
-          "link": 111
-        },
-        {
-          "name": "prompt_pos_8",
-          "type": "STRING",
-          "link": 126
-        },
-        {
-          "name": "prompt_neg_8",
-          "type": "STRING",
-          "link": 127
-        },
-        {
-          "name": "prompt_pos_9",
-          "type": "STRING",
-          "link": 241
-        },
-        {
-          "name": "prompt_neg_9",
-          "type": "STRING",
-          "link": 242
-        },
-        {
-          "name": "prompt_pos_10",
+          "name": "subpath_5",
           "type": "STRING",
           "link": null
         },
         {
-          "name": "prompt_neg_10",
+          "name": "model_5",
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "orientation_5",
           "type": "STRING",
           "link": null
         }
       ],
       "outputs": [
         {
-          "name": "selected_pos",
+          "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            88,
-            213
+            262,
+            296
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "selected_neg",
+          "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            89,
-            214
+            263,
+            297
           ],
           "shape": 3,
           "slot_index": 1
         },
         {
-          "name": "selected_index",
+          "name": "SUBPATH",
+          "type": "STRING",
+          "links": [
+            274
+          ],
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "MODEL",
+          "type": "STRING",
+          "links": [
+            294
+          ],
+          "shape": 3,
+          "slot_index": 3
+        },
+        {
+          "name": "ORIENTATION",
+          "type": "STRING",
+          "links": [
+            295
+          ],
+          "shape": 3,
+          "slot_index": 4
+        },
+        {
+          "name": "SELECTED_INDEX",
           "type": "INT",
           "links": null,
           "shape": 3
@@ -1164,7 +1119,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        1
+        2
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
@@ -1181,13 +1136,13 @@
         "1": 250.507568359375
       },
       "flags": {},
-      "order": 21,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 88,
+          "link": 262,
           "dir": 3,
           "slot_index": 0
         }
@@ -1196,7 +1151,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"exterior, extreme architecture, ({huge|large|small|friendly} {futuristic|modern|luxury|old style|retro|horror|Retro_Futuristic|abandoned|style-abandoned2|wooden|concrete|metallic|glassy|home|office building|castle} terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor {daytime|night|morning|evening|starry night|stormy, thunder, lightning} {|Summer|summer|Winter|winter|Spring|spring|Autumn|autumn|Apocalypse} professional architectural photography), beautiful nature on {Earth|Moon|Mars|Venus|Saturn|space|nature|huge spaceship|alien word}, large hill, (snow on hill:0.7), (a frightening sight:1.3), small {pool|swimming pool|lake}, (solar panels:0.6), ({volcano in the background with smoke and fire|forest with trees|huge rocky mountain, stones|}:0.6)\""
+        "\"beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair\""
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -1213,13 +1168,13 @@
         "1": 279.507568359375
       },
       "flags": {},
-      "order": 22,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 89,
+          "link": 263,
           "dir": 3,
           "slot_index": 0
         }
@@ -1228,45 +1183,45 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"watermark, person, text, china style, indian style\""
+        "\"dry hair, porn, nudity, nsfw, necklace add_nsfw\""
       ],
       "color": "#322",
       "bgcolor": "#533"
     },
     {
-      "id": 64,
+      "id": 86,
       "type": "PrimereMetaRead",
       "pos": [
         728,
         87
       ],
-      "size": {
-        "0": 502.28607177734375,
-        "1": 1212.3076171875
-      },
+      "size": [
+        502.28607177734375,
+        1212.3076171875
+      ],
       "flags": {},
-      "order": 23,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
           "name": "model_name",
           "type": "CHECKPOINT_NAME",
-          "link": 209
+          "link": 276
         },
         {
           "name": "vae_name_sd",
           "type": "VAE_NAME",
-          "link": 210
+          "link": 277
         },
         {
           "name": "vae_name_sdxl",
           "type": "VAE_NAME",
-          "link": 211
+          "link": 278
         },
         {
           "name": "sdxl_path",
           "type": "STRING",
-          "link": 212,
+          "link": 279,
           "widget": {
             "name": "sdxl_path"
           }
@@ -1274,7 +1229,7 @@
         {
           "name": "positive",
           "type": "STRING",
-          "link": 213,
+          "link": 296,
           "widget": {
             "name": "positive"
           }
@@ -1282,7 +1237,7 @@
         {
           "name": "negative",
           "type": "STRING",
-          "link": 214,
+          "link": 297,
           "widget": {
             "name": "negative"
           }
@@ -1322,7 +1277,7 @@
         {
           "name": "sampler_name",
           "type": "COMBO",
-          "link": 215,
+          "link": 298,
           "widget": {
             "name": "sampler_name"
           }
@@ -1330,7 +1285,7 @@
         {
           "name": "scheduler_name",
           "type": "COMBO",
-          "link": 216,
+          "link": 299,
           "widget": {
             "name": "scheduler_name"
           }
@@ -1338,7 +1293,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": 217,
+          "link": 284,
           "widget": {
             "name": "seed"
           }
@@ -1346,7 +1301,7 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 218,
+          "link": 292,
           "widget": {
             "name": "width"
           }
@@ -1354,7 +1309,7 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 219,
+          "link": 293,
           "widget": {
             "name": "height"
           }
@@ -1362,7 +1317,7 @@
         {
           "name": "cfg_scale",
           "type": "FLOAT",
-          "link": 220,
+          "link": 301,
           "widget": {
             "name": "cfg_scale"
           }
@@ -1370,7 +1325,7 @@
         {
           "name": "steps",
           "type": "INT",
-          "link": 221,
+          "link": 300,
           "widget": {
             "name": "steps"
           }
@@ -1378,9 +1333,25 @@
         {
           "name": "is_lcm",
           "type": "INT",
-          "link": 222,
+          "link": 302,
           "widget": {
             "name": "is_lcm"
+          }
+        },
+        {
+          "name": "prefered_model",
+          "type": "STRING",
+          "link": 294,
+          "widget": {
+            "name": "prefered_model"
+          }
+        },
+        {
+          "name": "prefered_orientation",
+          "type": "STRING",
+          "link": 295,
+          "widget": {
+            "name": "prefered_orientation"
           }
         }
       ],
@@ -1389,7 +1360,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            223
+            322
           ],
           "shape": 3,
           "slot_index": 0
@@ -1398,7 +1369,7 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            224
+            323
           ],
           "shape": 3,
           "slot_index": 1
@@ -1431,7 +1402,7 @@
           "name": "MODEL_NAME",
           "type": "CHECKPOINT_NAME",
           "links": [
-            240
+            281
           ],
           "shape": 3,
           "slot_index": 6
@@ -1440,28 +1411,26 @@
           "name": "SAMPLER_NAME",
           "type": "COMBO",
           "links": [
-            229
+            351
           ],
-          "shape": 3,
-          "slot_index": 7
+          "shape": 3
         },
         {
           "name": "SCHEDULER_NAME",
           "type": "COMBO",
           "links": [
-            230
+            352
           ],
-          "shape": 3,
-          "slot_index": 8
+          "shape": 3
         },
         {
           "name": "SEED",
           "type": "INT",
           "links": [
-            225,
-            226,
-            227,
-            228
+            319,
+            324,
+            325,
+            348
           ],
           "shape": 3,
           "slot_index": 9
@@ -1470,8 +1439,8 @@
           "name": "WIDTH",
           "type": "INT",
           "links": [
-            231,
-            233
+            317,
+            334
           ],
           "shape": 3,
           "slot_index": 10
@@ -1480,29 +1449,26 @@
           "name": "HEIGHT",
           "type": "INT",
           "links": [
-            232,
-            234
+            318,
+            335
           ],
-          "shape": 3,
-          "slot_index": 11
+          "shape": 3
         },
         {
           "name": "CFG",
           "type": "FLOAT",
           "links": [
-            235
+            350
           ],
-          "shape": 3,
-          "slot_index": 12
+          "shape": 3
         },
         {
           "name": "STEPS",
           "type": "INT",
           "links": [
-            236
+            349
           ],
-          "shape": 3,
-          "slot_index": 13
+          "shape": 3
         },
         {
           "name": "VAE_NAME",
@@ -1514,17 +1480,16 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            237
+            355
           ],
-          "shape": 3,
-          "slot_index": 15
+          "shape": 3
         },
         {
           "name": "METADATA",
           "type": "TUPLE",
           "links": [
-            238,
-            239
+            273,
+            353
           ],
           "shape": 3,
           "slot_index": 16
@@ -1535,8 +1500,8 @@
       },
       "widgets_values": [
         false,
-        true,
         false,
+        true,
         false,
         true,
         false,
@@ -1557,41 +1522,43 @@
         "",
         "euler",
         "normal",
-        895,
+        786,
         "randomize",
+        895,
         1210,
         512,
         512,
         7,
-        12
+        "",
+        ""
       ],
       "color": "#223",
       "bgcolor": "#335"
     },
     {
-      "id": 55,
+      "id": 97,
       "type": "PrimereCKPTLoader",
       "pos": [
-        1559.5184176957969,
-        -191.2859270007811
+        1559,
+        -215
       ],
-      "size": {
-        "0": 314.1140441894531,
-        "1": 142
-      },
+      "size": [
+        314.47990402814116,
+        142
+      ],
       "flags": {},
-      "order": 24,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
           "name": "ckpt_name",
           "type": "CHECKPOINT_NAME",
-          "link": 240
+          "link": 281
         },
         {
           "name": "is_lcm",
           "type": "INT",
-          "link": 169,
+          "link": 280,
           "widget": {
             "name": "is_lcm"
           }
@@ -1599,7 +1566,7 @@
         {
           "name": "sdxl_path",
           "type": "STRING",
-          "link": 143,
+          "link": 264,
           "widget": {
             "name": "sdxl_path"
           }
@@ -1610,7 +1577,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            146
+            338
           ],
           "shape": 3,
           "slot_index": 0
@@ -1619,7 +1586,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            147
+            321
           ],
           "shape": 3,
           "slot_index": 1
@@ -1628,7 +1595,7 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            145
+            316
           ],
           "shape": 3,
           "slot_index": 2
@@ -1637,8 +1604,8 @@
           "name": "IS_SDXL",
           "type": "INT",
           "links": [
-            148,
-            162
+            320,
+            354
           ],
           "shape": 3,
           "slot_index": 3
@@ -1657,24 +1624,24 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 40,
+      "id": 105,
       "type": "PrimereDynamicParser",
       "pos": [
-        441,
-        316
+        442,
+        318
       ],
-      "size": {
-        "0": 275.1943359375,
-        "1": 54
-      },
+      "size": [
+        271.31197691357806,
+        54
+      ],
       "flags": {},
-      "order": 25,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
           "name": "dyn_prompt",
           "type": "STRING",
-          "link": 223,
+          "link": 322,
           "widget": {
             "name": "dyn_prompt"
           }
@@ -1682,7 +1649,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": 225,
+          "link": 324,
           "widget": {
             "name": "seed"
           }
@@ -1690,10 +1657,10 @@
       ],
       "outputs": [
         {
-          "name": "prompt",
+          "name": "PROMPT",
           "type": "STRING",
           "links": [
-            97
+            326
           ],
           "shape": 3,
           "slot_index": 0
@@ -1704,31 +1671,31 @@
       },
       "widgets_values": [
         "",
-        1029737669479019,
+        -891648862291386,
         "randomize"
       ],
       "color": "#232",
       "bgcolor": "#353"
     },
     {
-      "id": 41,
+      "id": 106,
       "type": "PrimereDynamicParser",
       "pos": [
         443,
-        404
+        407
       ],
-      "size": {
-        "0": 273.1943359375,
-        "1": 54
-      },
+      "size": [
+        270.31197691357806,
+        54
+      ],
       "flags": {},
-      "order": 26,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
           "name": "dyn_prompt",
           "type": "STRING",
-          "link": 224,
+          "link": 323,
           "widget": {
             "name": "dyn_prompt"
           }
@@ -1736,7 +1703,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": 226,
+          "link": 325,
           "widget": {
             "name": "seed"
           }
@@ -1744,10 +1711,10 @@
       ],
       "outputs": [
         {
-          "name": "prompt",
+          "name": "PROMPT",
           "type": "STRING",
           "links": [
-            98
+            327
           ],
           "shape": 3,
           "slot_index": 0
@@ -1758,7 +1725,7 @@
       },
       "widgets_values": [
         "",
-        739812067557856,
+        -496362197996844,
         "randomize"
       ],
       "color": "#322",
@@ -1776,49 +1743,50 @@
         "1": 426.10015869140625
       },
       "flags": {},
-      "order": 27,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 238,
-          "dir": 3
+          "link": 353,
+          "dir": 3,
+          "slot_index": 0
         }
       ],
       "properties": {
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "{\"positive\": \"exterior, extreme architecture, ({huge|large|small|friendly} {futuristic|modern|luxury|old style|retro|horror|Retro_Futuristic|abandoned|style-abandoned2|wooden|concrete|metallic|glassy|home|office building|castle} terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor {daytime|night|morning|evening|starry night|stormy, thunder, lightning} {|Summer|summer|Winter|winter|Spring|spring|Autumn|autumn|Apocalypse} professional architectural photography), beautiful nature on {Earth|Moon|Mars|Venus|Saturn|space|nature|huge spaceship|alien word}, large hill, (snow on hill:0.7), (a frightening sight:1.3), small {pool|swimming pool|lake}, (solar panels:0.6), ({volcano in the background with smoke and fire|forest with trees|huge rocky mountain, stones|}:0.6)\", \"negative\": \"watermark, person, text, china style, indian style\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\photon_v1.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 186396191790036, \"width\": 960, \"height\": 614, \"cfg_scale\": 8.2, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"is_lcm\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false, \"dynamic_positive\": \"exterior, extreme architecture, (huge style-abandoned2 terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor night Spring professional architectural photography), beautiful nature on Venus, large hill, (snow on hill:0.7), (a frightening sight:1.3), small lake, (solar panels:0.6), (huge rocky mountain, stones:0.6)\", \"dynamic_negative\": \"watermark, person, text, china style, indian style\"}"
+        "{\"positive\": \"beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair\", \"negative\": \"dry hair, porn, nudity, nsfw, necklace add_nsfw\", \"positive_l\": \"\", \"negative_l\": \"\", \"positive_r\": \"\", \"negative_r\": \"\", \"model_hash\": \"\", \"model_name\": \"BestAll\\\\photon_v1.safetensors\", \"sampler_name\": \"dpmpp_sde\", \"scheduler_name\": \"karras\", \"seed\": 291280532569038, \"width\": 976, \"height\": 604, \"cfg_scale\": 8.2, \"steps\": 25, \"sdxl_path\": \"SDXL\", \"is_sdxl\": 0, \"is_lcm\": 0, \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\", \"force_model_vae\": false, \"prefered_model\": null, \"prefered_orientation\": null, \"dynamic_positive\": \"beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear red one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair\", \"dynamic_negative\": \"dry hair, porn, nudity, nsfw, necklace add_nsfw\"}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
     },
     {
-      "id": 23,
+      "id": 100,
       "type": "PrimereLatentNoise",
       "pos": [
-        2375.398410750731,
-        90.05789473663344
+        2375,
+        90
       ],
-      "size": {
-        "0": 345,
-        "1": 382
-      },
+      "size": [
+        341.4630949310872,
+        382
+      ],
       "flags": {},
-      "order": 28,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
           "name": "optional_vae",
           "type": "VAE",
-          "link": 145
+          "link": 316
         },
         {
           "name": "width",
           "type": "INT",
-          "link": 231,
+          "link": 317,
           "widget": {
             "name": "width"
           }
@@ -1826,15 +1794,16 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 232,
+          "link": 318,
           "widget": {
             "name": "height"
-          }
+          },
+          "slot_index": 2
         },
         {
           "name": "seed",
           "type": "INT",
-          "link": 227,
+          "link": 319,
           "widget": {
             "name": "seed"
           }
@@ -1842,19 +1811,19 @@
       ],
       "outputs": [
         {
-          "name": "latents",
+          "name": "LATENTS",
           "type": "LATENT",
           "links": [
-            34
+            347
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "previews",
+          "name": "PREVIEWS",
           "type": "IMAGE",
           "links": [
-            42
+            346
           ],
           "shape": 3,
           "slot_index": 1
@@ -1876,7 +1845,7 @@
         1.2,
         0.9,
         1.25,
-        269105250165947,
+        -907650029130678,
         "randomize",
         true,
         "cpu"
@@ -1885,24 +1854,24 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 39,
+      "id": 104,
       "type": "PrimereClearPrompt",
       "pos": [
-        441,
+        443,
         86
       ],
-      "size": {
-        "0": 275.6597595214844,
-        "1": 194
-      },
+      "size": [
+        271.9648694755615,
+        194
+      ],
       "flags": {},
-      "order": 29,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
           "name": "is_sdxl",
           "type": "INT",
-          "link": 162,
+          "link": 354,
           "widget": {
             "name": "is_sdxl"
           }
@@ -1910,7 +1879,7 @@
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 97,
+          "link": 326,
           "widget": {
             "name": "positive_prompt"
           }
@@ -1918,7 +1887,7 @@
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 98,
+          "link": 327,
           "widget": {
             "name": "negative_prompt"
           }
@@ -1926,19 +1895,19 @@
       ],
       "outputs": [
         {
-          "name": "Prompt+",
+          "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            102
+            328
           ],
           "shape": 3,
           "slot_index": 0
         },
         {
-          "name": "Prompt-",
+          "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            103
+            329
           ],
           "shape": 3,
           "slot_index": 1
@@ -1972,13 +1941,13 @@
         "1": 273
       },
       "flags": {},
-      "order": 30,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 42
+          "link": 346
         }
       ],
       "properties": {
@@ -1988,24 +1957,24 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 38,
+      "id": 107,
       "type": "PrimereEmbeddingHandler",
       "pos": [
-        443,
-        493
+        444,
+        498
       ],
-      "size": {
-        "0": 272.1943359375,
-        "1": 54
-      },
+      "size": [
+        269.31197691357806,
+        54
+      ],
       "flags": {},
-      "order": 31,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 102,
+          "link": 328,
           "widget": {
             "name": "positive_prompt"
           }
@@ -2013,7 +1982,7 @@
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 103,
+          "link": 329,
           "widget": {
             "name": "negative_prompt"
           }
@@ -2021,22 +1990,20 @@
       ],
       "outputs": [
         {
-          "name": "prompt+",
+          "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            120
+            330
           ],
-          "shape": 3,
-          "slot_index": 0
+          "shape": 3
         },
         {
-          "name": "prompt-",
+          "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            121
+            331
           ],
-          "shape": 3,
-          "slot_index": 1
+          "shape": 3
         }
       ],
       "properties": {
@@ -2050,29 +2017,29 @@
       "bgcolor": "#355"
     },
     {
-      "id": 45,
+      "id": 101,
       "type": "PrimereCLIPEncoder",
       "pos": [
         2729,
         92
       ],
-      "size": {
-        "0": 412,
-        "1": 614
-      },
+      "size": [
+        415.13423295454504,
+        614
+      ],
       "flags": {},
-      "order": 32,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 147
+          "link": 321
         },
         {
           "name": "is_sdxl",
           "type": "INT",
-          "link": 148,
+          "link": 320,
           "widget": {
             "name": "is_sdxl"
           }
@@ -2080,18 +2047,20 @@
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 120,
+          "link": 330,
           "widget": {
             "name": "positive_prompt"
-          }
+          },
+          "slot_index": 2
         },
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 121,
+          "link": 331,
           "widget": {
             "name": "negative_prompt"
-          }
+          },
+          "slot_index": 3
         },
         {
           "name": "opt_pos_prompt",
@@ -2112,7 +2081,7 @@
         {
           "name": "style_pos_prompt",
           "type": "STRING",
-          "link": 122,
+          "link": 332,
           "widget": {
             "name": "style_pos_prompt"
           }
@@ -2120,7 +2089,7 @@
         {
           "name": "style_neg_prompt",
           "type": "STRING",
-          "link": 123,
+          "link": 333,
           "widget": {
             "name": "style_neg_prompt"
           }
@@ -2144,18 +2113,20 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 233,
+          "link": 334,
           "widget": {
             "name": "width"
-          }
+          },
+          "slot_index": 10
         },
         {
           "name": "height",
           "type": "INT",
-          "link": 234,
+          "link": 335,
           "widget": {
             "name": "height"
-          }
+          },
+          "slot_index": 11
         }
       ],
       "outputs": [
@@ -2163,7 +2134,7 @@
           "name": "COND+",
           "type": "CONDITIONING",
           "links": [
-            113
+            336
           ],
           "shape": 3,
           "slot_index": 0
@@ -2172,7 +2143,7 @@
           "name": "COND-",
           "type": "CONDITIONING",
           "links": [
-            114
+            337
           ],
           "shape": 3,
           "slot_index": 1
@@ -2181,7 +2152,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            115
+            342
           ],
           "shape": 3,
           "slot_index": 2
@@ -2190,7 +2161,7 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            116
+            343
           ],
           "shape": 3,
           "slot_index": 3
@@ -2199,7 +2170,7 @@
           "name": "PROMPT L+",
           "type": "STRING",
           "links": [
-            117
+            344
           ],
           "shape": 3,
           "slot_index": 4
@@ -2208,7 +2179,7 @@
           "name": "PROMPT L-",
           "type": "STRING",
           "links": [
-            118
+            345
           ],
           "shape": 3,
           "slot_index": 5
@@ -2222,11 +2193,11 @@
         "",
         "",
         1.2,
-        false,
-        "SKIN_ENHANCER_CLEAN",
+        true,
+        "None",
         1,
-        "ABSTRACT_ART",
-        1.6,
+        "PORTRAITS_PETS",
+        1.2,
         true,
         "mean",
         "comfy++",
@@ -2235,13 +2206,13 @@
         "",
         1,
         "",
-        0.8,
+        1,
         "",
-        0.6,
+        1,
         "",
         "",
         true,
-        1,
+        true,
         1,
         1
       ],
@@ -2249,79 +2220,82 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 17,
+      "id": 102,
       "type": "KSampler",
       "pos": [
         3157.398410750731,
         175.05789473663341
       ],
-      "size": {
-        "0": 306.52001953125,
-        "1": 218
-      },
+      "size": [
+        307.64491311290476,
+        218
+      ],
       "flags": {},
-      "order": 33,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 146
+          "link": 338
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 113
+          "link": 336
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 114
+          "link": 337
         },
         {
           "name": "latent_image",
           "type": "LATENT",
-          "link": 34
+          "link": 347
         },
         {
           "name": "seed",
           "type": "INT",
-          "link": 228,
+          "link": 348,
           "widget": {
             "name": "seed"
-          }
-        },
-        {
-          "name": "sampler_name",
-          "type": "COMBO",
-          "link": 229,
-          "widget": {
-            "name": "sampler_name"
-          }
-        },
-        {
-          "name": "scheduler",
-          "type": "COMBO",
-          "link": 230,
-          "widget": {
-            "name": "scheduler"
-          }
+          },
+          "slot_index": 4
         },
         {
           "name": "steps",
           "type": "INT",
-          "link": 236,
+          "link": 349,
           "widget": {
             "name": "steps"
           },
-          "slot_index": 7
+          "slot_index": 5
         },
         {
           "name": "cfg",
           "type": "FLOAT",
-          "link": 235,
+          "link": 350,
           "widget": {
             "name": "cfg"
+          },
+          "slot_index": 6
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "link": 351,
+          "widget": {
+            "name": "sampler_name"
+          },
+          "slot_index": 7
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "link": 352,
+          "widget": {
+            "name": "scheduler"
           },
           "slot_index": 8
         }
@@ -2331,7 +2305,7 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            21
+            339
           ],
           "shape": 3,
           "slot_index": 0
@@ -2341,7 +2315,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        714278336363178,
+        35755423775128,
         "randomize",
         20,
         8,
@@ -2364,13 +2338,13 @@
         "1": 154.3126220703125
       },
       "flags": {},
-      "order": 34,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 115,
+          "link": 342,
           "dir": 3
         }
       ],
@@ -2378,7 +2352,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"exterior, extreme architecture, (huge embedding:style-abandoned2 terrific impossible unreal architecture), (large house, wing-house in the side of high mountain:1.3), (professional outdoor night embedding:Spring professional architectural photography), beautiful nature on Venus, large hill, (snow on hill:0.7), (a frightening sight:1.3), small lake, (solar panels:0.6), (huge rocky mountain, stones:0.6)\""
+        "\"beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear red one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair\""
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -2395,13 +2369,13 @@
         "1": 152.3126220703125
       },
       "flags": {},
-      "order": 35,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 116,
+          "link": 343,
           "dir": 3
         }
       ],
@@ -2409,7 +2383,7 @@
         "Node name for S&R": "Display Any (rgthree)"
       },
       "widgets_values": [
-        "\"(watermark, person, text, china style, indian style:1.20)\""
+        "\"(dry hair, porn, nudity, nsfw, necklace embedding:add_nsfw:1.20), (3D, Absent limbs, Additional appendages, Additional digits, Additional limbs, Altered appendages, Amputee, Asymmetric, Asymmetric ears, Bad anatomy, Bad ears, Bad eyes, Bad face, Bad proportions, Beard (optional), Broken finger, Broken hand, Broken leg, Broken wrist, Cartoon, Childish (optional), Cloned face, Cloned head, Collapsed eyeshadow, Combined appendages, Conjoined, Copied visage, Corpse, Cripple, Cropped head, Cross-eyed, Depressed, Desiccated, Disconnected limb, Disfigured, Dismembered, Disproportionate, Double face, Duplicated features, Eerie, Elongated throat:1.20)\""
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -2426,13 +2400,13 @@
         "1": 147.3126220703125
       },
       "flags": {},
-      "order": 36,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 117,
+          "link": 344,
           "dir": 3
         }
       ],
@@ -2457,13 +2431,13 @@
         "1": 147.3126220703125
       },
       "flags": {},
-      "order": 37,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
           "name": "source",
           "type": "*",
-          "link": 118,
+          "link": 345,
           "dir": 3
         }
       ],
@@ -2477,29 +2451,30 @@
       "bgcolor": "#533"
     },
     {
-      "id": 18,
+      "id": 103,
       "type": "VAEDecode",
       "pos": [
         3155.398410750731,
         92.05789473663344
       ],
-      "size": {
-        "0": 309,
-        "1": 46
-      },
+      "size": [
+        309,
+        46
+      ],
       "flags": {},
-      "order": 38,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
           "name": "samples",
           "type": "LATENT",
-          "link": 21
+          "link": 339
         },
         {
           "name": "vae",
           "type": "VAE",
-          "link": 237
+          "link": 355,
+          "slot_index": 1
         }
       ],
       "outputs": [
@@ -2507,8 +2482,8 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            22,
-            163
+            340,
+            341
           ],
           "shape": 3,
           "slot_index": 0
@@ -2532,13 +2507,13 @@
         "1": 1825.7908935546875
       },
       "flags": {},
-      "order": 39,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 22
+          "link": 340
         }
       ],
       "properties": {
@@ -2548,29 +2523,37 @@
       "bgcolor": "#0000ff"
     },
     {
-      "id": 59,
+      "id": 98,
       "type": "PrimereMetaSave",
       "pos": [
-        1886.5184176957962,
-        -477.28592700078104
+        1883.9184175050614,
+        -499.28592700078104
       ],
-      "size": {
-        "0": 453.39007568359375,
-        "1": 472.6669006347656
-      },
+      "size": [
+        453.39007568359375,
+        486
+      ],
       "flags": {},
-      "order": 40,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 163
+          "link": 341
         },
         {
           "name": "image_metadata",
           "type": "TUPLE",
-          "link": 239
+          "link": 273
+        },
+        {
+          "name": "prefered_subpath",
+          "type": "STRING",
+          "link": 274,
+          "widget": {
+            "name": "prefered_subpath"
+          }
         }
       ],
       "properties": {
@@ -2578,7 +2561,8 @@
       },
       "widgets_values": [
         "z:\\AIPICS\\Comfy\\[time(%Y-%m-Week-%W)]",
-        "Character",
+        "Dev",
+        "",
         true,
         "Image",
         "_",
@@ -2601,700 +2585,740 @@
   ],
   "links": [
     [
-      7,
+      251,
+      78,
+      0,
+      76,
+      0,
+      "*"
+    ],
+    [
+      252,
+      78,
       1,
-      0,
-      4,
-      0,
+      76,
+      1,
       "STRING"
     ],
     [
-      8,
-      1,
-      1,
-      4,
-      1,
-      "STRING"
-    ],
-    [
-      9,
-      5,
-      0,
-      4,
+      253,
+      78,
+      2,
+      76,
       2,
       "STRING"
     ],
     [
-      10,
-      5,
-      1,
-      4,
+      254,
+      78,
       3,
-      "STRING"
-    ],
-    [
-      11,
-      6,
-      0,
-      4,
-      4,
-      "STRING"
-    ],
-    [
-      12,
-      6,
-      1,
-      4,
-      5,
-      "STRING"
-    ],
-    [
-      13,
-      7,
-      0,
-      4,
-      6,
-      "STRING"
-    ],
-    [
-      14,
-      7,
-      1,
-      4,
-      7,
-      "STRING"
-    ],
-    [
-      15,
-      8,
-      0,
-      4,
-      8,
-      "STRING"
-    ],
-    [
-      16,
-      8,
-      1,
-      4,
-      9,
-      "STRING"
-    ],
-    [
-      21,
-      17,
-      0,
-      18,
-      0,
-      "LATENT"
-    ],
-    [
-      22,
-      18,
-      0,
-      19,
-      0,
-      "IMAGE"
-    ],
-    [
-      34,
-      23,
-      0,
-      17,
-      3,
-      "LATENT"
-    ],
-    [
-      42,
-      23,
-      1,
-      27,
-      0,
-      "IMAGE"
-    ],
-    [
       76,
-      12,
-      1,
-      14,
-      0,
-      "INT"
+      3,
+      "STRING"
     ],
     [
-      88,
+      255,
+      78,
       4,
+      76,
+      4,
+      "STRING"
+    ],
+    [
+      256,
+      79,
+      0,
+      76,
+      5,
+      "STRING"
+    ],
+    [
+      257,
+      79,
+      1,
+      76,
+      6,
+      "STRING"
+    ],
+    [
+      258,
+      80,
+      0,
+      76,
+      10,
+      "STRING"
+    ],
+    [
+      259,
+      80,
+      1,
+      76,
+      11,
+      "STRING"
+    ],
+    [
+      260,
+      81,
+      0,
+      76,
+      15,
+      "STRING"
+    ],
+    [
+      261,
+      81,
+      1,
+      76,
+      16,
+      "STRING"
+    ],
+    [
+      262,
+      76,
       0,
       35,
       0,
       "*"
     ],
     [
-      89,
-      4,
+      263,
+      76,
       1,
       36,
       0,
       "*"
     ],
     [
+      264,
+      87,
+      2,
       97,
-      40,
-      0,
-      39,
-      1,
-      "STRING"
-    ],
-    [
-      98,
-      41,
-      0,
-      39,
       2,
       "STRING"
     ],
     [
-      102,
-      39,
+      265,
+      93,
       0,
-      38,
+      91,
       0,
-      "STRING"
+      "COMBO"
     ],
     [
-      103,
-      39,
+      266,
+      93,
       1,
-      38,
+      91,
       1,
-      "STRING"
+      "COMBO"
     ],
     [
-      108,
-      43,
+      267,
+      95,
       0,
+      91,
+      5,
+      "INT"
+    ],
+    [
+      268,
+      95,
+      1,
+      91,
       4,
+      "FLOAT"
+    ],
+    [
+      269,
+      94,
+      0,
+      91,
+      2,
+      "COMBO"
+    ],
+    [
+      270,
+      94,
+      1,
+      91,
+      3,
+      "COMBO"
+    ],
+    [
+      271,
+      96,
+      0,
+      91,
+      7,
+      "INT"
+    ],
+    [
+      272,
+      96,
+      1,
+      91,
+      6,
+      "FLOAT"
+    ],
+    [
+      273,
+      86,
+      16,
+      98,
+      1,
+      "TUPLE"
+    ],
+    [
+      274,
+      76,
+      2,
+      98,
+      2,
+      "STRING"
+    ],
+    [
+      275,
+      87,
+      1,
+      92,
+      0,
+      "INT"
+    ],
+    [
+      276,
+      87,
+      0,
+      86,
+      0,
+      "CHECKPOINT_NAME"
+    ],
+    [
+      277,
+      88,
+      0,
+      86,
+      1,
+      "VAE_NAME"
+    ],
+    [
+      278,
+      89,
+      0,
+      86,
+      2,
+      "VAE_NAME"
+    ],
+    [
+      279,
+      87,
+      2,
+      86,
+      3,
+      "STRING"
+    ],
+    [
+      280,
+      91,
+      4,
+      97,
+      1,
+      "INT"
+    ],
+    [
+      281,
+      86,
+      6,
+      97,
+      0,
+      "CHECKPOINT_NAME"
+    ],
+    [
+      284,
+      90,
+      0,
+      86,
+      12,
+      "INT"
+    ],
+    [
+      292,
+      92,
+      0,
+      86,
+      13,
+      "INT"
+    ],
+    [
+      293,
+      92,
+      1,
+      86,
+      14,
+      "INT"
+    ],
+    [
+      294,
+      76,
+      3,
+      86,
+      18,
+      "STRING"
+    ],
+    [
+      295,
+      76,
+      4,
+      86,
+      19,
+      "STRING"
+    ],
+    [
+      296,
+      76,
+      0,
+      86,
+      4,
+      "STRING"
+    ],
+    [
+      297,
+      76,
+      1,
+      86,
+      5,
+      "STRING"
+    ],
+    [
+      298,
+      91,
+      0,
+      86,
       10,
-      "STRING"
+      "COMBO"
     ],
     [
-      109,
-      43,
+      299,
+      91,
       1,
-      4,
+      86,
       11,
+      "COMBO"
+    ],
+    [
+      300,
+      91,
+      2,
+      86,
+      16,
+      "INT"
+    ],
+    [
+      301,
+      91,
+      3,
+      86,
+      15,
+      "FLOAT"
+    ],
+    [
+      302,
+      91,
+      4,
+      86,
+      17,
+      "INT"
+    ],
+    [
+      303,
+      79,
+      2,
+      76,
+      7,
       "STRING"
     ],
     [
-      110,
-      44,
-      0,
+      304,
+      79,
+      3,
+      76,
+      8,
+      "STRING"
+    ],
+    [
+      305,
+      79,
       4,
+      76,
+      9,
+      "STRING"
+    ],
+    [
+      306,
+      80,
+      2,
+      76,
       12,
       "STRING"
     ],
     [
-      111,
-      44,
-      1,
-      4,
+      307,
+      80,
+      3,
+      76,
       13,
       "STRING"
     ],
     [
-      113,
-      45,
-      0,
+      308,
+      80,
+      4,
+      76,
+      14,
+      "STRING"
+    ],
+    [
+      309,
+      81,
+      2,
+      76,
       17,
+      "STRING"
+    ],
+    [
+      310,
+      81,
+      3,
+      76,
+      18,
+      "STRING"
+    ],
+    [
+      311,
+      81,
+      4,
+      76,
+      19,
+      "STRING"
+    ],
+    [
+      316,
+      97,
+      2,
+      100,
+      0,
+      "VAE"
+    ],
+    [
+      317,
+      86,
+      10,
+      100,
+      1,
+      "INT"
+    ],
+    [
+      318,
+      86,
+      11,
+      100,
+      2,
+      "INT"
+    ],
+    [
+      319,
+      86,
+      9,
+      100,
+      3,
+      "INT"
+    ],
+    [
+      320,
+      97,
+      3,
+      101,
+      1,
+      "INT"
+    ],
+    [
+      321,
+      97,
+      1,
+      101,
+      0,
+      "CLIP"
+    ],
+    [
+      322,
+      86,
+      0,
+      105,
+      0,
+      "STRING"
+    ],
+    [
+      323,
+      86,
+      1,
+      106,
+      0,
+      "STRING"
+    ],
+    [
+      324,
+      86,
+      9,
+      105,
+      1,
+      "INT"
+    ],
+    [
+      325,
+      86,
+      9,
+      106,
+      1,
+      "INT"
+    ],
+    [
+      326,
+      105,
+      0,
+      104,
+      1,
+      "STRING"
+    ],
+    [
+      327,
+      106,
+      0,
+      104,
+      2,
+      "STRING"
+    ],
+    [
+      328,
+      104,
+      0,
+      107,
+      0,
+      "STRING"
+    ],
+    [
+      329,
+      104,
+      1,
+      107,
+      1,
+      "STRING"
+    ],
+    [
+      330,
+      107,
+      0,
+      101,
+      2,
+      "STRING"
+    ],
+    [
+      331,
+      107,
+      1,
+      101,
+      3,
+      "STRING"
+    ],
+    [
+      332,
+      99,
+      0,
+      101,
+      6,
+      "STRING"
+    ],
+    [
+      333,
+      99,
+      1,
+      101,
+      7,
+      "STRING"
+    ],
+    [
+      334,
+      86,
+      10,
+      101,
+      10,
+      "INT"
+    ],
+    [
+      335,
+      86,
+      11,
+      101,
+      11,
+      "INT"
+    ],
+    [
+      336,
+      101,
+      0,
+      102,
       1,
       "CONDITIONING"
     ],
     [
-      114,
-      45,
+      337,
+      101,
       1,
-      17,
+      102,
       2,
       "CONDITIONING"
     ],
     [
-      115,
-      45,
+      338,
+      97,
+      0,
+      102,
+      0,
+      "MODEL"
+    ],
+    [
+      339,
+      102,
+      0,
+      103,
+      0,
+      "LATENT"
+    ],
+    [
+      340,
+      103,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      341,
+      103,
+      0,
+      98,
+      0,
+      "IMAGE"
+    ],
+    [
+      342,
+      101,
       2,
       31,
       0,
       "*"
     ],
     [
-      116,
-      45,
+      343,
+      101,
       3,
       32,
       0,
       "*"
     ],
     [
-      117,
-      45,
+      344,
+      101,
       4,
       33,
       0,
       "*"
     ],
     [
-      118,
-      45,
+      345,
+      101,
       5,
       34,
       0,
       "*"
     ],
     [
-      120,
-      38,
-      0,
-      45,
-      2,
-      "STRING"
-    ],
-    [
-      121,
-      38,
+      346,
+      100,
       1,
-      45,
-      3,
-      "STRING"
-    ],
-    [
-      122,
-      42,
-      0,
-      45,
-      6,
-      "STRING"
-    ],
-    [
-      123,
-      42,
-      1,
-      45,
-      7,
-      "STRING"
-    ],
-    [
-      126,
-      46,
-      0,
-      4,
-      14,
-      "STRING"
-    ],
-    [
-      127,
-      46,
-      1,
-      4,
-      15,
-      "STRING"
-    ],
-    [
-      143,
-      12,
-      2,
-      55,
-      2,
-      "STRING"
-    ],
-    [
-      145,
-      55,
-      2,
-      23,
-      0,
-      "VAE"
-    ],
-    [
-      146,
-      55,
-      0,
-      17,
-      0,
-      "MODEL"
-    ],
-    [
-      147,
-      55,
-      1,
-      45,
-      0,
-      "CLIP"
-    ],
-    [
-      148,
-      55,
-      3,
-      45,
-      1,
-      "INT"
-    ],
-    [
-      162,
-      55,
-      3,
-      39,
-      0,
-      "INT"
-    ],
-    [
-      163,
-      18,
-      0,
-      59,
+      27,
       0,
       "IMAGE"
     ],
     [
-      169,
-      60,
+      347,
+      100,
+      0,
+      102,
+      3,
+      "LATENT"
+    ],
+    [
+      348,
+      86,
+      9,
+      102,
       4,
-      55,
-      1,
       "INT"
     ],
     [
-      170,
-      9,
-      0,
-      60,
-      0,
-      "COMBO"
-    ],
-    [
-      171,
-      9,
-      1,
-      60,
-      1,
-      "COMBO"
-    ],
-    [
-      172,
-      29,
-      0,
-      60,
+      349,
+      86,
+      13,
+      102,
       5,
       "INT"
     ],
     [
-      173,
-      29,
-      1,
-      60,
-      4,
-      "FLOAT"
-    ],
-    [
-      174,
-      49,
-      0,
-      60,
-      2,
-      "COMBO"
-    ],
-    [
-      175,
-      49,
-      1,
-      60,
-      3,
-      "COMBO"
-    ],
-    [
-      176,
-      48,
-      0,
-      60,
-      7,
-      "INT"
-    ],
-    [
-      177,
-      48,
-      1,
-      60,
+      350,
+      86,
+      12,
+      102,
       6,
       "FLOAT"
     ],
     [
-      209,
-      12,
-      0,
-      64,
-      0,
-      "CHECKPOINT_NAME"
-    ],
-    [
-      210,
-      10,
-      0,
-      64,
-      1,
-      "VAE_NAME"
-    ],
-    [
-      211,
-      13,
-      0,
-      64,
-      2,
-      "VAE_NAME"
-    ],
-    [
-      212,
-      12,
-      2,
-      64,
-      3,
-      "STRING"
-    ],
-    [
-      213,
-      4,
-      0,
-      64,
-      4,
-      "STRING"
-    ],
-    [
-      214,
-      4,
-      1,
-      64,
-      5,
-      "STRING"
-    ],
-    [
-      215,
-      60,
-      0,
-      64,
-      10,
-      "COMBO"
-    ],
-    [
-      216,
-      60,
-      1,
-      64,
-      11,
-      "COMBO"
-    ],
-    [
-      217,
-      24,
-      0,
-      64,
-      12,
-      "INT"
-    ],
-    [
-      218,
-      14,
-      0,
-      64,
-      13,
-      "INT"
-    ],
-    [
-      219,
-      14,
-      1,
-      64,
-      14,
-      "INT"
-    ],
-    [
-      220,
-      60,
-      3,
-      64,
-      15,
-      "FLOAT"
-    ],
-    [
-      221,
-      60,
-      2,
-      64,
-      16,
-      "INT"
-    ],
-    [
-      222,
-      60,
-      4,
-      64,
-      17,
-      "INT"
-    ],
-    [
-      223,
-      64,
-      0,
-      40,
-      0,
-      "STRING"
-    ],
-    [
-      224,
-      64,
-      1,
-      41,
-      0,
-      "STRING"
-    ],
-    [
-      225,
-      64,
-      9,
-      40,
-      1,
-      "INT"
-    ],
-    [
-      226,
-      64,
-      9,
-      41,
-      1,
-      "INT"
-    ],
-    [
-      227,
-      64,
-      9,
-      23,
-      3,
-      "INT"
-    ],
-    [
-      228,
-      64,
-      9,
-      17,
-      4,
-      "INT"
-    ],
-    [
-      229,
-      64,
+      351,
+      86,
       7,
-      17,
-      5,
-      "COMBO"
-    ],
-    [
-      230,
-      64,
-      8,
-      17,
-      6,
-      "COMBO"
-    ],
-    [
-      231,
-      64,
-      10,
-      23,
-      1,
-      "INT"
-    ],
-    [
-      232,
-      64,
-      11,
-      23,
-      2,
-      "INT"
-    ],
-    [
-      233,
-      64,
-      10,
-      45,
-      10,
-      "INT"
-    ],
-    [
-      234,
-      64,
-      11,
-      45,
-      11,
-      "INT"
-    ],
-    [
-      235,
-      64,
-      12,
-      17,
-      8,
-      "FLOAT"
-    ],
-    [
-      236,
-      64,
-      13,
-      17,
+      102,
       7,
-      "INT"
+      "COMBO"
     ],
     [
-      237,
-      64,
-      15,
-      18,
-      1,
-      "VAE"
+      352,
+      86,
+      8,
+      102,
+      8,
+      "COMBO"
     ],
     [
-      238,
-      64,
+      353,
+      86,
       16,
       30,
       0,
       "*"
     ],
     [
-      239,
-      64,
-      16,
-      59,
-      1,
-      "TUPLE"
-    ],
-    [
-      240,
-      64,
-      6,
-      55,
+      354,
+      97,
+      3,
+      104,
       0,
-      "CHECKPOINT_NAME"
+      "INT"
     ],
     [
-      241,
-      65,
-      0,
-      4,
-      16,
-      "STRING"
-    ],
-    [
-      242,
-      65,
+      355,
+      86,
+      15,
+      103,
       1,
-      4,
-      17,
-      "STRING"
+      "VAE"
     ]
   ],
   "groups": [
@@ -3313,10 +3337,10 @@
     {
       "title": "Dashboard",
       "bounding": [
-        18,
-        -550,
-        2334,
-        553
+        15,
+        -572,
+        2337,
+        571
       ],
       "color": "#006ceb",
       "font_size": 24,
