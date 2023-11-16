@@ -66,6 +66,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereEmbeddingHandler": Inputs.PrimereEmbeddingHandler,
 
     "PrimereMetaSave": Outputs.PrimereMetaSave,
+    "PrimereAnyOutput": Outputs.PrimereAnyOutput,
 
     "PrimereStylePile": Styles.PrimereStylePile,
 }
@@ -93,6 +94,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereEmbeddingHandler": "Primere Embedding Handler",
 
     "PrimereMetaSave": "Primere Image Meta Saver",
+    "PrimereAnyOutput": "Primere Any Debug",
 
     "PrimereStylePile": "Primere Style Pile",
 }

@@ -4,3 +4,4 @@ wildcards
 stylecsv
 consoletests
 *.safetensors
+reqgen.py

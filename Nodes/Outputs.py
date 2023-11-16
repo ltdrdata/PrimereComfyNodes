@@ -246,3 +246,36 @@ class TextTokens:
 
         text = re.sub(r'\[time\((.*?)\)\]', replace_custom_time, text)
         return text
+
+class AnyType(str):
+  def __ne__(self, __value: object) -> bool:
+    return False
+
+any = AnyType("*")
+
+class PrimereAnyOutput:
+  RETURN_TYPES = ()
+  FUNCTION = "show_output"
+  OUTPUT_NODE = True
+  CATEGORY = TREE_OUTPUTS
+
+  @classmethod
+  def INPUT_TYPES(cls):
+    return {
+      "required": {
+        "input": (any, {}),
+      },
+    }
+
+  def show_output(self, input = None):
+    value = 'None'
+    if input is not None:
+      try:
+        value = json.dumps(input, indent=4)
+      except Exception:
+        try:
+          value = str(input)
+        except Exception:
+          value = 'Input data exists, but could not be serialized.'
+
+    return {"ui": {"text": (value.strip( '"'),)}}

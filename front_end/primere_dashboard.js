@@ -1,4 +1,4 @@
-import { ComfyApp, app } from "../../scripts/app.js";
+import { ComfyApp, app } from "/scripts/app.js";
 
 app.registerExtension({
 	name: "Primere.Promptswitch",
