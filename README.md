@@ -10,21 +10,21 @@
 
 5; Use the last workflow example on the 'Workflow' folder
 
-# Special features:
-#### Automatically detect the SD or SDXL checkpoint version, and control the whole process
-#### You can select model, subpath and orientation under the prompt input to overwrite the system settings
-#### One button LCM mode (see example workflow)
-#### Save .json and/or .txt file with process details
-#### Read A1111 style.csv file, and handle dynamic prompts
-#### Random noise generator for latent image
-#### Important and editable styles in the text encoder
-#### Resolution selector by side ratios only, editable ratio source, and auto detect checkpoint version for right size
-#### Image size can be convert to "standard" values, fully customizable side ratios
-#### Remove networks from prompts (Embedding, Lora, and Hypernetwork)
-#### Embedding handler of A1111 compatible prompts
-#### Use more than one prompt or style inputs, and select by 'Prompt Switch' node
-#### Special image meta reader, which handle model name and samplers from A1111 png and jpg
-#### Check/debug generation details
+## Special features:
+- Automatically detect the SD or SDXL checkpoint version, and control the whole process
+- You can select model, subpath and orientation under the prompt input to overwrite the system settings
+- One button LCM mode (see example workflow)
+- Save .json and/or .txt file with process details
+- Read A1111 style.csv file, and handle dynamic prompts
+- Random noise generator for latent image
+- Important and editable styles in the text encoder
+- Resolution selector by side ratios only, editable ratio source, and auto detect checkpoint version for right size
+- Image size can be convert to "standard" values, fully customizable side ratios
+- Remove networks from prompts (Embedding, Lora, and Hypernetwork)
+- Embedding handler of A1111 compatible prompts
+- Use more than one prompt or style inputs, and select by 'Prompt Switch' node
+- Special image meta reader, which handle model name and samplers from A1111 png and jpg, never was easier to recycle your older A1111 or comfy images, with switches you can change the seed/model/size/etc...
+- Check/debug generation details
 
 ## Nodes in the pack by submenus:
 

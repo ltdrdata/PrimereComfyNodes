@@ -306,8 +306,8 @@ class PrimereMetaRead:
                         model_hash="", model_name="", model_version="BaseModel_1024", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl="", is_lcm=0, prefered_model="", prefered_orientation=""):
 
         data_json = {}
-        data_json['positive'] = positive
-        data_json['negative'] = negative
+        data_json['positive'] = positive.replace('ADDROW ', '').replace('ADDCOL ', '').replace('ADDCOMM ', '').replace('\n', ' ')
+        data_json['negative'] = negative.replace('\n', ' ')
         data_json['positive_l'] = positive_l
         data_json['negative_l'] = negative_l
         data_json['positive_r'] = positive_r
@@ -360,12 +360,12 @@ class PrimereMetaRead:
                 reader = readerResult.parser
 
                 if 'positive' in reader.parameter:
-                    data_json['positive'] = reader.parameter["positive"]
+                    data_json['positive'] = reader.parameter["positive"].replace('ADDROW ', '').replace('ADDCOL ', '').replace('ADDCOMM ', '').replace('\n', ' ')
                 else:
                     data_json['positive'] = ""
 
                 if 'negative' in reader.parameter:
-                    data_json['negative'] = reader.parameter["negative"]
+                    data_json['negative'] = reader.parameter["negative"].replace('\n', ' ')
                 else:
                     data_json['negative'] = ""
 
