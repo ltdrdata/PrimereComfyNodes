@@ -1,13 +1,13 @@
 {
-  "last_node_id": 138,
-  "last_link_id": 415,
+  "last_node_id": 149,
+  "last_link_id": 475,
   "nodes": [
     {
       "id": 93,
       "type": "PrimereSamplers",
       "pos": [
-        1222.078373559749,
-        -500.2258977039062
+        1225.9085075556295,
+        -515.3359071135171
       ],
       "size": {
         "0": 315,
@@ -51,12 +51,12 @@
       "id": 95,
       "type": "PrimereStepsCfg",
       "pos": [
-        1556.07837355975,
-        -499.2258977039062
+        1226.8301339958805,
+        -376.1100094096109
       ],
       "size": {
-        "0": 315,
-        "1": 102
+        "0": 314.7979736328125,
+        "1": 107.67496490478516
       },
       "flags": {},
       "order": 1,
@@ -93,63 +93,18 @@
       "bgcolor": "#0000ff"
     },
     {
-      "id": 94,
-      "type": "PrimereSamplers",
-      "pos": [
-        1222.078373559749,
-        -355.22589770390596
-      ],
-      "size": {
-        "0": 315,
-        "1": 102
-      },
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "SAMPLER_NAME",
-          "type": "COMBO",
-          "links": [
-            269
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "SCHEDULER_NAME",
-          "type": "COMBO",
-          "links": [
-            270
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "title": "Primere Sampler Selector - LCM",
-      "properties": {
-        "Node name for S&R": "PrimereSamplers"
-      },
-      "widgets_values": [
-        "lcm",
-        "sgm_uniform"
-      ],
-      "color": "#00008c",
-      "bgcolor": "#0000a0"
-    },
-    {
       "id": 96,
       "type": "PrimereStepsCfg",
       "pos": [
-        1556.07837355975,
-        -354.22589770390596
+        1554.8301339958805,
+        -375.1100094096109
       ],
       "size": {
-        "0": 315,
-        "1": 102
+        "0": 314.3031311035156,
+        "1": 107.5439682006836
       },
       "flags": {},
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "outputs": [
         {
@@ -183,243 +138,6 @@
       "bgcolor": "#0000a0"
     },
     {
-      "id": 88,
-      "type": "PrimereVAE",
-      "pos": [
-        31.078373559748638,
-        -339.22589770390596
-      ],
-      "size": {
-        "0": 528.3360595703125,
-        "1": 58
-      },
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "VAE_NAME",
-          "type": "VAE_NAME",
-          "links": [
-            277
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "title": "Primere VAE Selector - SD VAE",
-      "properties": {
-        "Node name for S&R": "PrimereVAE"
-      },
-      "widgets_values": [
-        "vae-ft-mse-840000-ema-pruned.ckpt"
-      ],
-      "color": "#223",
-      "bgcolor": "#335"
-    },
-    {
-      "id": 89,
-      "type": "PrimereVAE",
-      "pos": [
-        32.07837355974864,
-        -243.22589770390599
-      ],
-      "size": {
-        "0": 528.3360595703125,
-        "1": 58
-      },
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "VAE_NAME",
-          "type": "VAE_NAME",
-          "links": [
-            278
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "title": "Primere VAE Selector - SDXL VAE",
-      "properties": {
-        "Node name for S&R": "PrimereVAE"
-      },
-      "widgets_values": [
-        "sdxl_vae.safetensors"
-      ],
-      "color": "#223",
-      "bgcolor": "#335"
-    },
-    {
-      "id": 87,
-      "type": "PrimereCKPT",
-      "pos": [
-        30,
-        -499
-      ],
-      "size": {
-        "0": 530,
-        "1": 122
-      },
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "CKPT_NAME",
-          "type": "CHECKPOINT_NAME",
-          "links": [
-            276
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "IS_SDXL",
-          "type": "INT",
-          "links": [
-            275
-          ],
-          "shape": 3,
-          "slot_index": 1
-        },
-        {
-          "name": "SDXL_PATH",
-          "type": "STRING",
-          "links": [
-            264,
-            279
-          ],
-          "shape": 3,
-          "slot_index": 2
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereCKPT"
-      },
-      "widgets_values": [
-        "SDXL\\HEPHAISTOSSD10XL.safetensors",
-        "SDXL"
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
-      "id": 90,
-      "type": "PrimereSeed",
-      "pos": [
-        572,
-        -500
-      ],
-      "size": {
-        "0": 311.65582275390625,
-        "1": 130
-      },
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "SEED",
-          "type": "INT",
-          "links": [
-            284
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereSeed"
-      },
-      "widgets_values": [
-        -1,
-        null,
-        null,
-        null
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
-      "id": 99,
-      "type": "PrimereStylePile",
-      "pos": [
-        1996,
-        88
-      ],
-      "size": {
-        "0": 342.34326171875,
-        "1": 414
-      },
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "opt_pos_style",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "opt_pos_style"
-          }
-        },
-        {
-          "name": "opt_neg_style",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "opt_neg_style"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STYLE+",
-          "type": "STRING",
-          "links": [
-            332
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "STYLE-",
-          "type": "STRING",
-          "links": [
-            333
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereStylePile"
-      },
-      "widgets_values": [
-        "None",
-        0.7000000000000001,
-        "None",
-        1.25,
-        "Evil",
-        0.6,
-        "None",
-        0.6,
-        "None",
-        0.7000000000000001,
-        "None",
-        1,
-        "None",
-        0.4,
-        "",
-        ""
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
       "id": 78,
       "type": "PrimereStyleLoader",
       "pos": [
@@ -431,7 +149,7 @@
         "1": 210
       },
       "flags": {},
-      "order": 9,
+      "order": 3,
       "mode": 0,
       "outputs": [
         {
@@ -484,7 +202,7 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Sci-fi UFO",
+        "Portrait",
         true,
         false,
         true
@@ -504,7 +222,7 @@
         "1": 454.86492919921875
       },
       "flags": {},
-      "order": 10,
+      "order": 4,
       "mode": 0,
       "outputs": [
         {
@@ -560,7 +278,7 @@
       "widgets_values": [
         "beautiful sexy 42 year old perfect body model woman, bathing in a big pool, blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5) and rainy wet full body, luxury, pool and exterior, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|black|purple|white} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, closeup half body portrait, detailed face, detailed hair",
         "dry hair, porn, nudity, nsfw, necklace add_nsfw",
-        "",
+        "SFW",
         "None",
         "None"
       ],
@@ -579,7 +297,7 @@
         "1": 480.7409362792969
       },
       "flags": {},
-      "order": 11,
+      "order": 5,
       "mode": 0,
       "outputs": [
         {
@@ -633,11 +351,11 @@
         "Node name for S&R": "PrimerePrompt"
       },
       "widgets_values": [
-        "",
-        "",
-        "",
+        "((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the {luxury|retro|old|abandoned|futuristic} beauty saloon:1.2, {angry|friendly|natural|quiet} mood), {large|middle sized|small} fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, {frightened|lovely|erotic|flirting|satisfied|quiet} mood, trying to make the beast look better with {makeup|hairdresser|barber} tools. The woman has {makeup|hairdresser|cosmetician|barber}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)",
+        "watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)",
+        "BeastIntheSaloon",
         "None",
-        "None"
+        "Horizontal"
       ],
       "color": "#2a363b",
       "bgcolor": "#3f5159"
@@ -654,7 +372,7 @@
         "1": 444.4584045410156
       },
       "flags": {},
-      "order": 12,
+      "order": 6,
       "mode": 0,
       "outputs": [
         {
@@ -728,7 +446,7 @@
         "1": 417.1067199707031
       },
       "flags": {},
-      "order": 13,
+      "order": 7,
       "mode": 0,
       "outputs": [
         {
@@ -802,7 +520,7 @@
         "1": 417.1067199707031
       },
       "flags": {},
-      "order": 14,
+      "order": 8,
       "mode": 0,
       "outputs": [
         {
@@ -855,11 +573,11 @@
         "Node name for S&R": "PrimerePrompt"
       },
       "widgets_values": [
-        "((ugly creepy dirty with a hairy wounded face horrific scary (male beast sitting on a chair in the luxury beauty saloon:1.2, angry mood), large fancy mirror in his back, perfect mirrored image in the mirror), (closeup half body photography from the beast on the left of image)), and ((a professional beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, frightened mood, trying to make the beast look better with makeup tools. The woman has {makeup|hairdresser|cosmetician}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy with middle size breasts, large neckline, wear transparent red luxury sexy top and necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, film grain:1.3) ",
+        "((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the {luxury|retro|old|abandoned|futuristic} beauty saloon:1.2, {angry|friendly|natural|quiet} mood), {large|middle sized|small} fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, {frightened|lovely|erotic|flirting|satisfied|quiet} mood, trying to make the beast look better with {makeup|hairdresser|barber} tools. The woman has {makeup|hairdresser|cosmetician|barber}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)",
         "watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)",
         "Testprompt_3",
-        "None",
-        "None"
+        "SDXL\\nightvisionXLPhotorealistic.safetensors",
+        "Horizontal"
       ],
       "color": "#432",
       "bgcolor": "#653"
@@ -876,7 +594,7 @@
         "1": 381.5324401855469
       },
       "flags": {},
-      "order": 15,
+      "order": 9,
       "mode": 0,
       "outputs": [
         {
@@ -929,7 +647,7 @@
         "Node name for S&R": "PrimerePrompt"
       },
       "widgets_values": [
-        "(Sleeping nails in the icy sand,\nNights drenched in poster loneliness.\nYou left the light on in the hallway.\nToday they shed my blood.)\n(double exposure, negative space, surreal oil painting:1.6)",
+        "(Sleeping nails in the icy sand,\nNights drenched in poster loneliness.\nYou left the light on in the hallway.\nToday they shed my blood.)\n(double exposure, negative space, surreal oil painting:1.25)",
         "",
         "Testprompt_4",
         "None",
@@ -939,91 +657,252 @@
       "bgcolor": "#653"
     },
     {
-      "id": 91,
-      "type": "PrimereLCMSelector",
+      "id": 88,
+      "type": "PrimereVAE",
       "pos": [
-        573,
-        -334
+        34.83013399588053,
+        -403.1100094096109
       ],
       "size": {
-        "0": 310.3948669433594,
-        "1": 198
+        "0": 528.3360595703125,
+        "1": 58
       },
       "flags": {},
-      "order": 16,
+      "order": 10,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "VAE_NAME",
+          "type": "VAE_NAME",
+          "links": [
+            418
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Primere VAE Selector - SD VAE",
+      "properties": {
+        "Node name for S&R": "PrimereVAE"
+      },
+      "widgets_values": [
+        "vae-ft-mse-840000-ema-pruned.ckpt"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 89,
+      "type": "PrimereVAE",
+      "pos": [
+        35.83013399588053,
+        -311.1100094096109
+      ],
+      "size": {
+        "0": 528.3360595703125,
+        "1": 58
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "VAE_NAME",
+          "type": "VAE_NAME",
+          "links": [
+            419
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "title": "Primere VAE Selector - SDXL VAE",
+      "properties": {
+        "Node name for S&R": "PrimereVAE"
+      },
+      "widgets_values": [
+        "sdxl_vae.safetensors"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 99,
+      "type": "PrimereStylePile",
+      "pos": [
+        1996,
+        88
+      ],
+      "size": {
+        "0": 342.34326171875,
+        "1": 414
+      },
+      "flags": {},
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
-          "name": "sampler_name",
-          "type": "COMBO",
-          "link": 265,
+          "name": "opt_pos_style",
+          "type": "STRING",
+          "link": null,
           "widget": {
-            "name": "sampler_name"
+            "name": "opt_pos_style"
           }
         },
         {
-          "name": "scheduler_name",
-          "type": "COMBO",
-          "link": 266,
+          "name": "opt_neg_style",
+          "type": "STRING",
+          "link": null,
           "widget": {
-            "name": "scheduler_name"
-          }
-        },
-        {
-          "name": "lcm_sampler_name",
-          "type": "COMBO",
-          "link": 269,
-          "widget": {
-            "name": "lcm_sampler_name"
-          }
-        },
-        {
-          "name": "lcm_scheduler_name",
-          "type": "COMBO",
-          "link": 270,
-          "widget": {
-            "name": "lcm_scheduler_name"
-          }
-        },
-        {
-          "name": "cfg_scale",
-          "type": "FLOAT",
-          "link": 268,
-          "widget": {
-            "name": "cfg_scale"
-          }
-        },
-        {
-          "name": "steps",
-          "type": "INT",
-          "link": 267,
-          "widget": {
-            "name": "steps"
-          }
-        },
-        {
-          "name": "lcm_cfg_scale",
-          "type": "FLOAT",
-          "link": 272,
-          "widget": {
-            "name": "lcm_cfg_scale"
-          }
-        },
-        {
-          "name": "lcm_steps",
-          "type": "INT",
-          "link": 271,
-          "widget": {
-            "name": "lcm_steps"
+            "name": "opt_neg_style"
           }
         }
       ],
       "outputs": [
         {
+          "name": "STYLE+",
+          "type": "STRING",
+          "links": [
+            452
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "STYLE-",
+          "type": "STRING",
+          "links": [
+            453
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereStylePile"
+      },
+      "widgets_values": [
+        "None",
+        1,
+        "None",
+        1.2,
+        "None",
+        0.6,
+        "None",
+        0.6,
+        "None",
+        0.7000000000000001,
+        "None",
+        1,
+        "None",
+        0.5,
+        "",
+        ""
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 139,
+      "type": "PrimereCKPT",
+      "pos": [
+        33.83013399588053,
+        -516.110009409611
+      ],
+      "size": {
+        "0": 532.2977905273438,
+        "1": 78
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CKPT_NAME",
+          "type": "CHECKPOINT_NAME",
+          "links": [
+            417
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MODEL_VERSION",
+          "type": "STRING",
+          "links": [
+            416,
+            461
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereCKPT"
+      },
+      "widgets_values": [
+        "BestAll\\photoMovieGXI.safetensors"
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
+      "id": 90,
+      "type": "PrimereSeed",
+      "pos": [
+        575.8301339958806,
+        -515.1100094096109
+      ],
+      "size": {
+        "0": 311.65582275390625,
+        "1": 130
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "SEED",
+          "type": "INT",
+          "links": [
+            464
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereSeed"
+      },
+      "widgets_values": [
+        -1,
+        null,
+        null,
+        null
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
+      "id": 94,
+      "type": "PrimereSamplers",
+      "pos": [
+        1552.8301339958805,
+        -515.1100094096109
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "outputs": [
+        {
           "name": "SAMPLER_NAME",
           "type": "COMBO",
           "links": [
-            298
+            269
           ],
           "shape": 3,
           "slot_index": 0
@@ -1032,116 +911,22 @@
           "name": "SCHEDULER_NAME",
           "type": "COMBO",
           "links": [
-            299
+            467
           ],
           "shape": 3,
           "slot_index": 1
-        },
-        {
-          "name": "STEPS",
-          "type": "INT",
-          "links": [
-            300
-          ],
-          "shape": 3,
-          "slot_index": 2
-        },
-        {
-          "name": "CFG",
-          "type": "FLOAT",
-          "links": [
-            301
-          ],
-          "shape": 3,
-          "slot_index": 3
-        },
-        {
-          "name": "IS_LCM",
-          "type": "INT",
-          "links": [
-            280,
-            302
-          ],
-          "shape": 3,
-          "slot_index": 4
         }
       ],
+      "title": "Primere Sampler Selector - LCM",
       "properties": {
-        "Node name for S&R": "PrimereLCMSelector"
+        "Node name for S&R": "PrimereSamplers"
       },
       "widgets_values": [
-        false,
-        "euler",
-        "normal",
         "lcm",
-        "sgm_uniform",
-        false,
-        false,
-        false,
-        false
+        "sgm_uniform"
       ],
       "color": "#00008c",
       "bgcolor": "#0000a0"
-    },
-    {
-      "id": 92,
-      "type": "PrimereResolution",
-      "pos": [
-        897.0783735597502,
-        -500.2258977039062
-      ],
-      "size": {
-        "0": 315,
-        "1": 246
-      },
-      "flags": {},
-      "order": 17,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "is_sdxl",
-          "type": "INT",
-          "link": 275,
-          "widget": {
-            "name": "is_sdxl"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "WIDTH",
-          "type": "INT",
-          "links": [
-            292
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "HEIGHT",
-          "type": "INT",
-          "links": [
-            293
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereResolution"
-      },
-      "widgets_values": [
-        "HD+ screen [16:10]",
-        "Vertical",
-        false,
-        "SD 2.x",
-        true,
-        false,
-        1.6,
-        2.8
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
     },
     {
       "id": 137,
@@ -1155,7 +940,7 @@
         "1": 1260.299072265625
       },
       "flags": {},
-      "order": 18,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -1364,8 +1149,8 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            374,
-            414
+            414,
+            459
           ],
           "shape": 3,
           "slot_index": 0
@@ -1374,8 +1159,8 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            375,
-            415
+            415,
+            460
           ],
           "shape": 3,
           "slot_index": 1
@@ -1384,7 +1169,7 @@
           "name": "SUBPATH",
           "type": "STRING",
           "links": [
-            378
+            473
           ],
           "shape": 3,
           "slot_index": 2
@@ -1393,7 +1178,7 @@
           "name": "MODEL",
           "type": "STRING",
           "links": [
-            376
+            422
           ],
           "shape": 3,
           "slot_index": 3
@@ -1402,7 +1187,7 @@
           "name": "ORIENTATION",
           "type": "STRING",
           "links": [
-            377
+            423
           ],
           "shape": 3,
           "slot_index": 4
@@ -1418,10 +1203,213 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        6
+        1
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
+    },
+    {
+      "id": 140,
+      "type": "PrimereResolution",
+      "pos": [
+        900.9085075556308,
+        -515.3359071135171
+      ],
+      "size": {
+        "0": 315,
+        "1": 246
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_version",
+          "type": "STRING",
+          "link": 416,
+          "widget": {
+            "name": "model_version"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "WIDTH",
+          "type": "INT",
+          "links": [
+            420
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "HEIGHT",
+          "type": "INT",
+          "links": [
+            421
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereResolution"
+      },
+      "widgets_values": [
+        "HD+ screen [16:10]",
+        "Vertical",
+        true,
+        "BaseModel_1024",
+        false,
+        true,
+        1.6
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
+      "id": 91,
+      "type": "PrimereLCMSelector",
+      "pos": [
+        1226.8301339958805,
+        -233.11000940961085
+      ],
+      "size": {
+        "0": 643.9768676757812,
+        "1": 205.3205108642578
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "link": 265,
+          "widget": {
+            "name": "sampler_name"
+          }
+        },
+        {
+          "name": "scheduler_name",
+          "type": "COMBO",
+          "link": 266,
+          "widget": {
+            "name": "scheduler_name"
+          }
+        },
+        {
+          "name": "lcm_sampler_name",
+          "type": "COMBO",
+          "link": 269,
+          "widget": {
+            "name": "lcm_sampler_name"
+          }
+        },
+        {
+          "name": "lcm_scheduler_name",
+          "type": "COMBO",
+          "link": 467,
+          "widget": {
+            "name": "lcm_scheduler_name"
+          }
+        },
+        {
+          "name": "cfg_scale",
+          "type": "FLOAT",
+          "link": 268,
+          "widget": {
+            "name": "cfg_scale"
+          }
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": 267,
+          "widget": {
+            "name": "steps"
+          }
+        },
+        {
+          "name": "lcm_cfg_scale",
+          "type": "FLOAT",
+          "link": 272,
+          "widget": {
+            "name": "lcm_cfg_scale"
+          }
+        },
+        {
+          "name": "lcm_steps",
+          "type": "INT",
+          "link": 271,
+          "widget": {
+            "name": "lcm_steps"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SAMPLER_NAME",
+          "type": "COMBO",
+          "links": [
+            462
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "SCHEDULER_NAME",
+          "type": "COMBO",
+          "links": [
+            463
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "STEPS",
+          "type": "INT",
+          "links": [
+            465
+          ],
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "CFG",
+          "type": "FLOAT",
+          "links": [
+            466
+          ],
+          "shape": 3,
+          "slot_index": 3
+        },
+        {
+          "name": "IS_LCM",
+          "type": "INT",
+          "links": [
+            433
+          ],
+          "shape": 3,
+          "slot_index": 4
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereLCMSelector"
+      },
+      "widgets_values": [
+        false,
+        "euler",
+        "normal",
+        "lcm",
+        "sgm_uniform",
+        false,
+        false,
+        false,
+        false
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
     },
     {
       "id": 108,
@@ -1449,7 +1437,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "((ugly creepy dirty with a hairy wounded face horrific scary (male beast sitting on a chair in the luxury beauty saloon:1.2, angry mood), large fancy mirror in his back, perfect mirrored image in the mirror), (closeup half body photography from the beast on the left of image)), and ((a professional beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, frightened mood, trying to make the beast look better with makeup tools. The woman has {makeup|hairdresser|cosmetician}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy with middle size breasts, large neckline, wear transparent red luxury sexy top and necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, film grain:1.3) "
+        "closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -1480,13 +1468,13 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)"
+        "porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores"
       ],
       "color": "#322",
       "bgcolor": "#533"
     },
     {
-      "id": 86,
+      "id": 145,
       "type": "PrimereMetaRead",
       "pos": [
         728,
@@ -1503,30 +1491,22 @@
         {
           "name": "model_name",
           "type": "CHECKPOINT_NAME",
-          "link": 276
+          "link": 417
         },
         {
           "name": "vae_name_sd",
           "type": "VAE_NAME",
-          "link": 277
+          "link": 418
         },
         {
           "name": "vae_name_sdxl",
           "type": "VAE_NAME",
-          "link": 278
-        },
-        {
-          "name": "sdxl_path",
-          "type": "STRING",
-          "link": 279,
-          "widget": {
-            "name": "sdxl_path"
-          }
+          "link": 419
         },
         {
           "name": "positive",
           "type": "STRING",
-          "link": 374,
+          "link": 459,
           "widget": {
             "name": "positive"
           }
@@ -1534,7 +1514,7 @@
         {
           "name": "negative",
           "type": "STRING",
-          "link": 375,
+          "link": 460,
           "widget": {
             "name": "negative"
           }
@@ -1572,9 +1552,17 @@
           }
         },
         {
+          "name": "model_version",
+          "type": "STRING",
+          "link": 461,
+          "widget": {
+            "name": "model_version"
+          }
+        },
+        {
           "name": "sampler_name",
           "type": "COMBO",
-          "link": 298,
+          "link": 462,
           "widget": {
             "name": "sampler_name"
           }
@@ -1582,7 +1570,7 @@
         {
           "name": "scheduler_name",
           "type": "COMBO",
-          "link": 299,
+          "link": 463,
           "widget": {
             "name": "scheduler_name"
           }
@@ -1590,7 +1578,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": 284,
+          "link": 464,
           "widget": {
             "name": "seed"
           }
@@ -1598,7 +1586,7 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 292,
+          "link": 420,
           "widget": {
             "name": "width"
           }
@@ -1606,7 +1594,7 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 293,
+          "link": 421,
           "widget": {
             "name": "height"
           }
@@ -1614,7 +1602,7 @@
         {
           "name": "cfg_scale",
           "type": "FLOAT",
-          "link": 301,
+          "link": 466,
           "widget": {
             "name": "cfg_scale"
           }
@@ -1622,7 +1610,7 @@
         {
           "name": "steps",
           "type": "INT",
-          "link": 300,
+          "link": 465,
           "widget": {
             "name": "steps"
           }
@@ -1630,7 +1618,7 @@
         {
           "name": "is_lcm",
           "type": "INT",
-          "link": 302,
+          "link": null,
           "widget": {
             "name": "is_lcm"
           }
@@ -1638,7 +1626,7 @@
         {
           "name": "prefered_model",
           "type": "STRING",
-          "link": 376,
+          "link": 422,
           "widget": {
             "name": "prefered_model"
           }
@@ -1646,7 +1634,7 @@
         {
           "name": "prefered_orientation",
           "type": "STRING",
-          "link": 377,
+          "link": 423,
           "widget": {
             "name": "prefered_orientation"
           }
@@ -1657,7 +1645,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            322
+            448
           ],
           "shape": 3,
           "slot_index": 0
@@ -1666,7 +1654,7 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            323
+            449
           ],
           "shape": 3,
           "slot_index": 1
@@ -1699,7 +1687,7 @@
           "name": "MODEL_NAME",
           "type": "CHECKPOINT_NAME",
           "links": [
-            281
+            432
           ],
           "shape": 3,
           "slot_index": 6
@@ -1708,26 +1696,28 @@
           "name": "SAMPLER_NAME",
           "type": "COMBO",
           "links": [
-            351
+            457
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 7
         },
         {
           "name": "SCHEDULER_NAME",
           "type": "COMBO",
           "links": [
-            352
+            458
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 8
         },
         {
           "name": "SEED",
           "type": "INT",
           "links": [
-            319,
-            324,
-            325,
-            348
+            427,
+            446,
+            447,
+            456
           ],
           "shape": 3,
           "slot_index": 9
@@ -1736,8 +1726,8 @@
           "name": "WIDTH",
           "type": "INT",
           "links": [
-            317,
-            334
+            425,
+            450
           ],
           "shape": 3,
           "slot_index": 10
@@ -1746,26 +1736,29 @@
           "name": "HEIGHT",
           "type": "INT",
           "links": [
-            318,
-            335
+            426,
+            451
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 11
         },
         {
           "name": "CFG",
           "type": "FLOAT",
           "links": [
-            350
+            455
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 12
         },
         {
           "name": "STEPS",
           "type": "INT",
           "links": [
-            349
+            454
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 13
         },
         {
           "name": "VAE_NAME",
@@ -1777,16 +1770,17 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            355
+            434
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 15
         },
         {
           "name": "METADATA",
           "type": "TUPLE",
           "links": [
-            273,
-            360
+            424,
+            474
           ],
           "shape": 3,
           "slot_index": 16
@@ -1803,13 +1797,12 @@
         true,
         false,
         true,
-        true,
+        false,
         true,
         true,
         true,
         false,
-        "SDXL",
-        "00000-20230719191118-358492900 (2).jpg",
+        "00000-20230602220747-1580545713.jpg",
         "image",
         "",
         "",
@@ -1817,15 +1810,16 @@
         "",
         "",
         "",
+        "BaseModel_1024",
         "euler",
         "normal",
-        763,
+        514,
         "randomize",
+        65,
         895,
         1210,
         512,
         512,
-        7,
         "",
         ""
       ],
@@ -1833,14 +1827,14 @@
       "bgcolor": "#335"
     },
     {
-      "id": 97,
+      "id": 147,
       "type": "PrimereCKPTLoader",
       "pos": [
-        1559,
-        -215
+        575.8301339958806,
+        -350.1100094096109
       ],
       "size": {
-        "0": 314.4798889160156,
+        "0": 312.5416259765625,
         "1": 142
       },
       "flags": {},
@@ -1850,22 +1844,14 @@
         {
           "name": "ckpt_name",
           "type": "CHECKPOINT_NAME",
-          "link": 281
+          "link": 432
         },
         {
           "name": "is_lcm",
           "type": "INT",
-          "link": 280,
+          "link": 433,
           "widget": {
             "name": "is_lcm"
-          }
-        },
-        {
-          "name": "sdxl_path",
-          "type": "STRING",
-          "link": 264,
-          "widget": {
-            "name": "sdxl_path"
           }
         }
       ],
@@ -1874,7 +1860,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            338
+            430
           ],
           "shape": 3,
           "slot_index": 0
@@ -1883,7 +1869,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            321
+            429
           ],
           "shape": 3,
           "slot_index": 1
@@ -1892,17 +1878,17 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            316
+            431
           ],
           "shape": 3,
           "slot_index": 2
         },
         {
-          "name": "IS_SDXL",
-          "type": "INT",
+          "name": "MODEL_VERSION",
+          "type": "STRING",
           "links": [
-            320,
-            354
+            428,
+            445
           ],
           "shape": 3,
           "slot_index": 3
@@ -1914,17 +1900,16 @@
       "widgets_values": [
         0,
         1,
-        1,
-        "SDXL"
+        1
       ],
-      "color": "#6c0000",
-      "bgcolor": "#800000"
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 105,
       "type": "PrimereDynamicParser",
       "pos": [
-        31,
+        29,
         330
       ],
       "size": {
@@ -1938,7 +1923,7 @@
         {
           "name": "dyn_prompt",
           "type": "STRING",
-          "link": 322,
+          "link": 448,
           "widget": {
             "name": "dyn_prompt"
           }
@@ -1946,7 +1931,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": 324,
+          "link": 446,
           "widget": {
             "name": "seed"
           }
@@ -1957,7 +1942,7 @@
           "name": "PROMPT",
           "type": "STRING",
           "links": [
-            326
+            469
           ],
           "shape": 3,
           "slot_index": 0
@@ -1968,7 +1953,7 @@
       },
       "widgets_values": [
         "",
-        -1106112432909645,
+        21309233686277,
         "randomize"
       ],
       "color": "#232",
@@ -1992,7 +1977,7 @@
         {
           "name": "dyn_prompt",
           "type": "STRING",
-          "link": 323,
+          "link": 449,
           "widget": {
             "name": "dyn_prompt"
           }
@@ -2000,7 +1985,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": 325,
+          "link": 447,
           "widget": {
             "name": "seed"
           }
@@ -2011,7 +1996,7 @@
           "name": "PROMPT",
           "type": "STRING",
           "links": [
-            327
+            470
           ],
           "shape": 3,
           "slot_index": 0
@@ -2022,7 +2007,7 @@
       },
       "widgets_values": [
         "",
-        316942538939916,
+        33828927185797,
         "randomize"
       ],
       "color": "#322",
@@ -2046,7 +2031,7 @@
         {
           "name": "input",
           "type": "*",
-          "link": 360,
+          "link": 424,
           "dir": 3
         }
       ],
@@ -2054,7 +2039,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "{\n    \"positive\": \"((ugly creepy dirty with a hairy wounded face horrific scary (male beast sitting on a chair in the luxury beauty saloon:1.2, angry mood), large fancy mirror in his back, perfect mirrored image in the mirror), (closeup half body photography from the beast on the left of image)), and ((a professional beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, frightened mood, trying to make the beast look better with makeup tools. The woman has {makeup|hairdresser|cosmetician}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy with middle size breasts, large neckline, wear transparent red luxury sexy top and necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, film grain:1.3) \",\n    \"negative\": \"watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"SDXL\\\\unsafexl_v31.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 1049886461719921,\n    \"width\": 1296,\n    \"height\": 809,\n    \"cfg_scale\": 8.2,\n    \"steps\": 25,\n    \"sdxl_path\": \"SDXL\",\n    \"is_sdxl\": 1,\n    \"is_lcm\": 0,\n    \"vae_name\": \"sdxl_vae.safetensors\",\n    \"force_model_vae\": false,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"dynamic_positive\": \"((ugly creepy dirty with a hairy wounded face horrific scary (male beast sitting on a chair in the luxury beauty saloon:1.2, angry mood), large fancy mirror in his back, perfect mirrored image in the mirror), (closeup half body photography from the beast on the left of image)), and ((a professional beautiful long hair blonde female hair dresser is working on it, frightened mood, trying to make the beast look better with makeup tools. The woman has makeup-tools in her hands to apply to the hair of beast:1.3), (the woman is a beautiful sexy with middle size breasts, large neckline, wear transparent red luxury sexy top and necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, film grain:1.3) \",\n    \"dynamic_negative\": \"watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)\"\n}"
+        "{\n    \"positive\": \"closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)\",\n    \"negative\": \"porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"BestAll\\\\photoMovieGXI.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 687385708075670,\n    \"width\": 400,\n    \"height\": 655,\n    \"cfg_scale\": 8.2,\n    \"steps\": 25,\n    \"model_version\": \"BaseModel_768\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\",\n    \"force_model_vae\": false,\n    \"prefered_model\": null,\n    \"prefered_orientation\": \"Vertical\",\n    \"is_sdxl\": 0,\n    \"dynamic_positive\": \"closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)\",\n    \"dynamic_negative\": \"porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores\"\n}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -2077,12 +2062,12 @@
         {
           "name": "optional_vae",
           "type": "VAE",
-          "link": 316
+          "link": 431
         },
         {
           "name": "width",
           "type": "INT",
-          "link": 317,
+          "link": 425,
           "widget": {
             "name": "width"
           }
@@ -2090,7 +2075,7 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 318,
+          "link": 426,
           "widget": {
             "name": "height"
           },
@@ -2099,7 +2084,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": 319,
+          "link": 427,
           "widget": {
             "name": "seed"
           }
@@ -2141,7 +2126,7 @@
         1.2,
         0.9,
         1.25,
-        -646467097039264,
+        1041857929758329,
         "randomize",
         true,
         "cpu"
@@ -2150,32 +2135,32 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 104,
+      "id": 146,
       "type": "PrimereClearPrompt",
       "pos": [
         443,
         86
       ],
       "size": {
-        "0": 277.22271728515625,
-        "1": 209.5315704345703
+        "0": 275.780029296875,
+        "1": 209.13002014160156
       },
       "flags": {},
       "order": 27,
       "mode": 0,
       "inputs": [
         {
-          "name": "is_sdxl",
-          "type": "INT",
-          "link": 354,
+          "name": "model_version",
+          "type": "STRING",
+          "link": 445,
           "widget": {
-            "name": "is_sdxl"
+            "name": "model_version"
           }
         },
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 326,
+          "link": 469,
           "widget": {
             "name": "positive_prompt"
           }
@@ -2183,7 +2168,7 @@
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 327,
+          "link": 470,
           "widget": {
             "name": "negative_prompt"
           }
@@ -2194,7 +2179,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            328
+            443
           ],
           "shape": 3,
           "slot_index": 0
@@ -2203,7 +2188,7 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            329
+            444
           ],
           "shape": 3,
           "slot_index": 1
@@ -2213,7 +2198,7 @@
         "Node name for S&R": "PrimereClearPrompt"
       },
       "widgets_values": [
-        0,
+        "BaseModel_1024",
         "",
         "",
         true,
@@ -2256,8 +2241,8 @@
       "id": 107,
       "type": "PrimereEmbeddingHandler",
       "pos": [
-        30,
-        508
+        31,
+        510
       ],
       "size": {
         "0": 306.26678466796875,
@@ -2270,7 +2255,7 @@
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 328,
+          "link": 443,
           "widget": {
             "name": "positive_prompt"
           }
@@ -2278,7 +2263,7 @@
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 329,
+          "link": 444,
           "widget": {
             "name": "negative_prompt"
           }
@@ -2289,7 +2274,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            330
+            441
           ],
           "shape": 3
         },
@@ -2297,9 +2282,10 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            331
+            442
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 1
         }
       ],
       "properties": {
@@ -2313,14 +2299,14 @@
       "bgcolor": "#355"
     },
     {
-      "id": 101,
+      "id": 144,
       "type": "PrimereCLIPEncoder",
       "pos": [
-        2729,
-        92
+        2728,
+        90
       ],
       "size": {
-        "0": 415.1342468261719,
+        "0": 414.5000915527344,
         "1": 614
       },
       "flags": {},
@@ -2330,20 +2316,20 @@
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 321
+          "link": 429
         },
         {
-          "name": "is_sdxl",
-          "type": "INT",
-          "link": 320,
+          "name": "model_version",
+          "type": "STRING",
+          "link": 428,
           "widget": {
-            "name": "is_sdxl"
+            "name": "model_version"
           }
         },
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 330,
+          "link": 441,
           "widget": {
             "name": "positive_prompt"
           },
@@ -2352,11 +2338,10 @@
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 331,
+          "link": 442,
           "widget": {
             "name": "negative_prompt"
-          },
-          "slot_index": 3
+          }
         },
         {
           "name": "opt_pos_prompt",
@@ -2377,7 +2362,7 @@
         {
           "name": "style_pos_prompt",
           "type": "STRING",
-          "link": 332,
+          "link": 452,
           "widget": {
             "name": "style_pos_prompt"
           }
@@ -2385,7 +2370,7 @@
         {
           "name": "style_neg_prompt",
           "type": "STRING",
-          "link": 333,
+          "link": 453,
           "widget": {
             "name": "style_neg_prompt"
           }
@@ -2409,20 +2394,18 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 334,
+          "link": 450,
           "widget": {
             "name": "width"
-          },
-          "slot_index": 10
+          }
         },
         {
           "name": "height",
           "type": "INT",
-          "link": 335,
+          "link": 451,
           "widget": {
             "name": "height"
-          },
-          "slot_index": 11
+          }
         }
       ],
       "outputs": [
@@ -2430,7 +2413,7 @@
           "name": "COND+",
           "type": "CONDITIONING",
           "links": [
-            336
+            435
           ],
           "shape": 3,
           "slot_index": 0
@@ -2439,7 +2422,7 @@
           "name": "COND-",
           "type": "CONDITIONING",
           "links": [
-            337
+            436
           ],
           "shape": 3,
           "slot_index": 1
@@ -2448,7 +2431,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            356
+            437
           ],
           "shape": 3,
           "slot_index": 2
@@ -2457,7 +2440,7 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            357
+            438
           ],
           "shape": 3,
           "slot_index": 3
@@ -2466,7 +2449,7 @@
           "name": "PROMPT L+",
           "type": "STRING",
           "links": [
-            358
+            439
           ],
           "shape": 3,
           "slot_index": 4
@@ -2475,7 +2458,7 @@
           "name": "PROMPT L-",
           "type": "STRING",
           "links": [
-            359
+            440
           ],
           "shape": 3,
           "slot_index": 5
@@ -2485,15 +2468,15 @@
         "Node name for S&R": "PrimereCLIPEncoder"
       },
       "widgets_values": [
-        0,
+        "BaseModel_1024",
         "",
         "",
         1.2,
-        false,
-        "None",
-        0.5,
-        "BETTER_IMAGES",
+        true,
+        "PHOTO",
         0.8,
+        "PORTRAITS_PETS",
+        1.2,
         true,
         "mean",
         "comfy++",
@@ -2509,8 +2492,8 @@
         "",
         true,
         true,
-        1,
-        1
+        true,
+        true
       ],
       "color": "#6c0000",
       "bgcolor": "#800000"
@@ -2519,8 +2502,8 @@
       "id": 102,
       "type": "KSampler",
       "pos": [
-        3157.398410750731,
-        175.05789473663341
+        3156,
+        173
       ],
       "size": {
         "0": 307.6449279785156,
@@ -2533,17 +2516,17 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 338
+          "link": 430
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 336
+          "link": 435
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 337
+          "link": 436
         },
         {
           "name": "latent_image",
@@ -2553,7 +2536,7 @@
         {
           "name": "seed",
           "type": "INT",
-          "link": 348,
+          "link": 456,
           "widget": {
             "name": "seed"
           },
@@ -2562,7 +2545,7 @@
         {
           "name": "steps",
           "type": "INT",
-          "link": 349,
+          "link": 454,
           "widget": {
             "name": "steps"
           },
@@ -2571,7 +2554,7 @@
         {
           "name": "cfg",
           "type": "FLOAT",
-          "link": 350,
+          "link": 455,
           "widget": {
             "name": "cfg"
           },
@@ -2580,7 +2563,7 @@
         {
           "name": "sampler_name",
           "type": "COMBO",
-          "link": 351,
+          "link": 457,
           "widget": {
             "name": "sampler_name"
           },
@@ -2589,7 +2572,7 @@
         {
           "name": "scheduler",
           "type": "COMBO",
-          "link": 352,
+          "link": 458,
           "widget": {
             "name": "scheduler"
           },
@@ -2611,7 +2594,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        700494560111318,
+        12175352697308,
         "randomize",
         20,
         8,
@@ -2640,7 +2623,7 @@
         {
           "name": "input",
           "type": "*",
-          "link": 356,
+          "link": 437,
           "dir": 3
         }
       ],
@@ -2648,7 +2631,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "((ugly creepy dirty with a hairy wounded face horrific scary (male beast sitting on a chair in the luxury beauty saloon:1.2, angry mood), large fancy mirror in his back, perfect mirrored image in the mirror), (closeup half body photography from the beast on the left of image)), and ((a professional beautiful long hair blonde female hair dresser is working on it, frightened mood, trying to make the beast look better with makeup tools. The woman has makeup-tools in her hands to apply to the hair of beast:1.3), (the woman is a beautiful sexy with middle size breasts, large neckline, wear transparent red luxury sexy top and necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, film grain:1.3), ((Evil:0.60))"
+        "closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2), (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:0.80)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -2671,7 +2654,7 @@
         {
           "name": "input",
           "type": "*",
-          "link": 357,
+          "link": 438,
           "dir": 3
         }
       ],
@@ -2679,7 +2662,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps):1.20)"
+        "(porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores:1.20), (3D, Absent limbs, Additional appendages, Additional digits, Additional limbs, Altered appendages, Amputee, Asymmetric, Asymmetric ears, Bad anatomy, Bad ears, Bad eyes, Bad face, Bad proportions, Beard (optional), Broken finger, Broken hand, Broken leg, Broken wrist, Cartoon, Childish (optional), Cloned face, Cloned head, Collapsed eyeshadow, Combined appendages, Conjoined, Copied visage, Corpse, Cripple, Cropped head, Cross-eyed, Depressed, Desiccated, Disconnected limb, Disfigured, Dismembered, Disproportionate, Double face, Duplicated features, Eerie, Elongated throat:1.20)"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -2702,7 +2685,7 @@
         {
           "name": "input",
           "type": "*",
-          "link": 358,
+          "link": 439,
           "dir": 3
         }
       ],
@@ -2710,7 +2693,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(((ugly creepy dirty with a hairy wounded face horrific scary (male beast sitting on a chair in the luxury beauty saloon:1.2, angry mood), large fancy mirror in his back, perfect mirrored image in the mirror), (closeup half body photography from the beast on the left of image)), and ((a professional beautiful long hair blonde female hair dresser is working on it, frightened mood, trying to make the beast look better with makeup tools. The woman has makeup-tools in her hands to apply to the hair of beast:1.3), (the woman is a beautiful sexy with middle size breasts, large neckline, wear transparent red luxury sexy top and necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, film grain:1.3))"
+        ""
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -2733,7 +2716,7 @@
         {
           "name": "input",
           "type": "*",
-          "link": 359,
+          "link": 440,
           "dir": 3
         }
       ],
@@ -2741,7 +2724,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "((watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps):1.20))"
+        ""
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -2750,8 +2733,8 @@
       "id": 103,
       "type": "VAEDecode",
       "pos": [
-        3155.398410750731,
-        92.05789473663344
+        3154,
+        90
       ],
       "size": {
         "0": 309,
@@ -2769,7 +2752,7 @@
         {
           "name": "vae",
           "type": "VAE",
-          "link": 355,
+          "link": 434,
           "slot_index": 1
         }
       ],
@@ -2779,7 +2762,7 @@
           "type": "IMAGE",
           "links": [
             340,
-            341
+            472
           ],
           "shape": 3,
           "slot_index": 0
@@ -2819,16 +2802,16 @@
       "bgcolor": "#0000ff"
     },
     {
-      "id": 98,
+      "id": 149,
       "type": "PrimereMetaSave",
       "pos": [
-        1883.9184175050614,
-        -499.28592700078104
+        1887.8301339958805,
+        -514.1100094096109
       ],
-      "size": {
-        "0": 453.39007568359375,
-        "1": 486
-      },
+      "size": [
+        453.39007568359375,
+        506
+      ],
       "flags": {},
       "order": 38,
       "mode": 0,
@@ -2836,20 +2819,30 @@
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 341
+          "link": 472
         },
         {
           "name": "image_metadata",
           "type": "TUPLE",
-          "link": 273
+          "link": 474
         },
         {
           "name": "prefered_subpath",
           "type": "STRING",
-          "link": 378,
+          "link": 473,
           "widget": {
             "name": "prefered_subpath"
           }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SAVED_INFO",
+          "type": "STRING",
+          "links": [
+            475
+          ],
+          "shape": 3
         }
       ],
       "properties": {
@@ -2857,7 +2850,7 @@
       },
       "widgets_values": [
         "z:\\AIPICS\\Comfy\\[time(%Y-%m-Week-%W)]",
-        "Project",
+        "Test",
         "",
         true,
         "Image",
@@ -2866,28 +2859,56 @@
         true,
         true,
         true,
-        2,
+        true,
         false,
         "jpg",
         true,
         true,
-        95,
+        98,
         "false",
+        false,
         false
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
+    },
+    {
+      "id": 148,
+      "type": "PrimereTextOutput",
+      "pos": [
+        3493,
+        -530
+      ],
+      "size": {
+        "0": 1734.918212890625,
+        "1": 535.5193481445312
+      },
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 475,
+          "widget": {
+            "name": "text"
+          },
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereTextOutput"
+      },
+      "widgets_values": [
+        "",
+        ":: Time to save: 2023-11-18 19:04:30\n:: Output file: z:\\AIPICS\\Comfy\\PHOTOMOVIEGXI\\Test\\2023-11-Week-46\\Image_20231811_190430_687385708075670_400x655_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)\n:: NEGATIVE: porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores\n:: MODEL_NAME: BestAll\\photoMovieGXI.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 687385708075670\n:: WIDTH: 400\n:: HEIGHT: 655\n:: CFG_SCALE: 8.2\n:: STEPS: 25\n:: MODEL_VERSION: BaseModel_768\n:: IS_LCM: 0\n:: VAE_NAME: vae-ft-mse-840000-ema-pruned.ckpt\n:: FORCE_MODEL_VAE: False\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: Vertical\n:: IS_SDXL: 0\n:: DYNAMIC_POSITIVE: closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)\n:: DYNAMIC_NEGATIVE: porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores\n"
+      ],
+      "color": "#002c6c",
+      "bgcolor": "#004080"
     }
   ],
   "links": [
-    [
-      264,
-      87,
-      2,
-      97,
-      2,
-      "STRING"
-    ],
     [
       265,
       93,
@@ -2929,14 +2950,6 @@
       "COMBO"
     ],
     [
-      270,
-      94,
-      1,
-      91,
-      3,
-      "COMBO"
-    ],
-    [
       271,
       96,
       0,
@@ -2951,318 +2964,6 @@
       91,
       6,
       "FLOAT"
-    ],
-    [
-      273,
-      86,
-      16,
-      98,
-      1,
-      "TUPLE"
-    ],
-    [
-      275,
-      87,
-      1,
-      92,
-      0,
-      "INT"
-    ],
-    [
-      276,
-      87,
-      0,
-      86,
-      0,
-      "CHECKPOINT_NAME"
-    ],
-    [
-      277,
-      88,
-      0,
-      86,
-      1,
-      "VAE_NAME"
-    ],
-    [
-      278,
-      89,
-      0,
-      86,
-      2,
-      "VAE_NAME"
-    ],
-    [
-      279,
-      87,
-      2,
-      86,
-      3,
-      "STRING"
-    ],
-    [
-      280,
-      91,
-      4,
-      97,
-      1,
-      "INT"
-    ],
-    [
-      281,
-      86,
-      6,
-      97,
-      0,
-      "CHECKPOINT_NAME"
-    ],
-    [
-      284,
-      90,
-      0,
-      86,
-      12,
-      "INT"
-    ],
-    [
-      292,
-      92,
-      0,
-      86,
-      13,
-      "INT"
-    ],
-    [
-      293,
-      92,
-      1,
-      86,
-      14,
-      "INT"
-    ],
-    [
-      298,
-      91,
-      0,
-      86,
-      10,
-      "COMBO"
-    ],
-    [
-      299,
-      91,
-      1,
-      86,
-      11,
-      "COMBO"
-    ],
-    [
-      300,
-      91,
-      2,
-      86,
-      16,
-      "INT"
-    ],
-    [
-      301,
-      91,
-      3,
-      86,
-      15,
-      "FLOAT"
-    ],
-    [
-      302,
-      91,
-      4,
-      86,
-      17,
-      "INT"
-    ],
-    [
-      316,
-      97,
-      2,
-      100,
-      0,
-      "VAE"
-    ],
-    [
-      317,
-      86,
-      10,
-      100,
-      1,
-      "INT"
-    ],
-    [
-      318,
-      86,
-      11,
-      100,
-      2,
-      "INT"
-    ],
-    [
-      319,
-      86,
-      9,
-      100,
-      3,
-      "INT"
-    ],
-    [
-      320,
-      97,
-      3,
-      101,
-      1,
-      "INT"
-    ],
-    [
-      321,
-      97,
-      1,
-      101,
-      0,
-      "CLIP"
-    ],
-    [
-      322,
-      86,
-      0,
-      105,
-      0,
-      "STRING"
-    ],
-    [
-      323,
-      86,
-      1,
-      106,
-      0,
-      "STRING"
-    ],
-    [
-      324,
-      86,
-      9,
-      105,
-      1,
-      "INT"
-    ],
-    [
-      325,
-      86,
-      9,
-      106,
-      1,
-      "INT"
-    ],
-    [
-      326,
-      105,
-      0,
-      104,
-      1,
-      "STRING"
-    ],
-    [
-      327,
-      106,
-      0,
-      104,
-      2,
-      "STRING"
-    ],
-    [
-      328,
-      104,
-      0,
-      107,
-      0,
-      "STRING"
-    ],
-    [
-      329,
-      104,
-      1,
-      107,
-      1,
-      "STRING"
-    ],
-    [
-      330,
-      107,
-      0,
-      101,
-      2,
-      "STRING"
-    ],
-    [
-      331,
-      107,
-      1,
-      101,
-      3,
-      "STRING"
-    ],
-    [
-      332,
-      99,
-      0,
-      101,
-      6,
-      "STRING"
-    ],
-    [
-      333,
-      99,
-      1,
-      101,
-      7,
-      "STRING"
-    ],
-    [
-      334,
-      86,
-      10,
-      101,
-      10,
-      "INT"
-    ],
-    [
-      335,
-      86,
-      11,
-      101,
-      11,
-      "INT"
-    ],
-    [
-      336,
-      101,
-      0,
-      102,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      337,
-      101,
-      1,
-      102,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      338,
-      97,
-      0,
-      102,
-      0,
-      "MODEL"
     ],
     [
       339,
@@ -3281,14 +2982,6 @@
       "IMAGE"
     ],
     [
-      341,
-      103,
-      0,
-      98,
-      0,
-      "IMAGE"
-    ],
-    [
       346,
       100,
       1,
@@ -3303,142 +2996,6 @@
       102,
       3,
       "LATENT"
-    ],
-    [
-      348,
-      86,
-      9,
-      102,
-      4,
-      "INT"
-    ],
-    [
-      349,
-      86,
-      13,
-      102,
-      5,
-      "INT"
-    ],
-    [
-      350,
-      86,
-      12,
-      102,
-      6,
-      "FLOAT"
-    ],
-    [
-      351,
-      86,
-      7,
-      102,
-      7,
-      "COMBO"
-    ],
-    [
-      352,
-      86,
-      8,
-      102,
-      8,
-      "COMBO"
-    ],
-    [
-      354,
-      97,
-      3,
-      104,
-      0,
-      "INT"
-    ],
-    [
-      355,
-      86,
-      15,
-      103,
-      1,
-      "VAE"
-    ],
-    [
-      356,
-      101,
-      2,
-      110,
-      0,
-      "*"
-    ],
-    [
-      357,
-      101,
-      3,
-      111,
-      0,
-      "*"
-    ],
-    [
-      358,
-      101,
-      4,
-      112,
-      0,
-      "*"
-    ],
-    [
-      359,
-      101,
-      5,
-      113,
-      0,
-      "*"
-    ],
-    [
-      360,
-      86,
-      16,
-      114,
-      0,
-      "*"
-    ],
-    [
-      374,
-      137,
-      0,
-      86,
-      4,
-      "STRING"
-    ],
-    [
-      375,
-      137,
-      1,
-      86,
-      5,
-      "STRING"
-    ],
-    [
-      376,
-      137,
-      3,
-      86,
-      18,
-      "STRING"
-    ],
-    [
-      377,
-      137,
-      4,
-      86,
-      19,
-      "STRING"
-    ],
-    [
-      378,
-      137,
-      2,
-      98,
-      2,
-      "STRING"
     ],
     [
       379,
@@ -3735,6 +3292,470 @@
       109,
       0,
       "*"
+    ],
+    [
+      416,
+      139,
+      1,
+      140,
+      0,
+      "STRING"
+    ],
+    [
+      417,
+      139,
+      0,
+      145,
+      0,
+      "CHECKPOINT_NAME"
+    ],
+    [
+      418,
+      88,
+      0,
+      145,
+      1,
+      "VAE_NAME"
+    ],
+    [
+      419,
+      89,
+      0,
+      145,
+      2,
+      "VAE_NAME"
+    ],
+    [
+      420,
+      140,
+      0,
+      145,
+      13,
+      "INT"
+    ],
+    [
+      421,
+      140,
+      1,
+      145,
+      14,
+      "INT"
+    ],
+    [
+      422,
+      137,
+      3,
+      145,
+      18,
+      "STRING"
+    ],
+    [
+      423,
+      137,
+      4,
+      145,
+      19,
+      "STRING"
+    ],
+    [
+      424,
+      145,
+      16,
+      114,
+      0,
+      "*"
+    ],
+    [
+      425,
+      145,
+      10,
+      100,
+      1,
+      "INT"
+    ],
+    [
+      426,
+      145,
+      11,
+      100,
+      2,
+      "INT"
+    ],
+    [
+      427,
+      145,
+      9,
+      100,
+      3,
+      "INT"
+    ],
+    [
+      428,
+      147,
+      3,
+      144,
+      1,
+      "STRING"
+    ],
+    [
+      429,
+      147,
+      1,
+      144,
+      0,
+      "CLIP"
+    ],
+    [
+      430,
+      147,
+      0,
+      102,
+      0,
+      "MODEL"
+    ],
+    [
+      431,
+      147,
+      2,
+      100,
+      0,
+      "VAE"
+    ],
+    [
+      432,
+      145,
+      6,
+      147,
+      0,
+      "CHECKPOINT_NAME"
+    ],
+    [
+      433,
+      91,
+      4,
+      147,
+      1,
+      "INT"
+    ],
+    [
+      434,
+      145,
+      15,
+      103,
+      1,
+      "VAE"
+    ],
+    [
+      435,
+      144,
+      0,
+      102,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      436,
+      144,
+      1,
+      102,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      437,
+      144,
+      2,
+      110,
+      0,
+      "*"
+    ],
+    [
+      438,
+      144,
+      3,
+      111,
+      0,
+      "*"
+    ],
+    [
+      439,
+      144,
+      4,
+      112,
+      0,
+      "*"
+    ],
+    [
+      440,
+      144,
+      5,
+      113,
+      0,
+      "*"
+    ],
+    [
+      441,
+      107,
+      0,
+      144,
+      2,
+      "STRING"
+    ],
+    [
+      442,
+      107,
+      1,
+      144,
+      3,
+      "STRING"
+    ],
+    [
+      443,
+      146,
+      0,
+      107,
+      0,
+      "STRING"
+    ],
+    [
+      444,
+      146,
+      1,
+      107,
+      1,
+      "STRING"
+    ],
+    [
+      445,
+      147,
+      3,
+      146,
+      0,
+      "STRING"
+    ],
+    [
+      446,
+      145,
+      9,
+      105,
+      1,
+      "INT"
+    ],
+    [
+      447,
+      145,
+      9,
+      106,
+      1,
+      "INT"
+    ],
+    [
+      448,
+      145,
+      0,
+      105,
+      0,
+      "STRING"
+    ],
+    [
+      449,
+      145,
+      1,
+      106,
+      0,
+      "STRING"
+    ],
+    [
+      450,
+      145,
+      10,
+      144,
+      10,
+      "INT"
+    ],
+    [
+      451,
+      145,
+      11,
+      144,
+      11,
+      "INT"
+    ],
+    [
+      452,
+      99,
+      0,
+      144,
+      6,
+      "STRING"
+    ],
+    [
+      453,
+      99,
+      1,
+      144,
+      7,
+      "STRING"
+    ],
+    [
+      454,
+      145,
+      13,
+      102,
+      5,
+      "INT"
+    ],
+    [
+      455,
+      145,
+      12,
+      102,
+      6,
+      "FLOAT"
+    ],
+    [
+      456,
+      145,
+      9,
+      102,
+      4,
+      "INT"
+    ],
+    [
+      457,
+      145,
+      7,
+      102,
+      7,
+      "COMBO"
+    ],
+    [
+      458,
+      145,
+      8,
+      102,
+      8,
+      "COMBO"
+    ],
+    [
+      459,
+      137,
+      0,
+      145,
+      3,
+      "STRING"
+    ],
+    [
+      460,
+      137,
+      1,
+      145,
+      4,
+      "STRING"
+    ],
+    [
+      461,
+      139,
+      1,
+      145,
+      9,
+      "STRING"
+    ],
+    [
+      462,
+      91,
+      0,
+      145,
+      10,
+      "COMBO"
+    ],
+    [
+      463,
+      91,
+      1,
+      145,
+      11,
+      "COMBO"
+    ],
+    [
+      464,
+      90,
+      0,
+      145,
+      12,
+      "INT"
+    ],
+    [
+      465,
+      91,
+      2,
+      145,
+      16,
+      "INT"
+    ],
+    [
+      466,
+      91,
+      3,
+      145,
+      15,
+      "FLOAT"
+    ],
+    [
+      467,
+      94,
+      1,
+      91,
+      3,
+      "COMBO"
+    ],
+    [
+      469,
+      105,
+      0,
+      146,
+      1,
+      "STRING"
+    ],
+    [
+      470,
+      106,
+      0,
+      146,
+      2,
+      "STRING"
+    ],
+    [
+      472,
+      103,
+      0,
+      149,
+      0,
+      "IMAGE"
+    ],
+    [
+      473,
+      137,
+      2,
+      149,
+      2,
+      "STRING"
+    ],
+    [
+      474,
+      145,
+      16,
+      149,
+      1,
+      "TUPLE"
+    ],
+    [
+      475,
+      149,
+      0,
+      148,
+      0,
+      "STRING"
     ]
   ],
   "groups": [
@@ -3753,10 +3774,10 @@
     {
       "title": "Dashboard",
       "bounding": [
-        15,
-        -572,
-        2337,
-        571
+        19,
+        -587,
+        2334,
+        589
       ],
       "color": "#006ceb",
       "font_size": 24,

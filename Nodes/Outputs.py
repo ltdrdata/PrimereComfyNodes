@@ -15,6 +15,12 @@ import datetime
 ALLOWED_EXT = ('.jpeg', '.jpg', '.png', '.tiff', '.gif', '.bmp', '.webp')
 
 class PrimereMetaSave:
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("SAVED_INFO",)
+    FUNCTION = "save_images_meta"
+    OUTPUT_NODE = True
+    CATEGORY = TREE_OUTPUTS
+
     NODE_FILE = os.path.abspath(__file__)
     NODE_ROOT = os.path.dirname(NODE_FILE)
 
@@ -45,6 +51,7 @@ class PrimereMetaSave:
                 "quality": ("INT", {"default": 95, "min": 1, "max": 100, "step": 1}),
                 "overwrite_mode": (["false", "prefix_as_filename"],),
                 "save_mata_to_json": ("BOOLEAN", {"default": False}),
+                "save_info_to_txt": ("BOOLEAN", {"default": False}),
             },
             "optional": {
                 "prefered_subpath": ("STRING", {"default": "", "forceInput": True}),
@@ -55,12 +62,7 @@ class PrimereMetaSave:
             },
         }
 
-    RETURN_TYPES = ()
-    FUNCTION = "save_images_meta"
-    OUTPUT_NODE = True
-    CATEGORY = TREE_OUTPUTS
-
-    def save_images_meta(self, images, add_date_to_filename, add_time_to_filename, add_seed_to_filename, add_size_to_filename, save_mata_to_json, image_metadata=None,
+    def save_images_meta(self, images, add_date_to_filename, add_time_to_filename, add_seed_to_filename, add_size_to_filename, save_mata_to_json, save_info_to_txt, image_metadata=None,
                          output_path='[time(%Y-%m-%d)]', subpath='Project', add_modelname_to_path = False, filename_prefix="ComfyUI", filename_delimiter='_',
                          extension='jpg', quality=95, prompt=None, extra_pnginfo=None,
                          overwrite_mode='false', filename_number_padding=2, filename_number_start=False,
@@ -207,7 +209,25 @@ Steps: {str(image_metadata['steps'])}, Sampler: {image_metadata['sampler_name'] 
                 }
                 results.append(image_data)
 
-        return {"ui": {"images": []}}
+        metastring = ""
+        if image_metadata is not None:
+            for key, val in image_metadata.items():
+                if len(str(val).strip( '"')) > 0:
+                    metastring = metastring + ':: ' + key.upper() + ': ' + str(val).strip( '"') + '\n'
+
+        saved_info = f""":: Time to save: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+:: Output file: {output_file}
+
+:: PROCESS INFO ::
+------------------
+{metastring}"""
+
+        if save_info_to_txt:
+            infofile = os.path.splitext(output_file)[0] + '.txt'
+            with open(infofile, 'w', encoding='utf-8', newline="") as infofile:
+                infofile.write(saved_info)
+
+        return saved_info, {"ui": {"images": []}}
 
     def get_subfolder_path(self, image_path, output_path):
         output_parts = output_path.strip(os.sep).split(os.sep)
@@ -279,3 +299,22 @@ class PrimereAnyOutput:
           value = 'Input data exists, but could not be serialized.'
 
     return {"ui": {"text": (value.strip( '"'),)}}
+
+class PrimereTextOutput:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "text": ("STRING", {"forceInput": True}),
+            },
+        }
+
+    INPUT_IS_LIST = True
+    RETURN_TYPES = ()
+    FUNCTION = "notify"
+    OUTPUT_NODE = True
+    OUTPUT_IS_LIST = (True,)
+    CATEGORY = TREE_OUTPUTS
+
+    def notify(self, text):
+        return {"ui": {"text": text}}

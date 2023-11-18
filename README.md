@@ -1,8 +1,30 @@
 # Primere nodes for ComfyUI
 
-1; Install missing Python libraries if not start. Activate venv and use 'pip install -r requirements.txt' at the root folder of Primere nodes
+1; Install missing Python libraries if not start for first try. Activate Comfy venv and use 'pip install -r requirements.txt' at the root folder of Primere nodes
 
 2; If started, use the last workflow on the 'Workflow' folder for first watch, all nodes visible under the 'Primere Nodes' submenu
+
+3; Set the right path for image saving in the node 'Primere Image Meta Saver' on 'output_path'
+
+4; Rename 'styles.example.csv' on the 'stylecsv' folder to 'syles.csv' or copy here your own A1111 style file
+
+5; Use the last workflow example on the 'Workflow' folder
+
+# Special features:
+#### Automatically detect the SD or SDXL checkpoint version, and control the whole process
+#### You can select model, subpath and orientation under the prompt input to overwrite the system settings
+#### One button LCM mode (see example workflow)
+#### Save .json and/or .txt file with process details
+#### Read A1111 style.csv file, and handle dynamic prompts
+#### Random noise generator for latent image
+#### Important and editable styles in the text encoder
+#### Resolution selector by side ratios only, editable ratio source, and auto detect checkpoint version for right size
+#### Image size can be convert to "standard" values, fully customizable side ratios
+#### Remove networks from prompts (Embedding, Lora, and Hypernetwork)
+#### Embedding handler of A1111 compatible prompts
+#### Use more than one prompt or style inputs, and select by 'Prompt Switch' node
+#### Special image meta reader, which handle model name and samplers from A1111 png and jpg
+#### Check/debug generation details
 
 ## Nodes in the pack by submenus:
 
@@ -13,16 +35,16 @@
 - Use model: the prefered model for image rendering. If your prompt need special model, for example because product design or architechture, here you can force join this model to the prompt rendering process.
 - Use orientation: if you prefer vertical or horizontal orientation depending on your prompt, your rendering process will be use this setting instead of global setting. Useful for example for portraits, what much better in vertical orientation.
 
-If you set these fields, (where 'None' mean not set and use system settings) the workflow will use these settings if rendering your prompt.
+If you set these fields, (where 'None' mean not set and use system settings) the workflow will use these settings for rendering your prompt.
 
 ### Primere Styles:
 Style file reder, compatible with A1111 syle.csv file, but little more than the original concept. The file must be copied/symlinked to the 'stylecsv' folder. Rename included 'style.example.csv' to 'style.csv' for first working example, and edit this file manually.
 - A1111 compatible CSV headers required for this file: 'name,prompt,negative_prompt'. But this version have 3 required more headers: 'prefered_subpath,prefered_model,prefered_orientation'. These new headers working like the simple prompt input. 
 - If you fill these optional columns in the style.csv, the rendering process will be use them. These last 3 fields are optional, if you leave empty the style will be rendering with system settings, if fill and enable to use, system setting will be overwritten.
-- You can enable/disable these settings if filled, but want to use system settings instead.
+- You can enable/disable these settings if already entered in csv, but want to use system settings instead.
 
 ### Primere Dynamic:
-This node render A1111 compatible dynamic prompts, including external files of A1111 dynamic prompt plugin. External files must be copied/symlinked to the 'wildcards' folder and use the '__filepath__' keyword within your prompt. Use this to decode all style.csv and prompt inputs, because the output of prompt/style nodes not resolved by other comfy dynamic encoder/resolver.
+This node render A1111 compatible dynamic prompts, including external files of A1111 dynamic prompt plugin. External files must be copied/symlinked to the 'wildcards' folder and use the '__filepath/of/file__' keyword within your prompt. Use this to decode all style.csv and prompt inputs, because the output of prompt/style nodes not resolved by other comfy dynamic encoder/resolver.
 
 ### Primere exif reader:
 This node read prompt-exif (called meta) from loaded image. The reader is tested with A1111 'jpg' and 'png' and Comfy 'jpg' and 'png'. Another exif parsers will be included soon, but if you send me AI generated image contains metadata, I will do parser for that.
@@ -44,8 +66,7 @@ This node is a simple VAE selector. Use 2 nodes in workflow, 1 for SD, 1 for SDX
 
 ### Primere CKPT Selector:
 Simple checkpoint selector, but with extras:
-- If you fill 'sdxl_path' input field (you must store your SDXL checkpoints in separated folder), you will give value 1 in 'IS_SDXL' output if your selected model is SDXL, but the value is 0 if SD. Use this output for automatic VAE or size selection and for promot encoding, see example workflow for details.
-- (Later I would like to detect the checkpoint version from the loaded file instead of path, but not succeed yet.)
+- This node automatically detect if the selected model SD or SDXL. Use this output for automatic VAE or size selection and for prompt encoding, see example workflow for details.
 
 ### Primere VAE loader:
 Use this node to convert VAE name to VAE.
@@ -65,16 +86,17 @@ Use only one seed input for all. A1111 style node, connect this one node to all 
 This node generate 'empty' latent image, but with several noise settings. You can randomize these setting between min. and max. values using switches, this cause small difference between generated images for same seed, but you can freeze your image if you disable variations of random noise generation.
 
 ### Primere Prompt Encoder:
-- This node compatible with SD and SDXL models, important to use 'is_sdxl' input for correct working. Try several settings, you will get several results. 
+- This node compatible with SD and SDXL models, important to use 'model_version' input for correct working. Try several settings, you will get several results. 
 - Use internal positive and negative styles, and check the result in prompt and image outputs. 
 - If you getting error if use SD model, you must update your ComfyUI.
 - The style source of this node is external file at 'Toml/default_neg.toml' and 'Toml/default_pos.toml', what you can edit if you need changes.
+- Comfy encoders not compatible with SD2.x version, you will get black image if select this version from model list.
 
 ### Primere Resolution:
 - Select image size by side ratios only, and use 'is_sdxl' input for correct SDXL size. 
-- If the 'is_sdxl' input getting 0, select your checkpoint version in 'default_sd' switch. SD 1.x mean 512, SD 2.x mean 768 basic size. In the future this setting will be removed if I get right checkpoint version directly from the file.  
+- Use 'model_version' to handle right image size depending on selected model.   
 - You can calculate image size by really custom ratios at the bottom inputs (and switch).
-- Use 'round_to_standard' switch if you want to modify the calculated size by the 'officially' recommended SD values.
+- Use 'round_to_standard' switch if you want to modify the exactly calculated size by the 'officially' recommended SD / SDXL values.
 - The ratios of this node stored in external file at 'Toml/resolution_ratios.toml', what you can edit if you need changes.
 
 ### Primere Steps & Cfg:
@@ -95,3 +117,6 @@ Use this node to display 'any' output values of several nodes, like prompts or m
 
 ### Primere Style Pile:
 Style collection for generated images. Set and connect this node to the 'Prompt Encoder'. No forget to set and play with style strenght. The source of this node is external file at 'Toml/stylepile.toml', what you can edit if you need changes.
+
+### Contact:
+Sorry, but contact info later. Use 'git pull' to refrest this node pack after first install, but maybe have to use the newest workflow after the pull.

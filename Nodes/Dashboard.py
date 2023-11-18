@@ -53,10 +53,13 @@ class PrimereVAE:
         return vae_model,
 
 class PrimereCKPT:
-    RETURN_TYPES = ("CHECKPOINT_NAME", "INT", "STRING")
-    RETURN_NAMES = ("CKPT_NAME", "IS_SDXL", "SDXL_PATH")
+    RETURN_TYPES = ("CHECKPOINT_NAME", "STRING")
+    RETURN_NAMES = ("MODEL_NAME", "MODEL_VERSION")
     FUNCTION = "load_ckpt_list"
     CATEGORY = TREE_DASHBOARD
+
+    def __init__(self):
+        self.chkp_loader = nodes.CheckpointLoaderSimple()
 
     @classmethod
     def INPUT_TYPES(s):
@@ -64,21 +67,13 @@ class PrimereCKPT:
             "required": {
                 "base_model": (folder_paths.get_filename_list("checkpoints"),)
             },
-            "optional": {
-                "sdxl_path": ("STRING", {"default": 'SDXL'}),
-            },
         }
 
-    def load_ckpt_list(self, base_model, sdxl_path):
-        is_sdxl = 0
-        sdxl_path_string = sdxl_path
-        if sdxl_path:
-            if not sdxl_path.endswith(os.sep):
-                sdxl_path = sdxl_path + os.sep
-            if (base_model.startswith(sdxl_path) == True):
-                is_sdxl = 1
+    def load_ckpt_list(self, base_model,):
+        LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(base_model)
+        model_version = utility.getCheckpointVersion(LOADED_CHECKPOINT[0])
 
-        return (base_model, is_sdxl, sdxl_path_string,)
+        return (base_model, model_version,)
 
 class PrimereVAELoader:
     RETURN_TYPES = ("VAE",)
@@ -135,8 +130,8 @@ class PrimereLCMSelector:
 
 
 class PrimereCKPTLoader:
-    RETURN_TYPES = ("MODEL", "CLIP", "VAE", "INT",)
-    RETURN_NAMES = ("MODEL", "CLIP", "VAE", "IS_SDXL")
+    RETURN_TYPES = ("MODEL", "CLIP", "VAE", "STRING",)
+    RETURN_NAMES = ("MODEL", "CLIP", "VAE", "MODEL_VERSION")
     FUNCTION = "load_primere_ckpt"
     CATEGORY = TREE_DASHBOARD
 
@@ -153,15 +148,14 @@ class PrimereCKPTLoader:
                 "strength_lcm_model": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
                 "strength_lcm_clip": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
             },
-            "optional": {
-                "sdxl_path": ("STRING", {"default": 'SDXL'}),
-            },
         }
 
-    def load_primere_ckpt(self, ckpt_name, is_lcm, sdxl_path, strength_lcm_model, strength_lcm_clip):
+    def load_primere_ckpt(self, ckpt_name, is_lcm, strength_lcm_model, strength_lcm_clip):
         LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(ckpt_name)
         OUTPUT_MODEL = LOADED_CHECKPOINT[0]
         OUTPUT_CLIP = LOADED_CHECKPOINT[1]
+        MODEL_VERSION = utility.getCheckpointVersion(OUTPUT_MODEL)
+
         def lcm(self, model, zsnr=False):
             m = model.clone()
 
@@ -180,10 +174,8 @@ class PrimereCKPTLoader:
             return m
 
         is_sdxl = 0
-        if sdxl_path:
-            if not sdxl_path.endswith(os.sep):
-                sdxl_path = sdxl_path + os.sep
-            if (ckpt_name.startswith(sdxl_path) == True):
+        match MODEL_VERSION:
+            case 'SDXL_2048':
                 is_sdxl = 1
 
         if is_lcm == 1:
@@ -235,7 +227,7 @@ class PrimereCKPTLoader:
                     OUTPUT_MODEL = lcm(self, MODEL_LORA, False)
                     OUTPUT_CLIP = CLIP_LORA
 
-        return (OUTPUT_MODEL,) + (OUTPUT_CLIP,) + (LOADED_CHECKPOINT[2],) + (is_sdxl,)
+        return (OUTPUT_MODEL,) + (OUTPUT_CLIP,) + (LOADED_CHECKPOINT[2],) + (MODEL_VERSION,)
 
 class AnyType(str):
     def __ne__(self, __value: object) -> bool:
@@ -403,7 +395,7 @@ class PrimereCLIP:
         return {
             "required": {
                 "clip": ("CLIP", ),
-                "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
+                "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
                 "positive_prompt": ("STRING", {"forceInput": True}),
                 "negative_prompt": ("STRING", {"forceInput": True}),
                 "negative_strength": ("FLOAT", {"default": 1.2, "min": 0.0, "max": 10.0, "step": 0.01}),
@@ -437,7 +429,12 @@ class PrimereCLIP:
             }
         }
 
-    def clip_encode(self, clip, negative_strength, int_style_pos_strength, int_style_neg_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, int_style_pos, int_style_neg, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_int_style = False, is_sdxl = 0):
+    def clip_encode(self, clip, negative_strength, int_style_pos_strength, int_style_neg_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, int_style_pos, int_style_neg, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_int_style = False, model_version = "BaseModel_1024"):
+        is_sdxl = 0
+        match model_version:
+            case 'SDXL_2048':
+                is_sdxl = 1
+
         additional_positive = int_style_pos
         additional_negative = int_style_neg
         if int_style_pos == 'None' or use_int_style == False:
@@ -469,6 +466,9 @@ class PrimereCLIP:
         positive_text = f'{positive_prompt}, {opt_pos_prompt}, {style_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ").replace(":1.00", "")
         negative_text = f'{negative_prompt}, {opt_neg_prompt}, {style_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ").replace(":1.00", "")
 
+        if (model_version == 'BaseModel_1024'):
+            adv_encode = False
+
         if (adv_encode == True):
             if (is_sdxl == 0):
                 embeddings_final_pos, pooled_pos = advanced_encode(clip, positive_text, token_normalization, weight_interpretation, w_max = 1.0, apply_to_pooled = True)
@@ -477,7 +477,7 @@ class PrimereCLIP:
             else:
                 # embeddings_final_pos, pooled_pos = advanced_encode_XL(clip, sdxl_positive_l, positive_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = True)
                 # embeddings_final_neg, pooled_neg = advanced_encode_XL(clip, sdxl_negative_l, negative_text, token_normalization, weight_interpretation, w_max = 1.0, clip_balance = sdxl_balance_l, apply_to_pooled = True)
-                # return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]],[[embeddings_final_neg, {"pooled_output": pooled_neg}]],)
+                # return ([[embeddings_final_pos, {"pooled_output": pooled_pos}]],[[embeddings_final_neg, {"pooled_output": pooled_neg}]], positive_text, negative_text, sdxl_positive_l, sdxl_negative_l)
 
                 tokens_p = clip.tokenize(positive_text)
                 tokens_p["l"] = clip.tokenize(sdxl_positive_l)["l"]
@@ -540,16 +540,15 @@ class PrimereResolution:
                 "ratio": (list(namelist.keys()),),
                 "orientation": (["Horizontal", "Vertical"], {"default": "Horizontal"}),
                 "round_to_standard": ("BOOLEAN", {"default": False}),
-                "default_sd": (["SD 1.x", "SD 2.x"], {"default": "SD 1.x"}),
-                "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
+                "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
                 "calculate_by_custom": ("BOOLEAN", {"default": False}),
                 "custom_side_a": ("FLOAT", {"default": 1.6, "min": 1.0, "max": 100.0, "step": 0.1}),
                 "custom_side_b": ("FLOAT", {"default": 2.8, "min": 1.0, "max": 100.0, "step": 0.1}),
             },
         }
 
-    def calculate_imagesize(self, ratio: str, orientation: str, round_to_standard: bool, is_sdxl: int, default_sd: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
-        dimensions = utility.calculate_dimensions(self, ratio, orientation, round_to_standard, is_sdxl, default_sd, calculate_by_custom, custom_side_a, custom_side_b)
+    def calculate_imagesize(self, ratio: str, orientation: str, round_to_standard: bool, model_version: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
+        dimensions = utility.calculate_dimensions(self, ratio, orientation, round_to_standard, model_version, calculate_by_custom, custom_side_a, custom_side_b)
         dimension_x = dimensions[0]
         dimension_y = dimensions[1]
         return (dimension_x, dimension_y,)
@@ -582,7 +581,7 @@ class PrimereClearPrompt:
   def INPUT_TYPES(cls):
       return {
           "required": {
-              "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
+              "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
               "positive_prompt": ("STRING", {"forceInput": True}),
               "negative_prompt": ("STRING", {"forceInput": True}),
               "remove_only_if_sdxl": ("BOOLEAN", {"default": False}),
@@ -593,8 +592,13 @@ class PrimereClearPrompt:
           },
       }
 
-  def clean_prompt(self, positive_prompt, negative_prompt, remove_comfy_embedding, remove_a1111_embedding, remove_lora, remove_hypernetwork, remove_only_if_sdxl, is_sdxl = 0):
+  def clean_prompt(self, positive_prompt, negative_prompt, remove_comfy_embedding, remove_a1111_embedding, remove_lora, remove_hypernetwork, remove_only_if_sdxl, model_version = 'BaseModel_1024'):
       NETWORK_START = []
+
+      is_sdxl = 0
+      match model_version:
+          case 'SDXL_2048':
+              is_sdxl = 1
 
       if remove_only_if_sdxl == True and is_sdxl == 0:
           return (positive_prompt, negative_prompt,)

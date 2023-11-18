@@ -67,6 +67,7 @@ NODE_CLASS_MAPPINGS = {
 
     "PrimereMetaSave": Outputs.PrimereMetaSave,
     "PrimereAnyOutput": Outputs.PrimereAnyOutput,
+    "PrimereTextOutput": Outputs.PrimereTextOutput,
 
     "PrimereStylePile": Styles.PrimereStylePile,
 }
@@ -95,6 +96,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
     "PrimereMetaSave": "Primere Image Meta Saver",
     "PrimereAnyOutput": "Primere Any Debug",
+    "PrimereTextOutput": "Primere Text Ouput",
 
     "PrimereStylePile": "Primere Style Pile",
 }

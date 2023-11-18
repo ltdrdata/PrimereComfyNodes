@@ -25,17 +25,20 @@ def remove_quotes(string):
 def add_quotes(string):
     return '"' + str(string) + '"'
 
-def calculate_dimensions(self, ratio: str, orientation: str, round_to_standard: bool, is_sdxl: int, default_sd: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
+def calculate_dimensions(self, ratio: str, orientation: str, round_to_standard: bool, model_version: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
     SD_1 = 512
     SD_2 = 768
     SDXL_1 = 1024
-    DEFAULT_RES = SD_1
+    DEFAULT_RES = SD_2
 
-    if (default_sd == 'SD 2.x'):
-        DEFAULT_RES = SD_2
+    match model_version:
+        case 'BaseModel_768':
+            DEFAULT_RES = SD_1
+        case 'BaseModel_1024':
+            DEFAULT_RES = SD_2
+        case 'SDXL_2048':
+            DEFAULT_RES = SDXL_1
 
-    if (is_sdxl == 1):
-        DEFAULT_RES = SDXL_1
     def calculate(ratio_1: float, ratio_2: float, side: int):
         FullPixels = side ** 2
         result_x = FullPixels / ratio_2
@@ -208,3 +211,29 @@ def DynPromptDecoder(self, dyn_prompt, seed):
 
     prompt = all_prompts[0]
     return prompt
+
+def ModelObjectParser(modelobject):
+    for key in modelobject:
+        Suboject_1 = modelobject[key]
+        Suboject_2 = Suboject_1._modules
+        for key1 in Suboject_2:
+            sub_2_typename = type(Suboject_2[key1]).__name__
+            if sub_2_typename == 'SpatialTransformer':
+                VersionObject = Suboject_2[key1]._modules['transformer_blocks']._modules['0']._modules['attn2']._modules['to_k'].in_features
+
+                if VersionObject <= 768:
+                    VersionObject = 768
+                if 1024 >= VersionObject > 768:
+                    VersionObject = 1024
+                if VersionObject > 1024:
+                    VersionObject = 2048
+
+                return VersionObject
+def getCheckpointVersion(modelobject):
+    ckpt_type = type(modelobject.__dict__['model']).__name__
+    try:
+        ModelVersion = ModelObjectParser(modelobject.model._modules['diffusion_model']._modules['input_blocks']._modules)
+    except:
+        ModelVersion = 1024
+
+    return ckpt_type + '_' + str(ModelVersion)

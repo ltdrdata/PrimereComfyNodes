@@ -3,9 +3,9 @@ import { ComfyWidgets } from "/scripts/widgets.js";
 let hasShownAlertForUpdatingInt = false;
 
 app.registerExtension({
-    name: "Primere.PrimereAnyOutput",
+    name: "Primere.PrimereOutputs",
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
-        if (nodeData.name === "PrimereAnyOutput") {
+        if (nodeData.name === "PrimereAnyOutput" || nodeData.name === "PrimereTextOutput") {
             const onNodeCreated = nodeType.prototype.onNodeCreated;
             nodeType.prototype.onNodeCreated = function () {
                 onNodeCreated ? onNodeCreated.apply(this, []) : undefined;

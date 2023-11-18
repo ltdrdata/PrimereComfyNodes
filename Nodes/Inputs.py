@@ -63,7 +63,7 @@ class PrimereDoublePrompt:
         if len(orientation.strip()) < 1 or orientation.strip() == 'None':
             orientation = None
 
-        return (rawResult[0], rawResult[1], subpath, model, orientation)
+        return (rawResult[0].replace('\n', ' '), rawResult[1].replace('\n', ' '), subpath, model, orientation)
 
 class PrimereStyleLoader:
     RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING")
@@ -229,12 +229,12 @@ class PrimereVAESelector:
             "required": {
                 "vae_sd": ("VAE",),
                 "vae_sdxl": ("VAE",),
-                "is_sdxl": ("INT", {"default": 0, "forceInput": True}),
+                "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
             }
         }
 
-    def primere_vae_selector(self, vae_sd, vae_sdxl, is_sdxl = 0):
-        if int(round(is_sdxl)) == 1:
+    def primere_vae_selector(self, vae_sd, vae_sdxl, model_version = "BaseModel_1024"):
+        if model_version == 'SDXL_2048':
             return (vae_sdxl, )
         else:
             return (vae_sd, )
@@ -275,7 +275,6 @@ class PrimereMetaRead:
                 "use_steps": ("BOOLEAN", {"default": True}),
                 "use_exif_vae": ("BOOLEAN", {"default": True}),
                 "force_model_vae": ("BOOLEAN", {"default": False}),
-                "sdxl_path": ("STRING", {"default": "SDXL", "forceInput": True}),
                 "image": (sorted(files),),
             },
             "optional": {
@@ -286,6 +285,7 @@ class PrimereMetaRead:
                 "positive_r": ('STRING', {"forceInput": True, "default": ""}),
                 "negative_r": ('STRING', {"forceInput": True, "default": ""}),
                 "model_name": ('CHECKPOINT_NAME', {"forceInput": True, "default": ""}),
+                "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
                 "sampler_name": (comfy.samplers.KSampler.SAMPLERS, {"forceInput": True, "default": "euler"}),
                 "scheduler_name": (comfy.samplers.KSampler.SCHEDULERS, {"forceInput": True, "default": "normal"}),
                 "seed": ('INT', {"forceInput": True, "default": 1}),
@@ -301,9 +301,9 @@ class PrimereMetaRead:
             },
         }
 
-    def load_image_meta(self, sdxl_path, use_exif, use_decoded_dyn, use_model, model_hash_check, use_sampler, use_seed, use_size, recount_size, use_cfg_scale, use_steps, use_exif_vae, force_model_vae, image,
+    def load_image_meta(self, use_exif, use_decoded_dyn, use_model, model_hash_check, use_sampler, use_seed, use_size, recount_size, use_cfg_scale, use_steps, use_exif_vae, force_model_vae, image,
                         positive="", negative="", positive_l="", negative_l="", positive_r="", negative_r="",
-                        model_hash="", model_name="", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl="", is_lcm=0, prefered_model="", prefered_orientation=""):
+                        model_hash="", model_name="", model_version="BaseModel_1024", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl="", is_lcm=0, prefered_model="", prefered_orientation=""):
 
         data_json = {}
         data_json['positive'] = positive
@@ -321,25 +321,23 @@ class PrimereMetaRead:
         data_json['height'] = height
         data_json['cfg_scale'] = cfg_scale
         data_json['steps'] = steps
-        data_json['sdxl_path'] = sdxl_path
-        is_sdxl = 0
-        data_json['is_sdxl'] = is_sdxl
+        data_json['model_version'] = model_version
         data_json['is_lcm'] = is_lcm
         data_json['vae_name'] = vae_name_sd
         data_json['force_model_vae'] = force_model_vae
         data_json['prefered_model'] = prefered_model
         data_json['prefered_orientation'] = prefered_orientation
 
-        if sdxl_path:
-            if not sdxl_path.endswith(os.sep):
-                sdxl_path = sdxl_path + os.sep
-            if (model_name.startswith(sdxl_path) == True):
+        is_sdxl = 0
+        match model_version:
+            case 'SDXL_2048':
                 is_sdxl = 1
+        data_json['is_sdxl'] = is_sdxl
+
         if (is_sdxl == 1):
             data_json['vae_name'] = vae_name_sdxl
         else:
             data_json['vae_name'] = vae_name_sd
-        data_json['is_sdxl'] = is_sdxl
 
         if (data_json['vae_name'] == ""):
             data_json['vae_name'] = folder_paths.get_filename_list("vae")[0]
@@ -352,7 +350,8 @@ class PrimereMetaRead:
                 if (type(readerResult.parser).__name__ == 'dict'):
                     print('Reader tool return empty, using node input')
                     if (force_model_vae == True):
-                        realvae = self.chkp_loader.load_checkpoint(model_name)[2]
+                        LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(model_name)
+                        realvae = LOADED_CHECKPOINT[2]
                     else:
                         realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
 
@@ -376,7 +375,8 @@ class PrimereMetaRead:
                 if (readerResult.tool == ''):
                     print('Reader tool return empty, using node input')
                     if (force_model_vae == True):
-                        realvae = self.chkp_loader.load_checkpoint(model_name)[2]
+                        LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(model_name)
+                        realvae = LOADED_CHECKPOINT[2]
                     else:
                         realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
                     return (positive, negative, positive_l, negative_l, positive_r, negative_r, model_name, sampler_name, scheduler_name, seed, width, height, cfg_scale, steps, data_json['vae_name'], realvae, data_json)
@@ -399,15 +399,16 @@ class PrimereMetaRead:
                         else:
                             data_json['model_name'] = folder_paths.get_filename_list("checkpoints")[0]
 
-                    if sdxl_path:
-                        if not sdxl_path.endswith(os.sep):
-                            sdxl_path = sdxl_path + os.sep
-                        if (data_json['model_name'].startswith(sdxl_path) == True):
-                            is_sdxl = 1
-                        else:
-                            is_sdxl = 0
+                    if (data_json['model_name'] != model_name):
+                        is_sdxl = 0
+                        LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(data_json['model_name'])
+                        model_version = utility.getCheckpointVersion(LOADED_CHECKPOINT[0])
+                        data_json['model_version'] = model_version
+                        match model_version:
+                            case 'SDXL_2048':
+                                is_sdxl = 1
 
-                    data_json['is_sdxl'] = is_sdxl
+                        data_json['is_sdxl'] = is_sdxl
 
                     if use_sampler == True and data_json['is_lcm'] == 0 and (reader.parameter["cfg_scale"] >= 3 and reader.parameter["steps"] >= 9):
                         if 'sampler' in reader.parameter:
@@ -462,7 +463,7 @@ class PrimereMetaRead:
 
                             image_sides = sorted([data_json['width'], data_json['height']])
                             custom_side_b = round((image_sides[1] / image_sides[0]), 4)
-                            dimensions = utility.calculate_dimensions(self, "Square [1:1]", orientation, 1, is_sdxl, 'SD 2.x', True, 1, custom_side_b)
+                            dimensions = utility.calculate_dimensions(self, "Square [1:1]", orientation, 1, model_version, True, 1, custom_side_b)
                             data_json['width'] = dimensions[0]
                             data_json['height'] = dimensions[1]
 
@@ -494,20 +495,39 @@ class PrimereMetaRead:
 
         else:
             print('Exif reader off')
+            if prefered_model is not None and len(prefered_model.strip()) > 0:
+                data_json['model_name'] = exif_data_checker.check_model_from_exif("no_hash_data", prefered_model, prefered_model, False)
+
+                is_sdxl = 0
+                LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(data_json['model_name'])
+                model_version = utility.getCheckpointVersion(LOADED_CHECKPOINT[0])
+                data_json['model_version'] = model_version
+                match model_version:
+                    case 'SDXL_2048':
+                        is_sdxl = 1
+                data_json['is_sdxl'] = is_sdxl
+
             if (force_model_vae == True):
                 realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
             else:
+                if (is_sdxl == 1):
+                    data_json['vae_name'] = vae_name_sdxl
+                else:
+                    data_json['vae_name'] = vae_name_sd
                 realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
 
             data_json['dynamic_positive'] = utility.DynPromptDecoder(self, data_json['positive'], seed)
             data_json['dynamic_negative'] = utility.DynPromptDecoder(self, data_json['negative'], seed)
 
-            if prefered_model is not None and len(prefered_model.strip()) > 0:
-                data_json['model_name'] = exif_data_checker.check_model_from_exif("no_hash_data", prefered_model, prefered_model, False)
-
             if prefered_orientation is not None and len(prefered_orientation.strip()) > 0:
-                width = data_json['width']
-                height = data_json['height']
+                image_sides = sorted([data_json['width'], data_json['height']])
+                custom_side_b = round((image_sides[1] / image_sides[0]), 4)
+                dimensions = utility.calculate_dimensions(self, "Square [1:1]", prefered_orientation, 1, model_version, True, 1, custom_side_b)
+                data_json['width'] = dimensions[0]
+                data_json['height'] = dimensions[1]
+
+                width = dimensions[0]
+                height = dimensions[1]
                 if prefered_orientation == 'Vertical' and (data_json['width'] > data_json['height']):
                     data_json['width'] = height
                     data_json['height'] = width
