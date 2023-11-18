@@ -1,6 +1,6 @@
 {
-  "last_node_id": 154,
-  "last_link_id": 482,
+  "last_node_id": 161,
+  "last_link_id": 509,
   "nodes": [
     {
       "id": 93,
@@ -202,7 +202,7 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Product design",
+        "SFW Luxury model",
         true,
         false,
         true
@@ -784,17 +784,17 @@
       "widgets_values": [
         "None",
         1,
-        "Oversaturated",
+        "None",
         1.2,
-        "Romantic",
+        "None",
         0.6,
-        "Ultrarealistic",
+        "None",
         0.6,
         "None",
         0.7000000000000001,
         "None",
         1,
-        "Photorealism",
+        "None",
         0.5,
         "",
         ""
@@ -841,7 +841,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "Design\\productDesign_minimalism.safetensors"
+        "SDXL\\HEPHAISTOSSD10XL.safetensors"
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
@@ -929,6 +929,40 @@
       "bgcolor": "#0000a0"
     },
     {
+      "id": 161,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        2366,
+        -253
+      ],
+      "size": [
+        390.17881182205565,
+        58
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            490
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "SwinIR\\SwinIR-M_x8.pth"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
       "id": 137,
       "type": "PrimerePromptSwitch",
       "pos": [
@@ -940,7 +974,7 @@
         "1": 1260.299072265625
       },
       "flags": {},
-      "order": 16,
+      "order": 17,
       "mode": 0,
       "inputs": [
         {
@@ -1203,7 +1237,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        1
+        6
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
@@ -1220,7 +1254,7 @@
         "1": 246
       },
       "flags": {},
-      "order": 17,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -1257,7 +1291,7 @@
       },
       "widgets_values": [
         "HD+ screen [16:10]",
-        "Horizontal",
+        "Vertical",
         true,
         "BaseModel_1024",
         false,
@@ -1271,15 +1305,15 @@
       "id": 91,
       "type": "PrimereLCMSelector",
       "pos": [
-        1226.8301339958805,
-        -233.11000940961085
+        1228,
+        -231
       ],
       "size": {
         "0": 643.9768676757812,
         "1": 205.3205108642578
       },
       "flags": {},
-      "order": 18,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -1423,7 +1457,7 @@
         "1": 303.8117370605469
       },
       "flags": {},
-      "order": 19,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -1437,7 +1471,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "{futuristic|retro|modern|minimalist|simple|difficult} product design, (__200Wildcards/color__ product:1.2), ({glass|metal|platina|iron|plastic|wooden} material:1.3), {coffee machine|teakettle|watch|matchbox car|truck model|vehicle model|spaceship model|indoor furniture|kitchen furniture|computer case|radio|hi-fi speaker|bluetooth speaker|studio headphone|vacuum cleaner|washing machine|desk|phone|wardrobe|cabinet|cup|helmet|lens|eyeglasses|photo camera|lamp|hi-fi radio|computer mouse|storage vessel|scissor|hi-fi tower|record player|old tape-recorder|display of weather forecast station}, {large|small|painted|colorful} {touchscreen|buttons|old lcd display|mechanical} controls, professional product photography"
+        "((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the {luxury|retro|old|abandoned|futuristic} beauty saloon:1.2, {angry|friendly|natural|quiet} mood), {large|middle sized|small} fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, {frightened|lovely|erotic|flirting|satisfied|quiet} mood, trying to make the beast look better with {makeup|hairdresser|barber} tools. The woman has {makeup|hairdresser|cosmetician|barber}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -1454,7 +1488,7 @@
         "1": 175.44808959960938
       },
       "flags": {},
-      "order": 20,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -1468,7 +1502,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        ""
+        "watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -1485,7 +1519,7 @@
         "1": 1212.3076171875
       },
       "flags": {},
-      "order": 21,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -1696,7 +1730,8 @@
           "name": "SAMPLER_NAME",
           "type": "COMBO",
           "links": [
-            457
+            457,
+            506
           ],
           "shape": 3,
           "slot_index": 7
@@ -1705,7 +1740,8 @@
           "name": "SCHEDULER_NAME",
           "type": "COMBO",
           "links": [
-            458
+            458,
+            507
           ],
           "shape": 3,
           "slot_index": 8
@@ -1717,7 +1753,8 @@
             427,
             446,
             447,
-            456
+            456,
+            496
           ],
           "shape": 3,
           "slot_index": 9
@@ -1728,7 +1765,8 @@
           "links": [
             425,
             450,
-            478
+            478,
+            497
           ],
           "shape": 3,
           "slot_index": 10
@@ -1739,7 +1777,8 @@
           "links": [
             426,
             451,
-            479
+            479,
+            498
           ],
           "shape": 3,
           "slot_index": 11
@@ -1748,7 +1787,8 @@
           "name": "CFG",
           "type": "FLOAT",
           "links": [
-            455
+            455,
+            508
           ],
           "shape": 3,
           "slot_index": 12
@@ -1757,7 +1797,8 @@
           "name": "STEPS",
           "type": "INT",
           "links": [
-            454
+            454,
+            509
           ],
           "shape": 3,
           "slot_index": 13
@@ -1772,7 +1813,9 @@
           "name": "VAE",
           "type": "VAE",
           "links": [
-            434
+            434,
+            484,
+            493
           ],
           "shape": 3,
           "slot_index": 15
@@ -1794,11 +1837,11 @@
       "widgets_values": [
         false,
         false,
-        false,
+        true,
         false,
         true,
         false,
-        false,
+        true,
         false,
         true,
         true,
@@ -1815,7 +1858,7 @@
         "BaseModel_1024",
         "euler",
         "normal",
-        526,
+        682,
         "randomize",
         65,
         895,
@@ -1840,7 +1883,7 @@
         "1": 142
       },
       "flags": {},
-      "order": 22,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -1862,7 +1905,8 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            430
+            430,
+            492
           ],
           "shape": 3,
           "slot_index": 0
@@ -1920,7 +1964,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 23,
+      "order": 24,
       "mode": 0,
       "inputs": [
         {
@@ -1956,7 +2000,7 @@
       },
       "widgets_values": [
         "",
-        -854440757453652,
+        336369735284907,
         "randomize"
       ],
       "color": "#232",
@@ -1974,7 +2018,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 24,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -2010,7 +2054,7 @@
       },
       "widgets_values": [
         "",
-        764213161717446,
+        -781799190718999,
         "randomize"
       ],
       "color": "#322",
@@ -2028,7 +2072,7 @@
         "1": 1037.8740234375
       },
       "flags": {},
-      "order": 25,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -2042,7 +2086,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "{\n    \"positive\": \"{futuristic|retro|modern|minimalist|simple|difficult} product design, (__200Wildcards/color__ product:1.2), ({glass|metal|platina|iron|plastic|wooden} material:1.3), {coffee machine|teakettle|watch|matchbox car|truck model|vehicle model|spaceship model|indoor furniture|kitchen furniture|computer case|radio|hi-fi speaker|bluetooth speaker|studio headphone|vacuum cleaner|washing machine|desk|phone|wardrobe|cabinet|cup|helmet|lens|eyeglasses|photo camera|lamp|hi-fi radio|computer mouse|storage vessel|scissor|hi-fi tower|record player|old tape-recorder|display of weather forecast station}, {large|small|painted|colorful} {touchscreen|buttons|old lcd display|mechanical} controls, professional product photography\",\n    \"negative\": \"\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"Design\\\\productDesign_minimalism.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 673360084218046,\n    \"width\": 640,\n    \"height\": 410,\n    \"cfg_scale\": 8.2,\n    \"steps\": 25,\n    \"model_version\": \"BaseModel_768\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\",\n    \"force_model_vae\": false,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"is_sdxl\": 0,\n    \"dynamic_positive\": \"difficult product design, (Steel Gray product:1.2), (plastic material:1.3), wardrobe, large buttons controls, professional product photography\",\n    \"dynamic_negative\": \"\"\n}"
+        "{\n    \"positive\": \"((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the {luxury|retro|old|abandoned|futuristic} beauty saloon:1.2, {angry|friendly|natural|quiet} mood), {large|middle sized|small} fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, {frightened|lovely|erotic|flirting|satisfied|quiet} mood, trying to make the beast look better with {makeup|hairdresser|barber} tools. The woman has {makeup|hairdresser|cosmetician|barber}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)\",\n    \"negative\": \"watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"SDXL\\\\nightvisionXLPhotorealistic.safetensors\",\n    \"sampler_name\": \"lcm\",\n    \"scheduler_name\": \"sgm_uniform\",\n    \"seed\": 728013727340437,\n    \"width\": 1260,\n    \"height\": 832,\n    \"cfg_scale\": 1.18,\n    \"steps\": 8,\n    \"model_version\": \"SDXL_2048\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"sdxl_vae.safetensors\",\n    \"force_model_vae\": false,\n    \"prefered_model\": \"SDXL\\\\nightvisionXLPhotorealistic.safetensors\",\n    \"prefered_orientation\": \"Horizontal\",\n    \"is_sdxl\": 1,\n    \"dynamic_positive\": \"((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the futuristic beauty saloon:1.2, natural mood), small fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female cosmetician is working on it, satisfied mood, trying to make the beast look better with hairdresser tools. The woman has barber-tools in her hands to apply to the face of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)\",\n    \"dynamic_negative\": \"watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)\"\n}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -2059,7 +2103,7 @@
         "1": 382
       },
       "flags": {},
-      "order": 26,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -2129,7 +2173,7 @@
         1.2,
         0.9,
         1.25,
-        774122552869709,
+        -184234536424146,
         "randomize",
         true,
         "cpu"
@@ -2144,12 +2188,12 @@
         903,
         -234
       ],
-      "size": [
-        313.2674255371094,
-        128.031982421875
-      ],
+      "size": {
+        "0": 313.2674255371094,
+        "1": 128.031982421875
+      },
       "flags": {},
-      "order": 27,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
@@ -2182,17 +2226,28 @@
           "name": "WIDTH",
           "type": "INT",
           "links": [
-            481
+            485
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 0
         },
         {
           "name": "HEIGHT",
           "type": "INT",
           "links": [
-            482
+            486
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "UPSCALE RATIO",
+          "type": "FLOAT",
+          "links": [
+            499
+          ],
+          "shape": 3,
+          "slot_index": 2
         }
       ],
       "properties": {
@@ -2220,7 +2275,7 @@
         "1": 209.13002014160156
       },
       "flags": {},
-      "order": 28,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -2296,7 +2351,7 @@
         "1": 273
       },
       "flags": {},
-      "order": 29,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -2312,64 +2367,6 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 153,
-      "type": "PrimereAnyOutput",
-      "pos": [
-        1423,
-        -851
-      ],
-      "size": {
-        "0": 210,
-        "1": 75.9999771118164
-      },
-      "flags": {},
-      "order": 30,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "input",
-          "type": "*",
-          "link": 481,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereAnyOutput"
-      },
-      "widgets_values": [
-        "3840"
-      ]
-    },
-    {
-      "id": 154,
-      "type": "PrimereAnyOutput",
-      "pos": [
-        1420,
-        -711
-      ],
-      "size": {
-        "0": 210,
-        "1": 76
-      },
-      "flags": {},
-      "order": 31,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "input",
-          "type": "*",
-          "link": 482,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereAnyOutput"
-      },
-      "widgets_values": [
-        "2460"
-      ]
-    },
-    {
       "id": 107,
       "type": "PrimereEmbeddingHandler",
       "pos": [
@@ -2381,7 +2378,7 @@
         "1": 54
       },
       "flags": {},
-      "order": 32,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
@@ -2438,11 +2435,11 @@
         90
       ],
       "size": {
-        "0": 414.5000915527344,
-        "1": 614
+        "0": 356.6593933105469,
+        "1": 693.26953125
       },
       "flags": {},
-      "order": 33,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -2545,7 +2542,8 @@
           "name": "COND+",
           "type": "CONDITIONING",
           "links": [
-            435
+            435,
+            494
           ],
           "shape": 3,
           "slot_index": 0
@@ -2554,7 +2552,8 @@
           "name": "COND-",
           "type": "CONDITIONING",
           "links": [
-            436
+            436,
+            495
           ],
           "shape": 3,
           "slot_index": 1
@@ -2605,9 +2604,9 @@
         "",
         1.2,
         true,
-        "PHOTO",
+        "None",
         0.8,
-        "BETTER_IMAGES",
+        "SHORT",
         1.2,
         true,
         "mean",
@@ -2634,15 +2633,15 @@
       "id": 102,
       "type": "KSampler",
       "pos": [
-        3156,
-        173
+        3093,
+        170
       ],
       "size": {
-        "0": 307.6449279785156,
+        "0": 372.2841796875,
         "1": 218
       },
       "flags": {},
-      "order": 34,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
@@ -2726,7 +2725,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        986905783142328,
+        371986128645182,
         "randomize",
         20,
         8,
@@ -2749,7 +2748,7 @@
         "1": 241.82644653320312
       },
       "flags": {},
-      "order": 35,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
@@ -2763,7 +2762,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "difficult product design, (Steel Gray product:1.2), (plastic material:1.3), wardrobe, large buttons controls, professional product photography, ((Oversaturated:1.20), (Romantic:0.60), (Ultrarealistic:0.60), (Photorealism:0.50):1.25), (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:0.80)"
+        "((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the futuristic beauty saloon:1.2, natural mood), small fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female cosmetician is working on it, satisfied mood, trying to make the beast look better with hairdresser tools. The woman has barber-tools in her hands to apply to the face of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -2780,7 +2779,7 @@
         "1": 237.03305053710938
       },
       "flags": {},
-      "order": 36,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
@@ -2794,7 +2793,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(Amputee, Autograph, Bad anatomy, Bad illustration, Bad proportions, Beyond the borders, Blank background, Blurry, Body out of frame, Boring background, Branding, Cropped, Cut off, Deformed, Disfigured, Dismembered, Disproportioned, Distorted, Draft, Duplicate, Duplicated features, Extra arms, Extra fingers, Extra hands, Extra legs, Extra limbs, Fault, Flaw, Fused fingers, Grains, Grainy, Gross proportions, Hazy, Identifying mark, Improper scale, Incorrect physiology, Incorrect ratio, Indistinct, Kitsch, Logo, Long neck, Low quality, Low resolution, Macabre, Malformed, Mark, Misshapen, Missing arms, Missing fingers, Missing hands, Missing legs, Mistake, Morbid, Mutated hands, Mutation, Mutilated, Off-screen, Out of frame, Outside the picture, Pixelated, Poorly drawn face, Poorly drawn feet, Poorly drawn hands, Printed words, Render, Repellent, Replicate, Reproduce, Revolting dimensions, Script, Shortened, Sign, Signature, Split image, Squint, Storyboard, Text, Tiling, Trimmed, Ugly, Unfocused, Unattractive, Unnatural pose, Unreal engine, Unsightly, Watermark, Written language:1.20)"
+        "(watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps):1.20), (worst quality, low quality, lowres, low res, bad anatomy, bad hands, missing hands, missing fingers, cropped, blurry, heavily cropped, watermark, text:1.20)"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -2811,7 +2810,7 @@
         "1": 236.41322326660156
       },
       "flags": {},
-      "order": 37,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
@@ -2825,7 +2824,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        ""
+        "(((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the futuristic beauty saloon:1.2, natural mood), small fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female cosmetician is working on it, satisfied mood, trying to make the beast look better with hairdresser tools. The woman has barber-tools in her hands to apply to the face of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3))"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -2842,7 +2841,7 @@
         "1": 211.87461853027344
       },
       "flags": {},
-      "order": 38,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
@@ -2856,7 +2855,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        ""
+        "((watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps):1.20))"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -2865,15 +2864,15 @@
       "id": 103,
       "type": "VAEDecode",
       "pos": [
-        3154,
+        3091,
         90
       ],
       "size": {
-        "0": 309,
+        "0": 372.4214172363281,
         "1": 46
       },
       "flags": {},
-      "order": 39,
+      "order": 38,
       "mode": 0,
       "inputs": [
         {
@@ -2893,8 +2892,9 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            340,
-            472
+            483,
+            489,
+            491
           ],
           "shape": 3,
           "slot_index": 0
@@ -2907,15 +2907,95 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 19,
+      "id": 155,
+      "type": "ttN hiresfixScale",
+      "pos": [
+        2365,
+        -552
+      ],
+      "size": [
+        392.83170438403886,
+        262
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 483
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 484
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 485,
+          "widget": {
+            "name": "width"
+          }
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 486,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "infoWidgetHidden": true,
+        "Node name for S&R": "ttN hiresfixScale",
+        "ttNnodeVersion": "1.0.3"
+      },
+      "widgets_values": [
+        "SwinIR\\SwinIR-M_x8.pth",
+        "Rescale based on model upscale image size ⬇",
+        true,
+        "bicubic",
+        "to Width/Height",
+        50,
+        1024,
+        1024,
+        1024,
+        "disabled",
+        "Hide",
+        "ComfyUI",
+        false
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 157,
       "type": "PreviewImage",
       "pos": [
-        3492,
-        43
+        3094,
+        424
       ],
       "size": {
-        "0": 1737.1102294921875,
-        "1": 1827.3470458984375
+        "0": 372.5260009765625,
+        "1": 359.26953125
       },
       "flags": {},
       "order": 40,
@@ -2924,14 +3004,167 @@
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 340
+          "link": 489
         }
       ],
       "properties": {
         "Node name for S&R": "PreviewImage"
       },
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
+      "color": "#6c0000",
+      "bgcolor": "#800000"
+    },
+    {
+      "id": 156,
+      "type": "UltimateSDUpscale",
+      "pos": [
+        2767,
+        -551
+      ],
+      "size": [
+        298.5743103027344,
+        554
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 491
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 492
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 494
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 495
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 493
+        },
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 490
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 496,
+          "widget": {
+            "name": "seed"
+          }
+        },
+        {
+          "name": "tile_width",
+          "type": "INT",
+          "link": 497,
+          "widget": {
+            "name": "tile_width"
+          }
+        },
+        {
+          "name": "tile_height",
+          "type": "INT",
+          "link": 498,
+          "widget": {
+            "name": "tile_height"
+          }
+        },
+        {
+          "name": "upscale_by",
+          "type": "FLOAT",
+          "link": 499,
+          "widget": {
+            "name": "upscale_by"
+          }
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "link": 506,
+          "widget": {
+            "name": "sampler_name"
+          },
+          "slot_index": 10
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "link": 507,
+          "widget": {
+            "name": "scheduler"
+          },
+          "slot_index": 11
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": 509,
+          "widget": {
+            "name": "steps"
+          },
+          "slot_index": 12
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": 508,
+          "widget": {
+            "name": "cfg"
+          },
+          "slot_index": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            500,
+            501
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltimateSDUpscale"
+      },
+      "widgets_values": [
+        2.1,
+        600257106488014,
+        "randomize",
+        7,
+        6.5,
+        "dpmpp_sde",
+        "karras",
+        0.9500000000000001,
+        "None",
+        512,
+        512,
+        0,
+        0,
+        "None",
+        1,
+        64,
+        8,
+        16,
+        "enable"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     },
     {
       "id": 149,
@@ -2945,13 +3178,13 @@
         "1": 506
       },
       "flags": {},
-      "order": 41,
+      "order": 42,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 472
+          "link": 500
         },
         {
           "name": "image_metadata",
@@ -3005,6 +3238,33 @@
       "bgcolor": "#0000ff"
     },
     {
+      "id": 19,
+      "type": "PreviewImage",
+      "pos": [
+        3492,
+        43
+      ],
+      "size": {
+        "0": 1737.1102294921875,
+        "1": 1827.3470458984375
+      },
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 501
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
       "id": 148,
       "type": "PrimereTextOutput",
       "pos": [
@@ -3016,7 +3276,7 @@
         "1": 535.5193481445312
       },
       "flags": {},
-      "order": 42,
+      "order": 44,
       "mode": 0,
       "inputs": [
         {
@@ -3034,7 +3294,7 @@
       },
       "widgets_values": [
         "",
-        ":: Time to save: 2023-11-18 21:33:00\n:: Output file: z:\\AIPICS\\Comfy\\PRODUCTDESIGN_MINIMALISM\\Design\\2023-11-Week-46\\Image_20231811_213300_673360084218046_640x410_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: {futuristic|retro|modern|minimalist|simple|difficult} product design, (__200Wildcards/color__ product:1.2), ({glass|metal|platina|iron|plastic|wooden} material:1.3), {coffee machine|teakettle|watch|matchbox car|truck model|vehicle model|spaceship model|indoor furniture|kitchen furniture|computer case|radio|hi-fi speaker|bluetooth speaker|studio headphone|vacuum cleaner|washing machine|desk|phone|wardrobe|cabinet|cup|helmet|lens|eyeglasses|photo camera|lamp|hi-fi radio|computer mouse|storage vessel|scissor|hi-fi tower|record player|old tape-recorder|display of weather forecast station}, {large|small|painted|colorful} {touchscreen|buttons|old lcd display|mechanical} controls, professional product photography\n:: MODEL_NAME: Design\\productDesign_minimalism.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 673360084218046\n:: WIDTH: 640\n:: HEIGHT: 410\n:: CFG_SCALE: 8.2\n:: STEPS: 25\n:: MODEL_VERSION: BaseModel_768\n:: IS_LCM: 0\n:: VAE_NAME: vae-ft-mse-840000-ema-pruned.ckpt\n:: FORCE_MODEL_VAE: False\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: None\n:: IS_SDXL: 0\n:: DYNAMIC_POSITIVE: difficult product design, (Steel Gray product:1.2), (plastic material:1.3), wardrobe, large buttons controls, professional product photography\n:: SAVED_IMAGE_WIDTH: 640\n:: SAVED_IMAGE_HEIGTH: 408\n:: UPSCALER_RATIO: 1.0\n"
+        ":: Time to save: 2023-11-18 22:53:05\n:: Output file: z:\\AIPICS\\Comfy\\NIGHTVISIONXLPHOTOREALISTIC\\Testprompt_3\\2023-11-Week-46\\Image_20231811_225305_746584290330154_3768x2496_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: ((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the {luxury|retro|old|abandoned|futuristic} beauty saloon:1.2, {angry|friendly|natural|quiet} mood), {large|middle sized|small} fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, {frightened|lovely|erotic|flirting|satisfied|quiet} mood, trying to make the beast look better with {makeup|hairdresser|barber} tools. The woman has {makeup|hairdresser|cosmetician|barber}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)\n:: NEGATIVE: watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)\n:: MODEL_NAME: SDXL\\nightvisionXLPhotorealistic.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 746584290330154\n:: WIDTH: 1260\n:: HEIGHT: 832\n:: CFG_SCALE: 8.2\n:: STEPS: 25\n:: MODEL_VERSION: SDXL_2048\n:: IS_LCM: 0\n:: VAE_NAME: sdxl_vae.safetensors\n:: FORCE_MODEL_VAE: False\n:: PREFERED_MODEL: SDXL\\nightvisionXLPhotorealistic.safetensors\n:: PREFERED_ORIENTATION: Horizontal\n:: IS_SDXL: 1\n:: DYNAMIC_POSITIVE: ((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the retro beauty saloon:1.2, quiet mood), large fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female hair dresser is working on it, satisfied mood, trying to make the beast look better with barber tools. The woman has cosmetician-tools in her hands to apply to the face of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)\n:: DYNAMIC_NEGATIVE: watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)\n:: SAVED_IMAGE_WIDTH: 3768\n:: SAVED_IMAGE_HEIGTH: 2496\n:: UPSCALER_RATIO: 2.99\n"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -3104,14 +3364,6 @@
       103,
       0,
       "LATENT"
-    ],
-    [
-      340,
-      103,
-      0,
-      19,
-      0,
-      "IMAGE"
     ],
     [
       346,
@@ -3858,14 +4110,6 @@
       "STRING"
     ],
     [
-      472,
-      103,
-      0,
-      149,
-      0,
-      "IMAGE"
-    ],
-    [
       473,
       137,
       2,
@@ -3914,20 +4158,172 @@
       "STRING"
     ],
     [
-      481,
-      151,
+      483,
+      103,
       0,
-      153,
+      155,
       0,
-      "*"
+      "IMAGE"
     ],
     [
-      482,
+      484,
+      145,
+      15,
+      155,
+      1,
+      "VAE"
+    ],
+    [
+      485,
+      151,
+      0,
+      155,
+      2,
+      "INT"
+    ],
+    [
+      486,
       151,
       1,
-      154,
+      155,
+      3,
+      "INT"
+    ],
+    [
+      489,
+      103,
       0,
-      "*"
+      157,
+      0,
+      "IMAGE"
+    ],
+    [
+      490,
+      161,
+      0,
+      156,
+      5,
+      "UPSCALE_MODEL"
+    ],
+    [
+      491,
+      103,
+      0,
+      156,
+      0,
+      "IMAGE"
+    ],
+    [
+      492,
+      147,
+      0,
+      156,
+      1,
+      "MODEL"
+    ],
+    [
+      493,
+      145,
+      15,
+      156,
+      4,
+      "VAE"
+    ],
+    [
+      494,
+      144,
+      0,
+      156,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      495,
+      144,
+      1,
+      156,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      496,
+      145,
+      9,
+      156,
+      6,
+      "INT"
+    ],
+    [
+      497,
+      145,
+      10,
+      156,
+      7,
+      "INT"
+    ],
+    [
+      498,
+      145,
+      11,
+      156,
+      8,
+      "INT"
+    ],
+    [
+      499,
+      151,
+      2,
+      156,
+      9,
+      "FLOAT"
+    ],
+    [
+      500,
+      156,
+      0,
+      149,
+      0,
+      "IMAGE"
+    ],
+    [
+      501,
+      156,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      506,
+      145,
+      7,
+      156,
+      10,
+      "COMBO"
+    ],
+    [
+      507,
+      145,
+      8,
+      156,
+      11,
+      "COMBO"
+    ],
+    [
+      508,
+      145,
+      12,
+      156,
+      13,
+      "FLOAT"
+    ],
+    [
+      509,
+      145,
+      13,
+      156,
+      12,
+      "INT"
     ]
   ],
   "groups": [

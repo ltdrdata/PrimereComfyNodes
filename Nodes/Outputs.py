@@ -76,6 +76,10 @@ class PrimereMetaSave:
         filename_prefix = tokens.parseTokens(filename_prefix)
         nowdate = datetime.datetime.now()
 
+        image_metadata['saved_image_width'] = images[0].shape[1]
+        image_metadata['saved_image_heigth'] = images[0].shape[0]
+        image_metadata['upscaler_ratio'] = round(image_metadata['saved_image_width'] / image_metadata['width'], 2)
+
         if add_date_to_filename:
             filename_prefix = filename_prefix + '_' + nowdate.strftime("%Y%d%m")
         if add_time_to_filename:
@@ -85,7 +89,7 @@ class PrimereMetaSave:
                 filename_prefix = filename_prefix + '_' + str(image_metadata['seed'])
         if add_size_to_filename:
             if 'width' in image_metadata:
-                filename_prefix = filename_prefix + '_' + str(image_metadata['width']) + 'x' + str(image_metadata['height'])
+                filename_prefix = filename_prefix + '_' + str(image_metadata['saved_image_width']) + 'x' + str(image_metadata['saved_image_heigth'])
 
         if output_path in [None, '', "none", "."]:
             output_path = self.output_dir
@@ -197,37 +201,37 @@ Steps: {str(image_metadata['steps'])}, Sampler: {image_metadata['sampler_name'] 
             if overwrite_mode == 'false':
                 counter += 1
 
-        filtered_paths = []
+            filtered_paths = []
 
-        if filtered_paths:
-            for image_path in filtered_paths:
-                subfolder = self.get_subfolder_path(image_path, self.output_dir)
-                image_data = {
-                    "filename": os.path.basename(image_path),
-                    "subfolder": subfolder,
-                    "type": self.type
-                }
-                results.append(image_data)
+            if filtered_paths:
+                for image_path in filtered_paths:
+                    subfolder = self.get_subfolder_path(image_path, self.output_dir)
+                    image_data = {
+                        "filename": os.path.basename(image_path),
+                        "subfolder": subfolder,
+                        "type": self.type
+                    }
+                    results.append(image_data)
 
-        metastring = ""
-        if image_metadata is not None:
-            for key, val in image_metadata.items():
-                if len(str(val).strip( '"')) > 0:
-                    metastring = metastring + ':: ' + key.upper() + ': ' + str(val).strip( '"') + '\n'
+            metastring = ""
+            if image_metadata is not None:
+                for key, val in image_metadata.items():
+                    if len(str(val).strip( '"')) > 0:
+                        metastring = metastring + ':: ' + key.upper() + ': ' + str(val).strip( '"') + '\n'
 
-        saved_info = f""":: Time to save: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+            saved_info = f""":: Time to save: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 :: Output file: {output_file}
 
 :: PROCESS INFO ::
 ------------------
 {metastring}"""
 
-        if save_info_to_txt:
-            infofile = os.path.splitext(output_file)[0] + '.txt'
-            with open(infofile, 'w', encoding='utf-8', newline="") as infofile:
-                infofile.write(saved_info)
+            if save_info_to_txt:
+                infofile = os.path.splitext(output_file)[0] + '.txt'
+                with open(infofile, 'w', encoding='utf-8', newline="") as infofile:
+                    infofile.write(saved_info)
 
-        return saved_info, {"ui": {"images": []}}
+            return saved_info, {"ui": {"images": []}}
 
     def get_subfolder_path(self, image_path, output_path):
         output_parts = output_path.strip(os.sep).split(os.sep)

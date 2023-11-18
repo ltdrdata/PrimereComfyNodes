@@ -57,6 +57,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereStepsCfg": Dashboard.PrimereStepsCfg,
     "PrimereClearPrompt": Dashboard.PrimereClearPrompt,
     "PrimereLCMSelector": Dashboard.PrimereLCMSelector,
+    "PrimereResolutionMultiplier": Dashboard.PrimereResolutionMultiplier,
 
     "PrimerePrompt": Inputs.PrimereDoublePrompt,
     "PrimereStyleLoader": Inputs.PrimereStyleLoader,
@@ -86,6 +87,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereStepsCfg": "Primere Steps & Cfg",
     "PrimereClearPrompt": "Primere Prompt Cleaner",
     "PrimereLCMSelector": "Primere LCM selector",
+    "PrimereResolutionMultiplier": "Primere Resolution Multiplier",
 
     "PrimerePrompt": "Primere Prompt",
     "PrimereStyleLoader": "Primere Styles",

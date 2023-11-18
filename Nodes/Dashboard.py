@@ -553,6 +553,41 @@ class PrimereResolution:
         dimension_y = dimensions[1]
         return (dimension_x, dimension_y,)
 
+class PrimereResolutionMultiplier:
+    RETURN_TYPES = ("INT", "INT", "FLOAT")
+    RETURN_NAMES = ("WIDTH", "HEIGHT", "UPSCALE RATIO")
+    FUNCTION = "multiply_imagesize"
+    CATEGORY = TREE_DASHBOARD
+
+    @ classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "width": ('INT', {"forceInput": True, "default": 512}),
+                "height": ('INT', {"forceInput": True, "default": 512}),
+                "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
+                "multiply_sd": ("FLOAT", {"default": 2.0, "min": 0.1, "max": 8.0, "step": 0.1}),
+                "multiply_sdxl": ("FLOAT", {"default": 2.0, "min": 0.1, "max": 8.0, "step": 0.1}),
+            },
+        }
+
+    def multiply_imagesize(self, width: int, height: int, multiply_sd: float, multiply_sdxl: float, model_version: str):
+        is_sdxl = 0
+        match model_version:
+            case 'SDXL_2048':
+                is_sdxl = 1
+
+        if (is_sdxl == 1):
+            dimension_x = round(width * multiply_sdxl)
+            dimension_y = round(height * multiply_sdxl)
+            ratio = round(multiply_sdxl, 2)
+        else:
+            dimension_x = round(width * multiply_sd)
+            dimension_y = round(height * multiply_sd)
+            ratio = round(multiply_sd, 2)
+
+        return (dimension_x, dimension_y, ratio)
+
 class PrimereStepsCfg:
   RETURN_TYPES = ("INT", "FLOAT")
   RETURN_NAMES = ("STEPS", "CFG")
