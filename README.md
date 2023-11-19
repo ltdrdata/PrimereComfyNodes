@@ -99,6 +99,9 @@ This node generate 'empty' latent image, but with several noise settings. You ca
 - Use 'round_to_standard' switch if you want to modify the exactly calculated size by the 'officially' recommended SD / SDXL values.
 - The ratios of this node stored in external file at 'Toml/resolution_ratios.toml', what you can edit if you need changes.
 
+### Primere Resolution Multiplier:
+Multiply the base image size for upscaling. Important to use 'model_version' if you want to use several multiplier for SD and SDXL models.
+
 ### Primere Steps & Cfg:
 Use this separated node for sampler. If you use LCM mode, you need 2 of this node. See and test the attached example node.
 
@@ -119,4 +122,4 @@ Use this node to display 'any' output values of several nodes, like prompts or m
 Style collection for generated images. Set and connect this node to the 'Prompt Encoder'. No forget to set and play with style strenght. The source of this node is external file at 'Toml/stylepile.toml', what you can edit if you need changes.
 
 ### Contact:
-Sorry, but contact info later. Use 'git pull' to refrest this node pack after first install, but maybe have to use the newest workflow after the pull.
+Discord: primere -> ask email if you need

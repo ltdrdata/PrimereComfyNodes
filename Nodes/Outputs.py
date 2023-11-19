@@ -78,7 +78,8 @@ class PrimereMetaSave:
 
         image_metadata['saved_image_width'] = images[0].shape[1]
         image_metadata['saved_image_heigth'] = images[0].shape[0]
-        image_metadata['upscaler_ratio'] = round(image_metadata['saved_image_width'] / image_metadata['width'], 2)
+        # image_metadata['upscaler_ratio'] = round(image_metadata['saved_image_width'] / image_metadata['width'], 2)
+        image_metadata['upscaler_ratio'] = 'From: ' + str(image_metadata['width']) + 'x' + str(image_metadata['height']) + ' to: '  + str(image_metadata['saved_image_width']) + 'x' + str(image_metadata['saved_image_heigth']) + ' Ratio: ' + str(round(round(image_metadata['saved_image_width'] / image_metadata['width'] / 0.05) * 0.05, 2))
 
         if add_date_to_filename:
             filename_prefix = filename_prefix + '_' + nowdate.strftime("%Y%d%m")
@@ -138,100 +139,102 @@ class PrimereMetaSave:
             file_extension = "jpg"
 
         results = list()
-        for image in images:
-            i = 255. * image.cpu().numpy()
-            img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
+        # for image in images:
+        image = images[0]
+        i = 255. * image.cpu().numpy()
+        img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
 
-            metadata = PngInfo()
-            if png_embed_workflow == 'true':
-                if prompt is not None:
-                    metadata.add_text("prompt", json.dumps(prompt))
-                if extra_pnginfo is not None:
-                    for x in extra_pnginfo:
-                        metadata.add_text(x, json.dumps(extra_pnginfo[x]))
+        metadata = PngInfo()
+        if png_embed_workflow == 'true':
+            if prompt is not None:
+                metadata.add_text("prompt", json.dumps(prompt))
+            if extra_pnginfo is not None:
+                for x in extra_pnginfo:
+                    metadata.add_text(x, json.dumps(extra_pnginfo[x]))
 
-            if overwrite_mode == 'prefix_as_filename':
-                file = f"{filename_prefix}{file_extension}"
+        if overwrite_mode == 'prefix_as_filename':
+            file = f"{filename_prefix}{file_extension}"
+        else:
+            if filename_number_start == 'true':
+                file = f"{counter:0{number_padding}}{delimiter}{filename_prefix}{file_extension}"
             else:
-                if filename_number_start == 'true':
-                    file = f"{counter:0{number_padding}}{delimiter}{filename_prefix}{file_extension}"
-                else:
-                    file = f"{filename_prefix}{delimiter}{counter:0{number_padding}}{file_extension}"
-                if os.path.exists(os.path.join(output_path, file)):
-                    counter += 1
-            try:
-                output_file = os.path.abspath(os.path.join(output_path, file))
+                file = f"{filename_prefix}{delimiter}{counter:0{number_padding}}{file_extension}"
+            if os.path.exists(os.path.join(output_path, file)):
+                counter += 1
 
-                exif_metadata_A11 = f"""{image_metadata['positive']}
+        try:
+            output_file = os.path.abspath(os.path.join(output_path, file))
+
+            exif_metadata_A11 = f"""{image_metadata['positive']}
 Negative prompt: {image_metadata['negative']}
 Steps: {str(image_metadata['steps'])}, Sampler: {image_metadata['sampler_name'] + ' ' + image_metadata['scheduler_name']}, CFG scale: {str(image_metadata['cfg_scale'])}, Seed: {str(image_metadata['seed'])}, Size: {str(image_metadata['width'])}x{str(image_metadata['height'])}, Model hash: {image_metadata['model_hash']}, Model: {image_metadata['model_name']}, VAE: {image_metadata['vae_name']}"""
 
-                exif_metadata_json = image_metadata
+            exif_metadata_json = image_metadata
 
-                if extension == 'png':
-                    img.save(output_file, pnginfo=metadata, optimize=True)
-                elif extension == 'webp':
-                    img.save(output_file, quality=quality, exif=metadata)
+            if extension == 'png':
+                img.save(output_file, pnginfo=metadata, optimize=True)
+            elif extension == 'webp':
+                img.save(output_file, quality=quality, exif=metadata)
+            else:
+                img.save(output_file, quality=quality, optimize=True)
+                if image_embed_exif == True:
+                    metadata = pyexiv2.Image(output_file)
+                    metadata.modify_exif({'Exif.Photo.UserComment': 'charset=Unicode ' + exif_metadata_A11})
+                    metadata.modify_exif({'Exif.Image.ImageDescription': json.dumps(exif_metadata_json)})
+                    print(f"Image file saved with exif: {output_file}")
                 else:
-                    img.save(output_file, quality=quality, optimize=True)
-                    if image_embed_exif == True:
-                        metadata = pyexiv2.Image(output_file)
-                        metadata.modify_exif({'Exif.Photo.UserComment': 'charset=Unicode ' + exif_metadata_A11})
-                        metadata.modify_exif({'Exif.Image.ImageDescription': json.dumps(exif_metadata_json)})
-                        print(f"Image file saved with exif: {output_file}")
+                    if extension == 'webp':
+                        img.save(output_file, quality=quality, exif=metadata)
                     else:
-                        if extension == 'webp':
-                            img.save(output_file, quality=quality, exif=metadata)
-                        else:
-                            img.save(output_file, quality=quality, optimize=True)
-                            print(f"Image file saved without exif: {output_file}")
+                        img.save(output_file, quality=quality, optimize=True)
+                        print(f"Image file saved without exif: {output_file}")
 
-                if save_mata_to_json:
-                    jsonfile = os.path.splitext(output_file)[0] + '.json'
-                    with open(jsonfile, 'w', encoding='utf-8') as jf:
-                        json.dump(exif_metadata_json, jf, ensure_ascii=False, indent=4)
+            if save_mata_to_json:
+                jsonfile = os.path.splitext(output_file)[0] + '.json'
+                with open(jsonfile, 'w', encoding='utf-8') as jf:
+                    json.dump(exif_metadata_json, jf, ensure_ascii=False, indent=4)
 
-            except OSError as e:
-                print(f'Unable to save file to: {output_file}')
-                print(e)
-            except Exception as e:
-                print('Unable to save file due to the to the following error:')
-                print(e)
+        except OSError as e:
+            print(f'Unable to save file to: {output_file}')
+            print(e)
+        except Exception as e:
+            print('Unable to save file due to the to the following error:')
+            print(e)
 
-            if overwrite_mode == 'false':
-                counter += 1
+        if overwrite_mode == 'false':
+            counter += 1
 
-            filtered_paths = []
+        filtered_paths = []
 
-            if filtered_paths:
-                for image_path in filtered_paths:
-                    subfolder = self.get_subfolder_path(image_path, self.output_dir)
-                    image_data = {
-                        "filename": os.path.basename(image_path),
-                        "subfolder": subfolder,
-                        "type": self.type
-                    }
-                    results.append(image_data)
+        if filtered_paths:
+            for image_path in filtered_paths:
+                subfolder = self.get_subfolder_path(image_path, self.output_dir)
+                image_data = {
+                    "filename": os.path.basename(image_path),
+                    "subfolder": subfolder,
+                    "type": self.type
+                }
+                results.append(image_data)
 
-            metastring = ""
-            if image_metadata is not None:
-                for key, val in image_metadata.items():
-                    if len(str(val).strip( '"')) > 0:
-                        metastring = metastring + ':: ' + key.upper() + ': ' + str(val).strip( '"') + '\n'
+        metastring = ""
+        if image_metadata is not None:
+            for key, val in image_metadata.items():
+                if len(str(val).strip( '"')) > 0:
+                    metastring = metastring + ':: ' + key.upper() + ': ' + str(val).strip( '"') + '\n'
 
-            saved_info = f""":: Time to save: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        saved_info = f""":: Time to save: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 :: Output file: {output_file}
 
 :: PROCESS INFO ::
 ------------------
 {metastring}"""
 
-            if save_info_to_txt:
-                infofile = os.path.splitext(output_file)[0] + '.txt'
-                with open(infofile, 'w', encoding='utf-8', newline="") as infofile:
-                    infofile.write(saved_info)
+        if save_info_to_txt:
+            infofile = os.path.splitext(output_file)[0] + '.txt'
+            with open(infofile, 'w', encoding='utf-8', newline="") as infofile:
+                infofile.write(saved_info)
 
-            return saved_info, {"ui": {"images": []}}
+        return saved_info, {"ui": {"images": []}}
 
     def get_subfolder_path(self, image_path, output_path):
         output_parts = output_path.strip(os.sep).split(os.sep)

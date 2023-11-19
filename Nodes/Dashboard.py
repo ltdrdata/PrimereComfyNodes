@@ -555,7 +555,7 @@ class PrimereResolution:
 
 class PrimereResolutionMultiplier:
     RETURN_TYPES = ("INT", "INT", "FLOAT")
-    RETURN_NAMES = ("WIDTH", "HEIGHT", "UPSCALE RATIO")
+    RETURN_NAMES = ("WIDTH", "HEIGHT", "UPSCALE_RATIO")
     FUNCTION = "multiply_imagesize"
     CATEGORY = TREE_DASHBOARD
 
