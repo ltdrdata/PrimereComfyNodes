@@ -1,6 +1,6 @@
 {
-  "last_node_id": 161,
-  "last_link_id": 509,
+  "last_node_id": 164,
+  "last_link_id": 524,
   "nodes": [
     {
       "id": 93,
@@ -202,7 +202,7 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "SFW Luxury model",
+        "Sci-fi Humanoid robot",
         true,
         false,
         true
@@ -499,9 +499,9 @@
         "Node name for S&R": "PrimerePrompt"
       },
       "widgets_values": [
-        "(post apocalyptic scene, a fallen angel with heavy broken metal wings is sitting on the top of a skyscraper, the large futuristic sci-fi city, below her feet, unhappy sad hopeless lost poos and mood, award winning image, cyberpunk and dystrophic environment), perfect face, perfect hands , (a transparent alien futuristic mystical creature comforts the sad winged angel), (double exposure, negative space, surreal abstract futuristic illustration by Luis Royo “Fallen Angel”:1.25) Fixhand",
-        "realistic photography, BadNegAnatomy, hand",
-        "Testprompt_2",
+        "(post apocalyptic scene, 40 year old {beautiful|natural|old|exhausted, tired} female {mechanical|robot|human|human-robot hybrid|mystical specie|ufo|alien lifeform|scary|horrible|terrible|awful} fallen angel with mechanical heavy broken {concrete|metal|rusty metal} wings is sitting on the top of a skyscraper, the large futuristic sci-fi city {burning|fire|storm with lightning and thunder|smoke|smoke and fire with explosions|large burning broken spaceship} in the dark abandoned background, below her feet, unhappy sad hopeless lost pose and exhausted, tired mood, award winning artistic image, ({cyberpunk and dystrophic|cyberpunk|dystrophic|futuristic|alien land|cosmic space} environment:1.3)), perfect face, perfect hands, (a transparent alien futuristic mystical creature comforts the sad winged angel), (double exposure, negative space, surreal abstract futuristic illustration by Luis Royo Fallen Angel:1.25) Fixhand, {night|daytime|morning|} time",
+        "realistic photography, BadNegAnatomy, hand, nsfw nude nudity porn sex child childish happy happyness",
+        "",
         "None",
         "None"
       ],
@@ -575,7 +575,7 @@
       "widgets_values": [
         "((ugly creepy dirty with a hairy wounded face, horrific, scary (male beast sitting on a chair in the {luxury|retro|old|abandoned|futuristic} beauty saloon:1.2, {angry|friendly|natural|quiet} mood), {large|middle sized|small} fancy mirror in his back on the wall, perfect mirrored ray-traced image in the mirror), (closeup half body photography of the beast on the left of image)), and ((a beautiful long hair blonde female {make-up artist|hair dresser|cosmetician} is working on it, {frightened|lovely|erotic|flirting|satisfied|quiet} mood, trying to make the beast look better with {makeup|hairdresser|barber} tools. The woman has {makeup|hairdresser|cosmetician|barber}-tools in her hands to apply to the {face|body|head|hair} of beast:1.3), (the woman is a beautiful sexy 40 year old with middle size breasts, large neckline, wear red shiny silk luxury sexy tight fitting clothes and small necklace. She watching the face of the beast on the right of image)), Photorealistic highly detailed, (professional makeup lifetime magazine fashion photography, perfect lights, perfect ray-traced image in the mirror, film grain:1.3)",
         "watermark text child childish nsfw nude nudity porn draw illustration movie, (lot of lamps)",
-        "Testprompt_3",
+        "BeautySaloon",
         "SDXL\\nightvisionXLPhotorealistic.safetensors",
         "Horizontal"
       ],
@@ -784,104 +784,23 @@
       "widgets_values": [
         "None",
         1,
-        "Pastel Colors",
+        "None",
         1.3,
-        "Depressing",
+        "None",
         1.2,
-        "Masterpiece",
+        "None",
         1,
-        "Dramatic",
+        "None",
         0.7000000000000001,
         "None",
         1,
-        "Abstract Expressionism",
+        "None",
         0.6,
         "",
         ""
       ],
       "color": "#432",
       "bgcolor": "#653"
-    },
-    {
-      "id": 139,
-      "type": "PrimereCKPT",
-      "pos": [
-        33.83013399588053,
-        -516.110009409611
-      ],
-      "size": {
-        "0": 532.2977905273438,
-        "1": 78
-      },
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "CKPT_NAME",
-          "type": "CHECKPOINT_NAME",
-          "links": [
-            417
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "MODEL_VERSION",
-          "type": "STRING",
-          "links": [
-            416,
-            461
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereCKPT"
-      },
-      "widgets_values": [
-        "SDXL\\HEPHAISTOSSD10XL.safetensors"
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
-      "id": 90,
-      "type": "PrimereSeed",
-      "pos": [
-        575.8301339958806,
-        -515.1100094096109
-      ],
-      "size": {
-        "0": 311.65582275390625,
-        "1": 130
-      },
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "SEED",
-          "type": "INT",
-          "links": [
-            464
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereSeed"
-      },
-      "widgets_values": [
-        -1,
-        null,
-        null,
-        null
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
     },
     {
       "id": 94,
@@ -895,7 +814,7 @@
         "1": 102
       },
       "flags": {},
-      "order": 15,
+      "order": 13,
       "mode": 0,
       "outputs": [
         {
@@ -940,7 +859,7 @@
         "1": 58
       },
       "flags": {},
-      "order": 16,
+      "order": 14,
       "mode": 0,
       "outputs": [
         {
@@ -961,6 +880,88 @@
       ],
       "color": "#232",
       "bgcolor": "#353"
+    },
+    {
+      "id": 139,
+      "type": "PrimereCKPT",
+      "pos": [
+        33.83013399588053,
+        -516.110009409611
+      ],
+      "size": {
+        "0": 532.2977905273438,
+        "1": 78
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CKPT_NAME",
+          "type": "CHECKPOINT_NAME",
+          "links": [
+            417
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MODEL_VERSION",
+          "type": "STRING",
+          "links": [
+            461,
+            519
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereCKPT"
+      },
+      "widgets_values": [
+        "SDXL\\newrealityxl_GLOBAL11.safetensors"
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
+      "id": 90,
+      "type": "PrimereSeed",
+      "pos": [
+        575.8301339958806,
+        -515.1100094096109
+      ],
+      "size": {
+        "0": 311.65582275390625,
+        "1": 130
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "SEED",
+          "type": "INT",
+          "links": [
+            464,
+            520
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereSeed"
+      },
+      "widgets_values": [
+        -1,
+        null,
+        null,
+        null
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 137,
@@ -1237,66 +1238,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        5
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
-      "id": 140,
-      "type": "PrimereResolution",
-      "pos": [
-        900.9085075556308,
-        -515.3359071135171
-      ],
-      "size": {
-        "0": 315,
-        "1": 246
-      },
-      "flags": {},
-      "order": 18,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model_version",
-          "type": "STRING",
-          "link": 416,
-          "widget": {
-            "name": "model_version"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "WIDTH",
-          "type": "INT",
-          "links": [
-            420
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "HEIGHT",
-          "type": "INT",
-          "links": [
-            421
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereResolution"
-      },
-      "widgets_values": [
-        "HD+ screen [16:10]",
-        "Horizontal",
-        true,
-        "BaseModel_1024",
-        false,
-        true,
-        1.6
+        1
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
@@ -1313,7 +1255,7 @@
         "1": 205.3205108642578
       },
       "flags": {},
-      "order": 19,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -1442,8 +1384,79 @@
         false,
         false
       ],
-      "color": "#2a363b",
-      "bgcolor": "#3f5159"
+      "color": "#00006c",
+      "bgcolor": "#000080"
+    },
+    {
+      "id": 164,
+      "type": "PrimereResolution",
+      "pos": [
+        902,
+        -516
+      ],
+      "size": [
+        313.5058347382653,
+        247.0079457306275
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_version",
+          "type": "STRING",
+          "link": 519,
+          "widget": {
+            "name": "model_version"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 520,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "WIDTH",
+          "type": "INT",
+          "links": [
+            521
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "HEIGHT",
+          "type": "INT",
+          "links": [
+            522
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereResolution"
+      },
+      "widgets_values": [
+        "HD+ screen [16:10]",
+        true,
+        false,
+        "Vertical",
+        true,
+        "BaseModel_1024",
+        406396669091407,
+        "randomize",
+        false,
+        1.2000000000000002,
+        2.8
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 108,
@@ -1471,7 +1484,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(post apocalyptic scene, a fallen angel with heavy broken metal wings is sitting on the top of a skyscraper, the large futuristic sci-fi city, below her feet, unhappy sad hopeless lost poos and mood, award winning image, cyberpunk and dystrophic environment), perfect face, perfect hands (double exposure, negative space, surreal abstract futuristic illustration by Luis Royo \\u201cFallen Angel\\u201d:1.25) Fixhand"
+        "portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -1502,7 +1515,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "realistic photography, BadNegAnatomy, hand"
+        "nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -1620,7 +1633,7 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 420,
+          "link": 521,
           "widget": {
             "name": "width"
           }
@@ -1628,7 +1641,7 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 421,
+          "link": 522,
           "widget": {
             "name": "height"
           }
@@ -1836,13 +1849,13 @@
       },
       "widgets_values": [
         false,
-        false,
+        true,
         true,
         false,
         true,
         false,
-        true,
         false,
+        true,
         true,
         true,
         true,
@@ -1858,7 +1871,7 @@
         "BaseModel_1024",
         "euler",
         "normal",
-        509,
+        2041,
         "randomize",
         65,
         895,
@@ -2000,7 +2013,7 @@
       },
       "widgets_values": [
         "",
-        -26194966022504,
+        522109387988888,
         "randomize"
       ],
       "color": "#232",
@@ -2054,7 +2067,7 @@
       },
       "widgets_values": [
         "",
-        -804002359289255,
+        -91816690061664,
         "randomize"
       ],
       "color": "#322",
@@ -2086,7 +2099,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "{\n    \"positive\": \"(post apocalyptic scene, a fallen angel with heavy broken metal wings is sitting on the top of a skyscraper, the large futuristic sci-fi city, below her feet, unhappy sad hopeless lost poos and mood, award winning image, cyberpunk and dystrophic environment), perfect face, perfect hands (double exposure, negative space, surreal abstract futuristic illustration by Luis Royo \\u201cFallen Angel\\u201d:1.25) Fixhand\",\n    \"negative\": \"realistic photography, BadNegAnatomy, hand\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"SDXL\\\\HEPHAISTOSSD10XL.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 237431368086657,\n    \"width\": 1280,\n    \"height\": 819,\n    \"cfg_scale\": 8.2,\n    \"steps\": 25,\n    \"model_version\": \"SDXL_2048\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"sdxl_vae.safetensors\",\n    \"force_model_vae\": false,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"is_sdxl\": 1,\n    \"dynamic_positive\": \"(post apocalyptic scene, a fallen angel with heavy broken metal wings is sitting on the top of a skyscraper, the large futuristic sci-fi city, below her feet, unhappy sad hopeless lost poos and mood, award winning image, cyberpunk and dystrophic environment), perfect face, perfect hands (double exposure, negative space, surreal abstract futuristic illustration by Luis Royo \\u201cFallen Angel\\u201d:1.25) Fixhand\",\n    \"dynamic_negative\": \"realistic photography, BadNegAnatomy, hand\"\n}"
+        "{\n    \"positive\": \"portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\",\n    \"negative\": \"nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"SDXL\\\\colossusProjectXLSFW_49bExperimental.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 1077693028093487,\n    \"width\": 832,\n    \"height\": 1260,\n    \"cfg_scale\": 8.2,\n    \"steps\": 25,\n    \"model_version\": \"SDXL_2048\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"sdxl_vae.safetensors\",\n    \"force_model_vae\": false,\n    \"prefered_model\": null,\n    \"prefered_orientation\": \"Vertical\",\n    \"is_sdxl\": 1,\n    \"dynamic_positive\": \"portrait of bokeh (professional sexy 40 year old glamour beautiful perfect body woman, photomodel in (white transparent luxury silk lingerie:1.25), (long straight  hair) (red luxury fishnet bra:1.3), beautiful natural sexy large-size breasts, hidden nipples, (covered breast:1.2), large erotic necklace, love face, professional pose, luxury erotic glamour photography:1.3), (huge striking expensive sparkling gold diamond luxury jewellery in her neck:1.2), luxury retro style beautiful office interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\",\n    \"dynamic_negative\": \"nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\"\n}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -2173,7 +2186,7 @@
         1.2,
         0.9,
         1.25,
-        674056191101205,
+        291612836205215,
         "randomize",
         true,
         "cpu"
@@ -2186,7 +2199,7 @@
       "type": "PrimereResolutionMultiplier",
       "pos": [
         903,
-        -234
+        -232
       ],
       "size": {
         "0": 313.2674255371094,
@@ -2257,7 +2270,7 @@
         512,
         512,
         "BaseModel_1024",
-        6,
+        4,
         3
       ],
       "color": "#0000eb",
@@ -2604,10 +2617,10 @@
         "",
         1.2,
         true,
-        "DIGIT_OIL_PAINT",
+        "None",
         0.8,
-        "ABSTRACT_ART",
-        0.75,
+        "LONG",
+        1,
         true,
         "mean",
         "comfy++",
@@ -2616,7 +2629,7 @@
         "",
         1,
         "",
-        1.25,
+        1,
         "",
         1,
         "",
@@ -2725,7 +2738,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        253040605361410,
+        941145565851250,
         "randomize",
         20,
         8,
@@ -2762,7 +2775,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(post apocalyptic scene, a fallen angel with heavy broken metal wings is sitting on the top of a skyscraper, the large futuristic sci-fi city, below her feet, unhappy sad hopeless lost poos and mood, award winning image, cyberpunk and dystrophic environment), perfect face, perfect hands (double exposure, negative space, surreal abstract futuristic illustration by Luis Royo \\u201cFallen Angel\\u201d:1.25), ((Pastel Colors:1.30), (Depressing:1.20), (Masterpiece), (Dramatic:0.70), (Abstract Expressionism:0.60):1.25), ((Extremely Detailed Oil Painting:1.2), glow effects, godrays, Hand drawn, render, 8k, octane render, cinema 4d, blender, dark, atmospheric 4k ultra detailed, cinematic sensual, Sharp focus, humorous illustration, big depth of field, Masterpiece, colors, 3d octane render, 4k, concept art, trending on artstation, hyperrealistic, Vivid colors, extremely detailed CG unity 8k wallpaper, trending on ArtStation, trending on CGSociety, Intricate, High Detail, dramatic:0.80)"
+        "portrait of bokeh (professional sexy 40 year old glamour beautiful perfect body woman, photomodel in (white transparent luxury silk lingerie:1.25), (long straight hair) (red luxury fishnet bra:1.3), beautiful natural sexy large-size breasts, hidden nipples, (covered breast:1.2), large erotic necklace, love face, professional pose, luxury erotic glamour photography:1.3), (huge striking expensive sparkling gold diamond luxury jewellery in her neck:1.2), luxury retro style beautiful office interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -2793,7 +2806,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(realistic photography, hand:1.20), (3d, render, anatomically, correct, animals, body, parts, buildings, cartoon, characters, cityscape, concrete, detailed, faces, figurative, human, figure, landscape, literal, low, resolution, lowres, monochrome, people, photorealistic, portrait, realistic, scenery, sharp, edges, sketch, symmetrical, text:0.75)"
+        "(nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin:1.20), (bad anatomy, bad proportions, blurry, cloned face, cropped, deformed, dehydrated, disfigured, duplicate, error, extra arms, extra fingers, extra legs, extra limbs, fused fingers, gross proportions, jpeg artifacts, long neck, low quality, lowres, malformed limbs, missing arms, missing legs, morbid, mutated hands, mutation, mutilated, out of frame, poorly drawn face, poorly drawn hands, signature, text, too many fingers, ugly, username, watermark, worst quality)"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -2824,7 +2837,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "((post apocalyptic scene, a fallen angel with heavy broken metal wings is sitting on the top of a skyscraper, the large futuristic sci-fi city, below her feet, unhappy sad hopeless lost poos and mood, award winning image, cyberpunk and dystrophic environment), perfect face, perfect hands (double exposure, negative space, surreal abstract futuristic illustration by Luis Royo \\u201cFallen Angel\\u201d:1.25))"
+        "(portrait of bokeh (professional sexy 40 year old glamour beautiful perfect body woman, photomodel in (white transparent luxury silk lingerie:1.25), (long straight hair) (red luxury fishnet bra:1.3), beautiful natural sexy large-size breasts, hidden nipples, (covered breast:1.2), large erotic necklace, love face, professional pose, luxury erotic glamour photography:1.3), (huge striking expensive sparkling gold diamond luxury jewellery in her neck:1.2), luxury retro style beautiful office interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -2855,7 +2868,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "((realistic photography, hand:1.20))"
+        "((nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin:1.20))"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -2910,8 +2923,8 @@
       "id": 155,
       "type": "ttN hiresfixScale",
       "pos": [
-        2365,
-        -552
+        2364,
+        -553
       ],
       "size": {
         "0": 392.8316955566406,
@@ -3017,8 +3030,8 @@
       "id": 156,
       "type": "UltimateSDUpscale",
       "pos": [
-        2767,
-        -551
+        3181,
+        -549
       ],
       "size": {
         "0": 298.5743103027344,
@@ -3132,8 +3145,8 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            500,
-            501
+            523,
+            524
           ],
           "shape": 3,
           "slot_index": 0
@@ -3144,13 +3157,13 @@
       },
       "widgets_values": [
         2.1,
-        476636835070751,
+        747827458917264,
         "randomize",
         7,
         6.5,
         "dpmpp_sde",
         "karras",
-        0.9500000000000001,
+        1,
         "None",
         512,
         512,
@@ -3167,6 +3180,33 @@
       "bgcolor": "#353"
     },
     {
+      "id": 19,
+      "type": "PreviewImage",
+      "pos": [
+        3493,
+        43
+      ],
+      "size": {
+        "0": 1737.1102294921875,
+        "1": 1827.3470458984375
+      },
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 523
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
       "id": 149,
       "type": "PrimereMetaSave",
       "pos": [
@@ -3178,13 +3218,13 @@
         "1": 506
       },
       "flags": {},
-      "order": 42,
+      "order": 43,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 500
+          "link": 524
         },
         {
           "name": "image_metadata",
@@ -3238,43 +3278,16 @@
       "bgcolor": "#0000ff"
     },
     {
-      "id": 19,
-      "type": "PreviewImage",
-      "pos": [
-        3492,
-        43
-      ],
-      "size": {
-        "0": 1737.1102294921875,
-        "1": 1827.3470458984375
-      },
-      "flags": {},
-      "order": 43,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 501
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PreviewImage"
-      },
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
       "id": 148,
       "type": "PrimereTextOutput",
       "pos": [
         3493,
-        -530
+        -548
       ],
-      "size": {
-        "0": 1734.918212890625,
-        "1": 535.5193481445312
-      },
+      "size": [
+        1735.4662233004437,
+        552.7150970160915
+      ],
       "flags": {},
       "order": 44,
       "mode": 0,
@@ -3294,7 +3307,7 @@
       },
       "widgets_values": [
         "",
-        ":: Time to save: 2023-11-19 10:55:18\n:: Output file: z:\\AIPICS\\Comfy\\HEPHAISTOSSD10XL\\Testprompt_2\\2023-11-Week-46\\Image_20231911_105518_1004784128839643_3840x2448_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: (post apocalyptic scene, a fallen angel with heavy broken wings is sitting on the top of a skyscraper, the large futuristic city, below her feet, unhappy poos and mood, award winning, cyberpunk and dystrophic environment), perfect face, perfect hands (double exposure, negative space, surreal futuristic image by Luis Royo “Fallen Angel”:1.25)\n:: NEGATIVE: realistic photography\n:: MODEL_NAME: SDXL\\HEPHAISTOSSD10XL.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 1004784128839643\n:: WIDTH: 1280\n:: HEIGHT: 819\n:: CFG_SCALE: 8.2\n:: STEPS: 25\n:: MODEL_VERSION: SDXL_2048\n:: IS_LCM: 0\n:: VAE_NAME: sdxl_vae.safetensors\n:: FORCE_MODEL_VAE: False\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: None\n:: IS_SDXL: 1\n:: DYNAMIC_POSITIVE: (post apocalyptic scene, a fallen angel with heavy broken wings is sitting on the top of a skyscraper, the large futuristic city, below her feet, unhappy poos and mood, award winning, cyberpunk and dystrophic environment), perfect face, perfect hands (double exposure, negative space, surreal futuristic image by Luis Royo “Fallen Angel”:1.25)\n:: DYNAMIC_NEGATIVE: realistic photography\n:: SAVED_IMAGE_WIDTH: 3840\n:: SAVED_IMAGE_HEIGTH: 2448\n:: UPSCALER_RATIO: 3.0\n"
+        ":: Time to save: 2023-11-19 19:47:33\n:: Output file: z:\\AIPICS\\Comfy\\COLOSSUSPROJECTXLSFW_49BEXPERIMENTAL\\SFW\\2023-11-Week-46\\Image_20231911_194733_55132985828681_2496x3768_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: portrait of bokeh (professional sexy {26|28|30|32|35|38|40|42|45|48|50|} year old glamour beautiful perfect body woman, photomodel in ({black|red|white|yellow|brown|blue|multicolor} {transparent|fishnet|silk|denim|leather} luxury {elegant|silk|plastic} {lingerie|sexy top}:1.25), ({long|short} {straight|curly} {red|blonde|brown|black|multicolored rainbow|} hair) ({red|green|white|yellow|black|blue|multicolor} luxury {transparent|fishnet|leather|denim|expensive} bra:1.3), beautiful natural sexy {middle|small|large|big}-size breasts, {visible|hidden} nipples, ({covered|uncovered} breast:1.2), large erotic necklace, {erotic|satisfied|romantic|love} face, {erotic|romantic|professional} pose, luxury erotic {glamour|fashion|woman|clothes} photography:1.3), (huge striking expensive sparkling {red|white|green|glassy|brown|silver|gold} diamond luxury jewellery in her neck:1.2), luxury {Paris|Rome|London|modern|futuristic|minimalist|retro|old style|elegant} style beautiful {bedroom|kitchen|living room|office|} interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\n:: NEGATIVE: nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\n:: MODEL_NAME: SDXL\\colossusProjectXLSFW_49bExperimental.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 55132985828681\n:: WIDTH: 832\n:: HEIGHT: 1260\n:: CFG_SCALE: 8.2\n:: STEPS: 25\n:: MODEL_VERSION: SDXL_2048\n:: IS_LCM: 0\n:: VAE_NAME: sdxl_vae.safetensors\n:: FORCE_MODEL_VAE: False\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: Vertical\n:: IS_SDXL: 1\n:: DYNAMIC_POSITIVE: portrait of bokeh (professional sexy 38 year old glamour beautiful perfect body woman, photomodel in (multicolor fishnet luxury silk sexy top:1.25), (long curly brown hair) (blue luxury transparent bra:1.3), beautiful natural sexy small-size breasts, visible nipples, (covered breast:1.2), large erotic necklace, satisfied face, erotic pose, luxury erotic clothes photography:1.3), (huge striking expensive sparkling brown diamond luxury jewellery in her neck:1.2), luxury retro style beautiful office interior with large curtains and expensive leather bed, (less soft makeup, natural skin:1.2), (film grain:1.4) as a ((luxury person)) with ((curtain bangs haircut)) wearing (silk) glamour photography high fashion photography shot on Canon EOS 5D Mark IV with Canon EF 24-70mm f-2.8L II\n:: DYNAMIC_NEGATIVE: nsfw, porn, nude, nudity, child, childish, plastic breast, nude pussy, nude breast, eye-catching makeup, perfect skin\n:: SAVED_IMAGE_WIDTH: 2496\n:: SAVED_IMAGE_HEIGTH: 3768\n:: UPSCALER_RATIO: From: 832x1260 to: 2496x3768 Ratio: 3.0\n"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -3678,14 +3691,6 @@
       "*"
     ],
     [
-      416,
-      139,
-      1,
-      140,
-      0,
-      "STRING"
-    ],
-    [
       417,
       139,
       0,
@@ -3708,22 +3713,6 @@
       145,
       2,
       "VAE_NAME"
-    ],
-    [
-      420,
-      140,
-      0,
-      145,
-      13,
-      "INT"
-    ],
-    [
-      421,
-      140,
-      1,
-      145,
-      14,
-      "INT"
     ],
     [
       422,
@@ -4278,22 +4267,6 @@
       "FLOAT"
     ],
     [
-      500,
-      156,
-      0,
-      149,
-      0,
-      "IMAGE"
-    ],
-    [
-      501,
-      156,
-      0,
-      19,
-      0,
-      "IMAGE"
-    ],
-    [
       506,
       145,
       7,
@@ -4324,6 +4297,54 @@
       156,
       12,
       "INT"
+    ],
+    [
+      519,
+      139,
+      1,
+      164,
+      0,
+      "STRING"
+    ],
+    [
+      520,
+      90,
+      0,
+      164,
+      1,
+      "INT"
+    ],
+    [
+      521,
+      164,
+      0,
+      145,
+      13,
+      "INT"
+    ],
+    [
+      522,
+      164,
+      1,
+      145,
+      14,
+      "INT"
+    ],
+    [
+      523,
+      156,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      524,
+      156,
+      0,
+      149,
+      0,
+      "IMAGE"
     ]
   ],
   "groups": [

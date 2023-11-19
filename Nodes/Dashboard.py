@@ -538,16 +538,28 @@ class PrimereResolution:
         return {
             "required": {
                 "ratio": (list(namelist.keys()),),
+                "force_768_SD1x": ("BOOLEAN", {"default": True}),
+                "rnd_orientation": ("BOOLEAN", {"default": False}),
                 "orientation": (["Horizontal", "Vertical"], {"default": "Horizontal"}),
                 "round_to_standard": ("BOOLEAN", {"default": False}),
                 "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
+                "seed": ("INT", {"default": 0, "min": -18446744073709551615, "max": 18446744073709551615, "forceInput": True}),
                 "calculate_by_custom": ("BOOLEAN", {"default": False}),
                 "custom_side_a": ("FLOAT", {"default": 1.6, "min": 1.0, "max": 100.0, "step": 0.1}),
                 "custom_side_b": ("FLOAT", {"default": 2.8, "min": 1.0, "max": 100.0, "step": 0.1}),
             },
         }
 
-    def calculate_imagesize(self, ratio: str, orientation: str, round_to_standard: bool, model_version: str, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
+    def calculate_imagesize(self, ratio: str, force_768_SD1x: bool, rnd_orientation: bool, orientation: str, round_to_standard: bool, model_version: str, seed: int, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
+        if rnd_orientation == True:
+            if (seed % 2) == 0:
+                orientation = "Horizontal"
+            else:
+                orientation = "Vertical"
+
+        if force_768_SD1x == True and  model_version == 'BaseModel_768':
+            model_version = 'BaseModel_1024'
+
         dimensions = utility.calculate_dimensions(self, ratio, orientation, round_to_standard, model_version, calculate_by_custom, custom_side_a, custom_side_b)
         dimension_x = dimensions[0]
         dimension_y = dimensions[1]

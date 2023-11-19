@@ -1,5 +1,4 @@
 from custom_nodes.ComfyUI_Primere_Nodes.components.tree import TREE_OUTPUTS
-from custom_nodes.ComfyUI_Primere_Nodes.components.tree import PRIMERE_ROOT
 import os
 import folder_paths
 import re
@@ -8,7 +7,7 @@ import time
 import numpy as np
 import pyexiv2
 from PIL.PngImagePlugin import PngInfo
-from PIL import Image, ImageOps
+from PIL import Image
 from pathlib import Path
 import datetime
 
@@ -75,6 +74,9 @@ class PrimereMetaSave:
         original_output = self.output_dir
         filename_prefix = tokens.parseTokens(filename_prefix)
         nowdate = datetime.datetime.now()
+
+        if len(images) < 1:
+            return
 
         image_metadata['saved_image_width'] = images[0].shape[1]
         image_metadata['saved_image_heigth'] = images[0].shape[0]

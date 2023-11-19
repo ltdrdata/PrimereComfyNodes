@@ -4,7 +4,6 @@ import os
 import re
 from dynamicprompts.parser.parse import ParserConfig
 from dynamicprompts.wildcards.wildcard_manager import WildcardManager
-from dynamicprompts.generators import RandomPromptGenerator
 import chardet
 import pandas
 import comfy.samplers
@@ -15,6 +14,7 @@ from .modules import exif_data_checker
 import nodes
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 from pathlib import Path
+import random
 
 class PrimereDoublePrompt:
     RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING")
@@ -32,7 +32,7 @@ class PrimereDoublePrompt:
             "optional": {
                 "subpath": ("STRING", {"default": "", "multiline": False}),
                 "model": (["None"] + folder_paths.get_filename_list("checkpoints"), {"default": "None"}),
-                "orientation": (["None", "Horizontal", "Vertical"], {"default": "None"}),
+                "orientation": (["None", "Random", "Horizontal", "Vertical"], {"default": "None"}),
             },
             "hidden": {
                 "extra_pnginfo": "EXTRA_PNGINFO",
@@ -62,6 +62,10 @@ class PrimereDoublePrompt:
             model = None
         if len(orientation.strip()) < 1 or orientation.strip() == 'None':
             orientation = None
+
+        if orientation == 'Random':
+            orientations = ["Horizontal", "Vertical"]
+            orientation = random.choice(orientations)
 
         return (rawResult[0].replace('\n', ' '), rawResult[1].replace('\n', ' '), subpath, model, orientation)
 
@@ -305,6 +309,12 @@ class PrimereMetaRead:
                         positive="", negative="", positive_l="", negative_l="", positive_r="", negative_r="",
                         model_hash="", model_name="", model_version="BaseModel_1024", sampler_name="euler", scheduler_name="normal", seed=1, width=512, height=512, cfg_scale=7, steps=12, vae_name_sd="", vae_name_sdxl="", is_lcm=0, prefered_model="", prefered_orientation=""):
 
+        if prefered_orientation == 'Random':
+            if (seed % 2) == 0:
+                prefered_orientation = "Horizontal"
+            else:
+                prefered_orientation = "Vertical"
+
         data_json = {}
         data_json['positive'] = positive.replace('ADDROW ', '').replace('ADDCOL ', '').replace('ADDCOMM ', '').replace('\n', ' ')
         data_json['negative'] = negative.replace('\n', ' ')
@@ -327,6 +337,7 @@ class PrimereMetaRead:
         data_json['force_model_vae'] = force_model_vae
         data_json['prefered_model'] = prefered_model
         data_json['prefered_orientation'] = prefered_orientation
+        LOADED_CHECKPOINT = None
 
         is_sdxl = 0
         match model_version:
@@ -379,6 +390,7 @@ class PrimereMetaRead:
                         realvae = LOADED_CHECKPOINT[2]
                     else:
                         realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
+
                     return (positive, negative, positive_l, negative_l, positive_r, negative_r, model_name, sampler_name, scheduler_name, seed, width, height, cfg_scale, steps, data_json['vae_name'], realvae, data_json)
 
                 try:
@@ -441,7 +453,10 @@ class PrimereMetaRead:
                         data_json['vae_name'] = folder_paths.get_filename_list("vae")[0]
 
                     if force_model_vae == True:
-                        realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
+                        if LOADED_CHECKPOINT is not None:
+                            realvae = LOADED_CHECKPOINT[2]
+                        else:
+                            realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
                     else:
                         if use_exif_vae == True:
                             if 'vae' in reader.parameter:
@@ -478,7 +493,10 @@ class PrimereMetaRead:
                 except ValueError as VE:
                     print(VE)
                     if (force_model_vae == True):
-                        realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
+                        if LOADED_CHECKPOINT is not None:
+                            realvae = LOADED_CHECKPOINT[2]
+                        else:
+                            realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
                     else:
                         realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
 
@@ -487,7 +505,10 @@ class PrimereMetaRead:
             else:
                 print('No source image loaded')
                 if (force_model_vae == True):
-                    realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
+                    if LOADED_CHECKPOINT is not None:
+                        realvae = LOADED_CHECKPOINT[2]
+                    else:
+                        realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
                 else:
                     realvae = self.vae_loader.load_vae(data_json['vae_name'])[0]
 
@@ -508,7 +529,10 @@ class PrimereMetaRead:
                 data_json['is_sdxl'] = is_sdxl
 
             if (force_model_vae == True):
-                realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
+                if LOADED_CHECKPOINT is not None:
+                    realvae = LOADED_CHECKPOINT[2]
+                else:
+                    realvae = self.chkp_loader.load_checkpoint(data_json['model_name'])[2]
             else:
                 if (is_sdxl == 1):
                     data_json['vae_name'] = vae_name_sdxl
