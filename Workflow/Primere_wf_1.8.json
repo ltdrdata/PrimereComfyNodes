@@ -846,7 +846,7 @@
         "Node name for S&R": "PrimereCKPT"
       },
       "widgets_values": [
-        "BestAll\\photomatix_v2.safetensors"
+        "BestAll\\consistentColorful_v104.safetensors"
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
@@ -1238,10 +1238,10 @@
         "HD+ screen [16:10]",
         768,
         false,
-        "Vertical",
+        "Horizontal",
         true,
         "BaseModel_1024",
-        -316319896693961,
+        514810611267903,
         "randomize",
         false,
         1.2000000000000002,
@@ -1550,7 +1550,7 @@
         "Node name for S&R": "PrimerePromptSwitch"
       },
       "widgets_values": [
-        4
+        1
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
@@ -1581,7 +1581,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants"
+        "{futuristic|retro|modern|minimalist|simple|difficult} product design, (__200Wildcards/color__ product:1.2), ({glass|metal|platina|iron|plastic|wooden} material:1.3), {coffee machine|teakettle|watch|matchbox car|truck model|vehicle model|spaceship model|indoor furniture|kitchen furniture|computer case|radio|hi-fi speaker|bluetooth speaker|studio headphone|vacuum cleaner|washing machine|desk|phone|wardrobe|cabinet|cup|helmet|lens|eyeglasses|photo camera|lamp|hi-fi radio|computer mouse|storage vessel|scissor|hi-fi tower|record player|old tape-recorder|display of weather forecast station}, {large|small|painted|colorful} {touchscreen|buttons|old lcd display|mechanical} controls, professional product photography"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -1612,7 +1612,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw"
+        ""
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -1945,19 +1945,19 @@
         "Node name for S&R": "PrimereMetaRead"
       },
       "widgets_values": [
+        true,
         false,
         true,
         false,
-        false,
+        true,
+        true,
         true,
         false,
-        false,
-        false,
-        false,
-        false,
+        true,
+        true,
         false,
         true,
-        "Image_20232111_185232_1070620082561661_3840x2448_1.jpg",
+        "Image_20230312_192229_1795676174665_3840x2432_1.jpg",
         "image",
         "",
         "",
@@ -1968,7 +1968,7 @@
         "BaseModel_1024",
         "euler",
         "normal",
-        536,
+        74,
         "randomize",
         65,
         895,
@@ -2111,7 +2111,7 @@
       },
       "widgets_values": [
         "",
-        -373861807910557,
+        -198997521382829,
         "randomize"
       ],
       "color": "#232",
@@ -2165,7 +2165,7 @@
       },
       "widgets_values": [
         "",
-        506897255724595,
+        97047601173414,
         "randomize"
       ],
       "color": "#322",
@@ -2197,7 +2197,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "{\n    \"positive\": \"beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants\",\n    \"negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"BestSci-fi\\\\UnrealEngine5B.ckpt\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 989982604501001,\n    \"width\": 614,\n    \"height\": 960,\n    \"cfg_scale\": 8.0,\n    \"steps\": 25,\n    \"model_version\": \"BaseModel_768\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\",\n    \"force_model_vae\": true,\n    \"prefered_model\": null,\n    \"prefered_orientation\": \"Vertical\",\n    \"is_sdxl\": 0,\n    \"dynamic_positive\": \"beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear dark luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long white jeans pants\",\n    \"dynamic_negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw\"\n}"
+        "{\n    \"positive\": \"{futuristic|retro|modern|minimalist|simple|difficult} product design, (__200Wildcards/color__ product:1.2), ({glass|metal|platina|iron|plastic|wooden} material:1.3), {coffee machine|teakettle|watch|matchbox car|truck model|vehicle model|spaceship model|indoor furniture|kitchen furniture|computer case|radio|hi-fi speaker|bluetooth speaker|studio headphone|vacuum cleaner|washing machine|desk|phone|wardrobe|cabinet|cup|helmet|lens|eyeglasses|photo camera|lamp|hi-fi radio|computer mouse|storage vessel|scissor|hi-fi tower|record player|old tape-recorder|display of weather forecast station}, {large|small|painted|colorful} {touchscreen|buttons|old lcd display|mechanical} controls, professional product photography\",\n    \"negative\": \"\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"BestAll\\\\consistentColorful_v104.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 1795676174665,\n    \"width\": 960,\n    \"height\": 614,\n    \"cfg_scale\": 8.0,\n    \"steps\": 25,\n    \"model_version\": \"BaseModel_768\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\",\n    \"force_model_vae\": true,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"is_sdxl\": 0,\n    \"dynamic_positive\": \"futuristic product design, (Aqua Green product:1.2), (iron material:1.3), hi-fi speaker, painted buttons controls, professional product photography\",\n    \"dynamic_negative\": \"\"\n}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -2284,10 +2284,10 @@
         1.2,
         0.9,
         1.25,
-        211836945881696,
+        518985231184297,
         "randomize",
         true,
-        "cpu"
+        "cuda"
       ],
       "color": "#6c0000",
       "bgcolor": "#800000"
@@ -2836,7 +2836,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        302226688696362,
+        719449829482766,
         "randomize",
         20,
         8,
@@ -2873,7 +2873,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear dark luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long white jeans pants, (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:0.80)"
+        "minimalist product design, (Medium Brown product:1.2), (glass material:1.3), computer mouse, colorful mechanical controls, professional product photography, (Photorealistic, Hyperrealistic, Hyperdetailed, analog style, hip cocked, demure, low cut, black lace, detailed skin, matte skin, soft lighting, subsurface scattering, realistic, heavy shadow, masterpiece, best quality, ultra realistic, 8k, golden ratio, Intricate, High Detail, film photography, soft focus:0.80)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -2904,7 +2904,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace embedding:add_nsfw:1.20), (absent, parts, added, components, asymmetrical, design, broken, cartoonish, cloned, collapsed, complex, background, distorted, distorted, perspective, extra, pieces, faded, color, flawed, shape, flipped, folded, improper, proportion, incomplete, incorrect, geometry, inverted, kitsch, low, quality, low, resolution, macabre, misaligned, parts, misshapen, missing, parts, mutated, off-center, out, of, focus, over-saturated, color, overexposed, oversized, poorly, rendered, replica, surreal, tilted, underexposed, unrealistic, upside, down)"
+        "(absent, parts, added, components, asymmetrical, design, broken, cartoonish, cloned, collapsed, complex, background, distorted, distorted, perspective, extra, pieces, faded, color, flawed, shape, flipped, folded, improper, proportion, incomplete, incorrect, geometry, inverted, kitsch, low, quality, low, resolution, macabre, misaligned, parts, misshapen, missing, parts, mutated, off-center, out, of, focus, over-saturated, color, overexposed, oversized, poorly, rendered, replica, surreal, tilted, underexposed, unrealistic, upside, down)"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -3255,7 +3255,7 @@
       },
       "widgets_values": [
         2.1,
-        740831118227156,
+        620989160486492,
         "randomize",
         7,
         6.5,
@@ -3405,7 +3405,7 @@
       },
       "widgets_values": [
         "",
-        ":: Time to save: 2023-12-03 17:45:35\n:: Output file: z:\\AIPICS\\Comfy\\UNREALENGINE5B\\Testprompt_1\\2023-12-Week-48\\Image_20230312_174534_989982604501001_2432x3840_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear {green|blue|red|sexy|small sexy|yellow|rainbow|transparent|brown|dark blue|dark red|dark|light|pastel|black|purple|white} luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long {blue|white|red} jeans pants\n:: NEGATIVE: dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw\n:: MODEL_NAME: BestSci-fi\\UnrealEngine5B.ckpt\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 989982604501001\n:: WIDTH: 614\n:: HEIGHT: 960\n:: CFG_SCALE: 8.0\n:: STEPS: 25\n:: MODEL_VERSION: BaseModel_768\n:: IS_LCM: 0\n:: VAE_NAME: vae-ft-mse-840000-ema-pruned.ckpt\n:: FORCE_MODEL_VAE: True\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: Vertical\n:: IS_SDXL: 0\n:: DYNAMIC_POSITIVE: beautiful sexy 42 year old perfect body model woman (walking in the stormy rainy day in the street of big city:1.4), (dark night:1.3), modern street lamps, dark stormy clouds, thunder and lightning in the background, (long wet watery trapped waterlogged soggy body and hair:1.5), nice breasts and neckline cleavage decolletage, (wear dark luxury (expensive elegant leather:1.2) jacket:1.3) and sexy long white jeans pants\n:: DYNAMIC_NEGATIVE: dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw\n:: SAVED_IMAGE_WIDTH: 2432\n:: SAVED_IMAGE_HEIGTH: 3840\n:: UPSCALER_RATIO: From: 614x960 to: 2432x3840 Ratio: 3.95\n"
+        ":: Time to save: 2023-12-03 19:28:28\n:: Output file: z:\\AIPICS\\Comfy\\CONSISTENTCOLORFUL_V104\\Design\\2023-12-Week-48\\Image_20230312_192828_1795676174665_3840x2432_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: minimalist product design, (Medium Brown product:1.2), (glass material:1.3), computer mouse, colorful mechanical controls, professional product photography\n:: MODEL_NAME: BestAll\\consistentColorful_v104.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 1795676174665\n:: WIDTH: 960\n:: HEIGHT: 614\n:: CFG_SCALE: 8.0\n:: STEPS: 25\n:: MODEL_VERSION: BaseModel_768\n:: IS_LCM: 0\n:: VAE_NAME: vae-ft-mse-840000-ema-pruned.ckpt\n:: FORCE_MODEL_VAE: True\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: None\n:: IS_SDXL: 0\n:: DYNAMIC_POSITIVE: minimalist product design, (Medium Brown product:1.2), (glass material:1.3), computer mouse, colorful mechanical controls, professional product photography\n:: SAVED_IMAGE_WIDTH: 3840\n:: SAVED_IMAGE_HEIGTH: 2432\n:: UPSCALER_RATIO: From: 960x614 to: 3840x2432 Ratio: 4.0\n"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
