@@ -12,6 +12,7 @@ import tomli
 from .modules.adv_encode import advanced_encode, advanced_encode_XL
 from nodes import MAX_RESOLUTION
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
+from custom_nodes.ComfyUI_Primere_Nodes import utils
 from pathlib import Path
 import re
 import requests
@@ -144,14 +145,26 @@ class PrimereCKPTLoader:
         return {
             "required": {
                 "ckpt_name": ("CHECKPOINT_NAME",),
+                "use_yaml": ("BOOLEAN", {"default": False}),
                 "is_lcm": ("INT", {"default": 0, "forceInput": True}),
                 "strength_lcm_model": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
                 "strength_lcm_clip": ("FLOAT", {"default": 1.0, "min": -20.0, "max": 20.0, "step": 0.01}),
             },
         }
 
-    def load_primere_ckpt(self, ckpt_name, is_lcm, strength_lcm_model, strength_lcm_clip):
-        LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(ckpt_name)
+    def load_primere_ckpt(self, ckpt_name, use_yaml, is_lcm, strength_lcm_model, strength_lcm_clip):
+        path = Path(ckpt_name)
+        ModelName = path.stem
+        ModelConfigPath = path.parent.joinpath(ModelName + '.yaml')
+        ModelConfigFullPath = Path(folder_paths.models_dir).joinpath('checkpoints').joinpath(ModelConfigPath)
+
+        if (os.path.isfile(ModelConfigFullPath) and use_yaml == True):
+            ckpt_path = folder_paths.get_full_path("checkpoints", ckpt_name)
+            print(ModelName + '.yaml file found and loading...')
+            LOADED_CHECKPOINT = comfy.sd.load_checkpoint(ModelConfigFullPath, ckpt_path, True, True, None, None, None)
+        else:
+            LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(ckpt_name)
+
         OUTPUT_MODEL = LOADED_CHECKPOINT[0]
         OUTPUT_CLIP = LOADED_CHECKPOINT[1]
         MODEL_VERSION = utility.getCheckpointVersion(OUTPUT_MODEL)
