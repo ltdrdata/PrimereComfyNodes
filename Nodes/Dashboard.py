@@ -161,7 +161,10 @@ class PrimereCKPTLoader:
         if (os.path.isfile(ModelConfigFullPath) and use_yaml == True):
             ckpt_path = folder_paths.get_full_path("checkpoints", ckpt_name)
             print(ModelName + '.yaml file found and loading...')
-            LOADED_CHECKPOINT = comfy.sd.load_checkpoint(ModelConfigFullPath, ckpt_path, True, True, None, None, None)
+            try:
+                LOADED_CHECKPOINT = comfy.sd.load_checkpoint(ModelConfigFullPath, ckpt_path, True, True, None, None, None)
+            except Exception:
+                LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(ckpt_name)
         else:
             LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(ckpt_name)
 
