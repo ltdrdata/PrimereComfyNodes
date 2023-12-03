@@ -544,14 +544,14 @@ class PrimereMetaRead:
             data_json['dynamic_negative'] = utility.DynPromptDecoder(self, data_json['negative'], seed)
 
             if prefered_orientation is not None and len(prefered_orientation.strip()) > 0:
-                image_sides = sorted([data_json['width'], data_json['height']])
-                custom_side_b = round((image_sides[1] / image_sides[0]), 4)
-                dimensions = utility.calculate_dimensions(self, "Square [1:1]", prefered_orientation, 1, model_version, True, 1, custom_side_b)
-                data_json['width'] = dimensions[0]
-                data_json['height'] = dimensions[1]
+                # image_sides = sorted([data_json['width'], data_json['height']])
+                # custom_side_b = round((image_sides[1] / image_sides[0]), 4)
+                # dimensions = utility.calculate_dimensions(self, "Square [1:1]", prefered_orientation, 1, model_version, True, 1, custom_side_b)
+                # data_json['width'] = dimensions[0]
+                # data_json['height'] = dimensions[1]
 
-                width = dimensions[0]
-                height = dimensions[1]
+                # width = dimensions[0]
+                # height = dimensions[1]
                 if prefered_orientation == 'Vertical' and (data_json['width'] > data_json['height']):
                     data_json['width'] = height
                     data_json['height'] = width
