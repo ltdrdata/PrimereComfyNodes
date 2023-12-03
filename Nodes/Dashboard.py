@@ -538,7 +538,8 @@ class PrimereResolution:
         return {
             "required": {
                 "ratio": (list(namelist.keys()),),
-                "force_768_SD1x": ("BOOLEAN", {"default": True}),
+                # "force_768_SD1x": ("BOOLEAN", {"default": True}),
+                "basemodel_res": ([512, 768, 1024, 1280], {"default": 768}),
                 "rnd_orientation": ("BOOLEAN", {"default": False}),
                 "orientation": (["Horizontal", "Vertical"], {"default": "Horizontal"}),
                 "round_to_standard": ("BOOLEAN", {"default": False}),
@@ -550,15 +551,25 @@ class PrimereResolution:
             },
         }
 
-    def calculate_imagesize(self, ratio: str, force_768_SD1x: bool, rnd_orientation: bool, orientation: str, round_to_standard: bool, model_version: str, seed: int, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
+    def calculate_imagesize(self, ratio: str, basemodel_res: int, rnd_orientation: bool, orientation: str, round_to_standard: bool, model_version: str, seed: int, calculate_by_custom: bool, custom_side_a: float, custom_side_b: float):
         if rnd_orientation == True:
             if (seed % 2) == 0:
                 orientation = "Horizontal"
             else:
                 orientation = "Vertical"
 
-        if force_768_SD1x == True and  model_version == 'BaseModel_768':
-            model_version = 'BaseModel_1024'
+        # if force_768_SD1x == True and  model_version == 'BaseModel_768':
+        #    model_version = 'BaseModel_1024'
+        if model_version == 'BaseModel_768':
+            match basemodel_res:
+                case 512:
+                    model_version = 'BaseModel_768'
+                case 768:
+                    model_version = 'BaseModel_1024'
+                case 1024:
+                    model_version = 'BaseModel_mod_1024'
+                case 1280:
+                    model_version = 'BaseModel_mod_1280'
 
         dimensions = utility.calculate_dimensions(self, ratio, orientation, round_to_standard, model_version, calculate_by_custom, custom_side_a, custom_side_b)
         dimension_x = dimensions[0]
