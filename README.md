@@ -127,5 +127,12 @@ Use this node to diaplay text.
 ### Primere Style Pile:
 Style collection for generated images. Set and connect this node to the 'Prompt Encoder'. No forget to set and play with style strenght. The source of this node is external file at 'Toml/stylepile.toml', what you can edit if you need changes.
 
+## Visuals:
+Here are same functions like upper, but the selection (for example checkpoints, loras, embeddings and hypernetworks) possible by image previews on modal. Very similar than in several themes of A1111.
+
+### Primere Visual CKPT selector:
+The first visual selector for checkpoints. You must reproduce your original checkpoint path to ComfyUI\web\extensions\Primere\images\checkpoints\ path but inly the preview images, same name as the checkpoint but with .jpg only extension.
+As extra features you can enable/disable modal with show_modal switch, and exclude files and paths in modal start with . (point) character if show_hidden switch is off. 
+
 # Contact:
 ### Discord name: primere -> ask email if you need
