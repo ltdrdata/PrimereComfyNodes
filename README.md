@@ -100,7 +100,8 @@ This node generate 'empty' latent image, but with several noise settings. You ca
 - The ratios of this node stored in external file at 'Toml/resolution_ratios.toml', what you can edit if you need changes.
 - Use 'round_to_standard' switch if you want to modify the exactly calculated size to the 'officially' recommended SD / SDXL values. This is usually very small modification.
 - Not sure what orientation the best for your prompt and want to test in batch image generation? Just set batch value on the Comfy menu and swith 'rnd_orientation' to randomize vertical and horizontal images
-- Set 'force_768_SD1x' to true if you want to use 768 pixel based images instead of 512 pixel on SD1.x models
+- Set the base model (SD1.x not SDQL) resolution to 512, 768, 1024, or 1280.
+- If you want to check your prompt in batch but with several orientation, use rnd_oriantation to randomize horizontal/vertical images for same prompt and settings.
 
 ### Primere Resolution Multiplier:
 Multiply the base image size for upscaling. Important to use 'model_version' if you want to use several multiplier for SD and SDXL models.
