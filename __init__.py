@@ -42,6 +42,7 @@ import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Dashboard as Dashboard
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Inputs as Inputs
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Styles as Styles
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Outputs as Outputs
+import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Visuals as Visuals
 
 NODE_CLASS_MAPPINGS = {
     "PrimereSamplers": Dashboard.PrimereSamplers,
@@ -71,6 +72,8 @@ NODE_CLASS_MAPPINGS = {
     "PrimereTextOutput": Outputs.PrimereTextOutput,
 
     "PrimereStylePile": Styles.PrimereStylePile,
+
+    "PrimereVisualCKPT": Visuals.PrimereVisualCKPT,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -101,4 +104,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereTextOutput": "Primere Text Ouput",
 
     "PrimereStylePile": "Primere Style Pile",
+
+    "PrimereVisualCKPT": "Primere Visual CKPT Selector",
 }
