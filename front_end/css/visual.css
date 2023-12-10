@@ -33,12 +33,25 @@
     display: inline-grid;
     margin-right: 10px;
     border: white solid 1px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     cursor: pointer;
     box-shadow: 2px 2px 6px #909090;
     position: relative;
     background: white;
     color: black;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   border-radius:5px;
+}
+#primere_visual_modal .visual-ckpt.visual-ckpt-selected {
+    background: #672727;
+    color: white;
+    border: #ff5151 solid 2px;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 #primere_visual_modal .visual-ckpt:hover {
     box-shadow: unset;
@@ -52,6 +65,12 @@
 #primere_visual_modal .visual-ckpt img {
     height: 220px;
     display: block;
+    -moz-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-bottom-left-radius:5px;
+    -moz-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-bottom-right-radius:5px;
 }
 
 #primere_visual_modal .checkpoint-name {
@@ -65,7 +84,13 @@
     white-space: nowrap;
 }
 #primere_visual_modal .subdirtab {
-    height: 60px;
+    background: #656565;
+    vertical-align: middle;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: #aeaeae  solid 1px;
+    border-top: #aeaeae  solid 1px;
 }
 #primere_visual_modal .subdirtab button {
     min-width: 80px;

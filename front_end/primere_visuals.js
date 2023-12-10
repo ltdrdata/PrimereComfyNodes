@@ -3,7 +3,7 @@ import { app } from "/scripts/app.js";
 const ActivateNodeType = "PrimereVisualCKPT"
 const realPath = "extensions/Primere"
 
-function createCardElement(checkpoint, container) {
+function createCardElement(checkpoint, container, SelectedModel) {
     let checkpoint_new = checkpoint.replaceAll('\\', '/');
     let dotLastIndex = checkpoint_new.lastIndexOf('.');
     let finalName = checkpoint_new.substring(0, dotLastIndex);
@@ -18,6 +18,9 @@ function createCardElement(checkpoint, container) {
 
 	var card = document.createElement("div");
 	card.classList.add('visual-ckpt');
+    if (SelectedModel === checkpoint) {
+        card.classList.add('visual-ckpt-selected');
+    }
 
     const img = new Image();
     img.src = imgsrc;
@@ -70,51 +73,66 @@ app.registerExtension({
                     });
 
                     var subdirName ='All';
+                    var filteredCheckpoints = 0;
                     $('body').on("click", 'div.subdirtab button.subdirfilter', function() {
+                        $('div.subdirtab input').val('');
                         subdirName = $(this).data('ckptsubdir');
                         var imageContainers = $('div.primere-modal-content div.visual-ckpt');
+                        filteredCheckpoints = 0;
                         $(imageContainers).find('img').each(function (img_index, img_obj) {
                             var ImageCheckpoint = $(img_obj).data('ckptname');
-                            if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All') {
+                            if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All' && $(img_obj).parent().closest(".visual-ckpt-selected").length === 0) {
                                 $(img_obj).parent().hide();
                             } else {
                                 $(img_obj).parent().show();
+                                filteredCheckpoints++;
                             }
                         });
-                        $('div#primere_visual_modal div.modal_header label').text(subdirName);
+                        $('div#primere_visual_modal div.modal_header label.ckpt-name').text(subdirName);
+                        $('div#primere_visual_modal div.modal_header label.ckpt-counter').text(filteredCheckpoints - 1);
                         $('div.subdirtab button.subdirfilter').removeClass("selected_path");
                         $(this).addClass('selected_path');
+                        $(".visual-ckpt-selected").prependTo(".primere-modal-content");
                     });
 
                     $('body').on("keyup", 'div.subdirtab input', function() {
                         var filter = $(this).val();
                         var imageContainers = $('div.primere-modal-content div.visual-ckpt');
+                        filteredCheckpoints = 0;
                         $(imageContainers).find('img').each(function (img_index, img_obj) {
                             var ImageCheckpoint = $(img_obj).data('ckptname');
                             let dotLastIndex = ImageCheckpoint.lastIndexOf('.');
                             let finalFilter = ImageCheckpoint.substring(0, dotLastIndex);
-                            if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All') {
+                            if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All' && $(img_obj).parent().closest(".visual-ckpt-selected").length === 0) {
                                 $(img_obj).parent().hide();
                             } else {
-                                if (finalFilter.toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
+                                if (finalFilter.toLowerCase().indexOf(filter.toLowerCase()) >= 0 || $(img_obj).parent().closest(".visual-ckpt-selected").length > 0) {
                                     $(img_obj).parent().show();
+                                    filteredCheckpoints++;
                                 } else {
                                     $(img_obj).parent().hide();
                                 }
                             }
                         });
+                        $('div#primere_visual_modal div.modal_header label.ckpt-counter').text(filteredCheckpoints - 1);
+                        $(".visual-ckpt-selected").prependTo(".primere-modal-content");
+                    });
 
-                        $('body').on("click", 'div.subdirtab button.filter_clear', function() {
-                            $('div.subdirtab input').val('');
-                            $(imageContainers).find('img').each(function (img_index, img_obj) {
-                                var ImageCheckpoint = $(img_obj).data('ckptname');
-                                if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All') {
-                                    $(img_obj).parent().hide();
-                                } else {
-                                    $(img_obj).parent().show();
-                                }
-                            });
+                    $('body').on("click", 'div.subdirtab button.filter_clear', function() {
+                        $('div.subdirtab input').val('');
+                        var imageContainers = $('div.primere-modal-content div.visual-ckpt');
+                        filteredCheckpoints = 0;
+                        $(imageContainers).find('img').each(function (img_index, img_obj) {
+                            var ImageCheckpoint = $(img_obj).data('ckptname');
+                            if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All' && $(img_obj).parent().closest(".visual-ckpt-selected").length === 0) {
+                                $(img_obj).parent().hide();
+                            } else {
+                                $(img_obj).parent().show();
+                                filteredCheckpoints++;
+                            }
                         });
+                        $('div#primere_visual_modal div.modal_header label.ckpt-counter').text(filteredCheckpoints - 1);
+                        $(".visual-ckpt-selected").prependTo(".primere-modal-content");
                     });
                 });
             };
@@ -127,16 +145,18 @@ app.registerExtension({
             }
         }
 
-        function setup_visual_modal(combo_name, AllModels, ShowHidden) {
+        function setup_visual_modal(combo_name, AllModels, ShowHidden, SelectedModel) {
             var container = null;
             var modal = null;
+            var modalExist = true;
 
             modal = document.getElementById("primere_visual_modal");
             if (!modal) {
+                modalExist = false;
 				modal = document.createElement("div");
 				modal.classList.add("comfy-modal");
 				modal.setAttribute("id","primere_visual_modal");
-				modal.innerHTML='<div class="modal_header"><button type="button" class="modal-closer">Close modal</button> <h3 class="visual_modal_title">' + combo_name.replace("_"," ") + " :: <label>All</label></h3><hr></div>";
+				modal.innerHTML='<div class="modal_header"><button type="button" class="modal-closer">Close modal</button> <h3 class="visual_modal_title">' + combo_name.replace("_"," ") + ' :: <label class="ckpt-name">All</label> :: <label class="ckpt-counter">' + AllModels.length + '</label></h3></div>';
 
                 let subdir_container = document.createElement("div");
                 subdir_container.classList.add("subdirtab");
@@ -151,7 +171,6 @@ app.registerExtension({
 
             container = modal.getElementsByClassName("ckpt-container")[0];
 			container.innerHTML = "";
-			modal.setAttribute('style','display: block; width: 60%; height: 70%;')
 
             var subdirArray = ['All'];
             for (var checkpoints of AllModels) {
@@ -178,20 +197,33 @@ app.registerExtension({
                     menu_html += '<button type="button" data-ckptsubdir="' + subdir + '" class="subdirfilter' + addWhiteClass + '">' + subdirName + '</button>';
                 }
             }
-            subdir_tabs.innerHTML = menu_html + '<label> | </label> <input type="text" name="ckptfilter" placeholder="filter"> <button type="button" class="filter_clear">Clear filter</button>' + '<hr>';
+            subdir_tabs.innerHTML = menu_html + '<label> | </label> <input type="text" name="ckptfilter" placeholder="filter"> <button type="button" class="filter_clear">Clear filter</button>';
 
             for (var checkpoint of AllModels) {
                 let firstletter = checkpoint.charAt(0);
                 if ((firstletter === '.' && ShowHidden === true) || firstletter !== '.') {
-                    createCardElement(checkpoint, container)
+                    createCardElement(checkpoint, container, SelectedModel)
                 }
             }
+
+            modal.setAttribute('style','display: block; width: 60%; height: 70%;');
+            var mtimeout = 200;
+            if (modalExist === false) {
+                mtimeout = 1500;
+            }
+            setTimeout(function(mtimeout) {
+                $('div#primere_visual_modal div.modal_header label.ckpt-name').text('All');
+                $('div#primere_visual_modal div.modal_header label.ckpt-counter').text(AllModels.length);
+                $(".visual-ckpt-selected").prependTo(".primere-modal-content");
+            }, mtimeout);
+
         }
 
         ModalHandler();
 
         const lcg = LGraphCanvas.prototype.processNodeWidgets;
         LGraphCanvas.prototype.processNodeWidgets = function(node, pos, event, active_widget) {
+            //console.log(node);
 
             if (event.type != LiteGraph.pointerevents_method + "down") {
                 return lcg.call(this, node, pos, event, active_widget);
@@ -210,7 +242,7 @@ app.registerExtension({
                 var y = pos[1] - node.pos[1];
                 var width = node.size[0];
                 var that = this;
-                var ref_window = this.getCanvasWindow();
+                //var ref_window = this.getCanvasWindow();
 
                 var ShowHidden = false;
                 var ShowModal = false;
@@ -248,8 +280,10 @@ app.registerExtension({
 
                         if (node.widgets[i].name == 'base_model') {
                             var AllModels = node.widgets[i].options.values;
+                            var SelectedModel = node.widgets[i].value;
+
                             callbackfunct = inner_clicked.bind(w);
-                            setup_visual_modal('Select checkpoint', AllModels, ShowHidden);
+                            setup_visual_modal('Select checkpoint', AllModels, ShowHidden, SelectedModel);
 
                             function inner_clicked(v, option, event) {
                                 inner_value_change(this, v);
