@@ -74,6 +74,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereStylePile": Styles.PrimereStylePile,
 
     "PrimereVisualCKPT": Visuals.PrimereVisualCKPT,
+    "PrimereVisualLORA": Visuals.PrimereVisualLORA,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -106,4 +107,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereStylePile": "Primere Style Pile",
 
     "PrimereVisualCKPT": "Primere Visual CKPT Selector",
+    "PrimereVisualLORA": "Primere Visual LORA Selector",
 }
