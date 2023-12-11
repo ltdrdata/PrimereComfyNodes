@@ -43,34 +43,62 @@ class PrimereVisualLORA:
             "required": {
                 "model": ("MODEL",),
                 "clip": ("CLIP",),
+                "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
+
+                "stack_version": (["SD", "SDXL"], {"default": "SD"}),
                 "show_modal": ("BOOLEAN", {"default": True}),
                 "show_hidden": ("BOOLEAN", {"default": True}),
+                "use_only_model_weght": ("BOOLEAN", {"default": True}),
+
                 "use_lora_1": ("BOOLEAN", {"default": False}),
                 "lora_1": (folder_paths.get_filename_list("loras"),),
-                "lora_1_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_1_model_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_1_clip_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+
                 "use_lora_2": ("BOOLEAN", {"default": False}),
                 "lora_2": (folder_paths.get_filename_list("loras"),),
-                "lora_2_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_2_model_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_2_clip_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+
                 "use_lora_3": ("BOOLEAN", {"default": False}),
                 "lora_3": (folder_paths.get_filename_list("loras"),),
-                "lora_3_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_3_model_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_3_clip_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+
                 "use_lora_4": ("BOOLEAN", {"default": False}),
                 "lora_4": (folder_paths.get_filename_list("loras"),),
-                "lora_4_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_4_model_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_4_clip_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+
                 "use_lora_5": ("BOOLEAN", {"default": False}),
                 "lora_5": (folder_paths.get_filename_list("loras"),),
-                "lora_5_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_5_model_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_5_clip_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+
                 "use_lora_6": ("BOOLEAN", {"default": False}),
                 "lora_6": (folder_paths.get_filename_list("loras"),),
-                "lora_6_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_6_model_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+                "lora_6_clip_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+
             },
         }
 
-    def visual_lora_stacker(self, model, clip, **kwargs):
+    def visual_lora_stacker(self, model, clip, use_only_model_weght, stack_version = 'SD', model_version = "BaseModel_1024", **kwargs):
+        if model_version == 'SDXL_2048' and stack_version == 'SD':
+            return (model, clip, [])
+
+        if model_version != 'SDXL_2048' and stack_version == 'SDXL':
+            return (model, clip, [])
+
         loras = [kwargs.get(f"lora_{i}") for i in range(1, self.LORASCOUNT + 1)]
-        weights = [kwargs.get(f"lora_{i}_weight") for i in range(1, self.LORASCOUNT + 1)]
+        model_weight = [kwargs.get(f"lora_{i}_model_weight") for i in range(1, self.LORASCOUNT + 1)]
+        if use_only_model_weght == True:
+            clip_weight =[kwargs.get(f"lora_{i}_model_weight") for i in range(1, self.LORASCOUNT + 1)]
+        else:
+            clip_weight =[kwargs.get(f"lora_{i}_clip_weight") for i in range(1, self.LORASCOUNT + 1)]
+
         uses = [kwargs.get(f"use_lora_{i}") for i in range(1, self.LORASCOUNT + 1)]
-        lora_stack = [(lora_name, lora_weight, lora_weight) for lora_name, lora_weight, lora_uses in zip(loras, weights, uses) if lora_uses == True]
+        lora_stack = [(lora_name, lora_model_weight, lora_clip_weight) for lora_name, lora_model_weight, lora_clip_weight, lora_uses in zip(loras, model_weight, clip_weight, uses) if lora_uses == True]
 
         lora_params = list()
         if lora_stack and len(lora_stack) > 0:

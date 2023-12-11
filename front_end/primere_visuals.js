@@ -81,11 +81,21 @@ app.registerExtension({
                         filteredCheckpoints = 0;
                         $(imageContainers).find('img').each(function (img_index, img_obj) {
                             var ImageCheckpoint = $(img_obj).data('ckptname');
-                            if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All' && $(img_obj).parent().closest(".visual-ckpt-selected").length === 0) {
-                                $(img_obj).parent().hide();
+                            if (subdirName === 'Root') {
+                                let isSubdirExist = ImageCheckpoint.lastIndexOf('\\');
+                                if (isSubdirExist > 1 && $(img_obj).parent().closest(".visual-ckpt-selected").length === 0) {
+                                    $(img_obj).parent().hide();
+                                } else {
+                                    $(img_obj).parent().show();
+                                    filteredCheckpoints++;
+                                }
                             } else {
-                                $(img_obj).parent().show();
-                                filteredCheckpoints++;
+                                if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All' && $(img_obj).parent().closest(".visual-ckpt-selected").length === 0) {
+                                    $(img_obj).parent().hide();
+                                } else {
+                                    $(img_obj).parent().show();
+                                    filteredCheckpoints++;
+                                }
                             }
                         });
                         $('div#primere_visual_modal div.modal_header label.ckpt-name').text(subdirName);
@@ -156,7 +166,7 @@ app.registerExtension({
 				modal = document.createElement("div");
 				modal.classList.add("comfy-modal");
 				modal.setAttribute("id","primere_visual_modal");
-				modal.innerHTML='<div class="modal_header"><button type="button" class="modal-closer">Close modal</button> <h3 class="visual_modal_title">' + combo_name.replace("_"," ") + ' :: <label class="ckpt-name">All</label> :: <label class="ckpt-counter">' + AllModels.length + '</label></h3></div>';
+				modal.innerHTML='<div class="modal_header"><button type="button" class="modal-closer">Close modal</button> <h3 class="visual_modal_title">' + combo_name.replace("_"," ") + ' :: <label class="ckpt-name">All</label> :: <label class="ckpt-counter"></label></h3></div>';
 
                 let subdir_container = document.createElement("div");
                 subdir_container.classList.add("subdirtab");
@@ -176,6 +186,9 @@ app.registerExtension({
             for (var checkpoints of AllModels) {
                 let pathLastIndex = checkpoints.lastIndexOf('\\');
                 let ckptSubdir = checkpoints.substring(0, pathLastIndex);
+                if (ckptSubdir === '') {
+                    ckptSubdir = 'Root';
+                }
                 if (subdirArray.indexOf(ckptSubdir) === -1) {
                     subdirArray.push(ckptSubdir);
                 }
@@ -199,9 +212,11 @@ app.registerExtension({
             }
             subdir_tabs.innerHTML = menu_html + '<label> | </label> <input type="text" name="ckptfilter" placeholder="filter"> <button type="button" class="filter_clear">Clear filter</button>';
 
+            var CKPTElements = 0;
             for (var checkpoint of AllModels) {
                 let firstletter = checkpoint.charAt(0);
                 if ((firstletter === '.' && ShowHidden === true) || firstletter !== '.') {
+                    CKPTElements++;
                     createCardElement(checkpoint, container, SelectedModel, ModelType)
                 }
             }
@@ -213,7 +228,7 @@ app.registerExtension({
             }
             setTimeout(function(mtimeout) {
                 $('div#primere_visual_modal div.modal_header label.ckpt-name').text('All');
-                $('div#primere_visual_modal div.modal_header label.ckpt-counter').text(AllModels.length);
+                $('div#primere_visual_modal div.modal_header label.ckpt-counter').text(CKPTElements - 1);
                 $(".visual-ckpt-selected").prependTo(".primere-modal-content");
             }, mtimeout);
 

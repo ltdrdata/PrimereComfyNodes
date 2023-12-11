@@ -570,3 +570,24 @@ class PrimereMetaRead:
         with open(image_path, 'rb') as f:
             m.update(f.read())
         return m.digest().hex()
+
+class PrimereLoraStackMerger:
+    RETURN_TYPES = ("LORA_STACK",)
+    RETURN_NAMES = ("LORA_STACK",)
+    FUNCTION = "lora_stack_merger"
+    CATEGORY = TREE_INPUTS
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "lora_stack_1": ("LORA_STACK",),
+                "lora_stack_2": ("LORA_STACK",),
+            }
+        }
+
+    def lora_stack_merger(self, lora_stack_1, lora_stack_2):
+        if lora_stack_1 is not None and lora_stack_2 is not None:
+            return (lora_stack_1 + lora_stack_2, )
+        else:
+            return ([], )
