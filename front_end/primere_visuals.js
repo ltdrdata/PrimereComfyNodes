@@ -177,7 +177,9 @@ app.registerExtension({
 				modal.appendChild(container);
 
 				document.body.appendChild(modal);
-			}
+			} else {
+                $('div#primere_visual_modal div.modal_header h3.visual_modal_title').html(combo_name.replace("_"," ") + ' :: <label class="ckpt-name">All</label> :: <label class="ckpt-counter"></label>');
+            }
 
             container = modal.getElementsByClassName("ckpt-container")[0];
 			container.innerHTML = "";
@@ -222,9 +224,10 @@ app.registerExtension({
             }
 
             modal.setAttribute('style','display: block; width: 60%; height: 70%;');
-            var mtimeout = 200;
+            var TimingBase =AllModels.length;
+            var mtimeout = TimingBase * 2;
             if (modalExist === false) {
-                mtimeout = 1500;
+                mtimeout = TimingBase * 15;
             }
             setTimeout(function(mtimeout) {
                 $('div#primere_visual_modal div.modal_header label.ckpt-name').text('All');
