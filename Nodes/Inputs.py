@@ -591,3 +591,37 @@ class PrimereLoraStackMerger:
             return (lora_stack_1 + lora_stack_2, )
         else:
             return ([], )
+
+class PrimereLoraKeywordMerger:
+    RETURN_TYPES = ("MODEL_KEYWORD",)
+    RETURN_NAMES = ("LORA_KEYWORD",)
+    FUNCTION = "lora_keyword_merger"
+    CATEGORY = TREE_INPUTS
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "lora_keyword_SD": ("MODEL_KEYWORD",),
+                "lora_keyword_SDXL": ("MODEL_KEYWORD",),
+            }
+        }
+
+    def lora_keyword_merger(self, lora_keyword_SD, lora_keyword_SDXL):
+        model_keyword = [None, None]
+
+        if lora_keyword_SD is not None:
+            mkw_list_1 = list(filter(None, lora_keyword_SD))
+            if len(mkw_list_1) == 2:
+                model_keyword_1 = mkw_list_1[0]
+                placement = mkw_list_1[1]
+                model_keyword = [model_keyword_1, placement]
+
+        if lora_keyword_SDXL is not None:
+            mkw_list_2 = list(filter(None, lora_keyword_SDXL))
+            if len(mkw_list_2) == 2:
+                model_keyword_2 = mkw_list_2[0]
+                placement = mkw_list_2[1]
+                model_keyword = [model_keyword_2, placement]
+
+        return (model_keyword,)

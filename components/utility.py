@@ -2,6 +2,12 @@ import math
 import comfy.model_sampling
 import torch
 from dynamicprompts.generators import RandomPromptGenerator
+import hashlib
+import chardet
+import pandas
+import re
+from pathlib import Path
+import difflib
 
 SUPPORTED_FORMATS = [".png", ".jpg", ".jpeg", ".webp"]
 STANDARD_SIDES = [64, 80, 96, 128, 144, 160, 192, 256, 320, 368, 400, 480, 512, 560, 640, 704, 768, 832, 896, 960, 1024, 1088, 1152, 1216, 1280, 1344, 1408, 1472, 1536, 1600, 1664, 1728, 1792, 1856, 1920, 1984, 2048]
@@ -116,18 +122,10 @@ def clear_prompt(NETWORK_START, NETWORK_END, promptstring):
 def rescale_zero_terminal_snr_sigmas(sigmas):
     alphas_cumprod = 1 / ((sigmas * sigmas) + 1)
     alphas_bar_sqrt = alphas_cumprod.sqrt()
-
-    # Store old values.
     alphas_bar_sqrt_0 = alphas_bar_sqrt[0].clone()
     alphas_bar_sqrt_T = alphas_bar_sqrt[-1].clone()
-
-    # Shift so the last timestep is zero.
     alphas_bar_sqrt -= (alphas_bar_sqrt_T)
-
-    # Scale so the first timestep is back to the old value.
     alphas_bar_sqrt *= alphas_bar_sqrt_0 / (alphas_bar_sqrt_0 - alphas_bar_sqrt_T)
-
-    # Convert alphas_bar_sqrt to betas
     alphas_bar = alphas_bar_sqrt ** 2  # Revert sqrt
     alphas_bar[-1] = 4.8973451890853435e-08
     return ((1 - alphas_bar) / alphas_bar) ** 0.5
@@ -243,3 +241,60 @@ def getCheckpointVersion(modelobject):
         ModelVersion = 1024
 
     return ckpt_type + '_' + str(ModelVersion)
+
+def get_model_hash(filename):
+    try:
+        with open(filename, "rb") as file:
+            m = hashlib.sha256()
+            file.seek(0x100000)
+            m.update(file.read(0x10000))
+            hash = m.hexdigest()[0:8]
+            return hash
+    except FileNotFoundError:
+        return None
+
+def load_external_csv(csv_full_path: str, header_cols: int):
+    fileTest = open(csv_full_path, 'rb').readline()
+    result = chardet.detect(fileTest)
+    ENCODING = result['encoding']
+    if ENCODING == 'ascii':
+        ENCODING = 'UTF-8'
+
+    with open(csv_full_path, "r", newline = '', encoding = ENCODING) as csv_file:
+        try:
+            return pandas.read_csv(csv_file, header = header_cols, index_col = False, skipinitialspace = True)
+        except pandas.errors.ParserError as e:
+            errorstring = repr(e)
+            matchre = re.compile('Expected (\d+) fields in line (\d+), saw (\d+)')
+            (expected, line, saw) = map(int, matchre.search(errorstring).groups())
+            print(f'Error at line {line}. Fields added : {saw - expected}.')
+            return None
+
+def get_model_keywords(filename, modelhash, model_name):
+    keywords = load_external_csv(filename, 3)
+    if keywords is not None:
+        selected_kv = keywords[keywords['#model_hash'] == modelhash]['keyword'].values
+        if (len(selected_kv) > 1):
+            selected_ckpt = keywords[keywords['#model_hash'] == modelhash]['filename.ckpt'].values
+            basename = Path(model_name).stem
+
+            cutoff_list = [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]
+            is_found = []
+            model_name_kw = None
+
+            for trycut in cutoff_list:
+                is_found = difflib.get_close_matches(basename, selected_ckpt, cutoff=trycut)
+                if len(is_found) >= 1:
+                    model_name_kw = is_found[0]
+                    break
+
+            if len(is_found) >= 0:
+                if model_name_kw is not None:
+                    selected_kv = keywords[keywords['filename.ckpt'] == model_name_kw]['keyword'].values
+
+        if (len(selected_kv) > 0):
+            return selected_kv[0]
+        else:
+            return None
+    else:
+        return None

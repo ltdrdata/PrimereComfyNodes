@@ -54,8 +54,8 @@ class PrimereVAE:
         return vae_model,
 
 class PrimereCKPT:
-    RETURN_TYPES = ("CHECKPOINT_NAME", "STRING")
-    RETURN_NAMES = ("MODEL_NAME", "MODEL_VERSION")
+    RETURN_TYPES = ("CHECKPOINT_NAME", "STRING", "MODEL_KEYWORD")
+    RETURN_NAMES = ("MODEL_NAME", "MODEL_VERSION", "MODEL_KEYWORD")
     FUNCTION = "load_ckpt_list"
     CATEGORY = TREE_DASHBOARD
 
@@ -66,15 +66,46 @@ class PrimereCKPT:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "base_model": (folder_paths.get_filename_list("checkpoints"),)
+                "base_model": (folder_paths.get_filename_list("checkpoints"),),
+                "use_model_keyword": ("BOOLEAN", {"default": False}),
+                "model_keyword_placement": (["First", "Last"], {"default": "Last"}),
+                "model_keyword_selection": (["Select in order", "Random select"], {"default": "Select in order"}),
+                "model_keywords_num": ("INT", {"default": 1, "min": 1, "max": 50, "step": 1}),
+                "model_keyword_weight": ("FLOAT", {"default": 1.0, "min": 0, "max": 10.0, "step": 0.1}),
             },
         }
 
-    def load_ckpt_list(self, base_model,):
+    def load_ckpt_list(self, base_model, use_model_keyword, model_keyword_placement, model_keyword_selection, model_keywords_num, model_keyword_weight):
         LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(base_model)
         model_version = utility.getCheckpointVersion(LOADED_CHECKPOINT[0])
+        model_keyword = [None, None]
 
-        return (base_model, model_version,)
+        if use_model_keyword == True:
+            ckpt_path = folder_paths.get_full_path("checkpoints", base_model)
+            ModelKvHash = utility.get_model_hash(ckpt_path)
+            if ModelKvHash is not None:
+                KEYWORD_PATH = os.path.join(PRIMERE_ROOT, 'front_end', 'keywords', 'model-keyword.txt')
+                keywords = utility.get_model_keywords(KEYWORD_PATH, ModelKvHash, base_model)
+
+                if keywords is not None:
+                    if keywords.find('|') > 1:
+                        keyword_list = keywords.split("|")
+                        if (len(keyword_list) > 0):
+                            keyword_qty = len(keyword_list)
+                            if (model_keywords_num > keyword_qty):
+                                model_keywords_num = keyword_qty
+                            if model_keyword_selection == 'Select in order':
+                                list_of_keyword_items = keyword_list[:model_keywords_num]
+                            else:
+                                list_of_keyword_items = random.sample(keyword_list, model_keywords_num)
+                            keywords = ", ".join(list_of_keyword_items)
+
+                    if (model_keyword_weight != 1):
+                        keywords = '(' + keywords + ':' + str(model_keyword_weight) + ')'
+
+                    model_keyword = [keywords, model_keyword_placement]
+
+        return (base_model, model_version, model_keyword)
 
 class PrimereVAELoader:
     RETURN_TYPES = ("VAE",)
@@ -426,6 +457,9 @@ class PrimereCLIP:
                 # "affect_pooled": ("BOOLEAN", {"default": False}),
             },
             "optional": {
+                "model_keywords": ("MODEL_KEYWORD", {"forceInput": True}),
+                "lora_keywords": ("MODEL_KEYWORD", {"forceInput": True}),
+
                 "opt_pos_prompt": ("STRING", {"forceInput": True}),
                 "opt_pos_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
                 "opt_neg_prompt": ("STRING", {"forceInput": True}),
@@ -445,7 +479,7 @@ class PrimereCLIP:
             }
         }
 
-    def clip_encode(self, clip, negative_strength, int_style_pos_strength, int_style_neg_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, int_style_pos, int_style_neg, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_int_style = False, model_version = "BaseModel_1024"):
+    def clip_encode(self, clip, negative_strength, int_style_pos_strength, int_style_neg_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, int_style_pos, int_style_neg, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", model_keywords = None, lora_keywords = None, opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_int_style = False, model_version = "BaseModel_1024"):
         is_sdxl = 0
         match model_version:
             case 'SDXL_2048':
@@ -481,6 +515,26 @@ class PrimereCLIP:
 
         positive_text = f'{positive_prompt}, {opt_pos_prompt}, {style_pos_prompt}, {additional_positive}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ").replace(":1.00", "")
         negative_text = f'{negative_prompt}, {opt_neg_prompt}, {style_neg_prompt}, {additional_negative}'.strip(' ,;').replace(", , ", ", ").replace(", , ", ", ").replace(":1.00", "")
+
+        if model_keywords is not None:
+            mkw_list = list(filter(None, model_keywords))
+            if len(mkw_list) == 2:
+                model_keyword = mkw_list[0]
+                mplacement = mkw_list[1]
+                if (mplacement == 'First'):
+                    positive_text = model_keyword + ' ' + positive_text
+                else:
+                    positive_text = positive_text + ' ' + model_keyword
+
+        if lora_keywords is not None:
+            lkw_list = list(filter(None, lora_keywords))
+            if len(lkw_list) == 2:
+                lora_keyword = lkw_list[0]
+                lplacement = lkw_list[1]
+                if (lplacement == 'First'):
+                    positive_text = lora_keyword + ' ' + positive_text
+                else:
+                    positive_text = positive_text + ' ' + lora_keyword
 
         if (model_version == 'BaseModel_1024'):
             adv_encode = False

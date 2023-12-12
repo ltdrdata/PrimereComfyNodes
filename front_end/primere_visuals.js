@@ -44,6 +44,26 @@ app.registerExtension({
     name: "Primere.VisualMenu",
 
     init() {
+        /* fetch('extensions/bilbox/PromptGeek/photo_data.json')
+            .then((response) => response.json())
+            .then((json) => window.bilbox_promptgeek_data = json); */
+
+        /* async function getModelKeywords() {
+          console.log((await fetch('extensions/Primere/keywords/lora-keyword.txt')).text());
+          console.log((await fetch('extensions/Primere/keywords/model-keyword.txt')).text());
+        } */
+
+        //getModelKeywords();
+
+        Promise.all([
+          fetch('extensions/Primere/keywords/lora-keyword.txt').then(x => x.text()),
+          fetch('extensions/Primere/keywords/model-keyword.txt').then(x => x.text())
+        ]).then(([Lora, Model]) => {
+          console.log(Lora);
+          console.log(Model);
+        });
+
+
         let callbackfunct = null;
         function ModalHandler() {
             let head = document.getElementsByTagName('HEAD')[0];

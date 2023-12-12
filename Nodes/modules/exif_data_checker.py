@@ -57,8 +57,7 @@ def change_exif_samplers(sampler_name_exif, comfy_schedulers):
     if lastchars == ' a':
         sampler_name_exif = sampler_name_exif.rsplit(' a', 1)[0] + ' ancestral'
 
-    sampler_name_exif = sampler_name_exif.replace(' a ', ' ancestral ').replace(' ', '_').replace('++', 'pp').replace(
-        'dpm2', 'dpm_2').replace('unipc', 'uni_pc')
+    sampler_name_exif = sampler_name_exif.replace(' a ', ' ancestral ').replace(' ', '_').replace('++', 'pp').replace('dpm2', 'dpm_2').replace('unipc', 'uni_pc')
 
     for comfy_scheduler in comfy_schedulers:
         sampler_name_exif = sampler_name_exif.removesuffix(comfy_scheduler).removesuffix('_')

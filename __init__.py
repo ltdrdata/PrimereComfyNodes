@@ -67,6 +67,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereMetaRead": Inputs.PrimereMetaRead,
     "PrimereEmbeddingHandler": Inputs.PrimereEmbeddingHandler,
     "PrimereLoraStackMerger": Inputs.PrimereLoraStackMerger,
+    "PrimereLoraKeywordMerger": Inputs.PrimereLoraKeywordMerger,
 
     "PrimereMetaSave": Outputs.PrimereMetaSave,
     "PrimereAnyOutput": Outputs.PrimereAnyOutput,
@@ -101,6 +102,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereMetaRead": "Primere Exif Reader",
     "PrimereEmbeddingHandler": "Primere Embedding Handler",
     "PrimereLoraStackMerger": "Primere Lora Stack Merger",
+    "PrimereLoraKeywordMerger": 'Primere Lora Keyword Merger',
 
     "PrimereMetaSave": "Primere Image Meta Saver",
     "PrimereAnyOutput": "Primere Any Debug",

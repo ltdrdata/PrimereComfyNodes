@@ -1,6 +1,6 @@
 {
-  "last_node_id": 211,
-  "last_link_id": 569,
+  "last_node_id": 220,
+  "last_link_id": 606,
   "nodes": [
     {
       "id": 93,
@@ -202,7 +202,7 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Portrait",
+        "Architechture Interior",
         true,
         false,
         false
@@ -437,8 +437,8 @@
       "id": 88,
       "type": "PrimereVAE",
       "pos": [
-        2790.8187588778414,
-        -937.5453102805396
+        2795,
+        -799
       ],
       "size": {
         "0": 532.0029296875,
@@ -472,8 +472,8 @@
       "id": 89,
       "type": "PrimereVAE",
       "pos": [
-        2790.8187588778414,
-        -837.5453102805396
+        2795,
+        -702
       ],
       "size": {
         "0": 532.0029296875,
@@ -552,7 +552,7 @@
       "id": 161,
       "type": "UpscaleModelLoader",
       "pos": [
-        2777,
+        2775,
         -549
       ],
       "size": {
@@ -995,52 +995,6 @@
       "bgcolor": "#3f5159"
     },
     {
-      "id": 175,
-      "type": "PrimereVisualCKPT",
-      "pos": [
-        2791,
-        -1098
-      ],
-      "size": {
-        "0": 532.0029296875,
-        "1": 129.6396026611328
-      },
-      "flags": {},
-      "order": 18,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "MODEL_NAME",
-          "type": "CHECKPOINT_NAME",
-          "links": [
-            533
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "MODEL_VERSION",
-          "type": "STRING",
-          "links": [
-            531,
-            532
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereVisualCKPT"
-      },
-      "widgets_values": [
-        "BestAll\\Photon_ICBNP_merge_v10.safetensors",
-        true,
-        false
-      ],
-      "color": "#1414ff",
-      "bgcolor": "#0000ff"
-    },
-    {
       "id": 208,
       "type": "BilboXPhotoPrompt",
       "pos": [
@@ -1052,7 +1006,7 @@
         "1": 460
       },
       "flags": {},
-      "order": 19,
+      "order": 18,
       "mode": 0,
       "outputs": [
         {
@@ -1092,6 +1046,66 @@
       ],
       "color": "#432",
       "bgcolor": "#653"
+    },
+    {
+      "id": 213,
+      "type": "PrimereVisualCKPT",
+      "pos": [
+        2795,
+        -1102
+      ],
+      "size": {
+        "0": 532.0029296875,
+        "1": 266
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL_NAME",
+          "type": "CHECKPOINT_NAME",
+          "links": [
+            572
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MODEL_VERSION",
+          "type": "STRING",
+          "links": [
+            570,
+            571
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "MODEL_KEYWORD",
+          "type": "MODEL_KEYWORD",
+          "links": [
+            589
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereVisualCKPT"
+      },
+      "widgets_values": [
+        "BestPhoto\\photoabsolute_v10.safetensors",
+        true,
+        true,
+        true,
+        "First",
+        "Select in order",
+        1,
+        0.7000000000000001
+      ],
+      "color": "#1414ff",
+      "bgcolor": "#0000ff"
     },
     {
       "id": 91,
@@ -1543,6 +1557,82 @@
       "bgcolor": "#0000ff"
     },
     {
+      "id": 99,
+      "type": "PrimereStylePile",
+      "pos": [
+        1996,
+        88
+      ],
+      "size": {
+        "0": 342.34326171875,
+        "1": 414
+      },
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "opt_pos_style",
+          "type": "STRING",
+          "link": 564,
+          "widget": {
+            "name": "opt_pos_style"
+          }
+        },
+        {
+          "name": "opt_neg_style",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "opt_neg_style"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STYLE+",
+          "type": "STRING",
+          "links": [
+            577
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "STYLE-",
+          "type": "STRING",
+          "links": [
+            578
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereStylePile"
+      },
+      "widgets_values": [
+        "None",
+        1,
+        "None",
+        1.3,
+        "None",
+        1.2,
+        "None",
+        1,
+        "None",
+        0.7000000000000001,
+        "None",
+        1,
+        "None",
+        0.6,
+        "",
+        ""
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
       "id": 164,
       "type": "PrimereResolution",
       "pos": [
@@ -1554,13 +1644,13 @@
         "1": 247.00794982910156
       },
       "flags": {},
-      "order": 22,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
           "name": "model_version",
           "type": "STRING",
-          "link": 531,
+          "link": 570,
           "widget": {
             "name": "model_version"
           }
@@ -1598,13 +1688,13 @@
         "Node name for S&R": "PrimereResolution"
       },
       "widgets_values": [
-        "Portrait [9:7]",
+        "Photo [19:13]",
         768,
         false,
-        "Vertical",
+        "Horizontal",
         true,
         "BaseModel_1024",
-        -786134769072182,
+        -571681196378739,
         "randomize",
         false,
         1,
@@ -1612,82 +1702,6 @@
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
-    },
-    {
-      "id": 99,
-      "type": "PrimereStylePile",
-      "pos": [
-        1996,
-        88
-      ],
-      "size": {
-        "0": 342.34326171875,
-        "1": 414
-      },
-      "flags": {},
-      "order": 23,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "opt_pos_style",
-          "type": "STRING",
-          "link": 564,
-          "widget": {
-            "name": "opt_pos_style"
-          }
-        },
-        {
-          "name": "opt_neg_style",
-          "type": "STRING",
-          "link": null,
-          "widget": {
-            "name": "opt_neg_style"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STYLE+",
-          "type": "STRING",
-          "links": [
-            452
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "STYLE-",
-          "type": "STRING",
-          "links": [
-            453
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereStylePile"
-      },
-      "widgets_values": [
-        "None",
-        1,
-        "None",
-        1.3,
-        "None",
-        1.2,
-        "None",
-        1,
-        "None",
-        0.7000000000000001,
-        "None",
-        1,
-        "None",
-        0.6,
-        "",
-        ""
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
     },
     {
       "id": 108,
@@ -1715,7 +1729,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)"
+        "inside of a {futuristic|retro|avantgard|modern|french|italian|London|Paris|Roma|luxury|village|rustic|minimalist|simple|cheap|penthouse} design style, ((({bedroom|living room|kitchen|office room|computer room}))), interior estate photography, modern {glass|metal|plastic} table in the center of the room, modern and beautiful interior, photo realistic, volumetric lighting, colorful lamps on the top, large window, large TV screen"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -1746,7 +1760,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores"
+        ""
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -1769,7 +1783,7 @@
         {
           "name": "model_name",
           "type": "CHECKPOINT_NAME",
-          "link": 533
+          "link": 572
         },
         {
           "name": "vae_name_sd",
@@ -1832,7 +1846,7 @@
         {
           "name": "model_version",
           "type": "STRING",
-          "link": 532,
+          "link": 571,
           "widget": {
             "name": "model_version"
           }
@@ -2008,9 +2022,9 @@
           "type": "INT",
           "links": [
             425,
-            450,
             478,
-            497
+            497,
+            579
           ],
           "shape": 3,
           "slot_index": 10
@@ -2020,9 +2034,9 @@
           "type": "INT",
           "links": [
             426,
-            451,
             479,
-            498
+            498,
+            580
           ],
           "shape": 3,
           "slot_index": 11
@@ -2080,8 +2094,8 @@
       },
       "widgets_values": [
         false,
-        true,
-        true,
+        false,
+        false,
         false,
         true,
         false,
@@ -2091,7 +2105,7 @@
         true,
         false,
         true,
-        "Image_20230912_184033_594563028205117_2448x3840_1.jpg",
+        "Image_20230912_225559_577650333410130_2448x3840_1.jpg",
         "image",
         "",
         "",
@@ -2102,7 +2116,7 @@
         "BaseModel_1024",
         "euler",
         "normal",
-        1036,
+        584,
         "randomize",
         65,
         895,
@@ -2149,7 +2163,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            555
+            590
           ],
           "shape": 3,
           "slot_index": 0
@@ -2158,7 +2172,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            556
+            591
           ],
           "shape": 3,
           "slot_index": 1
@@ -2176,11 +2190,11 @@
           "name": "MODEL_VERSION",
           "type": "STRING",
           "links": [
-            428,
             445,
             480,
-            562,
-            563
+            574,
+            592,
+            598
           ],
           "shape": 3,
           "slot_index": 3
@@ -2246,7 +2260,7 @@
       },
       "widgets_values": [
         "",
-        223910474324229,
+        259228651697786,
         "randomize"
       ],
       "color": "#232",
@@ -2300,7 +2314,7 @@
       },
       "widgets_values": [
         "",
-        -562733029583447,
+        -529048426158595,
         "randomize"
       ],
       "color": "#322",
@@ -2332,7 +2346,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "{\n    \"positive\": \"closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)\",\n    \"negative\": \"porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"BestAll\\\\Photon_ICBNP_merge_v10.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 57500584081928,\n    \"width\": 658,\n    \"height\": 896,\n    \"cfg_scale\": 8.0,\n    \"steps\": 25,\n    \"model_version\": \"BaseModel_768\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\",\n    \"force_model_vae\": true,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"is_sdxl\": 0,\n    \"dynamic_positive\": \"closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)\",\n    \"dynamic_negative\": \"porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores\"\n}"
+        "{\n    \"positive\": \"beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, {dark-blue|light-blue|transparent|green} water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear {rainbow|yellow|blue|white|green|red|dark-red|striper} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, {smile|thinking|flirty} {romantic|friendly} {satisfied|natural} face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)\",\n    \"negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw, muscle, muscled, man, manly\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"BestPhoto\\\\photoabsolute_v10.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 976497803380380,\n    \"width\": 819,\n    \"height\": 1280,\n    \"cfg_scale\": 8.0,\n    \"steps\": 25,\n    \"model_version\": \"BaseModel_768\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\",\n    \"force_model_vae\": true,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"is_sdxl\": 0,\n    \"dynamic_positive\": \"beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, green water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear green one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, flirty friendly satisfied face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)\",\n    \"dynamic_negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw, muscle, muscled, man, manly\"\n}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -2409,19 +2423,19 @@
       "widgets_values": [
         512,
         512,
-        false,
+        true,
         "brownian_fractal",
-        false,
+        true,
         1.1,
         0.75,
         1.3,
-        false,
+        true,
         1.2,
         0.9,
         1.25,
-        -818962638197861,
+        250822504119418,
         "randomize",
-        false,
+        true,
         "cuda"
       ],
       "color": "#6c0000",
@@ -2510,15 +2524,15 @@
       "bgcolor": "#0000ff"
     },
     {
-      "id": 205,
+      "id": 217,
       "type": "PrimereVisualLORA",
       "pos": [
-        32,
-        -781
+        35,
+        -895
       ],
       "size": {
         "0": 465.599853515625,
-        "1": 770
+        "1": 886
       },
       "flags": {},
       "order": 33,
@@ -2527,17 +2541,17 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 555
+          "link": 590
         },
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 556
+          "link": 591
         },
         {
           "name": "model_version",
           "type": "STRING",
-          "link": 563,
+          "link": 592,
           "widget": {
             "name": "model_version"
           }
@@ -2548,7 +2562,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            557
+            596
           ],
           "shape": 3,
           "slot_index": 0
@@ -2557,7 +2571,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            558
+            597
           ],
           "shape": 3,
           "slot_index": 1
@@ -2566,9 +2580,19 @@
           "name": "LORA_STACK",
           "type": "LORA_STACK",
           "links": [
-            568
+            593
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "LORA_KEYWORD",
+          "type": "MODEL_KEYWORD",
+          "links": [
+            603
+          ],
+          "shape": 3,
+          "slot_index": 3
         }
       ],
       "title": "SD - Primere Visual LORA Selector",
@@ -2580,31 +2604,36 @@
         "SD",
         true,
         false,
+        false,
         true,
-        false,
-        "Style\\detailed_eye_V2.safetensors",
-        0.8,
-        0.5,
-        false,
-        "Character\\face_paint_V3.safetensors",
-        2,
-        0.8,
-        false,
+        "Wear\\betterSwimwear.safetensors",
+        0.2,
+        1,
+        true,
         "Style\\add_detail.safetensors",
+        0.5,
+        1.5,
+        false,
+        "Style\\IndustrialMachines.safetensors",
         1,
         1,
         false,
         "Style\\CircuitBoardAI.safetensors",
-        1.6,
-        0.4,
+        1,
+        1,
         false,
-        "Wear\\betterSwimwear.safetensors",
-        2,
-        0.5,
+        "Wear\\edgBulgarian_Doll_Likeness.safetensors",
+        1,
+        1,
         false,
         "Wear\\RFKTR_Technotrex.safetensors",
-        0.8,
-        0.6
+        1,
+        1,
+        true,
+        "Last",
+        "Select in order",
+        1,
+        1
       ],
       "color": "#002c2c",
       "bgcolor": "#004040"
@@ -2689,12 +2718,12 @@
       "id": 27,
       "type": "PreviewImage",
       "pos": [
-        2375.398410750731,
-        510.0578947366335
+        2375,
+        510
       ],
       "size": {
-        "0": 344,
-        "1": 273
+        "0": 340.3442687988281,
+        "1": 272.2190246582031
       },
       "flags": {},
       "order": 35,
@@ -2713,15 +2742,15 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 206,
+      "id": 218,
       "type": "PrimereVisualLORA",
       "pos": [
-        513,
-        -779
+        510.99998855590826,
+        -895.399951171875
       ],
       "size": {
         "0": 465.599853515625,
-        "1": 770
+        "1": 886
       },
       "flags": {},
       "order": 36,
@@ -2730,17 +2759,17 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 557
+          "link": 596
         },
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 558
+          "link": 597
         },
         {
           "name": "model_version",
           "type": "STRING",
-          "link": 562,
+          "link": 598,
           "widget": {
             "name": "model_version"
           }
@@ -2751,8 +2780,8 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            559,
-            560
+            601,
+            602
           ],
           "shape": 3,
           "slot_index": 0
@@ -2761,7 +2790,7 @@
           "name": "CLIP",
           "type": "CLIP",
           "links": [
-            561
+            600
           ],
           "shape": 3,
           "slot_index": 1
@@ -2770,12 +2799,22 @@
           "name": "LORA_STACK",
           "type": "LORA_STACK",
           "links": [
-            567
+            599
           ],
-          "shape": 3
+          "shape": 3,
+          "slot_index": 2
+        },
+        {
+          "name": "LORA_KEYWORD",
+          "type": "MODEL_KEYWORD",
+          "links": [
+            604
+          ],
+          "shape": 3,
+          "slot_index": 3
         }
       ],
-      "title": "SDXL - Primere Visual LORA Selector",
+      "title": "SD - Primere Visual LORA Selector",
       "properties": {
         "Node name for S&R": "PrimereVisualLORA"
       },
@@ -2786,28 +2825,33 @@
         false,
         false,
         false,
-        "SDXL\\AnalogRedmondV2.safetensors",
-        1.6,
-        1,
-        false,
-        "SDXL\\realistic_film_photography.safetensors",
-        1.3,
-        0.7000000000000001,
-        false,
         "SDXL\\IrisXL.safetensors",
-        0.7000000000000001,
+        1,
         1,
         false,
-        "SDXL\\PerfectEyesXL.safetensors",
-        1.2,
+        "SDXL\\HelenaXL.safetensors",
+        1,
         1,
         false,
-        "SDXL\\DetailedEyes_V3.safetensors",
-        1.2,
+        "SDXL\\Surreal Harmony.safetensors",
+        1,
+        1,
+        false,
+        "SDXL\\xl_more_art-full_v1.safetensors",
+        1,
         1,
         false,
         "SDXL\\betterfaces_v3.safetensors",
-        1.2,
+        1,
+        1,
+        false,
+        "SDXL\\RealisticIMG.safetensors",
+        1,
+        1,
+        true,
+        "Last",
+        "Select in order",
+        1,
         1
       ],
       "color": "#002c2c",
@@ -2850,7 +2894,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            441
+            575
           ],
           "shape": 3
         },
@@ -2858,7 +2902,7 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            442
+            576
           ],
           "shape": 3,
           "slot_index": 1
@@ -2878,8 +2922,8 @@
       "id": 211,
       "type": "PrimereLoraStackMerger",
       "pos": [
-        712,
-        -923
+        1013,
+        -1144
       ],
       "size": {
         "0": 292.20001220703125,
@@ -2892,12 +2936,12 @@
         {
           "name": "lora_stack_1",
           "type": "LORA_STACK",
-          "link": 568
+          "link": 593
         },
         {
           "name": "lora_stack_2",
           "type": "LORA_STACK",
-          "link": 567
+          "link": 599
         }
       ],
       "outputs": [
@@ -2916,29 +2960,112 @@
       }
     },
     {
-      "id": 144,
-      "type": "PrimereCLIPEncoder",
+      "id": 219,
+      "type": "PrimereLoraKeywordMerger",
       "pos": [
-        2728,
-        90
+        36.99998855590832,
+        -981.399951171875
       ],
-      "size": {
-        "0": 356.6593933105469,
-        "1": 693.26953125
-      },
+      "size": [
+        936.2474094135788,
+        48.14420157761435
+      ],
       "flags": {},
       "order": 39,
       "mode": 0,
       "inputs": [
         {
+          "name": "lora_keyword_SD",
+          "type": "MODEL_KEYWORD",
+          "link": 603
+        },
+        {
+          "name": "lora_keyword_SDXL",
+          "type": "MODEL_KEYWORD",
+          "link": 604
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LORA_KEYWORD",
+          "type": "MODEL_KEYWORD",
+          "links": [
+            605,
+            606
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereLoraKeywordMerger"
+      },
+      "color": "#002c2c",
+      "bgcolor": "#004040"
+    },
+    {
+      "id": 209,
+      "type": "PrimereAnyOutput",
+      "pos": [
+        1358,
+        -1350
+      ],
+      "size": {
+        "0": 508.66253662109375,
+        "1": 280.6551818847656
+      },
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input",
+          "type": "*",
+          "link": 569,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereAnyOutput"
+      },
+      "widgets_values": [
+        "[\n    [\n        \"Wear\\\\betterSwimwear.safetensors\",\n        0.2,\n        1.0\n    ],\n    [\n        \"Style\\\\add_detail.safetensors\",\n        0.5,\n        1.5\n    ]\n]"
+      ]
+    },
+    {
+      "id": 215,
+      "type": "PrimereCLIPEncoder",
+      "pos": [
+        2724,
+        89
+      ],
+      "size": {
+        "0": 361.823974609375,
+        "1": 693.8255004882812
+      },
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
           "name": "clip",
           "type": "CLIP",
-          "link": 561
+          "link": 600
+        },
+        {
+          "name": "model_keywords",
+          "type": "MODEL_KEYWORD",
+          "link": 589
+        },
+        {
+          "name": "lora_keywords",
+          "type": "MODEL_KEYWORD",
+          "link": 605
         },
         {
           "name": "model_version",
           "type": "STRING",
-          "link": 428,
+          "link": 574,
           "widget": {
             "name": "model_version"
           }
@@ -2946,16 +3073,15 @@
         {
           "name": "positive_prompt",
           "type": "STRING",
-          "link": 441,
+          "link": 575,
           "widget": {
             "name": "positive_prompt"
-          },
-          "slot_index": 2
+          }
         },
         {
           "name": "negative_prompt",
           "type": "STRING",
-          "link": 442,
+          "link": 576,
           "widget": {
             "name": "negative_prompt"
           }
@@ -2979,7 +3105,7 @@
         {
           "name": "style_pos_prompt",
           "type": "STRING",
-          "link": 452,
+          "link": 577,
           "widget": {
             "name": "style_pos_prompt"
           }
@@ -2987,7 +3113,7 @@
         {
           "name": "style_neg_prompt",
           "type": "STRING",
-          "link": 453,
+          "link": 578,
           "widget": {
             "name": "style_neg_prompt"
           }
@@ -3011,7 +3137,7 @@
         {
           "name": "width",
           "type": "INT",
-          "link": 450,
+          "link": 579,
           "widget": {
             "name": "width"
           }
@@ -3019,7 +3145,7 @@
         {
           "name": "height",
           "type": "INT",
-          "link": 451,
+          "link": 580,
           "widget": {
             "name": "height"
           }
@@ -3030,8 +3156,8 @@
           "name": "COND+",
           "type": "CONDITIONING",
           "links": [
-            435,
-            494
+            581,
+            583
           ],
           "shape": 3,
           "slot_index": 0
@@ -3040,8 +3166,8 @@
           "name": "COND-",
           "type": "CONDITIONING",
           "links": [
-            436,
-            495
+            582,
+            584
           ],
           "shape": 3,
           "slot_index": 1
@@ -3050,7 +3176,7 @@
           "name": "PROMPT+",
           "type": "STRING",
           "links": [
-            437
+            585
           ],
           "shape": 3,
           "slot_index": 2
@@ -3059,7 +3185,7 @@
           "name": "PROMPT-",
           "type": "STRING",
           "links": [
-            438
+            586
           ],
           "shape": 3,
           "slot_index": 3
@@ -3068,7 +3194,7 @@
           "name": "PROMPT L+",
           "type": "STRING",
           "links": [
-            439
+            587
           ],
           "shape": 3,
           "slot_index": 4
@@ -3077,7 +3203,7 @@
           "name": "PROMPT L-",
           "type": "STRING",
           "links": [
-            440
+            588
           ],
           "shape": 3,
           "slot_index": 5
@@ -3118,24 +3244,24 @@
       "bgcolor": "#800000"
     },
     {
-      "id": 209,
+      "id": 220,
       "type": "PrimereAnyOutput",
       "pos": [
-        1037,
-        -1154
+        1899,
+        -1361
       ],
       "size": {
         "0": 508.66253662109375,
         "1": 280.6551818847656
       },
       "flags": {},
-      "order": 40,
+      "order": 42,
       "mode": 0,
       "inputs": [
         {
           "name": "input",
           "type": "*",
-          "link": 569,
+          "link": 606,
           "slot_index": 0
         }
       ],
@@ -3143,7 +3269,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "[\n    [\n        \"Character\\\\face_paint_V3.safetensors\",\n        2.0,\n        2.0\n    ],\n    [\n        \"Style\\\\add_detail.safetensors\",\n        1.0,\n        1.0\n    ]\n]"
+        "[\n    \"master, OPSW\",\n    \"Last\"\n]"
       ]
     },
     {
@@ -3158,23 +3284,23 @@
         "1": 218
       },
       "flags": {},
-      "order": 41,
+      "order": 43,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 560
+          "link": 602
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 435
+          "link": 581
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 436
+          "link": 582
         },
         {
           "name": "latent_image",
@@ -3242,7 +3368,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        1103873700624698,
+        66064701488322,
         "randomize",
         20,
         8,
@@ -3265,13 +3391,13 @@
         "1": 241.82644653320312
       },
       "flags": {},
-      "order": 42,
+      "order": 44,
       "mode": 0,
       "inputs": [
         {
           "name": "input",
           "type": "*",
-          "link": 437,
+          "link": 585,
           "dir": 3
         }
       ],
@@ -3279,7 +3405,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)"
+        "beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, green water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear green one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, flirty friendly satisfied face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3) master, OPSW"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -3296,13 +3422,13 @@
         "1": 237.03305053710938
       },
       "flags": {},
-      "order": 43,
+      "order": 45,
       "mode": 0,
       "inputs": [
         {
           "name": "input",
           "type": "*",
-          "link": 438,
+          "link": 586,
           "dir": 3
         }
       ],
@@ -3310,7 +3436,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores:1.20)"
+        "(dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace embedding:add_nsfw, muscle, muscled, man, manly:1.20)"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -3327,13 +3453,13 @@
         "1": 236.41322326660156
       },
       "flags": {},
-      "order": 44,
+      "order": 46,
       "mode": 0,
       "inputs": [
         {
           "name": "input",
           "type": "*",
-          "link": 439,
+          "link": 587,
           "dir": 3
         }
       ],
@@ -3358,13 +3484,13 @@
         "1": 211.87461853027344
       },
       "flags": {},
-      "order": 45,
+      "order": 47,
       "mode": 0,
       "inputs": [
         {
           "name": "input",
           "type": "*",
-          "link": 440,
+          "link": 588,
           "dir": 3
         }
       ],
@@ -3389,7 +3515,7 @@
         "1": 46
       },
       "flags": {},
-      "order": 46,
+      "order": 48,
       "mode": 0,
       "inputs": [
         {
@@ -3427,15 +3553,15 @@
       "id": 155,
       "type": "ttN hiresfixScale",
       "pos": [
-        2775,
-        -455
+        2767,
+        -452
       ],
       "size": {
         "0": 392.8316955566406,
         "1": 262
       },
       "flags": {},
-      "order": 47,
+      "order": 49,
       "mode": 4,
       "inputs": [
         {
@@ -3515,7 +3641,7 @@
         "1": 359.26953125
       },
       "flags": {},
-      "order": 48,
+      "order": 50,
       "mode": 0,
       "inputs": [
         {
@@ -3542,7 +3668,7 @@
         "1": 554
       },
       "flags": {},
-      "order": 49,
+      "order": 51,
       "mode": 0,
       "inputs": [
         {
@@ -3553,17 +3679,17 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 559
+          "link": 601
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 494
+          "link": 583
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 495
+          "link": 584
         },
         {
           "name": "vae",
@@ -3661,7 +3787,7 @@
       },
       "widgets_values": [
         2.1,
-        430182741690574,
+        757448334202806,
         "randomize",
         7,
         6.5,
@@ -3687,15 +3813,15 @@
       "id": 19,
       "type": "PreviewImage",
       "pos": [
-        3493,
-        43
+        3497,
+        50
       ],
       "size": {
         "0": 1737.1102294921875,
         "1": 1827.3470458984375
       },
       "flags": {},
-      "order": 50,
+      "order": 52,
       "mode": 0,
       "inputs": [
         {
@@ -3722,7 +3848,7 @@
         "1": 506
       },
       "flags": {},
-      "order": 51,
+      "order": 53,
       "mode": 0,
       "inputs": [
         {
@@ -3793,7 +3919,7 @@
         "1": 552.715087890625
       },
       "flags": {},
-      "order": 52,
+      "order": 54,
       "mode": 0,
       "inputs": [
         {
@@ -3811,7 +3937,7 @@
       },
       "widgets_values": [
         "",
-        ":: Time to save: 2023-12-11 21:27:28\n:: Output file: z:\\AIPICS\\Comfy\\PHOTON_ICBNP_MERGE_V10\\Test\\2023-12-Week-50\\Image_20231112_212727_707354653609288_2624x3584_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)\n:: NEGATIVE: porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores\n:: MODEL_NAME: BestAll\\Photon_ICBNP_merge_v10.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 707354653609288\n:: WIDTH: 658\n:: HEIGHT: 896\n:: CFG_SCALE: 8.0\n:: STEPS: 25\n:: MODEL_VERSION: BaseModel_768\n:: IS_LCM: 0\n:: VAE_NAME: vae-ft-mse-840000-ema-pruned.ckpt\n:: FORCE_MODEL_VAE: True\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: None\n:: IS_SDXL: 0\n:: DYNAMIC_POSITIVE: closeup portrait of beautiful 38 year old woman, long blonde hair, indoor portrait photography, detailed face, detailed skin, perfect light, perfect shadow, studio photography, detailed eye, (beautiful perfect eyes, detailed, high detailed, highly detailed glossy eyes, high detailed skin, skin pores, High Quality, Intricately Detailed, Hyper-Realistic, perfect shadows, detailed iris, symmetrical circular eyes reflecting the environment:1.2)\n:: DYNAMIC_NEGATIVE: porn, sex, nude, nudity, child, childish, draw, illustration, telephoto, earrings, necklace, nsfw, bra, lingerie, underwear, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, blur, out of focus, double head, cartoon, anime, 3d, painting, b&w, alien, hard light, wobbly iris, square iris, dumb eyes, painted, figured, noise, tattoo, tears, decoration, ornamentation, ornaments, sunglasses, glasses, pores\n:: SAVED_IMAGE_WIDTH: 2624\n:: SAVED_IMAGE_HEIGTH: 3584\n:: UPSCALER_RATIO: From: 658x896 to: 2624x3584 Ratio: 4.0\n"
+        ":: Time to save: 2023-12-12 22:06:57\n:: Output file: z:\\AIPICS\\Comfy\\PHOTOABSOLUTE_V10\\Architechture\\2023-12-Week-50\\Image_20231212_220656_954899728059975_3264x5120_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, {dark-blue|light-blue|transparent|green} water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear {rainbow|yellow|blue|white|green|red|dark-red|striper} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, {smile|thinking|flirty} {romantic|friendly} {satisfied|natural} face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)\n:: NEGATIVE: dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw, muscle, muscled, man, manly\n:: MODEL_NAME: BestPhoto\\photoabsolute_v10.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 954899728059975\n:: WIDTH: 819\n:: HEIGHT: 1280\n:: CFG_SCALE: 8.0\n:: STEPS: 25\n:: MODEL_VERSION: BaseModel_768\n:: IS_LCM: 0\n:: VAE_NAME: vae-ft-mse-840000-ema-pruned.ckpt\n:: FORCE_MODEL_VAE: True\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: None\n:: IS_SDXL: 0\n:: DYNAMIC_POSITIVE: beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, light-blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear striper one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, flirty friendly natural face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)\n:: DYNAMIC_NEGATIVE: dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw, muscle, muscled, man, manly\n:: SAVED_IMAGE_WIDTH: 3264\n:: SAVED_IMAGE_HEIGTH: 5120\n:: UPSCALER_RATIO: From: 819x1280 to: 3264x5120 Ratio: 4.0\n"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -4259,14 +4385,6 @@
       "INT"
     ],
     [
-      428,
-      147,
-      3,
-      144,
-      1,
-      "STRING"
-    ],
-    [
       431,
       147,
       2,
@@ -4297,70 +4415,6 @@
       103,
       1,
       "VAE"
-    ],
-    [
-      435,
-      144,
-      0,
-      102,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      436,
-      144,
-      1,
-      102,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      437,
-      144,
-      2,
-      110,
-      0,
-      "*"
-    ],
-    [
-      438,
-      144,
-      3,
-      111,
-      0,
-      "*"
-    ],
-    [
-      439,
-      144,
-      4,
-      112,
-      0,
-      "*"
-    ],
-    [
-      440,
-      144,
-      5,
-      113,
-      0,
-      "*"
-    ],
-    [
-      441,
-      107,
-      0,
-      144,
-      2,
-      "STRING"
-    ],
-    [
-      442,
-      107,
-      1,
-      144,
-      3,
-      "STRING"
     ],
     [
       443,
@@ -4416,38 +4470,6 @@
       1,
       106,
       0,
-      "STRING"
-    ],
-    [
-      450,
-      145,
-      10,
-      144,
-      10,
-      "INT"
-    ],
-    [
-      451,
-      145,
-      11,
-      144,
-      11,
-      "INT"
-    ],
-    [
-      452,
-      99,
-      0,
-      144,
-      6,
-      "STRING"
-    ],
-    [
-      453,
-      99,
-      1,
-      144,
-      7,
       "STRING"
     ],
     [
@@ -4683,22 +4705,6 @@
       "VAE"
     ],
     [
-      494,
-      144,
-      0,
-      156,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      495,
-      144,
-      1,
-      156,
-      3,
-      "CONDITIONING"
-    ],
-    [
       496,
       145,
       9,
@@ -4843,102 +4849,6 @@
       "STRING"
     ],
     [
-      531,
-      175,
-      1,
-      164,
-      0,
-      "STRING"
-    ],
-    [
-      532,
-      175,
-      1,
-      145,
-      9,
-      "STRING"
-    ],
-    [
-      533,
-      175,
-      0,
-      145,
-      0,
-      "CHECKPOINT_NAME"
-    ],
-    [
-      555,
-      147,
-      0,
-      205,
-      0,
-      "MODEL"
-    ],
-    [
-      556,
-      147,
-      1,
-      205,
-      1,
-      "CLIP"
-    ],
-    [
-      557,
-      205,
-      0,
-      206,
-      0,
-      "MODEL"
-    ],
-    [
-      558,
-      205,
-      1,
-      206,
-      1,
-      "CLIP"
-    ],
-    [
-      559,
-      206,
-      0,
-      156,
-      1,
-      "MODEL"
-    ],
-    [
-      560,
-      206,
-      0,
-      102,
-      0,
-      "MODEL"
-    ],
-    [
-      561,
-      206,
-      1,
-      144,
-      0,
-      "CLIP"
-    ],
-    [
-      562,
-      147,
-      3,
-      206,
-      2,
-      "STRING"
-    ],
-    [
-      563,
-      147,
-      3,
-      205,
-      2,
-      "STRING"
-    ],
-    [
       564,
       208,
       0,
@@ -4947,26 +4857,282 @@
       "STRING"
     ],
     [
-      567,
-      206,
+      569,
+      211,
+      0,
+      209,
+      0,
+      "*"
+    ],
+    [
+      570,
+      213,
+      1,
+      164,
+      0,
+      "STRING"
+    ],
+    [
+      571,
+      213,
+      1,
+      145,
+      9,
+      "STRING"
+    ],
+    [
+      572,
+      213,
+      0,
+      145,
+      0,
+      "CHECKPOINT_NAME"
+    ],
+    [
+      574,
+      147,
+      3,
+      215,
+      3,
+      "STRING"
+    ],
+    [
+      575,
+      107,
+      0,
+      215,
+      4,
+      "STRING"
+    ],
+    [
+      576,
+      107,
+      1,
+      215,
+      5,
+      "STRING"
+    ],
+    [
+      577,
+      99,
+      0,
+      215,
+      8,
+      "STRING"
+    ],
+    [
+      578,
+      99,
+      1,
+      215,
+      9,
+      "STRING"
+    ],
+    [
+      579,
+      145,
+      10,
+      215,
+      12,
+      "INT"
+    ],
+    [
+      580,
+      145,
+      11,
+      215,
+      13,
+      "INT"
+    ],
+    [
+      581,
+      215,
+      0,
+      102,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      582,
+      215,
+      1,
+      102,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      583,
+      215,
+      0,
+      156,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      584,
+      215,
+      1,
+      156,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      585,
+      215,
+      2,
+      110,
+      0,
+      "*"
+    ],
+    [
+      586,
+      215,
+      3,
+      111,
+      0,
+      "*"
+    ],
+    [
+      587,
+      215,
+      4,
+      112,
+      0,
+      "*"
+    ],
+    [
+      588,
+      215,
+      5,
+      113,
+      0,
+      "*"
+    ],
+    [
+      589,
+      213,
+      2,
+      215,
+      1,
+      "MODEL_KEYWORD"
+    ],
+    [
+      590,
+      147,
+      0,
+      217,
+      0,
+      "MODEL"
+    ],
+    [
+      591,
+      147,
+      1,
+      217,
+      1,
+      "CLIP"
+    ],
+    [
+      592,
+      147,
+      3,
+      217,
+      2,
+      "STRING"
+    ],
+    [
+      593,
+      217,
+      2,
+      211,
+      0,
+      "LORA_STACK"
+    ],
+    [
+      596,
+      217,
+      0,
+      218,
+      0,
+      "MODEL"
+    ],
+    [
+      597,
+      217,
+      1,
+      218,
+      1,
+      "CLIP"
+    ],
+    [
+      598,
+      147,
+      3,
+      218,
+      2,
+      "STRING"
+    ],
+    [
+      599,
+      218,
       2,
       211,
       1,
       "LORA_STACK"
     ],
     [
-      568,
-      205,
-      2,
-      211,
+      600,
+      218,
+      1,
+      215,
       0,
-      "LORA_STACK"
+      "CLIP"
     ],
     [
-      569,
-      211,
+      601,
+      218,
       0,
-      209,
+      156,
+      1,
+      "MODEL"
+    ],
+    [
+      602,
+      218,
+      0,
+      102,
+      0,
+      "MODEL"
+    ],
+    [
+      603,
+      217,
+      3,
+      219,
+      0,
+      "MODEL_KEYWORD"
+    ],
+    [
+      604,
+      218,
+      3,
+      219,
+      1,
+      "MODEL_KEYWORD"
+    ],
+    [
+      605,
+      219,
+      0,
+      215,
+      2,
+      "MODEL_KEYWORD"
+    ],
+    [
+      606,
+      219,
+      0,
+      220,
       0,
       "*"
     ]
@@ -5035,10 +5201,10 @@
     {
       "title": "Networks",
       "bounding": [
-        18,
-        -856,
-        2335,
-        859
+        19,
+        -1052,
+        2336,
+        1056
       ],
       "color": "#6ceb6c",
       "font_size": 24,
