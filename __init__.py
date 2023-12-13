@@ -43,6 +43,7 @@ import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Inputs as Inputs
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Styles as Styles
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Outputs as Outputs
 import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Visuals as Visuals
+import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Networks as Networks
 
 NODE_CLASS_MAPPINGS = {
     "PrimereSamplers": Dashboard.PrimereSamplers,
@@ -77,6 +78,12 @@ NODE_CLASS_MAPPINGS = {
 
     "PrimereVisualCKPT": Visuals.PrimereVisualCKPT,
     "PrimereVisualLORA": Visuals.PrimereVisualLORA,
+    "PrimereVisualEmbedding": Visuals.PrimereVisualEmbedding,
+    "PrimereVisualHypernetwork": Visuals.PrimereVisualHypernetwork,
+
+    "PrimereLORA": Networks.PrimereLORA,
+    "PrimereEmbedding": Networks.PrimereEmbedding,
+    "PrimereHypernetwork": Networks.PrimereHypernetwork,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -112,4 +119,10 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
     "PrimereVisualCKPT": "Primere Visual CKPT Selector",
     "PrimereVisualLORA": "Primere Visual LORA Selector",
+    "PrimereVisualEmbedding": 'Primere Visual Embedding Selector',
+    "PrimereVisualHypernetwork": 'Primere Visual Hypernetwork Selector',
+
+    "PrimereLORA": 'Primere LORA',
+    "PrimereEmbedding": 'Primere Embedding',
+    "PrimereHypernetwork": 'Primere Hypernetwork',
 }

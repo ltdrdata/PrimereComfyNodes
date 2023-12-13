@@ -459,6 +459,8 @@ class PrimereCLIP:
             "optional": {
                 "model_keywords": ("MODEL_KEYWORD", {"forceInput": True}),
                 "lora_keywords": ("MODEL_KEYWORD", {"forceInput": True}),
+                "embedding_pos": ("EMBEDDING", {"forceInput": True}),
+                "embedding_neg": ("EMBEDDING", {"forceInput": True}),
 
                 "opt_pos_prompt": ("STRING", {"forceInput": True}),
                 "opt_pos_strength": ("FLOAT", {"default": 1, "min": 0.0, "max": 10.0, "step": 0.01}),
@@ -479,7 +481,7 @@ class PrimereCLIP:
             }
         }
 
-    def clip_encode(self, clip, negative_strength, int_style_pos_strength, int_style_neg_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, int_style_pos, int_style_neg, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", model_keywords = None, lora_keywords = None, opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_int_style = False, model_version = "BaseModel_1024"):
+    def clip_encode(self, clip, negative_strength, int_style_pos_strength, int_style_neg_strength, opt_pos_strength, opt_neg_strength, style_pos_strength, style_neg_strength, int_style_pos, int_style_neg, adv_encode, token_normalization, weight_interpretation, sdxl_l_strength, copy_prompt_to_l = True, width = 1024, height = 1024, positive_prompt = "", negative_prompt = "", model_keywords = None, lora_keywords = None, embedding_pos = None, embedding_neg = None, opt_pos_prompt = "", opt_neg_prompt = "", style_neg_prompt = "", style_pos_prompt = "", sdxl_positive_l = "", sdxl_negative_l = "", use_int_style = False, model_version = "BaseModel_1024"):
         is_sdxl = 0
         match model_version:
             case 'SDXL_2048':
@@ -522,9 +524,9 @@ class PrimereCLIP:
                 model_keyword = mkw_list[0]
                 mplacement = mkw_list[1]
                 if (mplacement == 'First'):
-                    positive_text = model_keyword + ' ' + positive_text
+                    positive_text = model_keyword + ', ' + positive_text
                 else:
-                    positive_text = positive_text + ' ' + model_keyword
+                    positive_text = positive_text + ', ' + model_keyword
 
         if lora_keywords is not None:
             lkw_list = list(filter(None, lora_keywords))
@@ -532,9 +534,29 @@ class PrimereCLIP:
                 lora_keyword = lkw_list[0]
                 lplacement = lkw_list[1]
                 if (lplacement == 'First'):
-                    positive_text = lora_keyword + ' ' + positive_text
+                    positive_text = lora_keyword + ', ' + positive_text
                 else:
-                    positive_text = positive_text + ' ' + lora_keyword
+                    positive_text = positive_text + ', ' + lora_keyword
+
+        if embedding_pos is not None:
+            embp_list = list(filter(None, embedding_pos))
+            if len(embp_list) == 2:
+                embp_keyword = embp_list[0]
+                embp_placement = embp_list[1]
+                if (embp_placement == 'First'):
+                    positive_text = embp_keyword + ', ' + positive_text
+                else:
+                    positive_text = positive_text + ', ' + embp_keyword
+
+        if embedding_neg is not None:
+            embn_list = list(filter(None, embedding_neg))
+            if len(embn_list) == 2:
+                embn_keyword = embn_list[0]
+                embn_placement = embn_list[1]
+                if (embn_placement == 'First'):
+                    negative_text = embn_keyword + ', ' + negative_text
+                else:
+                    negative_text = negative_text + ', ' + embn_keyword
 
         if (model_version == 'BaseModel_1024'):
             adv_encode = False
