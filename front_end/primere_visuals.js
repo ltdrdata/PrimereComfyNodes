@@ -1,6 +1,7 @@
 import { app } from "/scripts/app.js";
 
 const realPath = "extensions/Primere"
+const validClasses = ['PrimereVisualCKPT', 'PrimereVisualLORA', 'PrimereVisualEmbedding', 'PrimereVisualHypernetwork']
 
 function createCardElement(checkpoint, container, SelectedModel, ModelType) {
     let checkpoint_new = checkpoint.replaceAll('\\', '/');
@@ -246,333 +247,129 @@ app.registerExtension({
 
         ModalHandler();
 
+        let subdirname = '';
+        let modaltitle = '';
+        let nodematch = '';
+        let isnumeric_end = true;
         const lcg = LGraphCanvas.prototype.processNodeWidgets;
+
         LGraphCanvas.prototype.processNodeWidgets = function(node, pos, event, active_widget) {
             //console.log(node);
+            if (!validClasses.includes(node.type)) {
+                return lcg.call(this, node, pos, event, active_widget);
+            }
 
             if (node.type == 'PrimereVisualCKPT') {
-                if (event.type != LiteGraph.pointerevents_method + "down") {
-                    return lcg.call(this, node, pos, event, active_widget);
-                }
-
-                if (!node.widgets || !node.widgets.length || (!this.allow_interaction && !node.flags.allow_interaction)) {
-                    return lcg.call(this, node, pos, event, active_widget);
-                }
-
-                var x = pos[0] - node.pos[0];
-                var y = pos[1] - node.pos[1];
-                var width = node.size[0];
-                var that = this;
-                //var ref_window = this.getCanvasWindow();
-
-                var ShowHidden = false;
-                var ShowModal = false;
-                for (var p = 0; p < node.widgets.length; ++p) {
-                    if (node.widgets[p].name == 'show_hidden') {
-                        ShowHidden = node.widgets[p].value;
-                    }
-                    if (node.widgets[p].name == 'show_modal') {
-                        ShowModal = node.widgets[p].value;
-                    }
-                }
-
-                if (ShowModal === false) {
-                    return lcg.call(this, node, pos, event, active_widget);
-                }
-
-                for (var i = 0; i < node.widgets.length; ++i) {
-                    var w = node.widgets[i];
-                    if (!w || w.disabled)
-                        continue;
-
-                    if (w.type != "combo")
-                        continue
-
-                    var widget_height = w.computeSize ? w.computeSize(width)[1] : LiteGraph.NODE_WIDGET_HEIGHT;
-                    var widget_width = w.width || width;
-
-                    if (w != active_widget && (x < 6 || x > widget_width - 12 || y < w.last_y || y > w.last_y + widget_height || w.last_y === undefined))
-                        continue
-
-                    if (w == active_widget || (x > 6 && x < widget_width - 12 && y > w.last_y && y < w.last_y + widget_height)) {
-                        var delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0;
-					    if (delta)
-						    continue;
-
-                        if (node.widgets[i].name == 'base_model') {
-                            var AllModels = node.widgets[i].options.values;
-                            var SelectedModel = node.widgets[i].value;
-
-                            callbackfunct = inner_clicked.bind(w);
-                            setup_visual_modal('Select checkpoint', AllModels, ShowHidden, SelectedModel, 'checkpoints');
-
-                            function inner_clicked(v, option, event) {
-                                inner_value_change(this, v);
-                                that.dirty_canvas = true;
-                                return false;
-                            }
-
-                            function inner_value_change(widget, value) {
-                                if (widget.type == "number") {
-                                    value = Number(value);
-                                }
-                                widget.value = value;
-                                if (widget.options && widget.options.property && node.properties[widget.options.property] !== undefined) {
-                                    node.setProperty(widget.options.property, value);
-                                }
-                                if (widget.callback) {
-                                    widget.callback(widget.value, that, node, pos, event);
-                                }
-                            }
-                            return null;
-                        }
-                    }
-                }
-                return lcg.call(this, node, pos, event, active_widget);
+                subdirname = 'checkpoints';
+                modaltitle = 'Select checkpoint';
+                nodematch = '^base_model';
+                isnumeric_end = false;
             }
 
             if (node.type == 'PrimereVisualLORA') {
-                if (!node.widgets || !node.widgets.length || (!this.allow_interaction && !node.flags.allow_interaction)) {
-                    return lcg.call(this, node, pos, event, active_widget);
-                }
-
-                var x = pos[0] - node.pos[0];
-                var y = pos[1] - node.pos[1];
-                var width = node.size[0];
-                var that = this;
-                //var ref_window = this.getCanvasWindow();
-
-                var ShowHidden = false;
-                var ShowModal = false;
-                for (var p = 0; p < node.widgets.length; ++p) {
-                    if (node.widgets[p].name == 'show_hidden') {
-                        ShowHidden = node.widgets[p].value;
-                    }
-                    if (node.widgets[p].name == 'show_modal') {
-                        ShowModal = node.widgets[p].value;
-                    }
-                }
-
-                if (ShowModal === false) {
-                    return lcg.call(this, node, pos, event, active_widget);
-                }
-
-                for (var i = 0; i < node.widgets.length; ++i) {
-                    var w = node.widgets[i];
-                    if (!w || w.disabled)
-                        continue;
-
-                    if (w.type != "combo")
-                        continue;
-
-                    var widget_height = w.computeSize ? w.computeSize(width)[1] : LiteGraph.NODE_WIDGET_HEIGHT;
-                    var widget_width = w.width || width;
-                    var widget_name = node.widgets[i].name;
-
-                    if (w != active_widget && (x < 6 || x > widget_width - 12 || y < w.last_y || y > w.last_y + widget_height || w.last_y === undefined)) {
-                        continue;
-                    }
-
-                    if (w == active_widget || (x > 6 && x < widget_width - 12 && y > w.last_y && y < w.last_y + widget_height)) {
-                        var delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0;
-					    if (delta)
-						    continue;
-
-                        if (widget_name.match("^lora") && $.isNumeric(widget_name.substr(-1))) {
-                            var AllModels = node.widgets[i].options.values;
-                            var SelectedModel = node.widgets[i].value;
-
-                            callbackfunct = inner_clicked.bind(w);
-                            setup_visual_modal('Select LoRA', AllModels, ShowHidden, SelectedModel, 'loras');
-
-                            function inner_clicked(v, option, event) {
-                                inner_value_change(this, v);
-                                that.dirty_canvas = true;
-                                return false;
-                            }
-
-                            function inner_value_change(widget, value) {
-                                if (widget.type == "number") {
-                                    value = Number(value);
-                                }
-                                widget.value = value;
-                                if (widget.options && widget.options.property && node.properties[widget.options.property] !== undefined) {
-                                    node.setProperty(widget.options.property, value);
-                                }
-                                if (widget.callback) {
-                                    widget.callback(widget.value, that, node, pos, event);
-                                }
-                            }
-                            return null;
-                        }
-                    }
-                }
-                return lcg.call(this, node, pos, event, active_widget);
+                subdirname = 'loras';
+                modaltitle = 'Select LoRA';
+                nodematch = '^lora';
+                isnumeric_end = true;
             }
 
             if (node.type == 'PrimereVisualEmbedding') {
-                if (!node.widgets || !node.widgets.length || (!this.allow_interaction && !node.flags.allow_interaction)) {
-                    return lcg.call(this, node, pos, event, active_widget);
-                }
-
-                var x = pos[0] - node.pos[0];
-                var y = pos[1] - node.pos[1];
-                var width = node.size[0];
-                var that = this;
-                //var ref_window = this.getCanvasWindow();
-
-                var ShowHidden = false;
-                var ShowModal = false;
-                for (var p = 0; p < node.widgets.length; ++p) {
-                    if (node.widgets[p].name == 'show_hidden') {
-                        ShowHidden = node.widgets[p].value;
-                    }
-                    if (node.widgets[p].name == 'show_modal') {
-                        ShowModal = node.widgets[p].value;
-                    }
-                }
-
-                if (ShowModal === false) {
-                    return lcg.call(this, node, pos, event, active_widget);
-                }
-
-                for (var i = 0; i < node.widgets.length; ++i) {
-                    var w = node.widgets[i];
-                    if (!w || w.disabled)
-                        continue;
-
-                    if (w.type != "combo")
-                        continue;
-
-                    var widget_height = w.computeSize ? w.computeSize(width)[1] : LiteGraph.NODE_WIDGET_HEIGHT;
-                    var widget_width = w.width || width;
-                    var widget_name = node.widgets[i].name;
-
-                    if (w != active_widget && (x < 6 || x > widget_width - 12 || y < w.last_y || y > w.last_y + widget_height || w.last_y === undefined)) {
-                        continue;
-                    }
-
-                    if (w == active_widget || (x > 6 && x < widget_width - 12 && y > w.last_y && y < w.last_y + widget_height)) {
-                        var delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0;
-					    if (delta)
-						    continue;
-
-                        if (widget_name.match("^embedding") && $.isNumeric(widget_name.substr(-1))) {
-                            var AllModels = node.widgets[i].options.values;
-                            var SelectedModel = node.widgets[i].value;
-
-                            callbackfunct = inner_clicked.bind(w);
-                            setup_visual_modal('Select Embedding', AllModels, ShowHidden, SelectedModel, 'embeddings');
-
-                            function inner_clicked(v, option, event) {
-                                inner_value_change(this, v);
-                                that.dirty_canvas = true;
-                                return false;
-                            }
-
-                            function inner_value_change(widget, value) {
-                                if (widget.type == "number") {
-                                    value = Number(value);
-                                }
-                                widget.value = value;
-                                if (widget.options && widget.options.property && node.properties[widget.options.property] !== undefined) {
-                                    node.setProperty(widget.options.property, value);
-                                }
-                                if (widget.callback) {
-                                    widget.callback(widget.value, that, node, pos, event);
-                                }
-                            }
-                            return null;
-                        }
-                    }
-                }
+                subdirname = 'embeddings';
+                modaltitle = 'Select embedding';
+                nodematch = '^embedding';
+                isnumeric_end = true;
             }
 
             if (node.type == 'PrimereVisualHypernetwork') {
-                if (!node.widgets || !node.widgets.length || (!this.allow_interaction && !node.flags.allow_interaction)) {
-                    return lcg.call(this, node, pos, event, active_widget);
+                subdirname = 'hypernetworks';
+                modaltitle = 'Select hypernetwork';
+                nodematch = '^hypernetwork';
+                isnumeric_end = true;
+            }
+
+            if (event.type != LiteGraph.pointerevents_method + "down") {
+                return lcg.call(this, node, pos, event, active_widget);
+            }
+
+            if (!node.widgets || !node.widgets.length || (!this.allow_interaction && !node.flags.allow_interaction)) {
+                return lcg.call(this, node, pos, event, active_widget);
+            }
+
+            var x = pos[0] - node.pos[0];
+            var y = pos[1] - node.pos[1];
+            var width = node.size[0];
+            var that = this;
+
+            var ShowHidden = false;
+            var ShowModal = false;
+
+            for (var p = 0; p < node.widgets.length; ++p) {
+                if (node.widgets[p].name == 'show_hidden') {
+                    ShowHidden = node.widgets[p].value;
                 }
-
-                var x = pos[0] - node.pos[0];
-                var y = pos[1] - node.pos[1];
-                var width = node.size[0];
-                var that = this;
-                //var ref_window = this.getCanvasWindow();
-
-                var ShowHidden = false;
-                var ShowModal = false;
-                for (var p = 0; p < node.widgets.length; ++p) {
-                    if (node.widgets[p].name == 'show_hidden') {
-                        ShowHidden = node.widgets[p].value;
-                    }
-                    if (node.widgets[p].name == 'show_modal') {
-                        ShowModal = node.widgets[p].value;
-                    }
-                }
-
-                if (ShowModal === false) {
-                    return lcg.call(this, node, pos, event, active_widget);
-                }
-
-                for (var i = 0; i < node.widgets.length; ++i) {
-                    var w = node.widgets[i];
-                    if (!w || w.disabled)
-                        continue;
-
-                    if (w.type != "combo")
-                        continue;
-
-                    var widget_height = w.computeSize ? w.computeSize(width)[1] : LiteGraph.NODE_WIDGET_HEIGHT;
-                    var widget_width = w.width || width;
-                    var widget_name = node.widgets[i].name;
-
-                    if (w != active_widget && (x < 6 || x > widget_width - 12 || y < w.last_y || y > w.last_y + widget_height || w.last_y === undefined)) {
-                        continue;
-                    }
-
-                    if (w == active_widget || (x > 6 && x < widget_width - 12 && y > w.last_y && y < w.last_y + widget_height)) {
-                        var delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0;
-					    if (delta)
-						    continue;
-
-                        if (widget_name.match("^hypernetwork") && $.isNumeric(widget_name.substr(-1))) {
-                            var AllModels = node.widgets[i].options.values;
-                            var SelectedModel = node.widgets[i].value;
-
-                            callbackfunct = inner_clicked.bind(w);
-                            setup_visual_modal('Select Hypernetwork', AllModels, ShowHidden, SelectedModel, 'hypernetworks');
-
-                            function inner_clicked(v, option, event) {
-                                inner_value_change(this, v);
-                                that.dirty_canvas = true;
-                                return false;
-                            }
-
-                            function inner_value_change(widget, value) {
-                                if (widget.type == "number") {
-                                    value = Number(value);
-                                }
-                                widget.value = value;
-                                if (widget.options && widget.options.property && node.properties[widget.options.property] !== undefined) {
-                                    node.setProperty(widget.options.property, value);
-                                }
-                                if (widget.callback) {
-                                    widget.callback(widget.value, that, node, pos, event);
-                                }
-                            }
-                            return null;
-                        }
-                    }
+                if (node.widgets[p].name == 'show_modal') {
+                    ShowModal = node.widgets[p].value;
                 }
             }
 
+            if (ShowModal === false) {
+                return lcg.call(this, node, pos, event, active_widget);
+            }
+
+            for (var i = 0; i < node.widgets.length; ++i) {
+                var w = node.widgets[i];
+                if (!w || w.disabled)
+                    continue;
+
+                if (w.type != "combo")
+                    continue
+
+                var widget_height = w.computeSize ? w.computeSize(width)[1] : LiteGraph.NODE_WIDGET_HEIGHT;
+                var widget_width = w.width || width;
+                var widget_name = node.widgets[i].name;
+
+                if (w != active_widget && (x < 6 || x > widget_width - 12 || y < w.last_y || y > w.last_y + widget_height || w.last_y === undefined))
+                    continue
+
+                if (w == active_widget || (x > 6 && x < widget_width - 12 && y > w.last_y && y < w.last_y + widget_height)) {
+                    var delta = x < 40 ? -1 : x > widget_width - 40 ? 1 : 0;
+                    if (delta)
+                        continue;
+
+                    if (widget_name.match(nodematch) && $.isNumeric(widget_name.substr(-1)) === isnumeric_end) {
+                        var AllModels = node.widgets[i].options.values;
+                        var SelectedModel = node.widgets[i].value;
+
+                        callbackfunct = inner_clicked.bind(w);
+                        setup_visual_modal(modaltitle, AllModels, ShowHidden, SelectedModel, subdirname);
+
+                        function inner_clicked(v, option, event) {
+                            inner_value_change(this, v);
+                            that.dirty_canvas = true;
+                            return false;
+                        }
+
+                        function inner_value_change(widget, value) {
+                            if (widget.type == "number") {
+                                value = Number(value);
+                            }
+                            widget.value = value;
+                            if (widget.options && widget.options.property && node.properties[widget.options.property] !== undefined) {
+                                node.setProperty(widget.options.property, value);
+                            }
+                            if (widget.callback) {
+                                widget.callback(widget.value, that, node, pos, event);
+                            }
+                        }
+                        return null;
+                    }
+                }
+            }
             return lcg.call(this, node, pos, event, active_widget);
         }
     },
 
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
-        if (nodeData.name === "PrimereVisualCKPT") {
 
-        }
     },
 });
