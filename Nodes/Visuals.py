@@ -3,12 +3,13 @@ from custom_nodes.ComfyUI_Primere_Nodes.components.tree import TREE_VISUALS
 from custom_nodes.ComfyUI_Primere_Nodes.components.tree import PRIMERE_ROOT
 import folder_paths
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
+from custom_nodes.ComfyUI_Primere_Nodes.components import hypernetwork
 import comfy.sd
 import comfy.utils
 import os
 import random
 from pathlib import Path
-import comfy_extras.nodes_hypernetwork as comfy_extras
+# import comfy_extras.nodes_hypernetwork as comfy_extras
 
 class PrimereVisualCKPT:
     RETURN_TYPES = ("CHECKPOINT_NAME", "STRING", "MODEL_KEYWORD")
@@ -82,7 +83,7 @@ class PrimereVisualLORA:
                 "clip": ("CLIP",),
                 "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
 
-                "stack_version": (["SD", "SDXL"], {"default": "SD"}),
+                "stack_version": (["SD", "SDXL", "Any"], {"default": "Any"}),
                 "show_modal": ("BOOLEAN", {"default": True}),
                 "show_hidden": ("BOOLEAN", {"default": True}),
                 "use_only_model_weight": ("BOOLEAN", {"default": True}),
@@ -125,7 +126,7 @@ class PrimereVisualLORA:
             },
         }
 
-    def visual_lora_stacker(self, model, clip, use_only_model_weight, use_lora_keyword, lora_keyword_placement, lora_keyword_selection, lora_keywords_num, lora_keyword_weight, stack_version = 'SD', model_version = "BaseModel_1024", **kwargs):
+    def visual_lora_stacker(self, model, clip, use_only_model_weight, use_lora_keyword, lora_keyword_placement, lora_keyword_selection, lora_keywords_num, lora_keyword_weight, stack_version = 'Any', model_version = "BaseModel_1024", **kwargs):
         model_keyword = [None, None]
 
         if model_version == 'SDXL_2048' and stack_version == 'SD':
@@ -210,7 +211,7 @@ class PrimereVisualEmbedding:
         return {
             "required": {
                 "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
-                "stack_version": (["SD", "SDXL"], {"default": "SD"}),
+                "stack_version": (["SD", "SDXL", "Any"], {"default": "Any"}),
 
                 "show_modal": ("BOOLEAN", {"default": True}),
                 "show_hidden": ("BOOLEAN", {"default": True}),
@@ -250,7 +251,7 @@ class PrimereVisualEmbedding:
             },
         }
 
-    def primere_visual_embedding(self, embedding_placement_pos, embedding_placement_neg, stack_version='SD', model_version="BaseModel_1024", **kwargs):
+    def primere_visual_embedding(self, embedding_placement_pos, embedding_placement_neg, stack_version='Any', model_version="BaseModel_1024", **kwargs):
         if model_version == 'SDXL_2048' and stack_version == 'SD':
             return ([None, None], [None, None], [])
 
@@ -317,7 +318,7 @@ class PrimereVisualHypernetwork:
         return {"required": {
             "model": ("MODEL",),
             "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
-            "stack_version": (["SD", "SDXL"], {"default": "SD"}),
+            "stack_version": (["SD", "SDXL", "Any"], {"default": "Any"}),
 
             "show_modal": ("BOOLEAN", {"default": True}),
             "show_hidden": ("BOOLEAN", {"default": True}),
@@ -348,7 +349,7 @@ class PrimereVisualHypernetwork:
         }
     }
 
-    def visual_hypernetwork(self, model, model_version, stack_version,  **kwargs):
+    def visual_hypernetwork(self, model, model_version, stack_version = "Any",  **kwargs):
         model_hypernetwork = model
         if model_version == 'SDXL_2048' and stack_version == 'SD':
             return (model, [],)
@@ -366,7 +367,7 @@ class PrimereVisualHypernetwork:
             for hn_tuple in hnetwork_stack:
                 hypernetwork_path = folder_paths.get_full_path("hypernetworks", hn_tuple[0])
                 model_hypernetwork = cloned_model.clone()
-                patch = comfy_extras.load_hypernetwork_patch(hypernetwork_path, hn_tuple[1])
+                patch = hypernetwork.load_hypernetwork_patch(hypernetwork_path, hn_tuple[1], False)
                 if patch is not None:
                     model_hypernetwork.set_model_attn1_patch(patch)
                     model_hypernetwork.set_model_attn2_patch(patch)
