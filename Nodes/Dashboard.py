@@ -681,16 +681,21 @@ class PrimereResolutionMultiplier:
                 "width": ('INT', {"forceInput": True, "default": 512}),
                 "height": ('INT', {"forceInput": True, "default": 512}),
                 "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
+                "use_multiplier": ("BOOLEAN", {"default": True}),
                 "multiply_sd": ("FLOAT", {"default": 2.0, "min": 0.1, "max": 8.0, "step": 0.1}),
                 "multiply_sdxl": ("FLOAT", {"default": 2.0, "min": 0.1, "max": 8.0, "step": 0.1}),
             },
         }
 
-    def multiply_imagesize(self, width: int, height: int, multiply_sd: float, multiply_sdxl: float, model_version: str):
+    def multiply_imagesize(self, width: int, height: int, use_multiplier: bool, multiply_sd: float, multiply_sdxl: float, model_version: str):
         is_sdxl = 0
         match model_version:
             case 'SDXL_2048':
                 is_sdxl = 1
+
+        if use_multiplier == False:
+            multiply_sd = 1
+            multiply_sdxl = 1
 
         if (is_sdxl == 1):
             dimension_x = round(width * multiply_sdxl)

@@ -145,7 +145,7 @@
         85
       ],
       "size": {
-        "0": 396.56884765625,
+        "0": 689.023193359375,
         "1": 210
       },
       "flags": {},
@@ -202,10 +202,10 @@
         "Node name for S&R": "PrimereStyleLoader"
       },
       "widgets_values": [
-        "Paint art",
-        true,
+        "SFW Woman",
         false,
-        false
+        false,
+        true
       ],
       "color": "#2a363b",
       "bgcolor": "#3f5159"
@@ -552,7 +552,7 @@
       "id": 161,
       "type": "UpscaleModelLoader",
       "pos": [
-        2775,
+        2779,
         -549
       ],
       "size": {
@@ -916,6 +916,66 @@
       "bgcolor": "#3f5159"
     },
     {
+      "id": 213,
+      "type": "PrimereVisualCKPT",
+      "pos": [
+        2795,
+        -1102
+      ],
+      "size": {
+        "0": 532.0029296875,
+        "1": 266
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL_NAME",
+          "type": "CHECKPOINT_NAME",
+          "links": [
+            572
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MODEL_VERSION",
+          "type": "STRING",
+          "links": [
+            570,
+            571
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "MODEL_KEYWORD",
+          "type": "MODEL_KEYWORD",
+          "links": [
+            608
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereVisualCKPT"
+      },
+      "widgets_values": [
+        "serenexl_v15.safetensors",
+        true,
+        true,
+        false,
+        "First",
+        "Select in order",
+        1,
+        0.7000000000000001
+      ],
+      "color": "#1414ff",
+      "bgcolor": "#0000ff"
+    },
+    {
       "id": 208,
       "type": "BilboXPhotoPrompt",
       "pos": [
@@ -923,12 +983,30 @@
         88
       ],
       "size": {
-        "0": 404.442626953125,
-        "1": 460
+        "0": 404.89935302734375,
+        "1": 414.56573486328125
       },
       "flags": {},
-      "order": 16,
+      "order": 17,
       "mode": 0,
+      "inputs": [
+        {
+          "name": "subject",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "subject"
+          }
+        },
+        {
+          "name": "setting_background",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "setting_background"
+          }
+        }
+      ],
       "outputs": [
         {
           "name": "full_composed_prompt",
@@ -967,66 +1045,6 @@
       ],
       "color": "#432",
       "bgcolor": "#653"
-    },
-    {
-      "id": 213,
-      "type": "PrimereVisualCKPT",
-      "pos": [
-        2795,
-        -1102
-      ],
-      "size": {
-        "0": 532.0029296875,
-        "1": 266
-      },
-      "flags": {},
-      "order": 17,
-      "mode": 0,
-      "outputs": [
-        {
-          "name": "MODEL_NAME",
-          "type": "CHECKPOINT_NAME",
-          "links": [
-            572
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "MODEL_VERSION",
-          "type": "STRING",
-          "links": [
-            570,
-            571
-          ],
-          "shape": 3,
-          "slot_index": 1
-        },
-        {
-          "name": "MODEL_KEYWORD",
-          "type": "MODEL_KEYWORD",
-          "links": [
-            608
-          ],
-          "shape": 3,
-          "slot_index": 2
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereVisualCKPT"
-      },
-      "widgets_values": [
-        "BestPhoto\\photoabsolute_v10.safetensors",
-        true,
-        true,
-        true,
-        "First",
-        "Select in order",
-        1,
-        0.7000000000000001
-      ],
-      "color": "#1414ff",
-      "bgcolor": "#0000ff"
     },
     {
       "id": 91,
@@ -1479,6 +1497,77 @@
       "bgcolor": "#0000ff"
     },
     {
+      "id": 164,
+      "type": "PrimereResolution",
+      "pos": [
+        3663.52666402753,
+        -1102.0955926242907
+      ],
+      "size": {
+        "0": 313.5058288574219,
+        "1": 247.00794982910156
+      },
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model_version",
+          "type": "STRING",
+          "link": 570,
+          "widget": {
+            "name": "model_version"
+          }
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 520,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "WIDTH",
+          "type": "INT",
+          "links": [
+            521
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "HEIGHT",
+          "type": "INT",
+          "links": [
+            522
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PrimereResolution"
+      },
+      "widgets_values": [
+        "HD+ screen [16:10]",
+        768,
+        true,
+        "Vertical",
+        true,
+        "BaseModel_1024",
+        -1014925698630577,
+        "randomize",
+        false,
+        1,
+        1.5
+      ],
+      "color": "#0000eb",
+      "bgcolor": "#0000ff"
+    },
+    {
       "id": 99,
       "type": "PrimereStylePile",
       "pos": [
@@ -1490,7 +1579,7 @@
         "1": 414
       },
       "flags": {},
-      "order": 20,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -1555,77 +1644,6 @@
       "bgcolor": "#653"
     },
     {
-      "id": 164,
-      "type": "PrimereResolution",
-      "pos": [
-        3663.52666402753,
-        -1102.0955926242907
-      ],
-      "size": {
-        "0": 313.5058288574219,
-        "1": 247.00794982910156
-      },
-      "flags": {},
-      "order": 21,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model_version",
-          "type": "STRING",
-          "link": 570,
-          "widget": {
-            "name": "model_version"
-          }
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "link": 520,
-          "widget": {
-            "name": "seed"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "WIDTH",
-          "type": "INT",
-          "links": [
-            521
-          ],
-          "shape": 3,
-          "slot_index": 0
-        },
-        {
-          "name": "HEIGHT",
-          "type": "INT",
-          "links": [
-            522
-          ],
-          "shape": 3,
-          "slot_index": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PrimereResolution"
-      },
-      "widgets_values": [
-        "Photo [19:13]",
-        768,
-        false,
-        "Vertical",
-        true,
-        "BaseModel_1024",
-        213696772296729,
-        "randomize",
-        false,
-        1,
-        1.5
-      ],
-      "color": "#0000eb",
-      "bgcolor": "#0000ff"
-    },
-    {
       "id": 108,
       "type": "PrimereAnyOutput",
       "pos": [
@@ -1651,7 +1669,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(modern artistic paint style:1.2), ({colorful|difficult|detailed|minimalist}:1.2), ({fire|ice|water|sun|rain}:1.2) ({cat|dog|man|woman|bird|dragon|snake|lion|tiger|panther|firebird|phoenix|female dancer|horse|lake|hill|human-animal hybrid|Pegasus|mystical animal}:1.4), (Paintmagic:{0|0.4|0.5|0.6|0.7|0.8|0.9|1|1.1|1.2}), <hypernet:styltokSplashOf_v10:{0|0.5|1|1.5|2}>, (PNmagic:{0|0.2|0.4|0.5|0.6|0.8|0.9|1})"
+        "beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -1682,7 +1700,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "add_nsfw, nude, nudity, porn"
+        "kid, child, childish, text, frame, nude, nudity, porn, sex"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -2015,7 +2033,7 @@
         "Node name for S&R": "PrimereMetaRead"
       },
       "widgets_values": [
-        true,
+        false,
         false,
         false,
         false,
@@ -2038,7 +2056,7 @@
         "BaseModel_1024",
         "euler",
         "normal",
-        873,
+        772,
         "randomize",
         65,
         895,
@@ -2184,7 +2202,7 @@
       },
       "widgets_values": [
         "",
-        -337046910082775,
+        -155677384841991,
         "randomize"
       ],
       "color": "#232",
@@ -2238,7 +2256,7 @@
       },
       "widgets_values": [
         "",
-        224397635465023,
+        -928634467208514,
         "randomize"
       ],
       "color": "#322",
@@ -2270,7 +2288,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "{\n    \"positive\": \"beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, {dark-blue|light-blue|transparent|green} water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear {rainbow|yellow|blue|white|green|red|dark-red|striper} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, {smile|thinking|flirty} {romantic|friendly} {satisfied|natural} face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)\",\n    \"negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw, muscle, muscled, man, manly\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"BestPhoto\\\\photoabsolute_v10.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 1050736967998745,\n    \"width\": 819,\n    \"height\": 1280,\n    \"cfg_scale\": 8.0,\n    \"steps\": 25,\n    \"model_version\": \"BaseModel_768\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\",\n    \"force_model_vae\": true,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"is_sdxl\": 0,\n    \"dynamic_positive\": \"beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, light-blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear rainbow one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)\",\n    \"dynamic_negative\": \"dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw, muscle, muscled, man, manly\"\n}"
+        "{\n    \"positive\": \"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\",\n    \"negative\": \"kid, child, childish, text, frame, nude, nudity, porn, sex\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"serenexl_v15.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 758780823543476,\n    \"width\": 819,\n    \"height\": 1280,\n    \"cfg_scale\": 8.0,\n    \"steps\": 25,\n    \"model_version\": \"SDXL_2048\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"sdxl_vae.safetensors\",\n    \"force_model_vae\": true,\n    \"prefered_model\": null,\n    \"prefered_orientation\": \"Vertical\",\n    \"is_sdxl\": 1,\n    \"dynamic_positive\": \"beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\",\n    \"dynamic_negative\": \"kid, child, childish, text, frame, nude, nudity, porn, sex\"\n}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -2347,19 +2365,19 @@
       "widgets_values": [
         512,
         512,
-        false,
+        true,
         "brownian_fractal",
-        false,
+        true,
         1.1,
         0.75,
         1.3,
-        false,
+        true,
         1.2,
         0.9,
         1.25,
-        -931768518288300,
+        -624455399644107,
         "randomize",
-        false,
+        true,
         "cuda"
       ],
       "color": "#6c0000",
@@ -2374,7 +2392,7 @@
       ],
       "size": {
         "0": 313.2674255371094,
-        "1": 128.031982421875
+        "1": 146
       },
       "flags": {},
       "order": 30,
@@ -2441,6 +2459,7 @@
         512,
         512,
         "BaseModel_1024",
+        false,
         4,
         3
       ],
@@ -2564,13 +2583,13 @@
       "id": 223,
       "type": "PrimereVisualEmbedding",
       "pos": [
-        986,
-        -894
+        988,
+        -981
       ],
-      "size": [
-        443.11894531250005,
-        887.1870849609375
-      ],
+      "size": {
+        "0": 440.7383117675781,
+        "1": 971.955322265625
+      },
       "flags": {},
       "order": 32,
       "mode": 0,
@@ -2630,7 +2649,7 @@
         1,
         false,
         false,
-        "Photo\\kkw-photoreal.bin",
+        "Wehicles\\CarHelper.pt",
         1,
         false,
         false,
@@ -2651,12 +2670,12 @@
       "id": 146,
       "type": "PrimereClearPrompt",
       "pos": [
-        443,
-        86
+        1439,
+        -981
       ],
       "size": {
-        "0": 275.780029296875,
-        "1": 209.13002014160156
+        "0": 410.0804748535156,
+        "1": 194
       },
       "flags": {},
       "order": 33,
@@ -2720,8 +2739,8 @@
         true,
         true
       ],
-      "color": "#2a363b",
-      "bgcolor": "#3f5159"
+      "color": "#006c2c",
+      "bgcolor": "#008040"
     },
     {
       "id": 27,
@@ -2928,13 +2947,13 @@
       "id": 224,
       "type": "PrimereVisualHypernetwork",
       "pos": [
-        1441,
-        -894
+        1439,
+        -753
       ],
-      "size": [
-        409.3189453125001,
-        558
-      ],
+      "size": {
+        "0": 413.70526123046875,
+        "1": 743.955322265625
+      },
       "flags": {},
       "order": 37,
       "mode": 0,
@@ -2980,7 +2999,7 @@
         true,
         false,
         false,
-        "Character\\Dr0ne.pt",
+        "Character\\MJ_V4_Portraits.pt",
         1,
         false,
         "Character\\Venom_v1.pt",
@@ -3362,7 +3381,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        291997841316816,
+        177886645581549,
         "randomize",
         20,
         8,
@@ -3399,7 +3418,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, light-blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear rainbow one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)"
+        "beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -3430,7 +3449,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace, muscle, muscled, man, manly:1.20)"
+        "(kid, child, childish, text, frame, nude, nudity, porn, sex:1.20)"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -3461,7 +3480,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        ""
+        "(beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -3492,7 +3511,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        ""
+        "((kid, child, childish, text, frame, nude, nudity, porn, sex:1.20))"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -3547,8 +3566,8 @@
       "id": 155,
       "type": "ttN hiresfixScale",
       "pos": [
-        2767,
-        -452
+        2775,
+        -454
       ],
       "size": {
         "0": 392.8316955566406,
@@ -3654,13 +3673,13 @@
       "id": 156,
       "type": "UltimateSDUpscale",
       "pos": [
-        3174,
+        3179,
         -549
       ],
-      "size": {
-        "0": 298.5743103027344,
-        "1": 554
-      },
+      "size": [
+        297.423583984375,
+        550.7127075195312
+      ],
       "flags": {},
       "order": 48,
       "mode": 0,
@@ -3781,7 +3800,7 @@
       },
       "widgets_values": [
         2.1,
-        1018821945285569,
+        743351155170149,
         "randomize",
         7,
         6.5,
@@ -3879,7 +3898,7 @@
       },
       "widgets_values": [
         "z:\\AIPICS\\Comfy\\[time(%Y-%m-Week-%W)]",
-        "Test",
+        "NewModel",
         "",
         true,
         "Image",
@@ -3931,7 +3950,7 @@
       },
       "widgets_values": [
         "",
-        ":: Time to save: 2023-12-13 22:36:49\n:: Output file: z:\\AIPICS\\Comfy\\PHOTOABSOLUTE_V10\\Art\\2023-12-Week-50\\Image_20231312_223648_1050736967998745_3264x5120_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, {dark-blue|light-blue|transparent|green} water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear {rainbow|yellow|blue|white|green|red|dark-red|striper} one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, {smile|thinking|flirty} {romantic|friendly} {satisfied|natural} face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)\n:: NEGATIVE: dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw, muscle, muscled, man, manly\n:: MODEL_NAME: BestPhoto\\photoabsolute_v10.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 1050736967998745\n:: WIDTH: 819\n:: HEIGHT: 1280\n:: CFG_SCALE: 8.0\n:: STEPS: 25\n:: MODEL_VERSION: BaseModel_768\n:: IS_LCM: 0\n:: VAE_NAME: vae-ft-mse-840000-ema-pruned.ckpt\n:: FORCE_MODEL_VAE: True\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: None\n:: IS_SDXL: 0\n:: DYNAMIC_POSITIVE: beautiful sexy 39 year old perfect body model woman, black hair, swimmer fitness body, bathing in a big pool, light-blue water, small wave, (beautiful long wet watery trapped waterlogged soggy hair:1.5), (rainy, wet full body:1.3), (heavy rain:1.4), luxury pool and exterior, (wear rainbow one-piece swimsuit:1.2), sexy middle sized breasts, huge neckline cleavage decolletage, smile romantic satisfied face, half body portrait, detailed face, detailed hair, (it is raining heavily and in large drops:1.3)\n:: DYNAMIC_NEGATIVE: dry hair, porn, nudity, nsfw, umbrella, cap, hat, headgear, dry, necklace add_nsfw, muscle, muscled, man, manly\n:: SAVED_IMAGE_WIDTH: 3264\n:: SAVED_IMAGE_HEIGTH: 5120\n:: UPSCALER_RATIO: From: 819x1280 to: 3264x5120 Ratio: 4.0\n"
+        ":: Time to save: 2023-12-14 09:32:44\n:: Output file: z:\\AIPICS\\Comfy\\SERENEXL_V15\\NewModel\\2023-12-Week-50\\Image_20231412_093244_758780823543476_1632x2560_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\n:: NEGATIVE: kid, child, childish, text, frame, nude, nudity, porn, sex\n:: MODEL_NAME: serenexl_v15.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 758780823543476\n:: WIDTH: 819\n:: HEIGHT: 1280\n:: CFG_SCALE: 8.0\n:: STEPS: 25\n:: MODEL_VERSION: SDXL_2048\n:: IS_LCM: 0\n:: VAE_NAME: sdxl_vae.safetensors\n:: FORCE_MODEL_VAE: True\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: Vertical\n:: IS_SDXL: 1\n:: DYNAMIC_POSITIVE: beautiful 40 year old woman standing, half body photography, fully clothed, wear elegant top, front view, perfect face, close view, natural background, perfect lights, perfect colors, realistic photo, professional photography\n:: DYNAMIC_NEGATIVE: kid, child, childish, text, frame, nude, nudity, porn, sex\n:: SAVED_IMAGE_WIDTH: 1632\n:: SAVED_IMAGE_HEIGTH: 2560\n:: UPSCALER_RATIO: From: 819x1280 to: 1632x2560 Ratio: 2.0\n"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"

@@ -33,7 +33,7 @@ class PrimereMetaSave:
             "required": {
                 "images": ("IMAGE",),
                 "output_path": ("STRING", {"default": '[time(%Y-%m-%d)]', "multiline": False}),
-                "subpath": (["None", "Dev", "Test", "Production", "Project", "Portfolio", "Character", "Fun", "SFW", "NSFW"], {"default": "Project"}),
+                "subpath": (["None", "Dev", "Test", "Production", "Preview", "NewModel", "Project", "Portfolio", "Character", "Style", "Product", "Fun", "SFW", "NSFW"], {"default": "Project"}),
                 "prefered_subpath": ("STRING", {"default": "", "forceInput": True}),
                 "add_modelname_to_path": ("BOOLEAN", {"default": False}),
                 "filename_prefix": ("STRING", {"default": "ComfyUI"}),
