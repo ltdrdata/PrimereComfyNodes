@@ -11,14 +11,14 @@ function createCardElement(checkpoint, container, SelectedModel, ModelType) {
     } else {
         var finalName = checkpoint_new;
     }
-    finalName = finalName.replace(' ', "_");
+    finalName = finalName.replaceAll(' ', "_");
     let previewName = finalName + '.jpg';
     console.log(previewName);
 
     let pathLastIndex = finalName.lastIndexOf('/');
     let ckptName = finalName.substring(pathLastIndex + 1);
 
-    var card_html = '<div class="checkpoint-name">' + ckptName.replace('_', " ") + '</div>';
+    var card_html = '<div class="checkpoint-name">' + ckptName.replaceAll('_', " ") + '</div>';
     var imgsrc = realPath + '/images/' + ModelType + '/' + previewName;
     var missingimgsrc = realPath + '/images/missing.jpg';
 
