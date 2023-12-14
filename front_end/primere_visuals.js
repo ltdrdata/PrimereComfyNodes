@@ -1,18 +1,24 @@
 import { app } from "/scripts/app.js";
 
 const realPath = "extensions/Primere"
-const validClasses = ['PrimereVisualCKPT', 'PrimereVisualLORA', 'PrimereVisualEmbedding', 'PrimereVisualHypernetwork']
+const validClasses = ['PrimereVisualCKPT', 'PrimereVisualLORA', 'PrimereVisualEmbedding', 'PrimereVisualHypernetwork', 'PrimereVisualStyle']
 
 function createCardElement(checkpoint, container, SelectedModel, ModelType) {
     let checkpoint_new = checkpoint.replaceAll('\\', '/');
     let dotLastIndex = checkpoint_new.lastIndexOf('.');
-    let finalName = checkpoint_new.substring(0, dotLastIndex);
+    if (dotLastIndex > 1) {
+        var finalName = checkpoint_new.substring(0, dotLastIndex);
+    } else {
+        var finalName = checkpoint_new;
+    }
+    finalName = finalName.replace(' ', "_");
     let previewName = finalName + '.jpg';
+    console.log(previewName);
 
     let pathLastIndex = finalName.lastIndexOf('/');
     let ckptName = finalName.substring(pathLastIndex + 1);
 
-    var card_html = '<div class="checkpoint-name">' + ckptName + '</div>';
+    var card_html = '<div class="checkpoint-name">' + ckptName.replace('_', " ") + '</div>';
     var imgsrc = realPath + '/images/' + ModelType + '/' + previewName;
     var missingimgsrc = realPath + '/images/missing.jpg';
 
@@ -120,7 +126,11 @@ app.registerExtension({
                         $(imageContainers).find('img').each(function (img_index, img_obj) {
                             var ImageCheckpoint = $(img_obj).data('ckptname');
                             let dotLastIndex = ImageCheckpoint.lastIndexOf('.');
-                            let finalFilter = ImageCheckpoint.substring(0, dotLastIndex);
+                            if (dotLastIndex > 1) {
+                                var finalFilter = ImageCheckpoint.substring(0, dotLastIndex);
+                            } else {
+                                var finalFilter = ImageCheckpoint;
+                            }
                             if (!ImageCheckpoint.startsWith(subdirName) && subdirName !== 'All' && $(img_obj).parent().closest(".visual-ckpt-selected").length === 0) {
                                 $(img_obj).parent().hide();
                             } else {
@@ -269,22 +279,29 @@ app.registerExtension({
             if (node.type == 'PrimereVisualLORA') {
                 subdirname = 'loras';
                 modaltitle = 'Select LoRA';
-                nodematch = '^lora';
+                nodematch = '^lora_';
                 isnumeric_end = true;
             }
 
             if (node.type == 'PrimereVisualEmbedding') {
                 subdirname = 'embeddings';
                 modaltitle = 'Select embedding';
-                nodematch = '^embedding';
+                nodematch = '^embedding_';
                 isnumeric_end = true;
             }
 
             if (node.type == 'PrimereVisualHypernetwork') {
                 subdirname = 'hypernetworks';
                 modaltitle = 'Select hypernetwork';
-                nodematch = '^hypernetwork';
+                nodematch = '^hypernetwork_';
                 isnumeric_end = true;
+            }
+
+            if (node.type == 'PrimereVisualStyle') {
+                subdirname = 'styles';
+                modaltitle = 'Select style';
+                nodematch = '^styles';
+                isnumeric_end = false;
             }
 
             if (event.type != LiteGraph.pointerevents_method + "down") {

@@ -80,6 +80,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereVisualLORA": Visuals.PrimereVisualLORA,
     "PrimereVisualEmbedding": Visuals.PrimereVisualEmbedding,
     "PrimereVisualHypernetwork": Visuals.PrimereVisualHypernetwork,
+    "PrimereVisualStyle": Visuals.PrimereVisualStyle,
 
     "PrimereLORA": Networks.PrimereLORA,
     "PrimereEmbedding": Networks.PrimereEmbedding,
@@ -121,6 +122,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereVisualLORA": "Primere Visual LORA Selector",
     "PrimereVisualEmbedding": 'Primere Visual Embedding Selector',
     "PrimereVisualHypernetwork": 'Primere Visual Hypernetwork Selector',
+    "PrimereVisualStyle": 'Primere Visual Style Selector',
 
     "PrimereLORA": 'Primere LORA',
     "PrimereEmbedding": 'Primere Embedding',

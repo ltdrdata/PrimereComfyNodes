@@ -9,6 +9,8 @@ import comfy.utils
 import os
 import random
 from pathlib import Path
+import chardet
+import pandas
 # import comfy_extras.nodes_hypernetwork as comfy_extras
 
 class PrimereVisualCKPT:
@@ -376,3 +378,98 @@ class PrimereVisualHypernetwork:
             return (model, [],)
 
         return (model_hypernetwork, hnetwork_stack,)
+
+class PrimereVisualStyle:
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING")
+    RETURN_NAMES = ("PROMPT+", "PROMPT-", "SUBPATH", "MODEL", "ORIENTATION")
+    FUNCTION = "load_visual_csv"
+    CATEGORY = TREE_VISUALS
+
+    @staticmethod
+    def load_styles_csv(styles_path: str):
+        fileTest = open(styles_path, 'rb').readline()
+        result = chardet.detect(fileTest)
+        ENCODING = result['encoding']
+        if ENCODING == 'ascii':
+            ENCODING = 'UTF-8'
+
+        with open(styles_path, "r", newline = '', encoding = ENCODING) as csv_file:
+            try:
+                return pandas.read_csv(csv_file)
+            except pandas.errors.ParserError as e:
+                errorstring = repr(e)
+                matchre = re.compile('Expected (\d+) fields in line (\d+), saw (\d+)')
+                (expected, line, saw) = map(int, matchre.search(errorstring).groups())
+                print(f'Error at line {line}. Fields added : {saw - expected}.')
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        STYLE_DIR = os.path.join(PRIMERE_ROOT, 'stylecsv')
+        cls.styles_csv = cls.load_styles_csv(os.path.join(STYLE_DIR, "styles.csv"))
+        return {
+            "required": {
+                "styles": (sorted(list(cls.styles_csv['name'])),),
+                "show_modal": ("BOOLEAN", {"default": True}),
+                "use_subpath": ("BOOLEAN", {"default": False}),
+                "use_model": ("BOOLEAN", {"default": False}),
+                "use_orientation": ("BOOLEAN", {"default": False}),
+            },
+        }
+
+    def load_visual_csv(self, styles, show_modal, use_subpath, use_model, use_orientation):
+        try:
+            positive_prompt = self.styles_csv[self.styles_csv['name'] == styles]['prompt'].values[0]
+        except Exception:
+            positive_prompt = ''
+
+        try:
+            negative_prompt = self.styles_csv[self.styles_csv['name'] == styles]['negative_prompt'].values[0]
+        except Exception:
+            negative_prompt = ''
+
+        try:
+            prefered_subpath = self.styles_csv[self.styles_csv['name'] == styles]['prefered_subpath'].values[0]
+        except Exception:
+            prefered_subpath = ''
+
+        try:
+            prefered_model = self.styles_csv[self.styles_csv['name'] == styles]['prefered_model'].values[0]
+        except Exception:
+            prefered_model = ''
+
+        try:
+            prefered_orientation = self.styles_csv[self.styles_csv['name'] == styles]['prefered_orientation'].values[0]
+        except Exception:
+            prefered_orientation = ''
+
+        pos_type = type(positive_prompt).__name__
+        neg_type = type(negative_prompt).__name__
+        subp_type = type(prefered_subpath).__name__
+        model_type = type(prefered_model).__name__
+        orientation_type = type(prefered_orientation).__name__
+        if (pos_type != 'str'):
+            positive_prompt = ''
+        if (neg_type != 'str'):
+            negative_prompt = ''
+        if (subp_type != 'str'):
+            prefered_subpath = ''
+        if (model_type != 'str'):
+            prefered_model = ''
+        if (orientation_type != 'str'):
+            prefered_orientation = ''
+
+        if len(prefered_subpath.strip()) < 1:
+            prefered_subpath = None
+        if len(prefered_model.strip()) < 1:
+            prefered_model = None
+        if len(prefered_orientation.strip()) < 1:
+            prefered_orientation = None
+
+        if use_subpath == False:
+            prefered_subpath = None
+        if use_model == False:
+            prefered_model = None
+        if use_orientation == False:
+            prefered_orientation = None
+
+        return (positive_prompt, negative_prompt, prefered_subpath, prefered_model, prefered_orientation)
