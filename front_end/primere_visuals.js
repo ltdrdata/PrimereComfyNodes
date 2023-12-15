@@ -235,7 +235,7 @@ app.registerExtension({
             var CKPTElements = 0;
             for (var checkpoint of AllModels) {
                 let firstletter = checkpoint.charAt(0);
-                if ((firstletter === '.' && ShowHidden === true) || firstletter !== '.') {
+                if (((firstletter === '.' && ShowHidden === true) || firstletter !== '.') && ((checkpoint.match('^NSFW') && ShowHidden === true) || !checkpoint.match('^NSFW')))  {
                     CKPTElements++;
                     createCardElement(checkpoint, container, SelectedModel, ModelType)
                 }
@@ -243,9 +243,9 @@ app.registerExtension({
 
             modal.setAttribute('style','display: block; width: 60%; height: 70%;');
             var TimingBase =AllModels.length;
-            var mtimeout = TimingBase * 2;
+            var mtimeout = TimingBase * 3;
             if (modalExist === false) {
-                mtimeout = TimingBase * 15;
+                mtimeout = TimingBase * 18;
             }
             setTimeout(function(mtimeout) {
                 $('div#primere_visual_modal div.modal_header label.ckpt-name').text('All');

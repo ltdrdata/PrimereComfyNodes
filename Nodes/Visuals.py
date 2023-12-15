@@ -410,13 +410,14 @@ class PrimereVisualStyle:
             "required": {
                 "styles": (sorted(list(cls.styles_csv['name'])),),
                 "show_modal": ("BOOLEAN", {"default": True}),
+                "show_hidden": ("BOOLEAN", {"default": True}),
                 "use_subpath": ("BOOLEAN", {"default": False}),
                 "use_model": ("BOOLEAN", {"default": False}),
                 "use_orientation": ("BOOLEAN", {"default": False}),
             },
         }
 
-    def load_visual_csv(self, styles, show_modal, use_subpath, use_model, use_orientation):
+    def load_visual_csv(self, styles, show_modal, show_hidden, use_subpath, use_model, use_orientation):
         try:
             positive_prompt = self.styles_csv[self.styles_csv['name'] == styles]['prompt'].values[0]
         except Exception:
