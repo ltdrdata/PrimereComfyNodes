@@ -12,10 +12,12 @@ import tomli
 from .modules.adv_encode import advanced_encode, advanced_encode_XL
 from nodes import MAX_RESOLUTION
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
-from custom_nodes.ComfyUI_Primere_Nodes import utils
 from pathlib import Path
 import re
 import requests
+from custom_nodes.ComfyUI_Primere_Nodes.components import hypernetwork
+import comfy.sd
+import comfy.utils
 
 class PrimereSamplers:
     CATEGORY = TREE_DASHBOARD
@@ -785,3 +787,121 @@ class PrimereClearPrompt:
         negative_prompt = utility.clear_prompt(NETWORK_START, NETWORK_END, negative_prompt)
 
       return (positive_prompt, negative_prompt,)
+
+class PrimereNetworkTagLoader:
+  RETURN_TYPES = ("MODEL", "CLIP", "LORA_STACK", "HYPERNETWORK_STACK", "MODEL_KEYWORD")
+  RETURN_NAMES = ("MODEL", "CLIP", "LORA_STACK", "HYPERNETWORK_STACK", "LORA_KEYWORD")
+  FUNCTION = "load_networks"
+  CATEGORY = TREE_DASHBOARD
+  @classmethod
+  def INPUT_TYPES(s):
+      return {
+          "required": {
+              "model": ("MODEL",),
+              "clip": ("CLIP",),
+              "positive_prompt": ("STRING", {"forceInput": True}),
+              "process_lora": ("BOOLEAN", {"default": True}),
+              "process_hypernetwork": ("BOOLEAN", {"default": True}),
+              "copy_weight_to_clip": ("BOOLEAN", {"default": False}),
+              "lora_clip_custom_weight": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
+
+              "use_lora_keyword": ("BOOLEAN", {"default": False}),
+              "lora_keyword_placement": (["First", "Last"], {"default": "Last"}),
+              "lora_keyword_selection": (["Select in order", "Random select"], {"default": "Select in order"}),
+              "lora_keywords_num": ("INT", {"default": 1, "min": 1, "max": 50, "step": 1}),
+              "lora_keyword_weight": ("FLOAT", {"default": 1.0, "min": 0, "max": 10.0, "step": 0.1}),
+          }
+      }
+
+  def load_networks(self, model, clip, positive_prompt, process_lora, process_hypernetwork, copy_weight_to_clip, lora_clip_custom_weight, use_lora_keyword, lora_keyword_placement, lora_keyword_selection, lora_keywords_num, lora_keyword_weight):
+      NETWORK_START = []
+
+      cloned_model = model
+      cloned_clip = clip
+      list_of_keyword_items = []
+      lora_keywords_num_set = lora_keywords_num
+      model_keyword = [None, None]
+      lora_stack = []
+      hnet_stack = []
+
+      HypernetworkList = folder_paths.get_filename_list("hypernetworks")
+      LoraList = folder_paths.get_filename_list("loras")
+
+      if process_lora == True:
+        NETWORK_START.append('<lora:')
+
+      if process_hypernetwork == True:
+        NETWORK_START.append('<hypernet:')
+
+      if len(NETWORK_START) == 0:
+          return (model, clip, lora_stack, hnet_stack, model_keyword)
+      else:
+          NETWORK_END = ['>'] + NETWORK_START
+          NETWORK_TUPLE = utility.get_networks_prompt(NETWORK_START, NETWORK_END, positive_prompt)
+          if (len(NETWORK_TUPLE) == 0):
+              return (model, clip, lora_stack, hnet_stack, model_keyword)
+          else:
+              for NETWORK_DATA in NETWORK_TUPLE:
+                  NetworkName = NETWORK_DATA[0]
+                  try:
+                    NetworkStrenght = float(NETWORK_DATA[1])
+                  except ValueError:
+                    NetworkStrenght = 1
+                  NetworkType = NETWORK_DATA[2]
+
+                  if (process_lora == True and NetworkType == 'LORA'):
+                      lora_name = utility.get_closest_element(NetworkName, LoraList)
+                      if lora_name is not None:
+                          lora_path = folder_paths.get_full_path("loras", lora_name)
+                          lora = comfy.utils.load_torch_file(lora_path, safe_load=True)
+                          if (copy_weight_to_clip == True):
+                              lora_clip_custom_weight = NetworkStrenght
+                          lora_stack = lora_stack.append([lora_name, NetworkStrenght, lora_clip_custom_weight])
+                          cloned_model, cloned_clip = comfy.sd.load_lora_for_models(cloned_model, cloned_clip, lora, NetworkStrenght, lora_clip_custom_weight)
+
+                          if use_lora_keyword == True:
+                              ModelKvHash = utility.get_model_hash(lora_path)
+                              if ModelKvHash is not None:
+                                  KEYWORD_PATH = os.path.join(PRIMERE_ROOT, 'front_end', 'keywords', 'lora-keyword.txt')
+                                  keywords = utility.get_model_keywords(KEYWORD_PATH, ModelKvHash, lora_name)
+                                  if keywords is not None and keywords != "":
+                                      if keywords.find('|') > 1:
+                                          keyword_list = [word.strip() for word in keywords.split('|')]
+                                          keyword_list = list(filter(None, keyword_list))
+                                          if (len(keyword_list) > 0):
+                                              lora_keywords_num = lora_keywords_num_set
+                                              keyword_qty = len(keyword_list)
+                                              if (lora_keywords_num > keyword_qty):
+                                                  lora_keywords_num = keyword_qty
+                                              if lora_keyword_selection == 'Select in order':
+                                                  list_of_keyword_items.extend(keyword_list[:lora_keywords_num])
+                                              else:
+                                                  list_of_keyword_items.extend(random.sample(keyword_list, lora_keywords_num))
+                                      else:
+                                          list_of_keyword_items.append(keywords)
+
+                      if len(list_of_keyword_items) > 0:
+                          if lora_keyword_selection != 'Select in order':
+                              random.shuffle(list_of_keyword_items)
+
+                          list_of_keyword_items = list(set(list_of_keyword_items))
+                          keywords = ", ".join(list_of_keyword_items)
+
+                          if (lora_keyword_weight != 1):
+                              keywords = '(' + keywords + ':' + str(lora_keyword_weight) + ')'
+
+                          model_keyword = [keywords, lora_keyword_placement]
+
+                  if (process_hypernetwork == True and NetworkType == 'HYPERNET'):
+                      hyper_name = utility.get_closest_element(NetworkName, HypernetworkList)
+                      if hyper_name is not None:
+                          hypernetwork_path = folder_paths.get_full_path("hypernetworks", hyper_name)
+                          model_hypernetwork = cloned_model.clone()
+                          patch = hypernetwork.load_hypernetwork_patch(hypernetwork_path, NetworkStrenght, False)
+                          if patch is not None:
+                              model_hypernetwork.set_model_attn1_patch(patch)
+                              model_hypernetwork.set_model_attn2_patch(patch)
+                              hnet_stack = hnet_stack.append([hyper_name, NetworkStrenght])
+                              cloned_model = model_hypernetwork
+
+      return (cloned_model, cloned_clip, lora_stack, hnet_stack, model_keyword)

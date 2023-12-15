@@ -604,10 +604,13 @@ class PrimereLoraKeywordMerger:
             "required": {
                 "lora_keyword_SD": ("MODEL_KEYWORD",),
                 "lora_keyword_SDXL": ("MODEL_KEYWORD",),
-            }
+            },
+            "optional": {
+                "lora_keyword_tagloader": ("MODEL_KEYWORD",),
+            },
         }
 
-    def lora_keyword_merger(self, lora_keyword_SD, lora_keyword_SDXL):
+    def lora_keyword_merger(self, lora_keyword_SD, lora_keyword_SDXL, lora_keyword_tagloader):
         model_keyword = [None, None]
 
         if lora_keyword_SD is not None:
@@ -623,5 +626,12 @@ class PrimereLoraKeywordMerger:
                 model_keyword_2 = mkw_list_2[0]
                 placement = mkw_list_2[1]
                 model_keyword = [model_keyword_2, placement]
+
+        if lora_keyword_tagloader is not None:
+            mkw_list_3 = list(filter(None, lora_keyword_tagloader))
+            if len(mkw_list_3) == 2:
+                model_keyword_3 = mkw_list_3[0]
+                placement = mkw_list_3[1]
+                model_keyword = [model_keyword_3, placement]
 
         return (model_keyword,)

@@ -119,6 +119,35 @@ def clear_prompt(NETWORK_START, NETWORK_END, promptstring):
 
     return promptstring_temp.replace('()', '').replace(' , ,', ',').replace('||', '').replace('{,', '').replace('  ', ' ').replace(', ,', ',').strip(', ')
 
+def get_networks_prompt(NETWORK_START, NETWORK_END, promptstring):
+    valid_networks = []
+
+    for LABEL in NETWORK_START:
+        if LABEL in promptstring:
+            LabelStartIndexes = [n for n in range(len(promptstring)) if promptstring.find(LABEL, n) == n]
+
+            for LabelStartIndex in LabelStartIndexes:
+                Matches = []
+                for endString in NETWORK_END:
+                    Match = promptstring.find(endString, (LabelStartIndex + 1))
+                    if (Match > 0):
+                        Matches.append(Match)
+
+                LabelEndIndex = sorted(Matches)[0]
+                MatchedString = promptstring[(LabelStartIndex + len(LABEL)):(LabelEndIndex)]
+                if len(MatchedString) > 0:
+                    networkdata = MatchedString.split(":")
+                    if len(networkdata) == 1:
+                        networkdata.append('1')
+                    if LABEL == '<lora:':
+                        networkdata.append('LORA')
+                    if LABEL == '<hypernet:':
+                        networkdata.append('HYPERNET')
+
+                    valid_networks.append(networkdata)
+
+    return valid_networks
+
 def rescale_zero_terminal_snr_sigmas(sigmas):
     alphas_cumprod = 1 / ((sigmas * sigmas) + 1)
     alphas_bar_sqrt = alphas_cumprod.sqrt()
@@ -298,3 +327,14 @@ def get_model_keywords(filename, modelhash, model_name):
             return None
     else:
         return None
+
+def get_closest_element(value, list):
+    cutoff_list = [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]
+    is_found = None
+
+    for trycut in cutoff_list:
+        is_found = difflib.get_close_matches(value, list, cutoff=trycut)
+        if len(is_found) >= 1:
+            return is_found[0]
+
+    return is_found

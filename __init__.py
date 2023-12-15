@@ -60,6 +60,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereClearPrompt": Dashboard.PrimereClearPrompt,
     "PrimereLCMSelector": Dashboard.PrimereLCMSelector,
     "PrimereResolutionMultiplier": Dashboard.PrimereResolutionMultiplier,
+    "PrimereNetworkTagLoader": Dashboard.PrimereNetworkTagLoader,
 
     "PrimerePrompt": Inputs.PrimereDoublePrompt,
     "PrimereStyleLoader": Inputs.PrimereStyleLoader,
@@ -102,6 +103,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereClearPrompt": "Primere Prompt Cleaner",
     "PrimereLCMSelector": "Primere LCM selector",
     "PrimereResolutionMultiplier": "Primere Resolution Multiplier",
+    "PrimereNetworkTagLoader": 'Primere Network Tag Loader',
 
     "PrimerePrompt": "Primere Prompt",
     "PrimereStyleLoader": "Primere Styles",

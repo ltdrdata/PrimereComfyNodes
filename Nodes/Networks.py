@@ -1,4 +1,3 @@
-import nodes
 from custom_nodes.ComfyUI_Primere_Nodes.components.tree import TREE_NETWORKS
 from custom_nodes.ComfyUI_Primere_Nodes.components.tree import PRIMERE_ROOT
 import folder_paths
@@ -21,6 +20,7 @@ class PrimereLORA:
     @classmethod
     def INPUT_TYPES(cls):
         LoraList = folder_paths.get_filename_list("loras")
+
         return {
             "required": {
                 "model": ("MODEL",),
@@ -149,6 +149,7 @@ class PrimereEmbedding:
     @classmethod
     def INPUT_TYPES(self):
         EmbeddingList =folder_paths.get_filename_list("embeddings")
+
         return {
             "required": {
                 "model_version": ("STRING", {"default": 'BaseModel_1024', "forceInput": True}),
