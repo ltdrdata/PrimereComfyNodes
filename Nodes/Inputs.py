@@ -15,6 +15,7 @@ import nodes
 from custom_nodes.ComfyUI_Primere_Nodes.components import utility
 from pathlib import Path
 import random
+import string
 
 class PrimereDoublePrompt:
     RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING")
@@ -212,12 +213,22 @@ class PrimereEmbeddingHandler:
         return (self.EmbeddingConverter(positive_prompt), self.EmbeddingConverter(negative_prompt),)
 
     def EmbeddingConverter(self, text):
+        word_list = text.split()
+        new_word_list = [i.strip(string.punctuation) if type(i) == str else str(i) for i in word_list]
+
         EMBEDDINGS = folder_paths.get_filename_list("embeddings")
         text = text.replace('embedding:', '')
+        reg = re.compile(".*:\d")
+        matchlist = list(filter(reg.match, new_word_list))
+
         for embeddings_path in EMBEDDINGS:
             path = Path(embeddings_path)
             embedding_name = path.stem
-            text = text.replace(embedding_name, 'embedding:' + embedding_name)
+            if (embedding_name in new_word_list):
+                text = text.replace(embedding_name, 'embedding:' + embedding_name)
+            if any((reg.match(item)) for item in new_word_list):
+                if any(item for item in matchlist if item.startswith(embedding_name)) == True:
+                    text = text.replace(embedding_name, 'embedding:' + embedding_name)
 
         return text
 
@@ -635,3 +646,59 @@ class PrimereLoraKeywordMerger:
                 model_keyword = [model_keyword_3, placement]
 
         return (model_keyword,)
+
+class PrimereEmbeddingKeywordMerger:
+    RETURN_TYPES = ("EMBEDDING", "EMBEDDING",)
+    RETURN_NAMES = ("EMBEDDING+", "EMBEDDING-")
+    FUNCTION = "embedding_keyword_merger"
+    CATEGORY = TREE_INPUTS
+
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "embedding_pos_SD": ("EMBEDDING",),
+                "embedding_pos_SDXL": ("EMBEDDING",),
+                "embedding_neg_SD": ("EMBEDDING",),
+                "embedding_neg_SDXL": ("EMBEDDING",),
+            },
+        }
+    def embedding_keyword_merger(self, embedding_pos_SD, embedding_pos_SDXL, embedding_neg_SD, embedding_neg_SDXL):
+        embedding_pos = []
+        embedding_neg = []
+
+        if embedding_pos_SD is not None:
+            mkw_list_1 = list(filter(None, embedding_pos_SD))
+            if len(mkw_list_1) == 2:
+                model_keyword_1 = mkw_list_1[0]
+                placement = mkw_list_1[1]
+                embedding_pos.append([model_keyword_1, placement])
+
+        if embedding_pos_SDXL is not None:
+            mkw_list_1 = list(filter(None, embedding_pos_SDXL))
+            if len(mkw_list_1) == 2:
+                model_keyword_1 = mkw_list_1[0]
+                placement = mkw_list_1[1]
+                embedding_pos.append([model_keyword_1, placement])
+
+        if embedding_neg_SD is not None:
+            mkw_list_1 = list(filter(None, embedding_neg_SD))
+            if len(mkw_list_1) == 2:
+                model_keyword_1 = mkw_list_1[0]
+                placement = mkw_list_1[1]
+                embedding_neg.append([model_keyword_1, placement])
+
+        if embedding_neg_SDXL is not None:
+            mkw_list_1 = list(filter(None, embedding_neg_SDXL))
+            if len(mkw_list_1) == 2:
+                model_keyword_1 = mkw_list_1[0]
+                placement = mkw_list_1[1]
+                embedding_neg.append([model_keyword_1, placement])
+
+        if (len(embedding_pos) == 0):
+            embedding_pos = [None, None]
+        if (len(embedding_neg) == 0):
+            embedding_neg = [None, None]
+
+        return (embedding_pos, embedding_neg,)

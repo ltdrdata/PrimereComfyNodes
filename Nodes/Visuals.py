@@ -14,8 +14,8 @@ import pandas
 # import comfy_extras.nodes_hypernetwork as comfy_extras
 
 class PrimereVisualCKPT:
-    RETURN_TYPES = ("CHECKPOINT_NAME", "STRING", "MODEL_KEYWORD")
-    RETURN_NAMES = ("MODEL_NAME", "MODEL_VERSION", "MODEL_KEYWORD")
+    RETURN_TYPES = ("CHECKPOINT_NAME", "STRING")
+    RETURN_NAMES = ("MODEL_NAME", "MODEL_VERSION")
     FUNCTION = "load_ckpt_visual_list"
     CATEGORY = TREE_VISUALS
 
@@ -29,45 +29,14 @@ class PrimereVisualCKPT:
                 "base_model": (folder_paths.get_filename_list("checkpoints"),),
                 "show_modal": ("BOOLEAN", {"default": True}),
                 "show_hidden": ("BOOLEAN", {"default": True}),
-                "use_model_keyword": ("BOOLEAN", {"default": False}),
-                "model_keyword_placement": (["First", "Last"], {"default": "Last"}),
-                "model_keyword_selection": (["Select in order", "Random select"], {"default": "Select in order"}),
-                "model_keywords_num": ("INT", {"default": 1, "min": 1, "max": 50, "step": 1}),
-                "model_keyword_weight": ("FLOAT", {"default": 1.0, "min": 0, "max": 10.0, "step": 0.1}),
             },
         }
 
-    def load_ckpt_visual_list(self, base_model, show_hidden, show_modal, use_model_keyword, model_keyword_placement, model_keyword_selection, model_keywords_num, model_keyword_weight):
+    def load_ckpt_visual_list(self, base_model, show_hidden, show_modal):
         LOADED_CHECKPOINT = self.chkp_loader.load_checkpoint(base_model)
         model_version = utility.getCheckpointVersion(LOADED_CHECKPOINT[0])
-        model_keyword = [None, None]
 
-        if use_model_keyword == True:
-            ckpt_path = folder_paths.get_full_path("checkpoints", base_model)
-            ModelKvHash = utility.get_model_hash(ckpt_path)
-            if ModelKvHash is not None:
-                KEYWORD_PATH = os.path.join(PRIMERE_ROOT, 'front_end', 'keywords', 'model-keyword.txt')
-                keywords = utility.get_model_keywords(KEYWORD_PATH, ModelKvHash, base_model)
-
-                if keywords is not None:
-                    if keywords.find('|') > 1:
-                        keyword_list = keywords.split("|")
-                        if (len(keyword_list) > 0):
-                            keyword_qty = len(keyword_list)
-                            if (model_keywords_num > keyword_qty):
-                                model_keywords_num = keyword_qty
-                            if model_keyword_selection == 'Select in order':
-                                list_of_keyword_items = keyword_list[:model_keywords_num]
-                            else:
-                                list_of_keyword_items = random.sample(keyword_list, model_keywords_num)
-                            keywords = ", ".join(list_of_keyword_items)
-
-                    if (model_keyword_weight != 1):
-                        keywords = '(' + keywords + ':' + str(model_keyword_weight) + ')'
-
-                    model_keyword = [keywords, model_keyword_placement]
-
-        return (base_model, model_version, model_keyword)
+        return (base_model, model_version)
 
 class PrimereVisualLORA:
     RETURN_TYPES = ("MODEL", "CLIP", "LORA_STACK", "MODEL_KEYWORD")

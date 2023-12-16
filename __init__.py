@@ -61,6 +61,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereLCMSelector": Dashboard.PrimereLCMSelector,
     "PrimereResolutionMultiplier": Dashboard.PrimereResolutionMultiplier,
     "PrimereNetworkTagLoader": Dashboard.PrimereNetworkTagLoader,
+    "PrimereModelKeyword": Dashboard.PrimereModelKeyword,
 
     "PrimerePrompt": Inputs.PrimereDoublePrompt,
     "PrimereStyleLoader": Inputs.PrimereStyleLoader,
@@ -70,6 +71,7 @@ NODE_CLASS_MAPPINGS = {
     "PrimereEmbeddingHandler": Inputs.PrimereEmbeddingHandler,
     "PrimereLoraStackMerger": Inputs.PrimereLoraStackMerger,
     "PrimereLoraKeywordMerger": Inputs.PrimereLoraKeywordMerger,
+    "PrimereEmbeddingKeywordMerger": Inputs.PrimereEmbeddingKeywordMerger,
 
     "PrimereMetaSave": Outputs.PrimereMetaSave,
     "PrimereAnyOutput": Outputs.PrimereAnyOutput,
@@ -104,6 +106,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereLCMSelector": "Primere LCM selector",
     "PrimereResolutionMultiplier": "Primere Resolution Multiplier",
     "PrimereNetworkTagLoader": 'Primere Network Tag Loader',
+    "PrimereModelKeyword": "Primere Model Keyword",
 
     "PrimerePrompt": "Primere Prompt",
     "PrimereStyleLoader": "Primere Styles",
@@ -113,6 +116,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrimereEmbeddingHandler": "Primere Embedding Handler",
     "PrimereLoraStackMerger": "Primere Lora Stack Merger",
     "PrimereLoraKeywordMerger": 'Primere Lora Keyword Merger',
+    "PrimereEmbeddingKeywordMerger": "Primere Embedding Keyword Merger",
 
     "PrimereMetaSave": "Primere Image Meta Saver",
     "PrimereAnyOutput": "Primere Any Debug",
