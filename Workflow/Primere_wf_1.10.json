@@ -1,5 +1,5 @@
 {
-  "last_node_id": 264,
+  "last_node_id": 278,
   "last_link_id": 696,
   "nodes": [
     {
@@ -832,7 +832,7 @@
         "Node name for S&R": "PrimereVisualStyle"
       },
       "widgets_values": [
-        "Sci-fi Spaceship exhibition",
+        "NSFW Olga",
         true,
         true,
         false,
@@ -955,7 +955,7 @@
         "Node name for S&R": "PrimereVisualCKPT"
       },
       "widgets_values": [
-        "SDXL\\devlishphotorealism_sdxl12.safetensors",
+        "BestAll\\realisticVisionV40.safetensors",
         true,
         true
       ],
@@ -1519,13 +1519,13 @@
         "Node name for S&R": "PrimereResolution"
       },
       "widgets_values": [
-        "Photo [19:13]",
+        "Portrait [9:7]",
         768,
         false,
         "Vertical",
         true,
         "BaseModel_1024",
-        1121615365905935,
+        735478401056602,
         "randomize",
         false,
         1,
@@ -1560,7 +1560,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(Futuristic spaceship show, spaceship fair, spaceship exhibition:1.3), (Huge minimalist spaceship garage), (new {white|silver|yellow|colorful painted|platina|red|rusty used abandoned|glossy} spaceship docked to the exhibition area), (artificial {white|neon|colorful} lights, futuristic lamps, huge windows, {alien lifeforms|humans| mechanical robots} walking in the exhibition garage) "
+        "(48 years old woman {standing|sit|lies on bed}:1.4), (pure simple dark bedroom), (wear {long fishnet luxury lingerie|nude|short lingerie}), ({white|black|green|yellow|topless|red|blue} {big|small|luxury|fishnet transparent} bra:1.4), green eyes, (short, red, curly, (((thinning))) ((light-red colored)) hair:1.3), professional {half-body|full-body|portrait|closeup} model photography, (((sexy natural tits))), red nails, ((perfect hands)), ((perfect face)), ((folds in the skin)), (((detailed face))), (((1girl))), extremely detailed, (film grain:1.8)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -1591,7 +1591,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "curved lines, ornate, baroque, abstract, grunge, FastNegativeEmbedding, loli, underaged, disformed, ugly, duplicates, text, watermark, human, man, woman, animal, person, car, vehicle, truck"
+        "((blurry)), duplicate, deformed, cartoon, animated, child, childish, makeup, muscle, (perfect skin), (((cover or touch tits by hands))), ((makeup)), missing limbs, text, negative_hand, earrings, necklace"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -1948,7 +1948,7 @@
         "BaseModel_1024",
         "euler",
         "normal",
-        1508,
+        128,
         "randomize",
         65,
         895,
@@ -2141,7 +2141,7 @@
       },
       "widgets_values": [
         "",
-        -250441200935349,
+        418168053909183,
         "randomize"
       ],
       "color": "#232",
@@ -2195,7 +2195,7 @@
       },
       "widgets_values": [
         "",
-        -514735492896438,
+        -630824562833872,
         "randomize"
       ],
       "color": "#322",
@@ -2227,7 +2227,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "{\n    \"positive\": \"(Futuristic spaceship show, spaceship fair, spaceship exhibition:1.3), (Huge minimalist spaceship garage), (new {white|silver|yellow|colorful painted|platina|red|rusty used abandoned|glossy} spaceship docked to the exhibition area), (artificial {white|neon|colorful} lights, futuristic lamps, huge windows, {alien lifeforms|humans| mechanical robots} walking in the exhibition garage) \",\n    \"negative\": \"curved lines, ornate, baroque, abstract, grunge, FastNegativeEmbedding, loli, underaged, disformed, ugly, duplicates, text, watermark, human, man, woman, animal, person, car, vehicle, truck\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \"SDXL\\\\devlishphotorealism_sdxl12.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 611891828335789,\n    \"width\": 862,\n    \"height\": 1216,\n    \"cfg_scale\": 8.0,\n    \"steps\": 25,\n    \"model_version\": \"SDXL_2048\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"sdxl_vae.safetensors\",\n    \"force_model_vae\": true,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"is_sdxl\": 1,\n    \"dynamic_positive\": \"(Futuristic spaceship show, spaceship fair, spaceship exhibition:1.3), (Huge minimalist spaceship garage), (new red spaceship docked to the exhibition area), (artificial white lights, futuristic lamps, huge windows, alien lifeforms walking in the exhibition garage) \",\n    \"dynamic_negative\": \"curved lines, ornate, baroque, abstract, grunge, FastNegativeEmbedding, loli, underaged, disformed, ugly, duplicates, text, watermark, human, man, woman, animal, person, car, vehicle, truck\"\n}"
+        "{\n    \"positive\": \"(48 years old woman {standing|sit|lies on bed}:1.4), (pure simple dark bedroom), (wear {long fishnet luxury lingerie|nude|short lingerie}), ({white|black|green|yellow|topless|red|blue} {big|small|luxury|fishnet transparent} bra:1.4), green eyes, (short, red, curly, (((thinning))) ((light-red colored)) hair:1.3), professional {half-body|full-body|portrait|closeup} model photography, (((sexy natural tits))), red nails, ((perfect hands)), ((perfect face)), ((folds in the skin)), (((detailed face))), (((1girl))), extremely detailed, (film grain:1.8)\",\n    \"negative\": \"((blurry)), duplicate, deformed, cartoon, animated, child, childish, makeup, muscle, (perfect skin), (((cover or touch tits by hands))), ((makeup)), missing limbs, text, negative_hand, earrings, necklace\",\n    \"positive_l\": \"\",\n    \"negative_l\": \"\",\n    \"positive_r\": \"\",\n    \"negative_r\": \"\",\n    \"model_hash\": \"\",\n    \"model_name\": \".BestNSFW\\\\analogMadness_v40.safetensors\",\n    \"sampler_name\": \"dpmpp_sde\",\n    \"scheduler_name\": \"karras\",\n    \"seed\": 968388506543399,\n    \"width\": 658,\n    \"height\": 896,\n    \"cfg_scale\": 8.0,\n    \"steps\": 25,\n    \"model_version\": \"BaseModel_768\",\n    \"is_lcm\": 0,\n    \"vae_name\": \"vae-ft-mse-840000-ema-pruned.ckpt\",\n    \"force_model_vae\": true,\n    \"prefered_model\": null,\n    \"prefered_orientation\": null,\n    \"is_sdxl\": 0,\n    \"dynamic_positive\": \"(48 years old woman lies on bed:1.4), (pure simple dark bedroom), (wear long fishnet luxury lingerie), (black fishnet transparent bra:1.4), green eyes, (short, red, curly, (((thinning))) ((light-red colored)) hair:1.3), professional half-body model photography, (((sexy natural tits))), red nails, ((perfect hands)), ((perfect face)), ((folds in the skin)), (((detailed face))), (((1girl))), extremely detailed, (film grain:1.8)\",\n    \"dynamic_negative\": \"((blurry)), duplicate, deformed, cartoon, animated, child, childish, makeup, muscle, (perfect skin), (((cover or touch tits by hands))), ((makeup)), missing limbs, text, negative_hand, earrings, necklace\"\n}"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
@@ -2314,7 +2314,7 @@
         1.2,
         0.9,
         1.25,
-        173259743435218,
+        -674702603502792,
         "randomize",
         true,
         "cpu"
@@ -2399,8 +2399,8 @@
         512,
         "BaseModel_1024",
         true,
-        0.5,
-        0.30000000000000004
+        4,
+        3
       ],
       "color": "#0000eb",
       "bgcolor": "#0000ff"
@@ -2563,9 +2563,9 @@
         false,
         "SDXL\\negativeXL_D.safetensors",
         1,
+        true,
         false,
-        false,
-        "SDXL\\Arcpastel.safetensors",
+        "SDXL\\peopleneg.safetensors",
         1,
         false,
         false,
@@ -3018,8 +3018,8 @@
       "id": 218,
       "type": "PrimereVisualLORA",
       "pos": [
-        503.30578562838974,
-        -1107.756930365444
+        503,
+        -1108
       ],
       "size": {
         "0": 465.599853515625,
@@ -3095,19 +3095,19 @@
         false,
         false,
         false,
-        "SDXL\\CamelliaXL2.safetensors",
+        "SDXL\\Camellia2.safetensors",
         1,
         1,
         false,
-        "SDXL\\HelenaXL.safetensors",
+        "SDXL\\Helena.safetensors",
         1,
         1,
         false,
-        "SDXL\\Surreal Harmony.safetensors",
+        "SDXL\\Surreal_Harmony.safetensors",
         1,
         1,
         false,
-        "SDXL\\xl_more_art-full_v1.safetensors",
+        "SDXL\\more_art-full_v1.safetensors",
         1,
         1,
         false,
@@ -3570,7 +3570,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        188645480325082,
+        389618376711520,
         "randomize",
         20,
         8,
@@ -3607,7 +3607,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(Futuristic spaceship show, spaceship fair, spaceship exhibition:1.3), (Huge minimalist spaceship garage), (new red spaceship docked to the exhibition area), (artificial white lights, futuristic lamps, huge windows, alien lifeforms walking in the exhibition garage)"
+        "(48 years old woman lies on bed:1.4), (pure simple dark bedroom), (wear long fishnet luxury lingerie), (black fishnet transparent bra:1.4), green eyes, (short, red, curly, (((thinning))) ((light-red colored)) hair:1.3), professional half-body model photography, (((sexy natural tits))), red nails, ((perfect hands)), ((perfect face)), ((folds in the skin)), (((detailed face))), (((1girl))), extremely detailed, (film grain:1.8)"
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -3638,7 +3638,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "(curved lines, ornate, baroque, abstract, grunge, embedding:FastNegativeEmbedding, loli, underaged, disformed, ugly, duplicates, text, watermark, human, man, woman, animal, person, car, vehicle, truck:1.20)"
+        "(((blurry)), duplicate, deformed, cartoon, animated, child, childish, makeup, muscle, (perfect skin), (((cover or touch tits by hands))), ((makeup)), missing limbs, text, embedding:negative_hand, earrings, necklace:1.20)"
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -3669,7 +3669,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "((Futuristic spaceship show, spaceship fair, spaceship exhibition:1.3), (Huge minimalist spaceship garage), (new red spaceship docked to the exhibition area), (artificial white lights, futuristic lamps, huge windows, alien lifeforms walking in the exhibition garage))"
+        ""
       ],
       "color": "#232",
       "bgcolor": "#353"
@@ -3700,7 +3700,7 @@
         "Node name for S&R": "PrimereAnyOutput"
       },
       "widgets_values": [
-        "((curved lines, ornate, baroque, abstract, grunge, embedding:FastNegativeEmbedding, loli, underaged, disformed, ugly, duplicates, text, watermark, human, man, woman, animal, person, car, vehicle, truck:1.20))"
+        ""
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -3989,7 +3989,7 @@
       },
       "widgets_values": [
         2.1,
-        849260966732698,
+        376176247537315,
         "randomize",
         7,
         6.5,
@@ -4139,7 +4139,7 @@
       },
       "widgets_values": [
         "",
-        ":: Time to save: 2023-12-16 22:45:02\n:: Output file: z:\\AIPICS\\Comfy\\DEVLISHPHOTOREALISM_SDXL12\\Preview\\2023-12-Week-50\\Image_20231612_224502_611891828335789_264x368_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: (Futuristic spaceship show, spaceship fair, spaceship exhibition:1.3), (Huge minimalist spaceship garage), (new {white|silver|yellow|colorful painted|platina|red|rusty used abandoned|glossy} spaceship docked to the exhibition area), (artificial {white|neon|colorful} lights, futuristic lamps, huge windows, {alien lifeforms|humans| mechanical robots} walking in the exhibition garage) \n:: NEGATIVE: curved lines, ornate, baroque, abstract, grunge, FastNegativeEmbedding, loli, underaged, disformed, ugly, duplicates, text, watermark, human, man, woman, animal, person, car, vehicle, truck\n:: MODEL_NAME: SDXL\\devlishphotorealism_sdxl12.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 611891828335789\n:: WIDTH: 862\n:: HEIGHT: 1216\n:: CFG_SCALE: 8.0\n:: STEPS: 25\n:: MODEL_VERSION: SDXL_2048\n:: IS_LCM: 0\n:: VAE_NAME: sdxl_vae.safetensors\n:: FORCE_MODEL_VAE: True\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: None\n:: IS_SDXL: 1\n:: DYNAMIC_POSITIVE: (Futuristic spaceship show, spaceship fair, spaceship exhibition:1.3), (Huge minimalist spaceship garage), (new red spaceship docked to the exhibition area), (artificial white lights, futuristic lamps, huge windows, alien lifeforms walking in the exhibition garage) \n:: DYNAMIC_NEGATIVE: curved lines, ornate, baroque, abstract, grunge, FastNegativeEmbedding, loli, underaged, disformed, ugly, duplicates, text, watermark, human, man, woman, animal, person, car, vehicle, truck\n:: SAVED_IMAGE_WIDTH: 264\n:: SAVED_IMAGE_HEIGTH: 368\n:: UPSCALER_RATIO: From: 862x1216 to: 264x368 Ratio: 0.3\n"
+        ":: Time to save: 2023-12-17 12:51:35\n:: Output file: z:\\AIPICS\\Comfy\\ANALOGMADNESS_V40\\Preview\\2023-12-Week-50\\Image_20231712_125135_1010226449481996_328x448_1.jpg\n\n:: PROCESS INFO ::\n------------------\n:: POSITIVE: (48 years old woman {standing|sit|lies on bed}:1.4), (pure simple dark bedroom), (wear {long fishnet luxury lingerie|nude|short lingerie}), ({white|black|green|yellow|topless|red|blue} {big|small|luxury|fishnet transparent} bra:1.4), green eyes, (short, red, curly, (((thinning))) ((light-red colored)) hair:1.3), professional {half-body|full-body|portrait|closeup} model photography, (((sexy natural tits))), red nails, ((perfect hands)), ((perfect face)), ((folds in the skin)), (((detailed face))), (((1girl))), extremely detailed, (film grain:1.8)\n:: NEGATIVE: ((blurry)), duplicate, deformed, cartoon, animated, child, childish, makeup, muscle, (perfect skin), (((cover or touch tits by hands))), ((makeup)), missing limbs, text, negative_hand, earrings, necklace\n:: MODEL_NAME: .BestNSFW\\analogMadness_v40.safetensors\n:: SAMPLER_NAME: dpmpp_sde\n:: SCHEDULER_NAME: karras\n:: SEED: 1010226449481996\n:: WIDTH: 658\n:: HEIGHT: 896\n:: CFG_SCALE: 8.0\n:: STEPS: 25\n:: MODEL_VERSION: BaseModel_768\n:: IS_LCM: 0\n:: VAE_NAME: vae-ft-mse-840000-ema-pruned.ckpt\n:: FORCE_MODEL_VAE: True\n:: PREFERED_MODEL: None\n:: PREFERED_ORIENTATION: None\n:: IS_SDXL: 0\n:: DYNAMIC_POSITIVE: (48 years old woman lies on bed:1.4), (pure simple dark bedroom), (wear short lingerie), (black fishnet transparent bra:1.4), green eyes, (short, red, curly, (((thinning))) ((light-red colored)) hair:1.3), professional full-body model photography, (((sexy natural tits))), red nails, ((perfect hands)), ((perfect face)), ((folds in the skin)), (((detailed face))), (((1girl))), extremely detailed, (film grain:1.8)\n:: DYNAMIC_NEGATIVE: ((blurry)), duplicate, deformed, cartoon, animated, child, childish, makeup, muscle, (perfect skin), (((cover or touch tits by hands))), ((makeup)), missing limbs, text, negative_hand, earrings, necklace\n:: SAVED_IMAGE_WIDTH: 328\n:: SAVED_IMAGE_HEIGTH: 448\n:: UPSCALER_RATIO: From: 658x896 to: 328x448 Ratio: 0.5\n"
       ],
       "color": "#002c6c",
       "bgcolor": "#004080"
