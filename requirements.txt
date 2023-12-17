@@ -1,5 +1,7 @@
 chardet
+comfy
 dynamicprompts
+nodes
 numpy
 pandas
 pefile
