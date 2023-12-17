@@ -38,12 +38,12 @@ if frontend_target.exists() == False:
 # else:
 #    print(f"Comfy root probably not found automatically, please copy the folder {frontend_target} manually in the web/extensions folder of ComfyUI")
 
-import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Dashboard as Dashboard
-import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Inputs as Inputs
-import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Styles as Styles
-import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Outputs as Outputs
-import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Visuals as Visuals
-import custom_nodes.ComfyUI_Primere_Nodes.Nodes.Networks as Networks
+from .Nodes import Dashboard as Dashboard
+from .Nodes import Inputs as Inputs
+from .Nodes import Styles as Styles
+from .Nodes import Outputs as Outputs
+from .Nodes import Visuals as Visuals
+from .Nodes import Networks as Networks
 
 NODE_CLASS_MAPPINGS = {
     "PrimereSamplers": Dashboard.PrimereSamplers,

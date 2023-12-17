@@ -1,5 +1,4 @@
 chardet
-comfy
 dynamicprompts
 nodes
 numpy
